@@ -19,4 +19,5 @@ Thumbs.db
 *.log
 
 # Documentación local (no subir a GitHub)
-README-LOCAL.md 
+README-LOCAL.md
+PROGRESO-MEJORAS.md 
