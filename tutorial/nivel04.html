@@ -729,7 +729,6 @@
             margin-bottom: 15px;
         }
     </style>
-    <link rel="stylesheet" href="css/estilos-universales.css">
 </head>
 <body>
     <!-- 🧭 Menú de Navegación -->
@@ -767,7 +766,6 @@
                ¡Me encantaría saber de ti!</p>
         </section>
     </main>
-    <script src="js/efectos.js"></script>
 </body>
 </html></textarea>
             
@@ -974,15 +972,13 @@ nav { background: #3498db; padding: 15px; }
 nav ul { list-style: none; display: flex; gap: 20px; justify-content: center; margin: 0; padding: 0; }
 nav a { color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; }
 nav a:hover { background: rgba(255,255,255,0.2); }
-</style>    <link rel="stylesheet" href="css/estilos-universales.css">
-</head><body>
+</style></head><body>
 <nav><ul>
 <li><a href="#">Inicio</a></li>
 <li><a href="#">Servicios</a></li>
 <li><a href="#">Contacto</a></li>
 </ul></nav>
 <p style="padding: 20px;">¡Menú horizontal con flexbox!</p>
-    <script src="js/efectos.js"></script>
 </body></html>`,
             vertical: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
@@ -991,15 +987,13 @@ nav ul { list-style: none; margin: 0; padding: 0; }
 nav li { margin: 10px 0; }
 nav a { color: white; text-decoration: none; display: block; padding: 10px; border-left: 3px solid transparent; }
 nav a:hover { border-left-color: #3498db; background: rgba(255,255,255,0.1); }
-</style>    <link rel="stylesheet" href="css/estilos-universales.css">
-</head><body style="display: flex;">
+</style></head><body style="display: flex;">
 <nav><ul>
 <li><a href="#">🏠 Inicio</a></li>
 <li><a href="#">📦 Productos</a></li>
 <li><a href="#">📞 Contacto</a></li>
 </ul></nav>
 <p style="padding: 20px;">¡Menú vertical tipo sidebar!</p>
-    <script src="js/efectos.js"></script>
 </body></html>`,
             botones: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
@@ -1012,15 +1006,13 @@ nav a {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 nav a:hover { transform: scale(1.1); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
-</style>    <link rel="stylesheet" href="css/estilos-universales.css">
-</head><body>
+</style></head><body>
 <nav><ul>
 <li><a href="#">🏠 Inicio</a></li>
 <li><a href="#">⭐ Destacados</a></li>
 <li><a href="#">📧 Email</a></li>
 </ul></nav>
 <p style="padding: 20px; text-align: center;">¡Menú con botones elegantes!</p>
-    <script src="js/efectos.js"></script>
 </body></html>`
         };
         
@@ -1076,11 +1068,9 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
                     ul { list-style: none; display: flex; gap: 20px; justify-content: center; margin: 0; padding: 0; }
                     a { color: white; text-decoration: none; padding: 8px 15px; border-radius: 20px; }
                     a:hover { background: rgba(255,255,255,0.2); }
-                </style>    <link rel="stylesheet" href="css/estilos-universales.css">
-</head><body>
+                </style></head><body>
                 <nav><ul>${itemsMenu.map(item => `<li><a href="#">${item}</a></li>`).join('')}</ul></nav>
-                    <script src="js/efectos.js"></script>
-</body></html>
+                </body></html>
             `;
             const preview = document.getElementById('menuPreview');
             const doc = preview.contentDocument || preview.contentWindow.document;
