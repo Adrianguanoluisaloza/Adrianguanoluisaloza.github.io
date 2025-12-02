@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Nivel 24 - Programación de Juegos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0f0f23;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #374151;
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #fbbf24;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        /* Canvas Juego */
+        #gameCanvas {
+            background: #000;
+            border: 4px solid #f59e0b;
+            border-radius: 10px;
+            display: block;
+            margin: 20px auto;
+            cursor: crosshair;
+        }
+        
+        .controles-juego {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .btn-juego {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-juego:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(245,158,11,0.4);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(217,119,6,0.2));
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        
+        .codigo-ejemplo {
+            background: #1e1e3f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 2px solid #f59e0b;
+        }
+        
+        .codigo-ejemplo pre {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: #676e95; }
+        .property { color: #ffcb6b; }
+        .value { color: #f78c6c; }
+        
+        .concepto-box {
+            background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(217,119,6,0.2));
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 3px solid #f59e0b;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+        
+        .game-over h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #fbbf24;
+            margin-bottom: 20px;
+        }
+        
+        .progreso-bar {
+            background: #374151;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progreso-fill {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .estrellas {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .estrella { color: #4b5563; transition: all 0.3s; }
+        .estrella.activa { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(245,158,11,0.4);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-header">
+            <a href="inicio.html" class="nav-btn">🏠 Menú</a>
+            <span class="nivel-badge">⭐ NIVEL 24</span>
+            <div style="display: flex; gap: 10px;">
+                <a href="nivel23.html" class="nav-btn">⬅️ Anterior</a>
+                <a href="nivel25.html" class="nav-btn">Siguiente ➡️</a>
+            </div>
+        </div>
+        <h1>🎮 Programación de Juegos con Canvas</h1>
+    </header>
+    
+    <main class="container">
+        <!-- Introducción -->
+        <section class="seccion">
+            <h2>🎨 Canvas: El Lienzo Mágico</h2>
+            
+            <div class="concepto-box">
+                <h3>¿Qué es Canvas?</h3>
+                <p>Canvas es un elemento HTML que permite dibujar gráficos, animaciones y juegos usando JavaScript. ¡Es como tener un lienzo digital para crear cualquier cosa que imagines!</p>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Básico de Canvas</span>
+<span class="keyword">const</span> canvas = document.<span class="function">getElementById</span>(<span class="string">'miCanvas'</span>);
+<span class="keyword">const</span> ctx = canvas.<span class="function">getContext</span>(<span class="string">'2d'</span>);
+
+<span class="comment">// Dibujar un rectángulo</span>
+ctx.<span class="property">fillStyle</span> = <span class="string">'#f59e0b'</span>;
+ctx.<span class="function">fillRect</span>(<span class="value">50</span>, <span class="value">50</span>, <span class="value">100</span>, <span class="value">100</span>);
+
+<span class="comment">// Dibujar un círculo</span>
+ctx.<span class="function">beginPath</span>();
+ctx.<span class="function">arc</span>(<span class="value">200</span>, <span class="value">100</span>, <span class="value">50</span>, <span class="value">0</span>, Math.<span class="property">PI</span> * <span class="value">2</span>);
+ctx.<span class="property">fillStyle</span> = <span class="string">'#10b981'</span>;
+ctx.<span class="function">fill</span>();</pre>
+            </div>
+        </section>
+        
+        <!-- Juego Principal -->
+        <section class="seccion">
+            <h2>🎯 ¡Atrapa las Estrellas!</h2>
+            
+            <p>Usa el mouse para atrapar las estrellas ⭐ antes de que desaparezcan. ¡Evita los obstáculos rojos! 💥</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="score">0</div>
+                    <div class="stat-label">Puntos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="level">1</div>
+                    <div class="stat-label">Nivel</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="lives">❤️❤️❤️</div>
+                    <div class="stat-label">Vidas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="time">60</div>
+                    <div class="stat-label">Tiempo</div>
+                </div>
+            </div>
+            
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            
+            <div class="controles-juego">
+                <button class="btn-juego" onclick="iniciarJuego()">▶️ Iniciar Juego</button>
+                <button class="btn-juego" onclick="pausarJuego()">⏸️ Pausar</button>
+                <button class="btn-juego" onclick="reiniciarJuego()">🔄 Reiniciar</button>
+            </div>
+        </section>
+        
+        <!-- Conceptos -->
+        <section class="seccion">
+            <h2>📚 Conceptos de Programación de Juegos</h2>
+            
+            <div class="concepto-box">
+                <h3>🔄 Game Loop (Bucle del Juego)</h3>
+                <p>El corazón de cualquier juego. Se ejecuta continuamente para actualizar y dibujar el juego.</p>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Game Loop básico</span>
+<span class="keyword">function</span> <span class="function">gameLoop</span>() {
+    <span class="function">update</span>();    <span class="comment">// Actualizar lógica</span>
+    <span class="function">draw</span>();      <span class="comment">// Dibujar en pantalla</span>
+    <span class="function">requestAnimationFrame</span>(gameLoop);
+}
+
+<span class="keyword">function</span> <span class="function">update</span>() {
+    <span class="comment">// Mover personajes, detectar colisiones</span>
+    player.<span class="property">x</span> += player.<span class="property">velocidad</span>;
+}
+
+<span class="keyword">function</span> <span class="function">draw</span>() {
+    <span class="comment">// Limpiar canvas y dibujar todo</span>
+    ctx.<span class="function">clearRect</span>(<span class="value">0</span>, <span class="value">0</span>, canvas.<span class="property">width</span>, canvas.<span class="property">height</span>);
+    <span class="function">drawPlayer</span>();
+}</pre>
+            </div>
+            
+            <div class="concepto-box" style="margin-top: 20px;">
+                <h3>💥 Detección de Colisiones</h3>
+                <p>Verificar cuando dos objetos se tocan en el juego.</p>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Detectar colisión entre rectángulos</span>
+<span class="keyword">function</span> <span class="function">detectarColision</span>(obj1, obj2) {
+    <span class="keyword">return</span> obj1.<span class="property">x</span> < obj2.<span class="property">x</span> + obj2.<span class="property">width</span> &&
+           obj1.<span class="property">x</span> + obj1.<span class="property">width</span> > obj2.<span class="property">x</span> &&
+           obj1.<span class="property">y</span> < obj2.<span class="property">y</span> + obj2.<span class="property">height</span> &&
+           obj1.<span class="property">y</span> + obj1.<span class="property">height</span> > obj2.<span class="property">y</span>;
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Quiz -->
+        <section class="seccion">
+            <h2>🎯 Quiz - Programación de Juegos</h2>
+            
+            <div class="progreso-bar">
+                <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="concepto-box">
+                    <h4>1. ¿Qué método limpia el canvas?</h4>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, true)">clearRect()</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">clear()</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">reset()</button>
+                </div>
+                
+                <div class="concepto-box">
+                    <h4>2. ¿Para qué sirve requestAnimationFrame?</h4>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">Crear animaciones CSS</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, true)">Crear el game loop</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">Detener el juego</button>
+                </div>
+                
+                <div class="concepto-box">
+                    <h4>3. ¿Cómo se dibuja un círculo en canvas?</h4>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">drawCircle()</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, true)">arc()</button>
+                    <button class="btn-juego" style="margin: 5px;" onclick="verificar(this, false)">circle()</button>
+                </div>
+            </div>
+            
+            <div class="estrellas">
+                <span class="estrella" id="star1">⭐</span>
+                <span class="estrella" id="star2">⭐</span>
+                <span class="estrella" id="star3">⭐</span>
+            </div>
+        </section>
+        
+        <!-- Navegación -->
+        <nav class="nav-final">
+            <a href="nivel23.html">⬅️ Nivel 23</a>
+            <a href="nivel25.html">Nivel 25 ➡️</a>
+        </nav>
+    </main>
+    
+    <!-- Game Over Screen -->
+    <div class="game-over" id="gameOver">
+        <h2>🎮 JUEGO TERMINADO</h2>
+        <p style="font-size: 1.2rem; margin: 20px 0;">Puntuación Final: <span id="finalScore">0</span></p>
+        <button class="btn-juego" onclick="cerrarGameOver()">Cerrar</button>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let gameRunning = false;
+        let score = 0;
+        let level = 1;
+        let lives = 3;
+        let timeLeft = 60;
+        
+        let player = { x: canvas.width / 2, y: canvas.height / 2, size: 30 };
+        let stars = [];
+        let obstacles = [];
+        
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+        
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        });
+        
+        function iniciarJuego() {
+            if (gameRunning) return;
+            gameRunning = true;
+            score = 0;
+            level = 1;
+            lives = 3;
+            timeLeft = 60;
+            stars = [];
+            obstacles = [];
+            actualizarStats();
+            gameLoop();
+            startTimer();
+        }
+        
+        function pausarJuego() {
+            gameRunning = false;
+        }
+        
+        function reiniciarJuego() {
+            gameRunning = false;
+            setTimeout(() => iniciarJuego(), 100);
+        }
+        
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        function update() {
+            // Mover jugador hacia el mouse
+            player.x += (mouseX - player.x) * 0.1;
+            player.y += (mouseY - player.y) * 0.1;
+            
+            // Crear estrellas aleatorias
+            if (Math.random() < 0.02 * level) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: 20,
+                    lifetime: 100
+                });
+            }
+            
+            // Crear obstáculos
+            if (Math.random() < 0.01 * level) {
+                obstacles.push({
+                    x: Math.random() * canvas.width,
+                    y: 0,
+                    size: 30,
+                    speed: 2 + level
+                });
+            }
+            
+            // Actualizar estrellas
+            stars = stars.filter(star => {
+                star.lifetime--;
+                
+                // Colisión con jugador
+                const dist = Math.hypot(player.x - star.x, player.y - star.y);
+                if (dist < player.size + star.size) {
+                    score += 10;
+                    if (score % 100 === 0) level++;
+                    actualizarStats();
+                    return false;
+                }
+                
+                return star.lifetime > 0;
+            });
+            
+            // Actualizar obstáculos
+            obstacles = obstacles.filter(obs => {
+                obs.y += obs.speed;
+                
+                // Colisión con jugador
+                const dist = Math.hypot(player.x - obs.x, player.y - obs.y);
+                if (dist < player.size + obs.size) {
+                    lives--;
+                    actualizarStats();
+                    if (lives <= 0) gameOver();
+                    return false;
+                }
+                
+                return obs.y < canvas.height;
+            });
+        }
+        
+        function draw() {
+            // Limpiar
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Dibujar estrellas
+            stars.forEach(star => {
+                ctx.font = '30px Arial';
+                ctx.fillText('⭐', star.x - 15, star.y + 15);
+            });
+            
+            // Dibujar obstáculos
+            obstacles.forEach(obs => {
+                ctx.font = '35px Arial';
+                ctx.fillText('💥', obs.x - 17, obs.y + 17);
+            });
+            
+            // Dibujar jugador
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Cara del jugador
+            ctx.fillStyle = '#000';
+            ctx.beginPath();
+            ctx.arc(player.x - 8, player.y - 5, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(player.x + 8, player.y - 5, 3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(player.x, player.y + 5, 10, 0, Math.PI);
+            ctx.stroke();
+        }
+        
+        function actualizarStats() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('level').textContent = level;
+            const corazones = '❤️'.repeat(Math.max(0, lives));
+            document.getElementById('lives').textContent = corazones || '💔';
+        }
+        
+        function startTimer() {
+            const timer = setInterval(() => {
+                if (!gameRunning) {
+                    clearInterval(timer);
+                    return;
+                }
+                
+                timeLeft--;
+                document.getElementById('time').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    gameOver();
+                }
+            }, 1000);
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('gameOver').style.display = 'block';
+            guardarProgreso();
+        }
+        
+        function cerrarGameOver() {
+            document.getElementById('gameOver').style.display = 'none';
+        }
+        
+        // Quiz
+        let correctas = 0;
+        function verificar(btn, correcto) {
+            if (btn.disabled) return;
+            
+            const hermanos = btn.parentElement.querySelectorAll('.btn-juego');
+            hermanos.forEach(b => b.disabled = true);
+            
+            if (correcto) {
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                correctas++;
+                actualizarEstrellas();
+            } else {
+                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            }
+            
+            const respondidas = document.querySelectorAll('.quiz-container .btn-juego:disabled').length / 3;
+            document.getElementById('progresoQuiz').style.width = (respondidas / 3 * 100) + '%';
+        }
+        
+        function actualizarEstrellas() {
+            if (correctas >= 1) document.getElementById('star1').classList.add('activa');
+            if (correctas >= 2) document.getElementById('star2').classList.add('activa');
+            if (correctas >= 3) document.getElementById('star3').classList.add('activa');
+        }
+        
+        function guardarProgreso() {
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(24)) {
+                niveles.push(24);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+        }
+    </script>
+</body>
+</html>

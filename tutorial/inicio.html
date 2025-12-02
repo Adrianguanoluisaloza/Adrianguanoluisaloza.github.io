@@ -965,12 +965,52 @@
                     </div>
                 </div>
             </a>
+            
+            <a href="nivel24.html" class="level-card" style="--card-color: #f59e0b; --card-glow: rgba(245,158,11,0.3);" data-level="24">
+                <span class="level-number">24</span>
+                <span class="level-icon">🎮</span>
+                <h3 class="level-title">Programación de Juegos</h3>
+                <p class="level-desc">Crea juegos interactivos con Canvas y aprende game loops.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">Canvas</span>
+                    <span class="topic-tag">Game Loop</span>
+                    <span class="topic-tag">Colisiones</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 35 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel25.html" class="level-card" style="--card-color: #dc2626; --card-glow: rgba(220,38,38,0.3);" data-level="25">
+                <span class="level-number">25</span>
+                <span class="level-icon">🏆</span>
+                <h3 class="level-title">Proyecto Final Maestro</h3>
+                <p class="level-desc">¡Completa tu maestría web y obtén tu certificado oficial!</p>
+                <div class="level-topics">
+                    <span class="topic-tag">Proyecto Final</span>
+                    <span class="topic-tag">Certificado</span>
+                    <span class="topic-tag">Maestría</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 40 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
         </div>
         
         <!-- Centro de Logros -->
         <h2 class="section-title section-final">🎉 Graduación</h2>
         <div class="levels-grid">
-            <a href="final.html" class="level-card final-card" style="--card-color: #a78bfa; --card-glow: rgba(167,139,250,0.4);" data-level="24">
+            <a href="final.html" class="level-card final-card" style="--card-color: #a78bfa; --card-glow: rgba(167,139,250,0.4);">
                 <span class="level-icon">🏆</span>
                 <h3 class="level-title">Centro de Logros</h3>
                 <p class="level-desc">¡Revisa todos tus logros y obtén tu certificado de graduación!</p>
@@ -1032,7 +1072,7 @@
             
             document.getElementById('completedCount').textContent = completed;
             
-            const percentage = Math.round((completed / 18) * 100);
+            const percentage = Math.round((completed / 25) * 100);
             const progressFill = document.getElementById('progressFill');
             progressFill.style.width = percentage + '%';
             progressFill.textContent = percentage + '%';
@@ -1043,6 +1083,8 @@
             if (completed >= 5) achievements++;
             if (completed >= 10) achievements++;
             if (completed >= 15) achievements++;
+            if (completed >= 20) achievements++;
+            if (completed >= 25) achievements++;
             document.getElementById('achievementCount').textContent = achievements;
         }
         
@@ -1054,7 +1096,8 @@
             { icon: '📚', name: 'Estudiante', desc: 'Completa 5 niveles', requirement: 5 },
             { icon: '🎯', name: 'Avanzado', desc: 'Completa 10 niveles', requirement: 10 },
             { icon: '🚀', name: 'Experto', desc: 'Completa 15 niveles', requirement: 15 },
-            { icon: '👑', name: 'Maestro Web', desc: 'Completa los 18 niveles', requirement: 18 }
+            { icon: '💎', name: 'Profesional', desc: 'Completa 20 niveles', requirement: 20 },
+            { icon: '👑', name: 'Maestro Web', desc: 'Completa los 25 niveles', requirement: 25 }
         ];
         
         function openModal() {

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Nivel 25 - Proyecto Final Maestro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0f0f23;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🏆';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.3);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 3px solid #374151;
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #ef4444;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .logros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .logro-card {
+            background: linear-gradient(135deg, rgba(220,38,38,0.2), rgba(153,27,27,0.2));
+            border: 2px solid #dc2626;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .logro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220,38,38,0.4);
+            border-color: #ef4444;
+        }
+        
+        .logro-card .icono {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+        
+        .logro-card.desbloqueado .icono {
+            filter: grayscale(0%);
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .logro-card .titulo {
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 8px;
+        }
+        
+        .logro-card .desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        
+        .certificado-section {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 3px solid #dc2626;
+        }
+        
+        .certificado-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border: 3px solid #dc2626;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            text-align: center;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .certificado-input::placeholder { color: #94a3b8; }
+        
+        .btn-grande {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .btn-grande:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(220,38,38,0.5);
+        }
+        
+        .certificado-maestro {
+            max-width: 750px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 10px solid #dc2626;
+            border-radius: 25px;
+            padding: 50px;
+            position: relative;
+            color: #1e293b;
+            display: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .certificado-maestro.visible { display: block; }
+        
+        .certificado-maestro h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #dc2626;
+            margin-bottom: 20px;
+        }
+        
+        .nombre-maestro {
+            font-size: 2.8rem;
+            color: #1e40af;
+            font-family: 'Georgia', serif;
+            margin: 25px 0;
+            padding: 15px;
+            border-bottom: 4px solid #1e40af;
+            display: inline-block;
+        }
+        
+        .mensaje-cert {
+            font-size: 1.1rem;
+            color: #374151;
+            line-height: 1.9;
+            margin: 25px 0;
+        }
+        
+        .sello-maestro {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 6rem;
+            transform: rotate(-15deg);
+        }
+        
+        .stats-finales {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-final {
+            background: linear-gradient(135deg, rgba(220,38,38,0.2), rgba(153,27,27,0.2));
+            border: 2px solid #dc2626;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .stat-final .valor {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ef4444;
+        }
+        
+        .stat-final .etiqueta {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            top: -10px;
+            animation: caer 4s linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            border-radius: 3px;
+        }
+        
+        @keyframes caer {
+            to {
+                top: 100vh;
+                transform: rotate(1080deg);
+            }
+        }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            text-decoration: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(220,38,38,0.5);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-header">
+            <a href="inicio.html" class="nav-btn">🏠 Menú</a>
+            <span class="nivel-badge">⭐ NIVEL 25 - FINAL</span>
+            <a href="nivel24.html" class="nav-btn">⬅️ Anterior</a>
+        </div>
+        <h1>🏆 PROYECTO FINAL MAESTRO 🏆</h1>
+        <p style="font-size: 1.2rem; margin-top: 15px;">¡Has llegado al nivel máximo! Hora de demostrar todo lo aprendido</p>
+    </header>
+    
+    <main class="container">
+        <!-- Estadísticas -->
+        <section class="seccion">
+            <h2>📊 Tu Trayectoria Completa</h2>
+            
+            <div class="stats-finales">
+                <div class="stat-final">
+                    <div class="valor" id="nivelesCompletados">25</div>
+                    <div class="etiqueta">Niveles Completados</div>
+                </div>
+                <div class="stat-final">
+                    <div class="valor" id="horasEstudio">30+</div>
+                    <div class="etiqueta">Horas de Estudio</div>
+                </div>
+                <div class="stat-final">
+                    <div class="valor" id="habilidades">50+</div>
+                    <div class="etiqueta">Habilidades Aprendidas</div>
+                </div>
+                <div class="stat-final">
+                    <div class="valor">100%</div>
+                    <div class="etiqueta">Progreso Total</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Logros Desbloqueados -->
+        <section class="seccion">
+            <h2>🎖️ Logros Desbloqueados</h2>
+            
+            <div class="logros-grid">
+                <div class="logro-card desbloqueado">
+                    <div class="icono">📄</div>
+                    <div class="titulo">Maestro HTML</div>
+                    <div class="desc">Dominio total de HTML5</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">🎨</div>
+                    <div class="titulo">Artista CSS</div>
+                    <div class="desc">Estilos profesionales</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">⚡</div>
+                    <div class="titulo">Ninja JavaScript</div>
+                    <div class="desc">Programación avanzada</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">📱</div>
+                    <div class="titulo">Responsive Pro</div>
+                    <div class="desc">Diseño adaptable</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">🌈</div>
+                    <div class="titulo">Animador</div>
+                    <div class="desc">Efectos visuales</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">🎮</div>
+                    <div class="titulo">Desarrollador de Juegos</div>
+                    <div class="desc">Canvas y game loops</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">🌐</div>
+                    <div class="titulo">Experto en APIs</div>
+                    <div class="desc">Consumo de servicios</div>
+                </div>
+                <div class="logro-card desbloqueado">
+                    <div class="icono">💾</div>
+                    <div class="titulo">Gestor de Datos</div>
+                    <div class="desc">LocalStorage y JSON</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Habilidades Dominadas -->
+        <section class="seccion">
+            <h2>✨ Habilidades que Ahora Dominas</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
+                    <h3 style="color: #ef4444; margin-bottom: 10px;">📋 Estructura Web</h3>
+                    <ul style="line-height: 2; padding-left: 20px;">
+                        <li>HTML5 semántico</li>
+                        <li>Formularios avanzados</li>
+                        <li>Multimedia (audio/video)</li>
+                        <li>Navegación efectiva</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
+                    <h3 style="color: #ef4444; margin-bottom: 10px;">🎨 Diseño Visual</h3>
+                    <ul style="line-height: 2; padding-left: 20px;">
+                        <li>CSS avanzado</li>
+                        <li>Flexbox y Grid</li>
+                        <li>Animaciones CSS</li>
+                        <li>Variables CSS</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
+                    <h3 style="color: #ef4444; margin-bottom: 10px;">⚡ Programación</h3>
+                    <ul style="line-height: 2; padding-left: 20px;">
+                        <li>JavaScript moderno</li>
+                        <li>Manipulación del DOM</li>
+                        <li>Eventos y listeners</li>
+                        <li>Programación asíncrona</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
+                    <h3 style="color: #ef4444; margin-bottom: 10px;">🚀 Tecnologías Web</h3>
+                    <ul style="line-height: 2; padding-left: 20px;">
+                        <li>APIs REST</li>
+                        <li>LocalStorage</li>
+                        <li>Canvas y gráficos</li>
+                        <li>Web Audio API</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certificado Maestro -->
+        <section class="certificado-section">
+            <h2 style="font-size: 2.5rem; color: #ef4444; margin-bottom: 20px;">
+                🎓 CERTIFICADO DE MAESTRÍA 🎓
+            </h2>
+            <p style="color: #e2e8f0; font-size: 1.2rem; margin-bottom: 30px;">
+                Has completado los <strong>25 niveles</strong> del curso más completo de desarrollo web.<br>
+                ¡Es hora de recibir tu certificado oficial de MAESTRO WEB!
+            </p>
+            
+            <input type="text" class="certificado-input" id="nombreMaestro" placeholder="Escribe tu nombre completo">
+            <br>
+            <button class="btn-grande" onclick="generarCertificadoMaestro()">🏆 Generar Certificado de Maestro</button>
+            
+            <div class="certificado-maestro" id="certificadoMaestro">
+                <h2>🏆 CERTIFICADO DE MAESTRÍA 🏆</h2>
+                <p style="color: #6b7280; font-size: 1.1rem;">Este certificado acredita que:</p>
+                <div class="nombre-maestro" id="nombreEnCertificado"></div>
+                <p class="mensaje-cert">
+                    Ha completado exitosamente los <strong>25 NIVELES</strong> del programa de 
+                    <strong>Desarrollo Web Full-Stack</strong> de la 
+                    <strong>Unidad Educativa Luz de Esmeraldas</strong>, 
+                    demostrando dominio excepcional en:<br><br>
+                    ✅ HTML5 y estructura semántica<br>
+                    ✅ CSS3 y diseño responsive<br>
+                    ✅ JavaScript y programación avanzada<br>
+                    ✅ APIs, Canvas y tecnologías modernas<br><br>
+                    Con este logro, el estudiante está preparado para crear 
+                    aplicaciones web profesionales y continuar su carrera en el desarrollo web.
+                </p>
+                <p style="color: #6b7280; font-size: 1rem; margin-top: 30px;" id="fechaCertificado"></p>
+                <div class="sello-maestro">🥇</div>
+            </div>
+            
+            <button class="btn-grande" onclick="descargarCertificado()" style="margin-top: 20px; display: none;" id="btnDescargar">
+                📥 Descargar Certificado
+            </button>
+        </section>
+        
+        <!-- Mensaje Final -->
+        <section class="seccion">
+            <h2>🌟 ¡Felicidades, Maestro Web!</h2>
+            
+            <p style="font-size: 1.2rem; line-height: 2; text-align: center; margin: 25px 0;">
+                Has completado un viaje increíble de aprendizaje. Desde los conceptos más básicos 
+                de HTML hasta la creación de juegos y aplicaciones complejas con JavaScript.<br><br>
+                
+                <strong style="color: #ef4444; font-size: 1.4rem;">Ahora eres capaz de:</strong><br>
+                ✨ Crear sitios web completos desde cero<br>
+                🎨 Diseñar interfaces hermosas y responsivas<br>
+                ⚡ Programar aplicaciones interactivas<br>
+                🎮 Desarrollar juegos en el navegador<br>
+                🌐 Consumir APIs y trabajar con datos<br><br>
+                
+                <strong style="color: #10b981; font-size: 1.3rem;">¿Qué sigue ahora?</strong><br>
+                🚀 Practica creando tus propios proyectos<br>
+                📚 Aprende frameworks como React, Vue o Angular<br>
+                🔧 Explora Node.js para backend<br>
+                💼 Construye tu portafolio profesional<br>
+                🤝 Comparte tus conocimientos con otros<br><br>
+                
+                <em style="color: #fbbf24; font-size: 1.3rem;">
+                    "El aprendizaje nunca termina. Este es solo el comienzo de tu carrera como desarrollador web."
+                </em>
+            </p>
+        </section>
+        
+        <!-- Navegación Final -->
+        <nav class="nav-final">
+            <a href="nivel24.html">⬅️ Nivel 24</a>
+            <a href="inicio.html">🏠 Volver al Inicio</a>
+            <a href="final.html">🏆 Centro de Logros</a>
+        </nav>
+    </main>
+    
+    <script>
+        function generarCertificadoMaestro() {
+            const nombre = document.getElementById('nombreMaestro').value.trim();
+            if (!nombre) {
+                alert('Por favor escribe tu nombre completo');
+                return;
+            }
+            
+            document.getElementById('nombreEnCertificado').textContent = nombre;
+            
+            const fecha = new Date();
+            const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            document.getElementById('fechaCertificado').textContent = 
+                'Otorgado el ' + fecha.getDate() + ' de ' + meses[fecha.getMonth()] + ' de ' + fecha.getFullYear();
+            
+            document.getElementById('certificadoMaestro').classList.add('visible');
+            document.getElementById('btnDescargar').style.display = 'inline-block';
+            
+            // Guardar progreso
+            localStorage.setItem('nivel25_completado', 'true');
+            localStorage.setItem('nombre_maestro', nombre);
+            localStorage.setItem('fecha_graduacion', fecha.toISOString());
+            
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(25)) {
+                niveles.push(25);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+            
+            // Confetti masivo
+            lanzarConfettiMasivo();
+        }
+        
+        function descargarCertificado() {
+            alert('¡Funcionalidad de descarga! En una implementación real, aquí se generaría un PDF del certificado.');
+        }
+        
+        function lanzarConfettiMasivo() {
+            const colores = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#fbbf24'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colores[Math.floor(Math.random() * colores.length)];
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 6000);
+                }, i * 20);
+            }
+        }
+        
+        // Verificar progreso
+        window.onload = function() {
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            document.getElementById('nivelesCompletados').textContent = niveles.length;
+            
+            const nombreGuardado = localStorage.getItem('nombre_maestro');
+            if (nombreGuardado) {
+                document.getElementById('nombreMaestro').value = nombreGuardado;
+            }
+        };
+    </script>
+</body>
+</html>
