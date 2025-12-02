@@ -1,0 +1,42 @@
+# Control de caché para GitHub Pages / Cloudflare
+# Forzar no-cache en archivos HTML
+
+<IfModule mod_headers.c>
+    # No cachear archivos HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+    
+    # Cachear recursos estáticos (CSS, JS, imágenes) por 1 hora
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+    
+    # Cachear audio por 1 día
+    <FilesMatch "\.(mp3|wav|ogg)$">
+        Header set Cache-Control "public, max-age=86400"
+    </FilesMatch>
+</IfModule>
+
+# Alternativa con mod_expires
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # HTML sin caché
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # CSS y JavaScript 1 hora
+    ExpiresByType text/css "access plus 1 hour"
+    ExpiresByType application/javascript "access plus 1 hour"
+    
+    # Imágenes 1 día
+    ExpiresByType image/jpeg "access plus 1 day"
+    ExpiresByType image/png "access plus 1 day"
+    ExpiresByType image/gif "access plus 1 day"
+    ExpiresByType image/svg+xml "access plus 1 day"
+    
+    # Audio 1 día
+    ExpiresByType audio/mpeg "access plus 1 day"
+</IfModule>
