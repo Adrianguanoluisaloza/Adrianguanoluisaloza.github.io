@@ -451,6 +451,12 @@
             }
         }
         
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
         .modal-nombre {
             position: fixed;
             top: 0;
@@ -651,22 +657,75 @@
         </div>
     </section>
     
-    <!-- Certificado -->
+    <!-- Certificado Oficial -->
     <section class="certificado-section" id="certificado">
         <div class="certificado">
-            <h2 class="certificado-titulo">Certificado de Logro</h2>
-            <p class="certificado-texto">Este certificado reconoce que</p>
-            <div class="certificado-nombre" id="nombreCertificado">Tu Nombre</div>
-            <p class="certificado-texto">ha completado exitosamente el curso</p>
-            <p style="font-size: 1.5rem; color: #92400e; font-weight: bold;">
-                "Introducción al Desarrollo Web"
-            </p>
-            <p class="certificado-texto">
-                Aprendiendo HTML, CSS y JavaScript
-            </p>
-            <div class="estrellas-certificado">⭐⭐⭐</div>
-            <p class="certificado-fecha" id="fechaCertificado"></p>
-            <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir Certificado</button>
+            <!-- Encabezado con logos -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px double #d97706;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">🎓</div>
+                    <p style="font-size: 0.7rem; color: #78350f; margin: 0;">CodeQuest</p>
+                </div>
+                <div style="text-align: center; flex: 1;">
+                    <h2 class="certificado-titulo" style="margin: 0; font-size: 1.8rem;">🏆 CERTIFICADO OFICIAL</h2>
+                    <p style="font-size: 0.85rem; color: #92400e; margin: 5px 0 0 0;">de Completación en Desarrollo Web</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">✨</div>
+                    <p style="font-size: 0.7rem; color: #78350f; margin: 0;">Certificado</p>
+                </div>
+            </div>
+
+            <!-- Cuerpo del certificado -->
+            <div style="text-align: center; margin: 30px 0;">
+                <p class="certificado-texto" style="font-size: 1.1rem; margin-bottom: 10px;">Por la presente se certifica que</p>
+                <div class="certificado-nombre" id="nombreCertificado" style="font-size: 2.5rem; color: #92400e; font-weight: bold; text-transform: uppercase; margin: 20px 0; text-shadow: 2px 2px 4px rgba(217,119,6,0.2); letter-spacing: 2px;">Estudiante CodeQuest</div>
+                <p class="certificado-texto" style="font-size: 1.1rem; margin: 15px 0;">ha completado exitosamente el programa completo de</p>
+                <p style="font-size: 1.8rem; color: #92400e; font-weight: bold; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
+                    🚀 DESARROLLO WEB FULL STACK
+                </p>
+                <p class="certificado-texto" style="font-size: 1.15rem; line-height: 1.8;">
+                    Dominando <strong>HTML5</strong>, <strong>CSS3</strong> y <strong>JavaScript ES6+</strong><br>
+                    <span style="color: #92400e; font-weight: bold; font-size: 1.2rem;">✅ 23 Niveles Completados con Excelencia</span>
+                </p>
+            </div>
+
+            <!-- Habilidades -->
+            <div style="background: rgba(217,119,6,0.1); padding: 20px; border-radius: 10px; margin: 25px 0; border: 2px solid #f59e0b;">
+                <p style="font-size: 1rem; color: #78350f; margin: 0; line-height: 1.6;">
+                    <strong style="font-size: 1.1rem; color: #92400e;">🎯 Competencias Certificadas:</strong><br>
+                    • Estructura y Semántica HTML5 • Diseño y Maquetación CSS3<br>
+                    • Programación JavaScript Avanzada • Diseño Web Responsive<br>
+                    • Integración de APIs • Formularios y Validaciones<br>
+                    • Animaciones y Efectos • Proyectos Reales Implementados
+                </p>
+            </div>
+
+            <div class="estrellas-certificado" style="font-size: 2rem; margin: 20px 0;">⭐⭐⭐⭐⭐</div>
+
+            <!-- Información institucional -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; padding-top: 25px; border-top: 3px double #d97706;">
+                <div style="text-align: center; flex: 1;">
+                    <div style="border-top: 2px solid #78350f; width: 200px; margin: 0 auto 5px;"></div>
+                    <p style="font-size: 0.9rem; color: #78350f; margin: 0;"><strong>Director Académico</strong></p>
+                    <p style="font-size: 0.8rem; color: #92400e; margin: 2px 0;">Prof. Adrian Guano</p>
+                </div>
+                <div style="text-align: center; flex: 1;">
+                    <p class="certificado-fecha" id="fechaCertificado" style="font-size: 1rem; color: #78350f; font-weight: bold; margin: 0;"></p>
+                    <p style="font-size: 0.85rem; color: #92400e; margin: 5px 0 0 0;"><strong>Unidad Educativa Luz de Esmeraldas</strong></p>
+                    <p style="font-size: 0.75rem; color: #78350f; margin: 2px 0;">Certificado N° WEBDEV-2025-<span id="numCertificado"></span></p>
+                </div>
+                <div style="text-align: center; flex: 1;">
+                    <div style="font-size: 4rem; line-height: 1;">🏅</div>
+                    <p style="font-size: 0.75rem; color: #78350f; margin: 0;">Sello Oficial</p>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #f59e0b;">
+                <button class="btn-imprimir" onclick="imprimirCertificado()">🖨️ Imprimir Certificado</button>
+                <button class="btn-imprimir" onclick="descargarCertificado()" style="background: #3b82f6; margin-left: 10px;">💾 Descargar PDF</button>
+            </div>
         </div>
     </section>
     
@@ -1078,7 +1137,10 @@
             const hoy = new Date();
             const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('fechaCertificado').textContent = 
-                'Fecha: ' + hoy.toLocaleDateString('es-ES', opciones);
+                hoy.toLocaleDateString('es-ES', opciones);
+            
+            // Generar número de certificado único
+            generarNumeroCertificado();
             
             // Cargar logros
             cargarLogros();
@@ -1096,14 +1158,57 @@
         });
         
         function guardarNombre() {
-            const nombre = document.getElementById('inputNombreEstudiante').value.trim();
-            if (nombre) {
-                nombreEstudiante = nombre;
-                localStorage.setItem('nombreEstudiante', nombre);
-                document.getElementById('nombreCertificado').textContent = nombre;
-                document.getElementById('modalNombre').classList.add('hidden');
-                lanzarConfetti();
+            const input = document.getElementById('inputNombreEstudiante');
+            const nombre = input.value.trim();
+            
+            // Validación: mínimo 3 caracteres
+            if (!nombre || nombre.length < 3) {
+                input.style.border = '2px solid #ef4444';
+                input.style.animation = 'shake 0.5s';
+                
+                // Crear mensaje de error si no existe
+                let errorMsg = document.getElementById('errorNombre');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('p');
+                    errorMsg.id = 'errorNombre';
+                    errorMsg.style.color = '#ef4444';
+                    errorMsg.style.fontSize = '0.9rem';
+                    errorMsg.style.marginTop = '5px';
+                    input.parentNode.insertBefore(errorMsg, input.nextSibling);
+                }
+                errorMsg.textContent = '⚠️ Por favor ingresa tu nombre completo (mínimo 3 caracteres)';
+                
+                setTimeout(() => {
+                    input.style.border = '';
+                    input.style.animation = '';
+                }, 500);
+                return;
             }
+            
+            // Guardar nombre válido
+            nombreEstudiante = nombre;
+            localStorage.setItem('nombreEstudiante', nombre);
+            document.getElementById('nombreCertificado').textContent = nombre;
+            document.getElementById('modalNombre').classList.add('hidden');
+            
+            // Remover mensaje de error si existe
+            const errorMsg = document.getElementById('errorNombre');
+            if (errorMsg) errorMsg.remove();
+            
+            lanzarConfetti();
+            generarNumeroCertificado();
+        }
+        
+        function generarNumeroCertificado() {
+            // Generar número único basado en nombre y fecha
+            const nombre = localStorage.getItem('nombreEstudiante') || 'ESTUDIANTE';
+            let hash = 0;
+            for (let i = 0; i < nombre.length; i++) {
+                hash = ((hash << 5) - hash) + nombre.charCodeAt(i);
+                hash = hash & hash; // Convertir a 32bit integer
+            }
+            const numUnico = Math.abs(hash).toString().substring(0, 6).padStart(6, '0');
+            document.getElementById('numCertificado').textContent = numUnico;
         }
         
         function cargarLogros() {
@@ -1188,6 +1293,32 @@
                     setTimeout(() => confetti.remove(), 4000);
                 }, i * 50);
             }
+        }
+        
+        function imprimirCertificado() {
+            // Ocultar botones antes de imprimir
+            const botones = document.querySelectorAll('.btn-imprimir');
+            botones.forEach(btn => btn.style.display = 'none');
+            
+            // Configurar para imprimir solo el certificado
+            const contenidoOriginal = document.body.innerHTML;
+            const certificado = document.getElementById('certificado').innerHTML;
+            
+            document.body.innerHTML = `
+                <div style="max-width: 900px; margin: 0 auto; padding: 40px;">
+                    ${certificado}
+                </div>
+            `;
+            
+            window.print();
+            
+            // Restaurar contenido
+            document.body.innerHTML = contenidoOriginal;
+            location.reload(); // Recargar para reinicializar eventos
+        }
+        
+        function descargarCertificado() {
+            alert('💾 Para descargar el certificado:\n\n1. Haz clic en "Imprimir Certificado"\n2. Selecciona "Guardar como PDF" como destino\n3. Guarda el archivo en tu computadora\n\n¡Tu certificado quedará guardado profesionalmente!');
         }
     </script>
 </body>
