@@ -163,9 +163,14 @@
     function init() {
         agregarEfectos();
         
-        // Toast de bienvenida (solo si no se ha mostrado antes en esta página)
-        if (!window.cqWelcomeShown) {
-            window.cqWelcomeShown = true;
+        // Toast de bienvenida (solo una vez por sesión usando localStorage)
+        var lastWelcome = localStorage.getItem('cq_welcome_shown');
+        var now = new Date().getTime();
+        var oneHour = 60 * 60 * 1000; // 1 hora en milisegundos
+        
+        // Mostrar bienvenida solo si no se ha mostrado en la última hora
+        if (!lastWelcome || (now - parseInt(lastWelcome)) > oneHour) {
+            localStorage.setItem('cq_welcome_shown', now.toString());
             setTimeout(function() {
                 mostrarToast('¡Bienvenido a CodeQuest! 🎮', 'info', 2500);
             }, 800);
