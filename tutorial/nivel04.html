@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -765,6 +765,7 @@
                ¡Me encantaría saber de ti!</p>
         </section>
     </main>
+    <script src="js/efectos.js"></script>
 </body>
 </html></textarea>
             
@@ -978,6 +979,7 @@ nav a:hover { background: rgba(255,255,255,0.2); }
 <li><a href="#">Contacto</a></li>
 </ul></nav>
 <p style="padding: 20px;">¡Menú horizontal con flexbox!</p>
+    <script src="js/efectos.js"></script>
 </body></html>`,
             vertical: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
@@ -993,6 +995,7 @@ nav a:hover { border-left-color: #3498db; background: rgba(255,255,255,0.1); }
 <li><a href="#">📞 Contacto</a></li>
 </ul></nav>
 <p style="padding: 20px;">¡Menú vertical tipo sidebar!</p>
+    <script src="js/efectos.js"></script>
 </body></html>`,
             botones: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
@@ -1012,6 +1015,7 @@ nav a:hover { transform: scale(1.1); box-shadow: 0 5px 20px rgba(102,126,234,0.4
 <li><a href="#">📧 Email</a></li>
 </ul></nav>
 <p style="padding: 20px; text-align: center;">¡Menú con botones elegantes!</p>
+    <script src="js/efectos.js"></script>
 </body></html>`
         };
         
@@ -1069,7 +1073,8 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
                     a:hover { background: rgba(255,255,255,0.2); }
                 </style></head><body>
                 <nav><ul>${itemsMenu.map(item => `<li><a href="#">${item}</a></li>`).join('')}</ul></nav>
-                </body></html>
+                    <script src="js/efectos.js"></script>
+</body></html>
             `;
             const preview = document.getElementById('menuPreview');
             const doc = preview.contentDocument || preview.contentWindow.document;
@@ -1159,5 +1164,6 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
             document.getElementById('mascotaAyuda').classList.toggle('visible');
         }
     </script>
+    <script src="js/efectos.js"></script>
 </body>
 </html>

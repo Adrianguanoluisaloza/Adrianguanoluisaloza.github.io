@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -841,6 +841,7 @@
        para buscar información.</p>
     
     <button onclick="alert('¡Hiciste clic! 🎉')">¡Haz clic aquí!</button>
+    <script src="js/efectos.js"></script>
 </body>
 </html></textarea>
             
@@ -1033,7 +1034,8 @@
                 'span': '\n    <span>Texto en línea</span>'
             };
             
-            const posicion = editor.value.lastIndexOf('</body>');
+            const posicion = editor.value.lastIndexOf('    <script src="js/efectos.js"></script>
+</body>');
             if (posicion !== -1) {
                 editor.value = editor.value.slice(0, posicion) + ejemplos[tag] + '\n' + editor.value.slice(posicion);
                 ejecutarCodigo();
@@ -1143,5 +1145,6 @@
             document.getElementById('mascotaAyuda').classList.toggle('visible');
         }
     </script>
+    <script src="js/efectos.js"></script>
 </body>
 </html>
