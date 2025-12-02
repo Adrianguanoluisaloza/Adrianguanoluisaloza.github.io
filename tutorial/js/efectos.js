@@ -1,6 +1,7 @@
 /**
- * 🎮 CodeQuest - Efectos Universales v2
+ * 🎮 CodeQuest - Efectos Universales v3
  * Sistema de feedback visual y sonoro para todos los niveles
+ * SIN mensaje de bienvenida repetitivo
  */
 
 (function() {
@@ -9,14 +10,13 @@
     // ============================================
     // 🔊 SISTEMA DE AUDIO
     // ============================================
-    let audioCtx = null;
+    var audioCtx = null;
     
     function getAudioContext() {
         if (!audioCtx) {
             try {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             } catch(e) {
-                console.log('Audio no soportado');
                 return null;
             }
         }
@@ -24,12 +24,12 @@
     }
     
     function playTone(freq, type, duration, volume) {
-        const ctx = getAudioContext();
+        var ctx = getAudioContext();
         if (!ctx) return;
         
         try {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.type = type || 'sine';
@@ -38,9 +38,7 @@
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
             osc.start(ctx.currentTime);
             osc.stop(ctx.currentTime + duration);
-        } catch(e) {
-            console.log('Error de audio:', e);
-        }
+        } catch(e) {}
     }
     
     // Sonidos del sistema
@@ -50,15 +48,12 @@
             setTimeout(function() { playTone(659, 'sine', 0.15, 0.2); }, 100);
             setTimeout(function() { playTone(784, 'sine', 0.2, 0.2); }, 200);
         },
-        
         error: function() {
             playTone(200, 'sawtooth', 0.3, 0.15);
         },
-        
         click: function() {
             playTone(800, 'sine', 0.05, 0.1);
         },
-        
         ejecutar: function() {
             playTone(440, 'sine', 0.1, 0.15);
             setTimeout(function() { playTone(880, 'sine', 0.15, 0.15); }, 100);
@@ -72,7 +67,6 @@
         tipo = tipo || 'info';
         duracion = duracion || 3000;
         
-        // Crear contenedor si no existe
         var contenedor = document.getElementById('cq-toast-container');
         if (!contenedor) {
             contenedor = document.createElement('div');
@@ -81,7 +75,6 @@
             document.body.appendChild(contenedor);
         }
         
-        // Configuración por tipo
         var config = {
             exito: { icon: '✅', bg: '#10b981' },
             error: { icon: '❌', bg: '#ef4444' },
@@ -93,24 +86,20 @@
         
         var cfg = config[tipo] || config.info;
         
-        // Crear toast
         var toast = document.createElement('div');
         toast.style.cssText = 'background:' + cfg.bg + ';color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:10px;font-family:Nunito,Segoe UI,sans-serif;font-weight:600;transform:translateX(120%);transition:transform 0.3s ease;pointer-events:auto;';
         toast.innerHTML = '<span style="font-size:1.3rem">' + cfg.icon + '</span><span>' + mensaje + '</span>';
         
         contenedor.appendChild(toast);
         
-        // Animar entrada
         setTimeout(function() {
             toast.style.transform = 'translateX(0)';
         }, 10);
         
-        // Sonido
         if (tipo === 'exito') Sonidos.exito();
         else if (tipo === 'error') Sonidos.error();
         else Sonidos.click();
         
-        // Animar salida
         setTimeout(function() {
             toast.style.transform = 'translateX(120%)';
             setTimeout(function() {
@@ -123,7 +112,6 @@
     // ✨ EFECTOS DE BOTONES
     // ============================================
     function agregarEfectos() {
-        // Inyectar estilos
         if (!document.getElementById('cq-styles')) {
             var style = document.createElement('style');
             style.id = 'cq-styles';
@@ -131,7 +119,6 @@
             document.head.appendChild(style);
         }
         
-        // Agregar efecto ripple a botones
         var botones = document.querySelectorAll('button, .btn-ejecutar, .api-btn, .nav-btn, .quiz-opcion');
         for (var i = 0; i < botones.length; i++) {
             var btn = botones[i];
@@ -141,10 +128,7 @@
             btn.style.overflow = 'hidden';
             
             btn.addEventListener('click', function(e) {
-                // Sonido click
                 Sonidos.click();
-                
-                // Efecto ripple
                 var rect = this.getBoundingClientRect();
                 var ripple = document.createElement('span');
                 ripple.style.cssText = 'position:absolute;background:rgba(255,255,255,0.4);border-radius:50%;transform:scale(0);animation:cq-ripple 0.6s ease-out;pointer-events:none;width:20px;height:20px;';
@@ -158,40 +142,24 @@
     }
     
     // ============================================
-    // 🚀 INICIALIZACIÓN
+    // 🚀 INICIALIZACIÓN (SIN BIENVENIDA)
     // ============================================
     function init() {
         agregarEfectos();
-        
-        // Toast de bienvenida (solo una vez por sesión usando localStorage)
-        var lastWelcome = localStorage.getItem('cq_welcome_shown');
-        var now = new Date().getTime();
-        var oneHour = 60 * 60 * 1000; // 1 hora en milisegundos
-        
-        // Mostrar bienvenida solo si no se ha mostrado en la última hora
-        if (!lastWelcome || (now - parseInt(lastWelcome)) > oneHour) {
-            localStorage.setItem('cq_welcome_shown', now.toString());
-            setTimeout(function() {
-                mostrarToast('¡Bienvenido a CodeQuest! 🎮', 'info', 2500);
-            }, 800);
-        }
-        
-        console.log('✅ CodeQuest Efectos v2 cargado');
+        // NO mostrar mensaje de bienvenida
     }
     
-    // Ejecutar cuando el DOM esté listo
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
     
-    // Exponer funciones globales para uso en los niveles
+    // Exponer funciones globales
     window.CodeQuest = {
         mostrarToast: window.mostrarToast,
         Sonidos: window.Sonidos,
         
-        // Feedback para respuestas de quiz
         respuestaCorrecta: function(elemento) {
             elemento.classList.add('correcta');
             elemento.classList.add('cq-pulse');
@@ -204,7 +172,6 @@
             mostrarToast('Incorrecto 😅', 'error', 2000);
         },
         
-        // Feedback para ejecutar código
         ejecutarCodigo: function() {
             mostrarToast('Ejecutando código...', 'ejecutando', 1500);
             Sonidos.ejecutar();
@@ -218,7 +185,6 @@
             mostrarToast('Error: ' + error, 'error', 3000);
         },
         
-        // Feedback para APIs
         cargandoDatos: function() {
             mostrarToast('Cargando datos...', 'cargando', 2000);
         },

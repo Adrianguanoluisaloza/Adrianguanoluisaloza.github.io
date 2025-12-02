@@ -1028,26 +1028,24 @@
         <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
     </section>
     
-    <!-- Certificado -->
+    <!-- Reconocimiento del nivel -->
     <section class="certificado" id="certificado" style="display: none;">
-        <h2>🎓 CERTIFICADO DE COMPLETACIÓN</h2>
-        <p>Se certifica que</p>
-        <div class="nombre-estudiante" id="nombreEstudiante">Estudiante Estrella</div>
-        <p>Ha completado exitosamente el</p>
-        <h3>📚 Curso de HTML Básico</h3>
-        <p>Dominando los 6 niveles:</p>
-        <p>Estructura HTML • HEAD • BODY • Navegación • Imágenes • Formularios</p>
-        <div style="font-size: 2rem; margin: 20px 0;">⭐⭐⭐⭐⭐⭐</div>
-        <p>¡Felicitaciones! 🎉</p>
+        <h2>🌟 ¡Nivel 6 Completado!</h2>
+        <p>Has aprendido:</p>
+        <h3>📝 Formularios Interactivos</h3>
+        <p>Elementos de formulario, inputs, labels y validaciones básicas</p>
+        <div style="font-size: 2rem; margin: 20px 0;">⭐⭐⭐</div>
+        <p>¡Continúa con el siguiente nivel! 🚀</p>
+        <a href="nivel07.html" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background: linear-gradient(135deg, #10b981, #059669); color: white; text-decoration: none; border-radius: 25px; font-weight: bold;">Ir al Nivel 7 ➡️</a>
     </section>
     
     <footer class="nivel-footer">
         <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar tu certificado</p>
+        <p id="mensajeFinal">Completa las actividades para continuar</p>
         <br>
-        <button class="btn-continuar" onclick="mostrarCertificado()">
-            🎓 Ver mi Certificado
-        </button>
+        <a href="nivel07.html" class="btn-continuar" style="text-decoration: none; display: inline-block;">
+            🚀 Continuar al Nivel 7 ➡️
+        </a>
     </footer>
     
     <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
@@ -1055,24 +1053,24 @@
     <div class="mascota-ayuda" id="mascotaAyuda">
         <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
         <div style="font-size: 2.5rem; text-align: center;">🤖</div>
-        <p><strong>¡Felicitaciones!</strong></p>
+        <p><strong>¡Excelente progreso!</strong></p>
         <p style="margin-top: 10px; font-size: 0.9rem;">
-            💡 ¡Has llegado al último nivel! Los formularios son 
-            fundamentales para crear páginas web interactivas. 
-            Recuerda usar label para accesibilidad y required 
-            para campos obligatorios.
+            💡 Los formularios son fundamentales para crear páginas 
+            web interactivas. Recuerda usar label para accesibilidad 
+            y required para campos obligatorios. ¡Aún quedan más 
+            niveles por descubrir!
         </p>
     </div>
     
     <div class="overlay" id="overlay"></div>
     <div class="logro-popup" id="logroPopup">
         <div class="icono">🏆</div>
-        <h2>¡CURSO COMPLETADO!</h2>
-        <p style="margin: 15px 0;">¡Felicitaciones, eres un experto en HTML básico!</p>
-        <div style="font-size: 2rem;">⭐⭐⭐⭐⭐⭐</div>
-        <button class="btn-continuar" onclick="mostrarCertificado()" style="margin-top: 20px;">
-            🎓 Ver mi Certificado
-        </button>
+        <h2>¡NIVEL 6 COMPLETADO!</h2>
+        <p style="margin: 15px 0;">¡Felicitaciones! Dominaste los formularios HTML.</p>
+        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <a href="nivel07.html" class="btn-continuar" style="margin-top: 20px; text-decoration: none; display: inline-block;">
+            🚀 Continuar al Nivel 7 ➡️
+        </a>
     </div>
 
     <script>
@@ -1285,9 +1283,8 @@
             const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
                 estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡CURSO COMPLETADO! 🎉';
+                document.getElementById('mensajeFinal').textContent = '¡Nivel 6 completado! 🎉';
                 localStorage.setItem('nivel6_completado', 'true');
-                localStorage.setItem('curso_completado', 'true');
                 setTimeout(() => {
                     document.getElementById('overlay').classList.add('visible');
                     document.getElementById('logroPopup').classList.add('visible');
