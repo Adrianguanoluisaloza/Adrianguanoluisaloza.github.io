@@ -330,22 +330,22 @@
     </header>
     
     <main class="container">
-        <!-- Estadísticas -->
+        <!-- Proyecto Final Integrador -->
         <section class="seccion">
-            <h2>📊 Tu Trayectoria Completa</h2>
+            <h2>🚀 Proyecto Final - Portafolio Maestro Interactivo</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                Este proyecto integra <strong>TODAS</strong> las habilidades de los 25 niveles:
+                HTML semántico, CSS avanzado, JavaScript, APIs, Canvas, Audio y más.
+            </p>
             
             <div class="stats-finales">
                 <div class="stat-final">
                     <div class="valor" id="nivelesCompletados">25</div>
-                    <div class="etiqueta">Niveles Completados</div>
+                    <div class="etiqueta">Niveles Integrados</div>
                 </div>
                 <div class="stat-final">
-                    <div class="valor" id="horasEstudio">30+</div>
-                    <div class="etiqueta">Horas de Estudio</div>
-                </div>
-                <div class="stat-final">
-                    <div class="valor" id="habilidades">50+</div>
-                    <div class="etiqueta">Habilidades Aprendidas</div>
+                    <div class="valor" id="tecnicasUsadas">50+</div>
+                    <div class="etiqueta">Técnicas Aplicadas</div>
                 </div>
                 <div class="stat-final">
                     <div class="valor">100%</div>
@@ -354,97 +354,143 @@
             </div>
         </section>
         
-        <!-- Logros Desbloqueados -->
+        <!-- Aplicación Final Integrada -->
         <section class="seccion">
-            <h2>🎖️ Logros Desbloqueados</h2>
+            <h2>💻 Tu Aplicación Web Maestra</h2>
+            <p style="margin-bottom: 20px;">Completa el formulario para generar tu portafolio personalizado con todas las tecnologías:</p>
             
-            <div class="logros-grid">
-                <div class="logro-card desbloqueado">
-                    <div class="icono">📄</div>
-                    <div class="titulo">Maestro HTML</div>
-                    <div class="desc">Dominio total de HTML5</div>
+            <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h3 style="color: #ef4444; margin-bottom: 15px;">📝 Datos Personales (HTML + Formularios)</h3>
+                <form id="formularioMaestro" style="display: grid; gap: 15px;">
+                    <input type="text" id="nombreCompleto" placeholder="Tu nombre completo" required 
+                           style="padding: 12px; border-radius: 10px; border: 2px solid #dc2626; background: rgba(255,255,255,0.05); color: white; font-size: 1rem;">
+                    
+                    <input type="email" id="emailMaestro" placeholder="tu@email.com" required
+                           style="padding: 12px; border-radius: 10px; border: 2px solid #dc2626; background: rgba(255,255,255,0.05); color: white; font-size: 1rem;">
+                    
+                    <select id="temaColor" style="padding: 12px; border-radius: 10px; border: 2px solid #dc2626; background: rgba(255,255,255,0.05); color: white; font-size: 1rem;">
+                        <option value="red">🔴 Rojo Moderno</option>
+                        <option value="blue">🔵 Azul Profesional</option>
+                        <option value="green">🟢 Verde Tech</option>
+                        <option value="purple">🟣 Púrpura Creativo</option>
+                    </select>
+                    
+                    <textarea id="sobreMi" placeholder="Cuéntanos sobre ti..." rows="3"
+                              style="padding: 12px; border-radius: 10px; border: 2px solid #dc2626; background: rgba(255,255,255,0.05); color: white; font-size: 1rem; resize: vertical;"></textarea>
+                    
+                    <button type="submit" class="btn-grande" style="width: 100%;">
+                        🚀 Generar Mi Portafolio Maestro
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Resultado del Portafolio -->
+            <div id="portafolioGenerado" style="display: none; margin-top: 30px;">
+                <h3 style="color: #ef4444; margin-bottom: 20px;">✨ Tu Portafolio Generado</h3>
+                
+                <!-- Header con CSS Variables (Nivel 22) -->
+                <div id="portafolioHeader" style="background: linear-gradient(135deg, var(--color-principal), var(--color-secundario)); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 20px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 10px; right: 10px; font-size: 3rem; opacity: 0.2;">👨‍💻</div>
+                    <h1 id="nombrePortafolio" style="font-size: 2.5rem; margin-bottom: 10px;">Cargando...</h1>
+                    <p id="emailPortafolio" style="font-size: 1.1rem; opacity: 0.9;">email@ejemplo.com</p>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">🎨</div>
-                    <div class="titulo">Artista CSS</div>
-                    <div class="desc">Estilos profesionales</div>
+                
+                <!-- Sobre Mí con LocalStorage (Nivel 16) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">👤 Sobre Mí</h3>
+                    <p id="textoSobreMi" style="line-height: 1.8;">Cargando información...</p>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">⚡</div>
-                    <div class="titulo">Ninja JavaScript</div>
-                    <div class="desc">Programación avanzada</div>
+                
+                <!-- Canvas Interactivo (Nivel 24) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">🎨 Arte Generativo (Canvas)</h3>
+                    <canvas id="canvasMaestro" width="600" height="200" style="width: 100%; max-width: 600px; border-radius: 10px; background: #0f0f23; display: block; margin: 0 auto;"></canvas>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button onclick="animarCanvas()" class="btn-grande" style="padding: 12px 30px; font-size: 1rem;">
+                            ✨ Animar Canvas
+                        </button>
+                    </div>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">📱</div>
-                    <div class="titulo">Responsive Pro</div>
-                    <div class="desc">Diseño adaptable</div>
+                
+                <!-- API Demo (Nivel 19) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">🌐 Integración con API</h3>
+                    <button onclick="cargarDatosAPI()" class="btn-grande" style="padding: 12px 30px; font-size: 1rem;">
+                        📡 Cargar Consejo Aleatorio
+                    </button>
+                    <div id="resultadoAPI" style="margin-top: 15px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px; display: none;">
+                        <p id="textoAPI" style="font-size: 1.1rem; line-height: 1.8;"></p>
+                    </div>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">🌈</div>
-                    <div class="titulo">Animador</div>
-                    <div class="desc">Efectos visuales</div>
+                
+                <!-- Datos JSON (Nivel 20) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">💾 Mis Proyectos (JSON + LocalStorage)</h3>
+                    <div id="listaProyectos" style="display: grid; gap: 15px;"></div>
+                    <button onclick="agregarProyecto()" class="btn-grande" style="padding: 12px 30px; font-size: 1rem; margin-top: 15px;">
+                        ➕ Agregar Proyecto
+                    </button>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">🎮</div>
-                    <div class="titulo">Desarrollador de Juegos</div>
-                    <div class="desc">Canvas y game loops</div>
+                
+                <!-- Animaciones CSS (Nivel 17) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px; text-align: center;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">🌈 Animaciones CSS</h3>
+                    <div id="boxAnimado" style="width: 100px; height: 100px; background: linear-gradient(135deg, #f59e0b, #dc2626); margin: 20px auto; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer;" onclick="animarBox()">
+                        ✨
+                    </div>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Haz clic en la caja para animarla</p>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">🌐</div>
-                    <div class="titulo">Experto en APIs</div>
-                    <div class="desc">Consumo de servicios</div>
+                
+                <!-- Audio (Nivel 23) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; margin-bottom: 20px; text-align: center;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">🔊 Efectos de Sonido</h3>
+                    <button onclick="reproducirTono(440)" class="btn-grande" style="padding: 12px 30px; font-size: 1rem; margin: 5px;">
+                        🎵 Tono 1
+                    </button>
+                    <button onclick="reproducirTono(523)" class="btn-grande" style="padding: 12px 30px; font-size: 1rem; margin: 5px;">
+                        🎵 Tono 2
+                    </button>
+                    <button onclick="reproducirTono(659)" class="btn-grande" style="padding: 12px 30px; font-size: 1rem; margin: 5px;">
+                        🎵 Tono 3
+                    </button>
                 </div>
-                <div class="logro-card desbloqueado">
-                    <div class="icono">💾</div>
-                    <div class="titulo">Gestor de Datos</div>
-                    <div class="desc">LocalStorage y JSON</div>
+                
+                <!-- Contador JS (Nivel 11) -->
+                <div style="background: rgba(220,38,38,0.1); padding: 25px; border-radius: 15px; text-align: center;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">⚡ Contador Interactivo (JavaScript)</h3>
+                    <div style="font-size: 3rem; font-weight: bold; color: #ef4444; margin: 20px 0;" id="contadorMaestro">0</div>
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="modificarContador(1)" class="btn-grande" style="padding: 12px 25px; font-size: 1rem;">➕</button>
+                        <button onclick="modificarContador(-1)" class="btn-grande" style="padding: 12px 25px; font-size: 1rem;">➖</button>
+                        <button onclick="resetearContador()" class="btn-grande" style="padding: 12px 25px; font-size: 1rem;">🔄</button>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- Habilidades Dominadas -->
+        <!-- Estadísticas Finales -->
         <section class="seccion">
-            <h2>✨ Habilidades que Ahora Dominas</h2>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">📋 Estructura Web</h3>
-                    <ul style="line-height: 2; padding-left: 20px;">
-                        <li>HTML5 semántico</li>
-                        <li>Formularios avanzados</li>
-                        <li>Multimedia (audio/video)</li>
-                        <li>Navegación efectiva</li>
-                    </ul>
+            <h2>📊 Estadísticas del Proyecto</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 2.5rem;">📄</div>
+                    <div style="font-size: 2rem; font-weight: bold; color: #ef4444;">25</div>
+                    <div style="color: #94a3b8;">Niveles HTML</div>
                 </div>
-                
-                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">🎨 Diseño Visual</h3>
-                    <ul style="line-height: 2; padding-left: 20px;">
-                        <li>CSS avanzado</li>
-                        <li>Flexbox y Grid</li>
-                        <li>Animaciones CSS</li>
-                        <li>Variables CSS</li>
-                    </ul>
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 2.5rem;">🎨</div>
+                    <div style="font-size: 2rem; font-weight: bold; color: #ef4444;">15</div>
+                    <div style="color: #94a3b8;">Técnicas CSS</div>
                 </div>
-                
-                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">⚡ Programación</h3>
-                    <ul style="line-height: 2; padding-left: 20px;">
-                        <li>JavaScript moderno</li>
-                        <li>Manipulación del DOM</li>
-                        <li>Eventos y listeners</li>
-                        <li>Programación asíncrona</li>
-                    </ul>
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 2.5rem;">⚡</div>
+                    <div style="font-size: 2rem; font-weight: bold; color: #ef4444;">20</div>
+                    <div style="color: #94a3b8;">Funciones JS</div>
                 </div>
-                
-                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; border-left: 4px solid #dc2626;">
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">🚀 Tecnologías Web</h3>
-                    <ul style="line-height: 2; padding-left: 20px;">
-                        <li>APIs REST</li>
-                        <li>LocalStorage</li>
-                        <li>Canvas y gráficos</li>
-                        <li>Web Audio API</li>
-                    </ul>
+                <div style="background: rgba(220,38,38,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 2.5rem;">🌐</div>
+                    <div style="font-size: 2rem; font-weight: bold; color: #ef4444;">5</div>
+                    <div style="color: #94a3b8;">APIs Integradas</div>
                 </div>
             </div>
         </section>
@@ -525,6 +571,239 @@
     </main>
     
     <script>
+        // Variables globales
+        let contador = 0;
+        let audioContext = null;
+        let proyectos = [];
+        
+        // Colores de temas CSS Variables (Nivel 22)
+        const temas = {
+            red: { principal: '#dc2626', secundario: '#991b1b' },
+            blue: { principal: '#2563eb', secundario: '#1e40af' },
+            green: { principal: '#059669', secundario: '#047857' },
+            purple: { principal: '#7c3aed', secundario: '#6d28d9' }
+        };
+        
+        // NIVEL 6 + 21: Validación de Formularios
+        document.getElementById('formularioMaestro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombreCompleto').value.trim();
+            const email = document.getElementById('emailMaestro').value.trim();
+            const tema = document.getElementById('temaColor').value;
+            const sobreMi = document.getElementById('sobreMi').value.trim();
+            
+            if (!nombre || !email || !sobreMi) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // NIVEL 16 + 20: LocalStorage + JSON
+            const datosPortafolio = {
+                nombre: nombre,
+                email: email,
+                tema: tema,
+                sobreMi: sobreMi,
+                fecha: new Date().toISOString()
+            };
+            
+            localStorage.setItem('datosPortafolio', JSON.stringify(datosPortafolio));
+            
+            // Generar portafolio
+            generarPortafolio(datosPortafolio);
+            
+            // Marcar nivel completado
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(25)) {
+                niveles.push(25);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+        });
+        
+        // Generar Portafolio con todos los niveles
+        function generarPortafolio(datos) {
+            // NIVEL 22: CSS Variables
+            const colorTema = temas[datos.tema];
+            document.documentElement.style.setProperty('--color-principal', colorTema.principal);
+            document.documentElement.style.setProperty('--color-secundario', colorTema.secundario);
+            
+            // NIVEL 12: Manipulación del DOM
+            document.getElementById('nombrePortafolio').textContent = datos.nombre;
+            document.getElementById('emailPortafolio').textContent = datos.email;
+            document.getElementById('textoSobreMi').textContent = datos.sobreMi;
+            
+            // Mostrar portafolio
+            document.getElementById('portafolioGenerado').style.display = 'block';
+            document.getElementById('portafolioGenerado').scrollIntoView({ behavior: 'smooth' });
+            
+            // NIVEL 24: Iniciar Canvas
+            iniciarCanvas();
+            
+            // NIVEL 20: Cargar proyectos desde localStorage
+            cargarProyectosGuardados();
+            
+            // NIVEL 23: Confetti de celebración
+            lanzarConfettiMasivo();
+        }
+        
+        // NIVEL 24: Canvas Interactivo
+        function iniciarCanvas() {
+            const canvas = document.getElementById('canvasMaestro');
+            const ctx = canvas.getContext('2d');
+            
+            // Dibujar patrón inicial
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(50, 50, 100, 100);
+            
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.arc(400, 100, 50, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.strokeStyle = '#10b981';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(200, 150);
+            ctx.lineTo(350, 150);
+            ctx.stroke();
+        }
+        
+        function animarCanvas() {
+            const canvas = document.getElementById('canvasMaestro');
+            const ctx = canvas.getContext('2d');
+            let x = 0;
+            
+            const animar = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Estrellas animadas
+                for (let i = 0; i < 5; i++) {
+                    const offset = i * 120;
+                    ctx.fillStyle = '#fbbf24';
+                    ctx.beginPath();
+                    ctx.arc((x + offset) % 600, 100, 15, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                x += 2;
+                if (x < 600) requestAnimationFrame(animar);
+            };
+            animar();
+        }
+        
+        // NIVEL 19: Fetch API
+        async function cargarDatosAPI() {
+            const resultado = document.getElementById('resultadoAPI');
+            const texto = document.getElementById('textoAPI');
+            
+            resultado.style.display = 'block';
+            texto.textContent = '⏳ Cargando consejo...';
+            
+            try {
+                const respuesta = await fetch('https://api.adviceslip.com/advice');
+                const datos = await respuesta.json();
+                texto.textContent = `💡 "${datos.slip.advice}"`;
+            } catch (error) {
+                texto.textContent = '❌ Error al cargar. Consejo local: "¡Sigue practicando, serás un gran desarrollador!"';
+            }
+        }
+        
+        // NIVEL 20: JSON + LocalStorage - Proyectos
+        function cargarProyectosGuardados() {
+            const guardados = localStorage.getItem('proyectosMaestro');
+            if (guardados) {
+                proyectos = JSON.parse(guardados);
+            } else {
+                proyectos = [
+                    { nombre: 'Página Personal HTML', tecnologia: 'HTML5' },
+                    { nombre: 'Portafolio con CSS', tecnologia: 'CSS3' },
+                    { nombre: 'App Interactiva JS', tecnologia: 'JavaScript' }
+                ];
+            }
+            mostrarProyectos();
+        }
+        
+        function mostrarProyectos() {
+            const lista = document.getElementById('listaProyectos');
+            lista.innerHTML = proyectos.map((p, i) => `
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong style="color: #ef4444;">${p.nombre}</strong>
+                        <div style="font-size: 0.9rem; color: #94a3b8;">${p.tecnologia}</div>
+                    </div>
+                    <button onclick="eliminarProyecto(${i})" style="background: rgba(220,38,38,0.3); border: none; color: white; padding: 8px 15px; border-radius: 8px; cursor: pointer;">🗑️</button>
+                </div>
+            `).join('');
+        }
+        
+        function agregarProyecto() {
+            const nombre = prompt('Nombre del proyecto:');
+            const tecnologia = prompt('Tecnología usada:');
+            
+            if (nombre && tecnologia) {
+                proyectos.push({ nombre, tecnologia });
+                localStorage.setItem('proyectosMaestro', JSON.stringify(proyectos));
+                mostrarProyectos();
+            }
+        }
+        
+        function eliminarProyecto(index) {
+            proyectos.splice(index, 1);
+            localStorage.setItem('proyectosMaestro', JSON.stringify(proyectos));
+            mostrarProyectos();
+        }
+        
+        // NIVEL 17: Animaciones CSS
+        function animarBox() {
+            const box = document.getElementById('boxAnimado');
+            box.style.animation = 'none';
+            setTimeout(() => {
+                box.style.animation = 'bounce 0.5s ease, spin 1s ease';
+            }, 10);
+        }
+        
+        // NIVEL 23: Web Audio API
+        function reproducirTono(frecuencia) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            const oscilador = audioContext.createOscillator();
+            const ganancia = audioContext.createGain();
+            
+            oscilador.connect(ganancia);
+            ganancia.connect(audioContext.destination);
+            
+            oscilador.frequency.value = frecuencia;
+            ganancia.gain.setValueAtTime(0.3, audioContext.currentTime);
+            ganancia.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscilador.start(audioContext.currentTime);
+            oscilador.stop(audioContext.currentTime + 0.5);
+        }
+        
+        // NIVEL 11: JavaScript Básico - Contador
+        function modificarContador(valor) {
+            contador += valor;
+            document.getElementById('contadorMaestro').textContent = contador;
+        }
+        
+        function resetearContador() {
+            contador = 0;
+            document.getElementById('contadorMaestro').textContent = contador;
+        }
+        
+        // NIVEL 17: Añadir animaciones al CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Certificado
         function generarCertificadoMaestro() {
             const nombre = document.getElementById('nombreMaestro').value.trim();
             if (!nombre) {
@@ -542,47 +821,46 @@
             document.getElementById('certificadoMaestro').classList.add('visible');
             document.getElementById('btnDescargar').style.display = 'inline-block';
             
-            // Guardar progreso
             localStorage.setItem('nivel25_completado', 'true');
             localStorage.setItem('nombre_maestro', nombre);
-            localStorage.setItem('fecha_graduacion', fecha.toISOString());
             
-            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
-            if (!niveles.includes(25)) {
-                niveles.push(25);
-                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
-            }
-            
-            // Confetti masivo
             lanzarConfettiMasivo();
         }
         
         function descargarCertificado() {
-            alert('¡Funcionalidad de descarga! En una implementación real, aquí se generaría un PDF del certificado.');
+            alert('🎓 ¡Certificado generado! En una app real, aquí se descargaría un PDF.');
         }
         
         function lanzarConfettiMasivo() {
-            const colores = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#fbbf24'];
+            const colores = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899'];
             
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 100; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
                     confetti.style.background = colores[Math.floor(Math.random() * colores.length)];
                     confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
                     document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 6000);
-                }, i * 20);
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 15);
             }
         }
         
-        // Verificar progreso
+        // Cargar datos al iniciar
         window.onload = function() {
             const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
             document.getElementById('nivelesCompletados').textContent = niveles.length;
+            
+            // Cargar datos guardados
+            const datosGuardados = localStorage.getItem('datosPortafolio');
+            if (datosGuardados) {
+                const datos = JSON.parse(datosGuardados);
+                document.getElementById('nombreCompleto').value = datos.nombre;
+                document.getElementById('emailMaestro').value = datos.email;
+                document.getElementById('temaColor').value = datos.tema;
+                document.getElementById('sobreMi').value = datos.sobreMi;
+            }
             
             const nombreGuardado = localStorage.getItem('nombre_maestro');
             if (nombreGuardado) {
