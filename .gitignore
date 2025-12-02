@@ -1,0 +1,19 @@
+# Ignorar todo excepto el tutorial 
+ 
+# Carpetas locales 
+basico/ 
+css/ 
+js/ 
+ 
+# Archivos locales 
+*.code-workspace 
+contacto.html 
+nosotros.html 
+oferta_academica.html 
+index_luz_de_esmeraldas.html 
+tutorial_niveles_interactivo.html 
+ 
+# Archivos del sistema 
+.DS_Store 
+Thumbs.db 
+*.log
