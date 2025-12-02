@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔊 Nivel 23 - Audio y Efectos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0f0f23;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #374151;
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #c084fc;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .concepto-box {
+            background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.2));
+            border-left: 4px solid #a855f7;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .codigo-ejemplo {
+            background: #1e1e3f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 2px solid #a855f7;
+        }
+        
+        .codigo-ejemplo pre {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: #676e95; }
+        .property { color: #ffcb6b; }
+        .value { color: #f78c6c; }
+        
+        .tip-box {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.2));
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .tip-box::before { content: "💡 "; }
+        
+        /* Piano */
+        .piano-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .tecla {
+            width: 60px;
+            height: 180px;
+            background: linear-gradient(180deg, #fff, #e0e0e0);
+            border: 2px solid #333;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            transition: all 0.1s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .tecla:hover { background: linear-gradient(180deg, #f0f0f0, #d0d0d0); }
+        .tecla:active, .tecla.activa {
+            background: linear-gradient(180deg, #a855f7, #7c3aed);
+            color: white;
+            transform: scale(0.98);
+        }
+        
+        /* Botones de sonido */
+        .sonidos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .sonido-btn {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sonido-btn span {
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .sonido-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(168,85,247,0.4);
+        }
+        
+        .sonido-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Visualizador */
+        .visualizador-container {
+            background: #0f0f23;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .visualizador {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100px;
+            gap: 5px;
+        }
+        
+        .barra-vis {
+            width: 15px;
+            background: linear-gradient(180deg, #a855f7, #7c3aed);
+            border-radius: 5px 5px 0 0;
+            transition: height 0.1s;
+        }
+        
+        /* Animaciones de partículas */
+        .particulas-demo {
+            position: relative;
+            height: 300px;
+            background: #0f0f23;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .particula {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: flotar 3s ease-out forwards;
+        }
+        
+        @keyframes flotar {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Cronómetro */
+        .cronometro {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: #c084fc;
+            margin: 20px 0;
+        }
+        
+        .controles-crono {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-crono {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-crono:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(168,85,247,0.4);
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(168,85,247,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #374151;
+        }
+        
+        .quiz-pregunta h4 {
+            color: #c084fc;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            background: rgba(168,85,247,0.1);
+            border: 2px solid #374151;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: #a855f7; }
+        .quiz-opcion.correcta { background: rgba(16,185,129,0.3); border-color: #10b981; }
+        .quiz-opcion.incorrecta { background: rgba(239,68,68,0.3); border-color: #ef4444; }
+        
+        .progreso-bar {
+            background: #374151;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progreso-fill {
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .estrellas {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .estrella { color: #4b5563; transition: all 0.3s; }
+        .estrella.activa { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
+        
+        .felicitacion {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .felicitacion h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(168,85,247,0.4);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-header">
+            <a href="inicio.html" class="nav-btn">🏠 Menú</a>
+            <span class="nivel-badge">⭐ NIVEL 23</span>
+            <a href="nivel22.html" class="nav-btn">⬅️ Anterior</a>
+        </div>
+        <h1>🔊 Audio, Efectos y Animaciones</h1>
+    </header>
+    
+    <main class="container">
+        <!-- Introducción -->
+        <section class="seccion">
+            <h2>🎵 Sonidos en la Web</h2>
+            
+            <div class="concepto-box">
+                <h3>Web Audio API</h3>
+                <p>JavaScript puede crear y controlar sonidos directamente en el navegador. Esto se usa para juegos, aplicaciones musicales, notificaciones y mucho más. ¡Vamos a crear música!</p>
+            </div>
+        </section>
+        
+        <!-- Piano -->
+        <section class="seccion">
+            <h2>🎹 Piano Virtual</h2>
+            
+            <p>¡Haz clic en las teclas para tocar notas! Cada tecla genera un sonido diferente:</p>
+            
+            <div class="piano-container">
+                <div class="tecla" onclick="tocarNota(261.63, this)">Do</div>
+                <div class="tecla" onclick="tocarNota(293.66, this)">Re</div>
+                <div class="tecla" onclick="tocarNota(329.63, this)">Mi</div>
+                <div class="tecla" onclick="tocarNota(349.23, this)">Fa</div>
+                <div class="tecla" onclick="tocarNota(392.00, this)">Sol</div>
+                <div class="tecla" onclick="tocarNota(440.00, this)">La</div>
+                <div class="tecla" onclick="tocarNota(493.88, this)">Si</div>
+                <div class="tecla" onclick="tocarNota(523.25, this)">Do+</div>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Crear sonido con Web Audio API</span>
+<span class="keyword">const</span> audioCtx = <span class="keyword">new</span> (<span class="function">AudioContext</span> || <span class="function">webkitAudioContext</span>)();
+
+<span class="keyword">function</span> <span class="function">tocarNota</span>(frecuencia) {
+    <span class="keyword">const</span> oscillator = audioCtx.<span class="function">createOscillator</span>();
+    <span class="keyword">const</span> gainNode = audioCtx.<span class="function">createGain</span>();
+    
+    oscillator.<span class="property">type</span> = <span class="string">'sine'</span>; <span class="comment">// Tipo de onda</span>
+    oscillator.<span class="property">frequency</span>.<span class="property">value</span> = frecuencia;
+    
+    oscillator.<span class="function">connect</span>(gainNode);
+    gainNode.<span class="function">connect</span>(audioCtx.<span class="property">destination</span>);
+    
+    oscillator.<span class="function">start</span>();
+    gainNode.<span class="property">gain</span>.<span class="function">exponentialRampToValueAtTime</span>(<span class="value">0.01</span>, audioCtx.<span class="property">currentTime</span> + <span class="value">0.5</span>);
+    oscillator.<span class="function">stop</span>(audioCtx.<span class="property">currentTime</span> + <span class="value">0.5</span>);
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Efectos de sonido -->
+        <section class="seccion">
+            <h2>🎮 Efectos de Sonido</h2>
+            
+            <p>Sonidos comunes en juegos y aplicaciones:</p>
+            
+            <div class="sonidos-grid">
+                <button class="sonido-btn" onclick="efectoSonido('exito')">
+                    ✅
+                    <span>Éxito</span>
+                </button>
+                <button class="sonido-btn" onclick="efectoSonido('error')">
+                    ❌
+                    <span>Error</span>
+                </button>
+                <button class="sonido-btn" onclick="efectoSonido('notificacion')">
+                    🔔
+                    <span>Notificación</span>
+                </button>
+                <button class="sonido-btn" onclick="efectoSonido('powerup')">
+                    ⭐
+                    <span>Power Up</span>
+                </button>
+                <button class="sonido-btn" onclick="efectoSonido('jump')">
+                    🦘
+                    <span>Salto</span>
+                </button>
+                <button class="sonido-btn" onclick="efectoSonido('coin')">
+                    🪙
+                    <span>Moneda</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Visualizador -->
+        <section class="seccion">
+            <h2>📊 Visualizador de Audio</h2>
+            
+            <p>Las barras se mueven cuando tocas sonidos:</p>
+            
+            <div class="visualizador-container">
+                <div class="visualizador" id="visualizador">
+                    <div class="barra-vis" style="height: 20px;"></div>
+                    <div class="barra-vis" style="height: 40px;"></div>
+                    <div class="barra-vis" style="height: 60px;"></div>
+                    <div class="barra-vis" style="height: 80px;"></div>
+                    <div class="barra-vis" style="height: 100px;"></div>
+                    <div class="barra-vis" style="height: 80px;"></div>
+                    <div class="barra-vis" style="height: 60px;"></div>
+                    <div class="barra-vis" style="height: 40px;"></div>
+                    <div class="barra-vis" style="height: 20px;"></div>
+                </div>
+                <button class="btn-crono" style="margin-top: 15px;" onclick="animarVisualizador()">🎵 Animar</button>
+            </div>
+        </section>
+        
+        <!-- Partículas -->
+        <section class="seccion">
+            <h2>✨ Efectos de Partículas</h2>
+            
+            <p>¡Haz clic dentro del área para crear partículas flotantes!</p>
+            
+            <div class="particulas-demo" id="particulasDemo" onclick="crearParticulas(event)">
+                <p style="text-align: center; padding-top: 130px; opacity: 0.5;">👆 Haz clic aquí</p>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Crear partículas con JavaScript</span>
+<span class="keyword">function</span> <span class="function">crearParticulas</span>(event) {
+    <span class="keyword">const</span> emojis = [<span class="string">'⭐'</span>, <span class="string">'✨'</span>, <span class="string">'🌟'</span>, <span class="string">'💫'</span>];
+    
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="value">0</span>; i < <span class="value">5</span>; i++) {
+        <span class="keyword">const</span> particula = document.<span class="function">createElement</span>(<span class="string">'span'</span>);
+        particula.<span class="property">className</span> = <span class="string">'particula'</span>;
+        particula.<span class="property">textContent</span> = emojis[Math.<span class="function">floor</span>(Math.<span class="function">random</span>() * emojis.<span class="property">length</span>)];
+        particula.<span class="property">style</span>.<span class="property">left</span> = event.<span class="property">offsetX</span> + <span class="string">'px'</span>;
+        particula.<span class="property">style</span>.<span class="property">top</span> = event.<span class="property">offsetY</span> + <span class="string">'px'</span>;
+        
+        container.<span class="function">appendChild</span>(particula);
+        <span class="function">setTimeout</span>(() => particula.<span class="function">remove</span>(), <span class="value">3000</span>);
+    }
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Cronómetro -->
+        <section class="seccion">
+            <h2>⏱️ Cronómetro Interactivo</h2>
+            
+            <div class="cronometro" id="cronometro">00:00:00</div>
+            
+            <div class="controles-crono">
+                <button class="btn-crono" onclick="iniciarCrono()">▶️ Iniciar</button>
+                <button class="btn-crono" onclick="pausarCrono()">⏸️ Pausar</button>
+                <button class="btn-crono" onclick="reiniciarCrono()">🔄 Reiniciar</button>
+            </div>
+            
+            <div class="codigo-ejemplo" style="margin-top: 20px;">
+<pre><span class="comment">// Cronómetro con setInterval</span>
+<span class="keyword">let</span> segundos = <span class="value">0</span>;
+<span class="keyword">let</span> intervalo;
+
+<span class="keyword">function</span> <span class="function">iniciar</span>() {
+    intervalo = <span class="function">setInterval</span>(() => {
+        segundos++;
+        <span class="function">actualizarDisplay</span>();
+    }, <span class="value">1000</span>);
+}
+
+<span class="keyword">function</span> <span class="function">pausar</span>() {
+    <span class="function">clearInterval</span>(intervalo);
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Quiz -->
+        <section class="seccion">
+            <h2>🎯 Quiz Final - Audio y Efectos</h2>
+            
+            <div class="progreso-bar">
+                <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-pregunta">
+                    <h4>1. ¿Qué API crea sonidos en el navegador?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Sound API</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Web Audio API</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Music API</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>2. ¿Qué método ejecuta código repetidamente?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">setTimeout()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">setInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">setRepeat()</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>3. ¿Cómo detienes un setInterval?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">stopInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">pauseInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">clearInterval()</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>4. ¿Para qué sirve createElement()?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Crear nuevos elementos HTML</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Crear variables</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Crear funciones</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="estrellas">
+                <span class="estrella" id="star1">⭐</span>
+                <span class="estrella" id="star2">⭐</span>
+                <span class="estrella" id="star3">⭐</span>
+            </div>
+            
+            <div class="felicitacion" id="felicitacion">
+                <h3>🎉 ¡FELICIDADES!</h3>
+                <p>Has completado todos los niveles avanzados del tutorial.<br>¡Ahora eres un programador web experto!</p>
+            </div>
+        </section>
+        
+        <!-- Navegación -->
+        <nav class="nav-final">
+            <a href="nivel22.html">⬅️ Nivel 22</a>
+            <a href="final.html">🏆 Final ➡️</a>
+        </nav>
+    </main>
+    
+    <script>
+        // Audio Context
+        let audioCtx;
+        
+        function inicializarAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        // Tocar nota del piano
+        function tocarNota(frecuencia, elemento) {
+            inicializarAudio();
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frecuencia;
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            oscillator.stop(audioCtx.currentTime + 0.5);
+            
+            // Efecto visual
+            elemento.classList.add('activa');
+            setTimeout(() => elemento.classList.remove('activa'), 200);
+            
+            animarVisualizadorOnce();
+        }
+        
+        // Efectos de sonido
+        function efectoSonido(tipo) {
+            inicializarAudio();
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            const efectos = {
+                exito: { freq: 800, type: 'sine', duration: 0.3 },
+                error: { freq: 200, type: 'sawtooth', duration: 0.3 },
+                notificacion: { freq: 600, type: 'sine', duration: 0.2 },
+                powerup: { freq: 400, type: 'square', duration: 0.4 },
+                jump: { freq: 300, type: 'triangle', duration: 0.15 },
+                coin: { freq: 1200, type: 'sine', duration: 0.1 }
+            };
+            
+            const efecto = efectos[tipo];
+            oscillator.type = efecto.type;
+            oscillator.frequency.value = efecto.freq;
+            
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + efecto.duration);
+            oscillator.stop(audioCtx.currentTime + efecto.duration);
+            
+            animarVisualizadorOnce();
+        }
+        
+        // Visualizador
+        function animarVisualizadorOnce() {
+            const barras = document.querySelectorAll('.barra-vis');
+            barras.forEach(barra => {
+                const altura = Math.random() * 80 + 20;
+                barra.style.height = altura + 'px';
+            });
+            
+            setTimeout(() => {
+                barras.forEach((barra, i) => {
+                    barra.style.height = (20 + i * 10) + 'px';
+                });
+            }, 300);
+        }
+        
+        let animacionActiva = false;
+        function animarVisualizador() {
+            if (animacionActiva) return;
+            animacionActiva = true;
+            
+            const barras = document.querySelectorAll('.barra-vis');
+            let count = 0;
+            const intervalo = setInterval(() => {
+                barras.forEach(barra => {
+                    const altura = Math.random() * 80 + 20;
+                    barra.style.height = altura + 'px';
+                });
+                count++;
+                if (count > 20) {
+                    clearInterval(intervalo);
+                    animacionActiva = false;
+                }
+            }, 100);
+            
+            efectoSonido('powerup');
+        }
+        
+        // Partículas
+        function crearParticulas(event) {
+            const container = document.getElementById('particulasDemo');
+            const emojis = ['⭐', '✨', '🌟', '💫', '🎵', '🎶', '💜'];
+            
+            for (let i = 0; i < 5; i++) {
+                const particula = document.createElement('span');
+                particula.className = 'particula';
+                particula.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particula.style.left = (event.offsetX + (Math.random() - 0.5) * 40) + 'px';
+                particula.style.top = event.offsetY + 'px';
+                
+                container.appendChild(particula);
+                
+                setTimeout(() => particula.remove(), 3000);
+            }
+            
+            efectoSonido('coin');
+        }
+        
+        // Cronómetro
+        let segundosTotales = 0;
+        let cronometroIntervalo = null;
+        
+        function iniciarCrono() {
+            if (cronometroIntervalo) return;
+            
+            cronometroIntervalo = setInterval(() => {
+                segundosTotales++;
+                actualizarCronometro();
+            }, 1000);
+        }
+        
+        function pausarCrono() {
+            clearInterval(cronometroIntervalo);
+            cronometroIntervalo = null;
+        }
+        
+        function reiniciarCrono() {
+            pausarCrono();
+            segundosTotales = 0;
+            actualizarCronometro();
+        }
+        
+        function actualizarCronometro() {
+            const horas = Math.floor(segundosTotales / 3600);
+            const minutos = Math.floor((segundosTotales % 3600) / 60);
+            const segundos = segundosTotales % 60;
+            
+            const formato = [horas, minutos, segundos]
+                .map(n => n.toString().padStart(2, '0'))
+                .join(':');
+            
+            document.getElementById('cronometro').textContent = formato;
+        }
+        
+        // Quiz
+        let correctas = 0;
+        const totalPreguntas = 4;
+        
+        function verificarRespuesta(elemento, esCorrecta) {
+            if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
+            
+            const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
+            opciones.forEach(op => op.style.pointerEvents = 'none');
+            
+            if (esCorrecta) {
+                elemento.classList.add('correcta');
+                correctas++;
+                actualizarEstrellas();
+                efectoSonido('exito');
+            } else {
+                elemento.classList.add('incorrecta');
+                efectoSonido('error');
+            }
+            
+            const respondidas = document.querySelectorAll('.quiz-opcion.correcta, .quiz-opcion.incorrecta').length;
+            document.getElementById('progresoQuiz').style.width = (respondidas / totalPreguntas * 100) + '%';
+            
+            if (respondidas === totalPreguntas) {
+                guardarProgreso();
+                setTimeout(() => {
+                    document.getElementById('felicitacion').style.display = 'block';
+                    efectoSonido('powerup');
+                }, 500);
+            }
+        }
+        
+        function actualizarEstrellas() {
+            const porcentaje = (correctas / totalPreguntas) * 100;
+            if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
+            if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');
+            if (porcentaje >= 75) document.getElementById('star3').classList.add('activa');
+        }
+        
+        function guardarProgreso() {
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(23)) {
+                niveles.push(23);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Nivel 20 - JSON y Datos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primario: #06b6d4;
+            --secundario: #22d3ee;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primario), #0891b2);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: var(--tarjeta);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid var(--borde);
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--secundario);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .concepto-box {
+            background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(8,145,178,0.2));
+            border-left: 4px solid var(--primario);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .codigo-ejemplo {
+            background: #1e1e3f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 2px solid var(--primario);
+        }
+        
+        .codigo-ejemplo pre {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: #676e95; }
+        .number { color: #f78c6c; }
+        .property { color: #ffcb6b; }
+        
+        .tip-box {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.2));
+            border-left: 4px solid var(--exito);
+            padding: 15px 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .tip-box::before { content: "💡 "; }
+        
+        .comparacion {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparacion {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparacion-item {
+            background: rgba(6,182,212,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .comparacion-item h4 {
+            color: var(--secundario);
+            margin-bottom: 10px;
+        }
+        
+        /* Editor */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .editor-container { grid-template-columns: 1fr; }
+        }
+        
+        .editor-panel {
+            background: #1e1e3f;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--primario);
+        }
+        
+        .editor-header {
+            background: var(--primario);
+            padding: 10px 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .editor-textarea {
+            width: 100%;
+            min-height: 250px;
+            background: #1e1e3f;
+            color: #a5b4fc;
+            border: none;
+            padding: 15px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+        
+        .editor-textarea:focus { outline: none; }
+        
+        .result-panel {
+            background: #0d1117;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--exito);
+        }
+        
+        .result-header {
+            background: var(--exito);
+            padding: 10px 15px;
+            font-weight: 600;
+        }
+        
+        .result-content {
+            padding: 15px;
+            min-height: 250px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+        }
+        
+        .btn-ejecutar {
+            background: linear-gradient(135deg, var(--exito), #059669);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px auto;
+            display: flex;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(16,185,129,0.4);
+        }
+        
+        /* Visualizador JSON */
+        .json-visualizer {
+            background: #0d1117;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .json-tree {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .json-key { color: #79c0ff; }
+        .json-string { color: #a5d6ff; }
+        .json-number { color: #f78c6c; }
+        .json-boolean { color: #ff7b72; }
+        .json-null { color: #8b949e; }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(6,182,212,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--secundario);
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            background: rgba(6,182,212,0.1);
+            border: 2px solid var(--borde);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover {
+            border-color: var(--primario);
+        }
+        
+        .quiz-opcion.correcta {
+            background: rgba(16,185,129,0.3);
+            border-color: var(--exito);
+        }
+        
+        .quiz-opcion.incorrecta {
+            background: rgba(239,68,68,0.3);
+            border-color: var(--error);
+        }
+        
+        .progreso-bar {
+            background: var(--borde);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progreso-fill {
+            background: linear-gradient(90deg, var(--primario), var(--exito));
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .estrellas {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .estrella { color: #4b5563; transition: all 0.3s; }
+        .estrella.activa { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, var(--primario), #0891b2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(6,182,212,0.4);
+        }
+        
+        /* Tabla de métodos */
+        .tabla-metodos {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .tabla-metodos th, .tabla-metodos td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--borde);
+        }
+        
+        .tabla-metodos th {
+            background: var(--primario);
+            color: white;
+        }
+        
+        .tabla-metodos tr:nth-child(even) {
+            background: rgba(6,182,212,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-header">
+            <a href="inicio.html" class="nav-btn">🏠 Menú</a>
+            <span class="nivel-badge">⭐ NIVEL 20</span>
+            <a href="nivel19.html" class="nav-btn">⬅️ Anterior</a>
+        </div>
+        <h1>📦 JSON - El Idioma de los Datos</h1>
+    </header>
+    
+    <main class="container">
+        <!-- Introducción -->
+        <section class="seccion">
+            <h2>🤔 ¿Qué es JSON?</h2>
+            
+            <div class="concepto-box">
+                <h3>JSON = JavaScript Object Notation</h3>
+                <p><strong>JSON</strong> es un formato para guardar y enviar datos. Es como una <strong>lista organizada</strong> que tanto humanos como computadoras pueden leer fácilmente.</p>
+            </div>
+            
+            <p>JSON se usa para:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>📡 Enviar datos entre servidor y navegador</li>
+                <li>💾 Guardar configuraciones</li>
+                <li>📊 Almacenar datos estructurados</li>
+                <li>🔄 Compartir información entre aplicaciones</li>
+            </ul>
+        </section>
+        
+        <!-- Sintaxis -->
+        <section class="seccion">
+            <h2>📝 Sintaxis de JSON</h2>
+            
+            <div class="comparacion">
+                <div class="comparacion-item">
+                    <h4>✅ JSON Válido</h4>
+                    <div class="codigo-ejemplo" style="margin: 10px 0;">
+<pre>{
+  <span class="json-key">"nombre"</span>: <span class="json-string">"María"</span>,
+  <span class="json-key">"edad"</span>: <span class="json-number">12</span>,
+  <span class="json-key">"estudiante"</span>: <span class="json-boolean">true</span>
+}</pre>
+                    </div>
+                </div>
+                <div class="comparacion-item">
+                    <h4>❌ JSON Inválido</h4>
+                    <div class="codigo-ejemplo" style="margin: 10px 0;">
+<pre>{
+  <span style="color: #ef4444;">nombre</span>: "María",  <span class="comment">// Falta ""</span>
+  <span style="color: #ef4444;">'edad'</span>: 12,       <span class="comment">// Usa ""</span>
+  edad: <span style="color: #ef4444;">12,</span>         <span class="comment">// Coma final</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <strong>Reglas de JSON:</strong><br>
+                • Las claves siempre van con comillas dobles <code>"clave"</code><br>
+                • Los strings usan comillas dobles, no simples<br>
+                • No se permiten comas finales<br>
+                • No se permiten comentarios
+            </div>
+        </section>
+        
+        <!-- Tipos de datos -->
+        <section class="seccion">
+            <h2>📊 Tipos de Datos en JSON</h2>
+            
+            <div class="codigo-ejemplo">
+<pre>{
+  <span class="json-key">"texto"</span>: <span class="json-string">"Hola Mundo"</span>,           <span class="comment">// String</span>
+  <span class="json-key">"numero"</span>: <span class="json-number">42</span>,                       <span class="comment">// Number</span>
+  <span class="json-key">"decimal"</span>: <span class="json-number">3.14</span>,                    <span class="comment">// Number</span>
+  <span class="json-key">"verdadero"</span>: <span class="json-boolean">true</span>,                 <span class="comment">// Boolean</span>
+  <span class="json-key">"falso"</span>: <span class="json-boolean">false</span>,                     <span class="comment">// Boolean</span>
+  <span class="json-key">"nulo"</span>: <span class="json-null">null</span>,                       <span class="comment">// Null</span>
+  <span class="json-key">"lista"</span>: [<span class="json-number">1</span>, <span class="json-number">2</span>, <span class="json-number">3</span>],                  <span class="comment">// Array</span>
+  <span class="json-key">"objeto"</span>: { <span class="json-key">"a"</span>: <span class="json-number">1</span> }               <span class="comment">// Object</span>
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Métodos -->
+        <section class="seccion">
+            <h2>🔧 Métodos JSON en JavaScript</h2>
+            
+            <table class="tabla-metodos">
+                <tr>
+                    <th>Método</th>
+                    <th>¿Qué hace?</th>
+                    <th>Ejemplo</th>
+                </tr>
+                <tr>
+                    <td><code>JSON.parse()</code></td>
+                    <td>Convierte texto JSON → Objeto JS</td>
+                    <td><code>JSON.parse('{"a":1}')</code></td>
+                </tr>
+                <tr>
+                    <td><code>JSON.stringify()</code></td>
+                    <td>Convierte Objeto JS → texto JSON</td>
+                    <td><code>JSON.stringify({a:1})</code></td>
+                </tr>
+            </table>
+            
+            <h3 style="margin-top: 25px; color: var(--secundario);">📥 JSON.parse() - Texto a Objeto</h3>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Tenemos un texto JSON (como viene de una API)</span>
+<span class="keyword">const</span> textoJSON = <span class="string">'{"nombre": "Carlos", "edad": 10}'</span>;
+
+<span class="comment">// Lo convertimos a objeto JavaScript</span>
+<span class="keyword">const</span> objeto = <span class="function">JSON.parse</span>(textoJSON);
+
+<span class="keyword">console</span>.<span class="function">log</span>(objeto.nombre);  <span class="comment">// "Carlos"</span>
+<span class="keyword">console</span>.<span class="function">log</span>(objeto.edad);    <span class="comment">// 10</span></pre>
+            </div>
+            
+            <h3 style="margin-top: 25px; color: var(--secundario);">📤 JSON.stringify() - Objeto a Texto</h3>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Tenemos un objeto JavaScript</span>
+<span class="keyword">const</span> persona = {
+    nombre: <span class="string">"Ana"</span>,
+    edad: <span class="number">15</span>,
+    hobbies: [<span class="string">"leer"</span>, <span class="string">"programar"</span>]
+};
+
+<span class="comment">// Lo convertimos a texto JSON</span>
+<span class="keyword">const</span> texto = <span class="function">JSON.stringify</span>(persona);
+
+<span class="keyword">console</span>.<span class="function">log</span>(texto);
+<span class="comment">// '{"nombre":"Ana","edad":15,"hobbies":["leer","programar"]}'</span></pre>
+            </div>
+            
+            <div class="tip-box">
+                <strong>¿Cuándo usar cada uno?</strong><br>
+                • <code>parse()</code>: Cuando recibes datos (de API, localStorage, archivo)<br>
+                • <code>stringify()</code>: Cuando envías datos o los guardas
+            </div>
+        </section>
+        
+        <!-- Editor interactivo -->
+        <section class="seccion">
+            <h2>💻 Editor - Practica con JSON</h2>
+            
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        📝 JavaScript
+                        <button onclick="resetEditor()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 10px; border-radius: 10px; cursor: pointer;">🔄</button>
+                    </div>
+                    <textarea class="editor-textarea" id="jsEditor">// 🎮 Crear un personaje de videojuego
+const personaje = {
+    nombre: "SuperCoder",
+    nivel: 5,
+    vida: 100,
+    poderes: ["JavaScript", "HTML", "CSS"],
+    estadisticas: {
+        fuerza: 80,
+        velocidad: 90,
+        inteligencia: 100
+    }
+};
+
+// Convertir a JSON (para guardar)
+const jsonTexto = JSON.stringify(personaje, null, 2);
+console.log("📦 JSON guardado:");
+console.log(jsonTexto);
+
+// Simular que lo recuperamos
+const recuperado = JSON.parse(jsonTexto);
+console.log("\n🎮 Personaje recuperado:");
+console.log("Nombre:", recuperado.nombre);
+console.log("Poderes:", recuperado.poderes.join(", "));</textarea>
+                </div>
+                
+                <div class="result-panel">
+                    <div class="result-header">📋 Consola</div>
+                    <div class="result-content" id="resultado">
+                        Haz clic en "▶️ Ejecutar" para ver el resultado
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-ejecutar" onclick="ejecutarCodigo()">
+                ▶️ Ejecutar Código
+            </button>
+        </section>
+        
+        <!-- Uso con localStorage -->
+        <section class="seccion">
+            <h2>💾 JSON + LocalStorage</h2>
+            
+            <p>JSON es perfecto para guardar datos complejos en localStorage:</p>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Guardar un array de tareas</span>
+<span class="keyword">const</span> tareas = [
+    { id: <span class="number">1</span>, texto: <span class="string">"Aprender JSON"</span>, completada: <span class="json-boolean">true</span> },
+    { id: <span class="number">2</span>, texto: <span class="string">"Hacer ejercicios"</span>, completada: <span class="json-boolean">false</span> }
+];
+
+<span class="comment">// Guardar (convertir a texto)</span>
+localStorage.<span class="function">setItem</span>(<span class="string">'misTareas'</span>, <span class="function">JSON.stringify</span>(tareas));
+
+<span class="comment">// Recuperar (convertir a objeto)</span>
+<span class="keyword">const</span> tareasGuardadas = <span class="function">JSON.parse</span>(
+    localStorage.<span class="function">getItem</span>(<span class="string">'misTareas'</span>)
+);
+
+<span class="keyword">console</span>.<span class="function">log</span>(tareasGuardadas[<span class="number">0</span>].texto); <span class="comment">// "Aprender JSON"</span></pre>
+            </div>
+        </section>
+        
+        <!-- Quiz -->
+        <section class="seccion">
+            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            
+            <div class="progreso-bar">
+                <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-pregunta">
+                    <h4>1. ¿Qué significa JSON?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Java Simple Object Notation</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">JavaScript Object Notation</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JavaScript Online Network</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>2. ¿Qué método convierte texto JSON a objeto JavaScript?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">JSON.parse()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JSON.stringify()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JSON.convert()</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>3. En JSON, ¿qué tipo de comillas se usan para las claves?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Comillas simples ''</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Comillas dobles ""</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Sin comillas</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>4. ¿Cuál es JSON válido?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">{nombre: "Ana"}</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">{'nombre': 'Ana'}</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">{"nombre": "Ana"}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="estrellas">
+                <span class="estrella" id="star1">⭐</span>
+                <span class="estrella" id="star2">⭐</span>
+                <span class="estrella" id="star3">⭐</span>
+            </div>
+        </section>
+        
+        <!-- Navegación -->
+        <nav class="nav-final">
+            <a href="nivel19.html">⬅️ Nivel 19</a>
+            <a href="nivel21.html">Nivel 21 ➡️</a>
+        </nav>
+    </main>
+    
+    <script>
+        let correctas = 0;
+        const totalPreguntas = 4;
+        
+        function verificarRespuesta(elemento, esCorrecta) {
+            if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
+            
+            const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
+            opciones.forEach(op => op.style.pointerEvents = 'none');
+            
+            if (esCorrecta) {
+                elemento.classList.add('correcta');
+                correctas++;
+                actualizarEstrellas();
+            } else {
+                elemento.classList.add('incorrecta');
+            }
+            
+            const respondidas = document.querySelectorAll('.quiz-opcion.correcta, .quiz-opcion.incorrecta').length;
+            document.getElementById('progresoQuiz').style.width = (respondidas / totalPreguntas * 100) + '%';
+            
+            if (respondidas === totalPreguntas) guardarProgreso();
+        }
+        
+        function actualizarEstrellas() {
+            const porcentaje = (correctas / totalPreguntas) * 100;
+            if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
+            if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');
+            if (porcentaje >= 75) document.getElementById('star3').classList.add('activa');
+        }
+        
+        function guardarProgreso() {
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(20)) {
+                niveles.push(20);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+        }
+        
+        const codigoInicial = document.getElementById('jsEditor').value;
+        
+        function resetEditor() {
+            document.getElementById('jsEditor').value = codigoInicial;
+            document.getElementById('resultado').textContent = 'Haz clic en "▶️ Ejecutar" para ver el resultado';
+        }
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('jsEditor').value;
+            const resultado = document.getElementById('resultado');
+            
+            let output = '';
+            const originalLog = console.log;
+            console.log = (...args) => {
+                output += args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : a).join(' ') + '\n';
+            };
+            
+            try {
+                eval(codigo);
+                resultado.textContent = output || 'Código ejecutado (sin output)';
+                resultado.style.color = '#a5b4fc';
+            } catch (e) {
+                resultado.textContent = '❌ Error: ' + e.message;
+                resultado.style.color = '#ef4444';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+</body>
+</html>

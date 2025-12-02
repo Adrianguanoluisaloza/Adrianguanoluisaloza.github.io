@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Nivel 22 - CSS Variables</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primario: #14b8a6;
+            --secundario: #2dd4bf;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primario), #0d9488);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: var(--tarjeta);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid var(--borde);
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--secundario);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .concepto-box {
+            background: linear-gradient(135deg, rgba(20,184,166,0.2), rgba(13,148,136,0.2));
+            border-left: 4px solid var(--primario);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .codigo-ejemplo {
+            background: #1e1e3f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 2px solid var(--primario);
+        }
+        
+        .codigo-ejemplo pre {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: #676e95; }
+        .property { color: #ffcb6b; }
+        .value { color: #f78c6c; }
+        
+        .tip-box {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.2));
+            border-left: 4px solid var(--exito);
+            padding: 15px 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .tip-box::before { content: "💡 "; }
+        
+        /* Demo de temas */
+        .tema-demo {
+            background: var(--demo-fondo, #1a1a2e);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid var(--demo-borde, var(--borde));
+            transition: all 0.3s;
+        }
+        
+        .tema-demo h3 {
+            color: var(--demo-titulo, var(--secundario));
+        }
+        
+        .tema-demo p {
+            color: var(--demo-texto, var(--texto));
+        }
+        
+        .tema-demo .boton-demo {
+            background: var(--demo-boton, var(--primario));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        .tema-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tema-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--borde);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tema-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .tema-btn.activo {
+            border-color: var(--primario);
+            box-shadow: 0 0 15px rgba(20,184,166,0.3);
+        }
+        
+        /* Color picker */
+        .color-picker-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .color-picker-item {
+            background: rgba(20,184,166,0.1);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .color-picker-item label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .color-picker-item input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        /* Tarjeta personalizable */
+        .tarjeta-personalizable {
+            background: var(--card-bg, #1e293b);
+            border-radius: var(--card-radius, 20px);
+            padding: var(--card-padding, 25px);
+            border: 3px solid var(--card-border, #14b8a6);
+            box-shadow: 0 10px 30px var(--card-shadow, rgba(20,184,166,0.2));
+            transition: all 0.3s;
+        }
+        
+        .tarjeta-personalizable h4 {
+            color: var(--card-title, #2dd4bf);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .tarjeta-personalizable p {
+            color: var(--card-text, #e2e8f0);
+        }
+        
+        /* Sliders */
+        .slider-container {
+            margin: 15px 0;
+        }
+        
+        .slider-container label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .slider-container input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(20,184,166,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--secundario);
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            background: rgba(20,184,166,0.1);
+            border: 2px solid var(--borde);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.correcta { background: rgba(16,185,129,0.3); border-color: var(--exito); }
+        .quiz-opcion.incorrecta { background: rgba(239,68,68,0.3); border-color: var(--error); }
+        
+        .progreso-bar {
+            background: var(--borde);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progreso-fill {
+            background: linear-gradient(90deg, var(--primario), var(--exito));
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .estrellas {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .estrella { color: #4b5563; transition: all 0.3s; }
+        .estrella.activa { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, var(--primario), #0d9488);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(20,184,166,0.4);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-header">
+            <a href="inicio.html" class="nav-btn">🏠 Menú</a>
+            <span class="nivel-badge">⭐ NIVEL 22</span>
+            <a href="nivel21.html" class="nav-btn">⬅️ Anterior</a>
+        </div>
+        <h1>🎨 CSS Variables - Temas Dinámicos</h1>
+    </header>
+    
+    <main class="container">
+        <!-- Introducción -->
+        <section class="seccion">
+            <h2>🤔 ¿Qué son las CSS Variables?</h2>
+            
+            <div class="concepto-box">
+                <h3>Variables CSS = Valores Reutilizables</h3>
+                <p>Las <strong>CSS Variables</strong> (también llamadas Custom Properties) te permiten guardar valores y reutilizarlos en todo tu CSS. ¡Cambia un valor y se actualiza en todas partes!</p>
+            </div>
+            
+            <p>Ventajas de usar variables CSS:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>🎨 Crear temas fácilmente (claro/oscuro)</li>
+                <li>🔄 Cambiar colores en un solo lugar</li>
+                <li>📱 Adaptar diseños dinámicamente</li>
+                <li>⚡ Modificar estilos con JavaScript</li>
+            </ul>
+        </section>
+        
+        <!-- Sintaxis -->
+        <section class="seccion">
+            <h2>📝 Cómo Usar Variables CSS</h2>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">/* 1. DEFINIR variables en :root (global) */</span>
+<span class="keyword">:root</span> {
+    <span class="property">--color-primario</span>: <span class="value">#14b8a6</span>;
+    <span class="property">--color-texto</span>: <span class="value">#e2e8f0</span>;
+    <span class="property">--espaciado</span>: <span class="value">20px</span>;
+    <span class="property">--radio-borde</span>: <span class="value">15px</span>;
+}
+
+<span class="comment">/* 2. USAR variables con var() */</span>
+<span class="keyword">.boton</span> {
+    <span class="property">background</span>: <span class="function">var</span>(<span class="value">--color-primario</span>);
+    <span class="property">color</span>: <span class="function">var</span>(<span class="value">--color-texto</span>);
+    <span class="property">padding</span>: <span class="function">var</span>(<span class="value">--espaciado</span>);
+    <span class="property">border-radius</span>: <span class="function">var</span>(<span class="value">--radio-borde</span>);
+}</pre>
+            </div>
+            
+            <div class="tip-box">
+                <strong>Reglas importantes:</strong><br>
+                • Los nombres empiezan con <code>--</code><br>
+                • Se usan con <code>var(--nombre)</code><br>
+                • <code>:root</code> las hace globales<br>
+                • Puedes definirlas en cualquier elemento
+            </div>
+        </section>
+        
+        <!-- Demo de temas -->
+        <section class="seccion">
+            <h2>🌈 Demo: Cambia el Tema</h2>
+            
+            <p>Haz clic en un tema para ver cómo cambian los estilos:</p>
+            
+            <div class="tema-selector">
+                <button class="tema-btn activo" onclick="cambiarTema('oscuro')" style="background: #1a1a2e; color: #e2e8f0;">🌙 Oscuro</button>
+                <button class="tema-btn" onclick="cambiarTema('claro')" style="background: #f8fafc; color: #1e293b;">☀️ Claro</button>
+                <button class="tema-btn" onclick="cambiarTema('neon')" style="background: #0f0f23; color: #ff00ff;">💜 Neón</button>
+                <button class="tema-btn" onclick="cambiarTema('naturaleza')" style="background: #064e3b; color: #a7f3d0;">🌿 Naturaleza</button>
+            </div>
+            
+            <div class="tema-demo" id="temaDemo">
+                <h3>✨ Tarjeta de Ejemplo</h3>
+                <p>Este contenido cambia de estilo según el tema seleccionado. ¡Las CSS Variables hacen todo el trabajo!</p>
+                <button class="boton-demo">Botón de Acción</button>
+            </div>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">/* Así funciona el cambio de tema */</span>
+<span class="keyword">.tema-oscuro</span> {
+    <span class="property">--demo-fondo</span>: <span class="value">#1a1a2e</span>;
+    <span class="property">--demo-texto</span>: <span class="value">#e2e8f0</span>;
+    <span class="property">--demo-boton</span>: <span class="value">#14b8a6</span>;
+}
+
+<span class="keyword">.tema-claro</span> {
+    <span class="property">--demo-fondo</span>: <span class="value">#f8fafc</span>;
+    <span class="property">--demo-texto</span>: <span class="value">#1e293b</span>;
+    <span class="property">--demo-boton</span>: <span class="value">#0891b2</span>;
+}</pre>
+            </div>
+        </section>
+        
+        <!-- Personalizar tarjeta -->
+        <section class="seccion">
+            <h2>🎨 Crea Tu Propio Estilo</h2>
+            
+            <p>Usa los controles para personalizar la tarjeta en tiempo real:</p>
+            
+            <div class="color-picker-container">
+                <div class="color-picker-item">
+                    <label>🎨 Color de Fondo</label>
+                    <input type="color" value="#1e293b" onchange="cambiarVariable('--card-bg', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label>🖌️ Color del Borde</label>
+                    <input type="color" value="#14b8a6" onchange="cambiarVariable('--card-border', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label>📝 Color del Título</label>
+                    <input type="color" value="#2dd4bf" onchange="cambiarVariable('--card-title', this.value)">
+                </div>
+                <div class="color-picker-item">
+                    <label>✏️ Color del Texto</label>
+                    <input type="color" value="#e2e8f0" onchange="cambiarVariable('--card-text', this.value)">
+                </div>
+            </div>
+            
+            <div class="slider-container">
+                <label>
+                    <span>📐 Radio del Borde</span>
+                    <span id="radiusValue">20px</span>
+                </label>
+                <input type="range" min="0" max="50" value="20" oninput="cambiarVariable('--card-radius', this.value + 'px'); document.getElementById('radiusValue').textContent = this.value + 'px'">
+            </div>
+            
+            <div class="slider-container">
+                <label>
+                    <span>📏 Padding</span>
+                    <span id="paddingValue">25px</span>
+                </label>
+                <input type="range" min="10" max="50" value="25" oninput="cambiarVariable('--card-padding', this.value + 'px'); document.getElementById('paddingValue').textContent = this.value + 'px'">
+            </div>
+            
+            <div class="tarjeta-personalizable" id="tarjetaPersonalizable">
+                <h4>🚀 Mi Tarjeta Personalizada</h4>
+                <p>¡Cambia los colores y valores arriba para ver cómo se actualiza esta tarjeta en tiempo real! Las CSS Variables hacen que todo sea súper fácil.</p>
+            </div>
+        </section>
+        
+        <!-- JavaScript -->
+        <section class="seccion">
+            <h2>⚡ Variables CSS + JavaScript</h2>
+            
+            <p>Puedes cambiar variables CSS desde JavaScript:</p>
+            
+            <div class="codigo-ejemplo">
+<pre><span class="comment">// Cambiar una variable CSS</span>
+document.documentElement.<span class="function">style</span>.<span class="function">setProperty</span>(
+    <span class="string">'--color-primario'</span>, 
+    <span class="string">'#ff6b6b'</span>
+);
+
+<span class="comment">// Leer una variable CSS</span>
+<span class="keyword">const</span> color = <span class="function">getComputedStyle</span>(document.documentElement)
+    .<span class="function">getPropertyValue</span>(<span class="string">'--color-primario'</span>);
+
+<span class="comment">// Cambiar en un elemento específico</span>
+<span class="keyword">const</span> tarjeta = document.<span class="function">querySelector</span>(<span class="string">'.tarjeta'</span>);
+tarjeta.<span class="function">style</span>.<span class="function">setProperty</span>(<span class="string">'--card-bg'</span>, <span class="string">'#000'</span>);</pre>
+            </div>
+            
+            <div class="tip-box">
+                Esta técnica es perfecta para:<br>
+                • 🌙 Modo oscuro/claro<br>
+                • 🎨 Personalización por usuario<br>
+                • 📊 Valores dinámicos (progreso, animaciones)
+            </div>
+        </section>
+        
+        <!-- Quiz -->
+        <section class="seccion">
+            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            
+            <div class="progreso-bar">
+                <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-pregunta">
+                    <h4>1. ¿Cómo se define una variable CSS?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">$color: blue;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">--color: blue;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">@color: blue;</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>2. ¿Cómo se usa una variable CSS?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">color: $primario;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">color: --primario;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">color: var(--primario);</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>3. ¿Dónde se definen variables globales?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">:root { }</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">body { }</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">* { }</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-pregunta">
+                    <h4>4. ¿Qué método JS cambia una variable CSS?</h4>
+                    <div class="quiz-opciones">
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">element.css('--var', 'value')</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">element.style.setProperty('--var', 'value')</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">element.setVariable('--var', 'value')</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="estrellas">
+                <span class="estrella" id="star1">⭐</span>
+                <span class="estrella" id="star2">⭐</span>
+                <span class="estrella" id="star3">⭐</span>
+            </div>
+        </section>
+        
+        <!-- Navegación -->
+        <nav class="nav-final">
+            <a href="nivel21.html">⬅️ Nivel 21</a>
+            <a href="nivel23.html">Nivel 23 ➡️</a>
+        </nav>
+    </main>
+    
+    <script>
+        // Cambiar tema
+        function cambiarTema(tema) {
+            const demo = document.getElementById('temaDemo');
+            const botones = document.querySelectorAll('.tema-btn');
+            
+            botones.forEach(b => b.classList.remove('activo'));
+            event.target.classList.add('activo');
+            
+            const temas = {
+                oscuro: {
+                    '--demo-fondo': '#1a1a2e',
+                    '--demo-texto': '#e2e8f0',
+                    '--demo-titulo': '#2dd4bf',
+                    '--demo-boton': '#14b8a6',
+                    '--demo-borde': '#374151'
+                },
+                claro: {
+                    '--demo-fondo': '#f8fafc',
+                    '--demo-texto': '#1e293b',
+                    '--demo-titulo': '#0891b2',
+                    '--demo-boton': '#0891b2',
+                    '--demo-borde': '#cbd5e1'
+                },
+                neon: {
+                    '--demo-fondo': '#0f0f23',
+                    '--demo-texto': '#f0abfc',
+                    '--demo-titulo': '#ff00ff',
+                    '--demo-boton': '#a855f7',
+                    '--demo-borde': '#ff00ff'
+                },
+                naturaleza: {
+                    '--demo-fondo': '#064e3b',
+                    '--demo-texto': '#a7f3d0',
+                    '--demo-titulo': '#34d399',
+                    '--demo-boton': '#10b981',
+                    '--demo-borde': '#34d399'
+                }
+            };
+            
+            const estilos = temas[tema];
+            for (const [variable, valor] of Object.entries(estilos)) {
+                demo.style.setProperty(variable, valor);
+            }
+        }
+        
+        // Cambiar variable de tarjeta personalizable
+        function cambiarVariable(variable, valor) {
+            const tarjeta = document.getElementById('tarjetaPersonalizable');
+            tarjeta.style.setProperty(variable, valor);
+        }
+        
+        // Quiz
+        let correctas = 0;
+        const totalPreguntas = 4;
+        
+        function verificarRespuesta(elemento, esCorrecta) {
+            if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
+            
+            const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
+            opciones.forEach(op => op.style.pointerEvents = 'none');
+            
+            if (esCorrecta) {
+                elemento.classList.add('correcta');
+                correctas++;
+                actualizarEstrellas();
+            } else {
+                elemento.classList.add('incorrecta');
+            }
+            
+            const respondidas = document.querySelectorAll('.quiz-opcion.correcta, .quiz-opcion.incorrecta').length;
+            document.getElementById('progresoQuiz').style.width = (respondidas / totalPreguntas * 100) + '%';
+            
+            if (respondidas === totalPreguntas) guardarProgreso();
+        }
+        
+        function actualizarEstrellas() {
+            const porcentaje = (correctas / totalPreguntas) * 100;
+            if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
+            if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');
+            if (porcentaje >= 75) document.getElementById('star3').classList.add('activa');
+        }
+        
+        function guardarProgreso() {
+            const niveles = JSON.parse(localStorage.getItem('nivelesCompletados') || '[]');
+            if (!niveles.includes(22)) {
+                niveles.push(22);
+                localStorage.setItem('nivelesCompletados', JSON.stringify(niveles));
+            }
+        }
+    </script>
+</body>
+</html>
