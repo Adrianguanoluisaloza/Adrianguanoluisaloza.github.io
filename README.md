@@ -49,7 +49,16 @@ CodeQuest es un **tutorial interactivo gamificado** diseñado para que **niños 
 | 15 | 🎯 Eventos | Click, hover, teclado |
 | 16 | 💾 LocalStorage | Guardar datos |
 | 17 | 🌈 Animaciones | Transiciones, keyframes |
-| 18 | 🎓 Proyecto Final | Crear tu propio sitio |
+| 18 | 🎓 Proyecto Portafolio | Crear tu propio sitio |
+
+### 🚀 Niveles Avanzados (Niveles 19-23)
+| Nivel | Tema | Aprenderás |
+|-------|------|------------|
+| 19 | 🌐 APIs y Fetch | Conectar con servidores, async/await |
+| 20 | 📦 JSON y Datos | parse, stringify, datos estructurados |
+| 21 | ✅ Validación Forms | Validar formularios con JavaScript |
+| 22 | 🎨 CSS Variables | Temas dinámicos, custom properties |
+| 23 | 🔊 Audio y Efectos | Web Audio API, partículas, timers |
 
 ---
 
@@ -81,7 +90,12 @@ CodeQuest es un **tutorial interactivo gamificado** diseñado para que **niños 
 ├── nivel01.html     ← Nivel 1: DOCTYPE
 ├── nivel02.html     ← Nivel 2: Metadatos
 ├── ...
-├── nivel18.html     ← Nivel 18: Proyecto Final
+├── nivel18.html     ← Nivel 18: Proyecto Portafolio
+├── nivel19.html     ← Nivel 19: APIs y Fetch
+├── nivel20.html     ← Nivel 20: JSON y Datos
+├── nivel21.html     ← Nivel 21: Validación Forms
+├── nivel22.html     ← Nivel 22: CSS Variables
+├── nivel23.html     ← Nivel 23: Audio y Efectos
 └── final.html       ← Centro de Logros y Certificado
 ```
 
