@@ -510,6 +510,441 @@
         }
         
         .hidden { display: none !important; }
+        
+        /* Estilos del Proyecto Integrador */
+        .proyecto-integrador {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 20px;
+        }
+        
+        .integrador-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .integrador-titulo {
+            font-size: 2.5rem;
+            color: var(--oro);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        .integrador-descripcion {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .demo-card {
+            background: var(--tarjeta);
+            border: 2px solid var(--borde);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primario);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .demo-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .demo-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .demo-content {
+            padding: 20px;
+        }
+        
+        /* Formulario Integrador */
+        .form-integrador {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            color: #94a3b8;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            background: #1e1e2e;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primario);
+        }
+        
+        .btn-form {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--exito), #059669);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-form:hover { transform: scale(1.05); }
+        
+        .resultado-form {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--exito);
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .resultado-form.show { display: block; }
+        
+        /* Canvas */
+        #canvasIntegrador {
+            width: 100%;
+            height: 200px;
+            background: #1e1e2e;
+            border-radius: 10px;
+            cursor: crosshair;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .demo-info {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-align: center;
+            margin: 0;
+        }
+        
+        /* API Consejo */
+        .btn-api {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-api:hover { transform: scale(1.05); }
+        
+        .consejo-container {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        /* LocalStorage Proyectos */
+        .storage-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .storage-controls input {
+            flex: 1;
+            padding: 10px;
+            background: #1e1e2e;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .btn-storage {
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-storage:hover { transform: scale(1.05); }
+        
+        .lista-proyectos {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .proyecto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+        }
+        
+        .proyecto-item button {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        /* Animaciones */
+        .animation-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .animation-controls button {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            background: var(--secundario);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .animation-controls button:hover { transform: scale(1.05); }
+        
+        .box-animado {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .spin { animation: spin 1s ease-in-out; }
+        .bounce { animation: bounce 0.6s ease-in-out; }
+        .pulse { animation: pulse 0.6s ease-in-out; }
+        
+        /* Audio Controls */
+        .audio-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .audio-controls button {
+            padding: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .audio-controls button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Contador */
+        .contador-display {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--primario);
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .contador-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .contador-controls button {
+            width: 60px;
+            height: 60px;
+            background: var(--primario);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .contador-controls button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Temas CSS Variables */
+        .theme-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-controls button {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            background: var(--tarjeta);
+            color: white;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .theme-controls button:hover {
+            transform: scale(1.05);
+            border-color: var(--primario);
+        }
+        
+        .tema-preview {
+            padding: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        .tema-preview.dark {
+            background: #1f2937;
+            color: #f3f4f6;
+        }
+        
+        .tema-preview.neon {
+            background: #0f0f23;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+            border: 2px solid #0ff;
+        }
+        
+        /* Footer Integrador */
+        .integrador-footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(251, 191, 36, 0.1);
+            border: 2px solid var(--oro);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .integrador-footer p {
+            font-size: 1.1rem;
+            color: var(--texto);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .demos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .integrador-titulo {
+                font-size: 1.8rem;
+            }
+            
+            .contador-display {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -568,6 +1003,165 @@
             <div class="logro" data-nivel="21"><div class="icono">✅</div><div class="nombre">Validación Forms</div><div class="estado">Nivel 21</div></div>
             <div class="logro" data-nivel="22"><div class="icono">🎨</div><div class="nombre">CSS Variables</div><div class="estado">Nivel 22</div></div>
             <div class="logro" data-nivel="23"><div class="icono">🔊</div><div class="nombre">Audio y Efectos</div><div class="estado">Nivel 23</div></div>
+            <div class="logro" data-nivel="24"><div class="icono">🎮</div><div class="nombre">Game Programming</div><div class="estado">Nivel 24</div></div>
+            <div class="logro" data-nivel="25"><div class="icono">📱</div><div class="nombre">Responsive Design</div><div class="estado">Nivel 25</div></div>
+        </div>
+    </section>
+    
+    <!-- PROYECTO INTEGRADOR - Vista Previa de Todo lo Aprendido -->
+    <section class="proyecto-integrador" id="proyectoIntegrador">
+        <div class="integrador-header">
+            <h2 class="integrador-titulo">🚀 VISTA PREVIA DEL PROYECTO INTEGRADOR</h2>
+            <p class="integrador-descripcion">
+                ¡Mira todo lo que aprendiste en acción! Este proyecto combina todas las tecnologías de los 25 niveles:
+                <strong>HTML5, CSS3, JavaScript, APIs, Canvas, Audio, LocalStorage, Validaciones, Animaciones</strong> y más.
+            </p>
+        </div>
+
+        <!-- Grid de Demos Interactivas -->
+        <div class="demos-grid">
+            <!-- Demo 1: Formulario con Validación -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>📝 Formulario Validado</h3>
+                    <span class="demo-badge">Niveles 6, 21</span>
+                </div>
+                <div class="demo-content">
+                    <form id="formIntegrador" class="form-integrador">
+                        <div class="form-group">
+                            <label>👤 Nombre:</label>
+                            <input type="text" id="nombreForm" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>📧 Email:</label>
+                            <input type="email" id="emailForm" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>🎨 Tema Favorito:</label>
+                            <select id="temaForm">
+                                <option value="html">HTML5</option>
+                                <option value="css">CSS3</option>
+                                <option value="js">JavaScript</option>
+                                <option value="responsive">Responsive Design</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>💬 Sobre ti:</label>
+                            <textarea id="sobreMiForm" rows="3" placeholder="Cuéntanos algo sobre ti..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-form">✨ Generar Portafolio</button>
+                    </form>
+                    <div id="resultadoForm" class="resultado-form"></div>
+                </div>
+            </div>
+
+            <!-- Demo 2: Canvas Interactivo -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>🎨 Canvas Animado</h3>
+                    <span class="demo-badge">Niveles 17, 23</span>
+                </div>
+                <div class="demo-content">
+                    <canvas id="canvasIntegrador" width="280" height="200"></canvas>
+                    <p class="demo-info">¡Haz clic en el canvas para crear efectos!</p>
+                </div>
+            </div>
+
+            <!-- Demo 3: API Integration -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>🌐 Integración con API</h3>
+                    <span class="demo-badge">Nivel 19</span>
+                </div>
+                <div class="demo-content">
+                    <button onclick="cargarConsejo()" class="btn-api">💡 Obtener Consejo</button>
+                    <div id="consejoAPI" class="consejo-container"></div>
+                </div>
+            </div>
+
+            <!-- Demo 4: LocalStorage + JSON -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>💾 LocalStorage + JSON</h3>
+                    <span class="demo-badge">Niveles 16, 20</span>
+                </div>
+                <div class="demo-content">
+                    <div class="storage-controls">
+                        <input type="text" id="nombreProyecto" placeholder="Nombre del proyecto">
+                        <button onclick="agregarProyecto()" class="btn-storage">➕ Agregar</button>
+                    </div>
+                    <div id="listaProyectos" class="lista-proyectos"></div>
+                </div>
+            </div>
+
+            <!-- Demo 5: CSS Animations -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>✨ Animaciones CSS</h3>
+                    <span class="demo-badge">Niveles 10, 17</span>
+                </div>
+                <div class="demo-content">
+                    <div class="animation-controls">
+                        <button onclick="animarBox('spin')">🔄 Girar</button>
+                        <button onclick="animarBox('bounce')">⬆️ Rebotar</button>
+                        <button onclick="animarBox('pulse')">💓 Pulsar</button>
+                    </div>
+                    <div id="boxAnimado" class="box-animado">🎯</div>
+                </div>
+            </div>
+
+            <!-- Demo 6: Web Audio API -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>🔊 Web Audio API</h3>
+                    <span class="demo-badge">Nivel 23</span>
+                </div>
+                <div class="demo-content">
+                    <div class="audio-controls">
+                        <button onclick="reproducirTono(261.63)">🎵 Do</button>
+                        <button onclick="reproducirTono(293.66)">🎵 Re</button>
+                        <button onclick="reproducirTono(329.63)">🎵 Mi</button>
+                        <button onclick="reproducirTono(349.23)">🎵 Fa</button>
+                    </div>
+                    <p class="demo-info">¡Crea música con código!</p>
+                </div>
+            </div>
+
+            <!-- Demo 7: Contador Interactivo -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>🔢 Contador JavaScript</h3>
+                    <span class="demo-badge">Nivel 11, 15</span>
+                </div>
+                <div class="demo-content">
+                    <div class="contador-display" id="contadorDisplay">0</div>
+                    <div class="contador-controls">
+                        <button onclick="decrementar()">➖</button>
+                        <button onclick="reiniciarContador()">🔄</button>
+                        <button onclick="incrementar()">➕</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 8: CSS Variables -->
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>🎨 CSS Variables Dinámicas</h3>
+                    <span class="demo-badge">Nivel 22</span>
+                </div>
+                <div class="demo-content">
+                    <div class="theme-controls">
+                        <button onclick="cambiarTema('light')">☀️ Claro</button>
+                        <button onclick="cambiarTema('dark')">🌙 Oscuro</button>
+                        <button onclick="cambiarTema('neon')">⚡ Neón</button>
+                    </div>
+                    <div id="temaPreview" class="tema-preview">Vista Previa</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="integrador-footer">
+            <p>✅ <strong>8 tecnologías integradas</strong> | 🎯 <strong>25 niveles completados</strong> | 🚀 <strong>¡Listo para el mundo real!</strong></p>
         </div>
     </section>
     
@@ -693,7 +1287,7 @@
                 </p>
                 <p class="certificado-texto" style="font-size: 1.15rem; line-height: 1.8;">
                     Dominando <strong>HTML5</strong>, <strong>CSS3</strong> y <strong>JavaScript ES6+</strong><br>
-                    <span style="color: #92400e; font-weight: bold; font-size: 1.2rem;">✅ 23 Niveles Completados con Excelencia</span>
+                    <span style="color: #92400e; font-weight: bold; font-size: 1.2rem;">✅ 25 Niveles Completados con Excelencia</span>
                 </p>
             </div>
 
@@ -1130,6 +1724,236 @@
         
         let nombreEstudiante = localStorage.getItem('nombreEstudiante') || '';
         
+        // ========================================
+        // FUNCIONES DEL PROYECTO INTEGRADOR
+        // ========================================
+        
+        // 1. Formulario con Validación
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formIntegrador');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nombre = document.getElementById('nombreForm').value;
+                    const email = document.getElementById('emailForm').value;
+                    const tema = document.getElementById('temaForm').value;
+                    const sobreMi = document.getElementById('sobreMiForm').value;
+                    
+                    // Mostrar resultado
+                    const resultado = document.getElementById('resultadoForm');
+                    resultado.innerHTML = `
+                        <h4 style="color: var(--exito); margin-bottom: 10px;">✅ ¡Portafolio Generado!</h4>
+                        <p style="margin: 5px 0;"><strong>Nombre:</strong> ${nombre}</p>
+                        <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+                        <p style="margin: 5px 0;"><strong>Tema Favorito:</strong> ${tema.toUpperCase()}</p>
+                        <p style="margin: 5px 0;"><strong>Bio:</strong> ${sobreMi || 'Sin descripción'}</p>
+                    `;
+                    resultado.classList.add('show');
+                    
+                    // Limpiar después de 5 segundos
+                    setTimeout(() => {
+                        resultado.classList.remove('show');
+                    }, 5000);
+                });
+            }
+        });
+        
+        // 2. Canvas Interactivo con Animaciones
+        let canvas, ctx, particles = [];
+        
+        function iniciarCanvas() {
+            canvas = document.getElementById('canvasIntegrador');
+            if (!canvas) return;
+            
+            ctx = canvas.getContext('2d');
+            
+            // Evento click para crear partículas
+            canvas.addEventListener('click', function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Crear explosión de partículas
+                for (let i = 0; i < 15; i++) {
+                    particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 8,
+                        vy: (Math.random() - 0.5) * 8,
+                        life: 1,
+                        color: `hsl(${Math.random() * 360}, 70%, 60%)`
+                    });
+                }
+            });
+            
+            animarCanvas();
+        }
+        
+        function animarCanvas() {
+            if (!ctx) return;
+            
+            ctx.fillStyle = 'rgba(30, 30, 46, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Actualizar y dibujar partículas
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.2; // Gravedad
+                p.life -= 0.02;
+                
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+                
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(animarCanvas);
+        }
+        
+        // 3. API Integration - Obtener consejos
+        async function cargarConsejo() {
+            const container = document.getElementById('consejoAPI');
+            container.innerHTML = '<p>⏳ Cargando consejo...</p>';
+            
+            try {
+                const response = await fetch('https://api.adviceslip.com/advice');
+                const data = await response.json();
+                container.innerHTML = `<p>"${data.slip.advice}"</p>`;
+            } catch (error) {
+                container.innerHTML = '<p style="color: var(--error);">❌ Error al cargar el consejo</p>';
+            }
+        }
+        
+        // 4. LocalStorage + JSON - Gestión de Proyectos
+        function cargarProyectos() {
+            const lista = document.getElementById('listaProyectos');
+            const proyectos = JSON.parse(localStorage.getItem('proyectosIntegrador') || '[]');
+            
+            if (proyectos.length === 0) {
+                lista.innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 20px;">No hay proyectos. ¡Agrega uno!</p>';
+                return;
+            }
+            
+            lista.innerHTML = proyectos.map((p, index) => `
+                <div class="proyecto-item">
+                    <span>📁 ${p}</span>
+                    <button onclick="eliminarProyecto(${index})">🗑️</button>
+                </div>
+            `).join('');
+        }
+        
+        function agregarProyecto() {
+            const input = document.getElementById('nombreProyecto');
+            const nombre = input.value.trim();
+            
+            if (!nombre) {
+                alert('⚠️ Por favor ingresa un nombre para el proyecto');
+                return;
+            }
+            
+            const proyectos = JSON.parse(localStorage.getItem('proyectosIntegrador') || '[]');
+            proyectos.push(nombre);
+            localStorage.setItem('proyectosIntegrador', JSON.stringify(proyectos));
+            
+            input.value = '';
+            cargarProyectos();
+        }
+        
+        function eliminarProyecto(index) {
+            const proyectos = JSON.parse(localStorage.getItem('proyectosIntegrador') || '[]');
+            proyectos.splice(index, 1);
+            localStorage.setItem('proyectosIntegrador', JSON.stringify(proyectos));
+            cargarProyectos();
+        }
+        
+        // 5. CSS Animations
+        function animarBox(tipo) {
+            const box = document.getElementById('boxAnimado');
+            box.className = 'box-animado ' + tipo;
+            
+            setTimeout(() => {
+                box.className = 'box-animado';
+            }, 1000);
+        }
+        
+        // 6. Web Audio API - Sintetizador de tonos
+        let audioContext;
+        
+        function reproducirTono(frecuencia) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frecuencia;
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+        
+        // 7. Contador Interactivo
+        let contador = 0;
+        
+        function actualizarContador() {
+            document.getElementById('contadorDisplay').textContent = contador;
+        }
+        
+        function incrementar() {
+            contador++;
+            actualizarContador();
+        }
+        
+        function decrementar() {
+            contador--;
+            actualizarContador();
+        }
+        
+        function reiniciarContador() {
+            contador = 0;
+            actualizarContador();
+        }
+        
+        // 8. CSS Variables - Cambio de temas
+        function cambiarTema(tema) {
+            const preview = document.getElementById('temaPreview');
+            preview.className = 'tema-preview';
+            
+            if (tema === 'light') {
+                preview.textContent = '☀️ Tema Claro';
+                preview.classList.add('light');
+            } else if (tema === 'dark') {
+                preview.textContent = '🌙 Tema Oscuro';
+                preview.classList.add('dark');
+            } else if (tema === 'neon') {
+                preview.textContent = '⚡ Tema Neón';
+                preview.classList.add('neon');
+            }
+        }
+        
+        // ========================================
+        // FIN FUNCIONES DEL PROYECTO INTEGRADOR
+        // ========================================
+        
         // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             // Verificar nombre
@@ -1162,6 +1986,12 @@
             if (todosLogrosCompletados()) {
                 lanzarConfetti();
             }
+            
+            // Inicializar Proyecto Integrador
+            iniciarCanvas();
+            cargarProyectos();
+            actualizarContador();
+            cambiarTema('light');
         });
         
         function guardarNombre() {
@@ -1219,7 +2049,7 @@
         }
         
         function cargarLogros() {
-            for (let i = 1; i <= 12; i++) {
+            for (let i = 1; i <= 25; i++) {
                 if (localStorage.getItem(`nivel${i.toString().padStart(2, '0')}_completado`) === 'true' ||
                     localStorage.getItem(`nivel${i}_completado`) === 'true') {
                     const logro = document.querySelector(`.logro[data-nivel="${i}"]`);
@@ -1232,7 +2062,7 @@
         }
         
         function todosLogrosCompletados() {
-            for (let i = 1; i <= 12; i++) {
+            for (let i = 1; i <= 25; i++) {
                 if (localStorage.getItem(`nivel${i.toString().padStart(2, '0')}_completado`) !== 'true' &&
                     localStorage.getItem(`nivel${i}_completado`) !== 'true') {
                     return false;
