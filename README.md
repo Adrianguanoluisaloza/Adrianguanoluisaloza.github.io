@@ -197,6 +197,57 @@ Si quieres contribuir o personalizar el tutorial, consulta el archivo **`README-
 
 ---
 
+### ✅ Nivel 4 - Navegación y Menús Web (Mejorado - 2 dic 2025)
+
+**Contenido ampliado:**
+- 🧭 Explicación profunda de &lt;nav&gt; con 3 analogías (mapa de centro comercial, índice de libro, señales de tráfico)
+- 📊 Ventajas de &lt;nav&gt; vs &lt;div&gt; (SEO, accesibilidad, código limpio)
+- 📋 Estructura detallada de menús con explicación visual (nav > ul > li > a)
+- 🤔 Explicación de por qué usar listas para menús
+
+**5 Tipos de navegación explicados:**
+- 📡 Navegación principal (primary navigation)
+- 📌 Navegación secundaria
+- 🍞 Breadcrumbs (migas de pan) con ejemplos
+- 📝 Navegación en el contenido (in-page con anclas)
+- 🍔 Menú hamburguesa para móviles (☰)
+
+**Análisis del mundo real:**
+- 📺 **YouTube**: Navegación doble (horizontal + sidebar lateral)
+- 🔵 **Facebook**: Menú con iconos y aria-label
+- 🔶 **Wikipedia**: Navegación con tabs (Artículo/Discusión/Editar)
+- 🛒 **Amazon**: Mega menú con categorías + breadcrumbs
+
+**Atributo HREF completo:**
+- 📄 Enlaces relativos (mismo sitio) con ejemplos de rutas
+- 🌐 Enlaces absolutos (externos) con https://
+- ⚓ Anclas para navegar dentro de la misma página (#id)
+- 📧 Enlaces especiales: mailto:, tel:, sms:, whatsapp://
+
+**UX: 6 Reglas de oro para navegación:**
+1. ✅ Máximo 7 elementos en el menú principal
+2. ✅ La opción activa debe destacarse
+3. ✅ Nombres claros, NO creativos
+4. ✅ El logo debe llevar al inicio
+5. ✅ Navegación consistente en todas las páginas
+6. ✅ Responsive: Menú hamburguesa en móviles
+
+**Accesibilidad:**
+- ♿ Atributos aria-label para contexto
+- ♿ aria-current para página activa
+- ♿ Navegación por teclado (TAB) con outline
+- ⚠️ Advertencia sobre eliminar outline:none
+
+**Desafíos prácticos:**
+- 🏆 Desafío 1: Menú de landing page con anclas
+- 🏆 Desafío 2: Menú + breadcrumbs para tienda
+- 🏆 Desafío 3: Analizar navegación de sitios reales
+- ✅ Checklist de 7 puntos para verificar dominio
+
+**Total de contenido nuevo:** ~3500 palabras de explicaciones, UX, accesibilidad y ejercicios
+
+---
+
 ## 📂 Estructura del Proyecto
 
 ```
