@@ -709,34 +709,103 @@
                     Le dice al navegador (Chrome, Firefox, Edge) que tu archivo es un 
                     documento HTML5 moderno.
                 </p>
+                <p style="margin-top: 15px;">
+                    <strong>📚 Historia:</strong> Antes de HTML5, DOCTYPE era muy largo y complicado:
+                </p>
+                <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">
+                    &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+                </div>
+                <p style="margin-top: 10px;">
+                    ¡Pero en HTML5 se simplificó muchísimo! Ahora solo es:
+                </p>
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 1rem;">
+                    &lt;!DOCTYPE html&gt;
+                </div>
             </div>
             
             <div class="tip-box">
-                <h4>💡 Dato Curioso</h4>
-                <p>¡DOCTYPE siempre va en la primera línea del archivo! Si no lo pones, 
-                   el navegador puede mostrar tu página de forma incorrecta.</p>
+                <h4>💡 Importante</h4>
+                <p>¡DOCTYPE siempre va en la <strong>primera línea</strong> del archivo! Si no lo pones, 
+                   el navegador entra en "modo quirks" (modo extraño) y tu página puede verse mal.</p>
+                <p style="margin-top: 10px;"><strong>✅ Correcto:</strong> Empieza con &lt;!DOCTYPE html&gt;</p>
+                <p><strong>❌ Incorrecto:</strong> Poner espacios o comentarios antes del DOCTYPE</p>
+            </div>
+            
+            <div class="warning-box" style="background: rgba(251, 191, 36, 0.1); border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 8px;">
+                <h4 style="color: #f59e0b; margin-bottom: 10px;">⚠️ ¿Qué pasa sin DOCTYPE?</h4>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Los márgenes y tamaños pueden ser diferentes</li>
+                    <li>Algunos estilos CSS no funcionarán bien</li>
+                    <li>Tu sitio puede verse diferente en cada navegador</li>
+                    <li>Es más difícil hacer que funcione en móviles</li>
+                </ul>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🏗️ La etiqueta HTML</h3>
+                <h3>🏗️ La etiqueta HTML - El contenedor principal</h3>
                 <p>
                     La etiqueta <span class="codigo-inline">&lt;html&gt;</span> es como 
                     una <strong>caja gigante</strong> que contiene TODO tu sitio web. 
                     Siempre tiene una etiqueta de apertura y una de cierre.
                 </p>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
+                    <h4 style="color: #667eea; margin-bottom: 15px;">📦 Analogía: La caja de Lego</h4>
+                    <p style="line-height: 1.8;">
+                        Imagina que <code>&lt;html&gt;</code> es una <strong>caja de Lego</strong>:<br>
+                        🔺 <code>&lt;html&gt;</code> = Tapa de la caja (apertura)<br>
+                        🧱 Dentro van todas las piezas (head y body)<br>
+                        🔻 <code>&lt;/html&gt;</code> = Fondo de la caja (cierre)<br>
+                        <br>
+                        <strong>¡Nada puede estar fuera de esta caja!</strong> (excepto el DOCTYPE)
+                    </p>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>📝 Reglas de las etiquetas HTML:</h4>
+                    <ol style="margin-left: 25px; margin-top: 10px; line-height: 2;">
+                        <li><strong>Etiqueta de apertura:</strong> <code>&lt;html&gt;</code> - Abre el contenedor</li>
+                        <li><strong>Contenido:</strong> Todo lo que va dentro (head + body)</li>
+                        <li><strong>Etiqueta de cierre:</strong> <code>&lt;/html&gt;</code> - Cierra el contenedor</li>
+                    </ol>
+                    <p style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        📌 <strong>Recuerda:</strong> La etiqueta de cierre lleva una barra diagonal <code>/</code>
+                    </p>
+                </div>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🌍 El atributo lang</h3>
+                <h3>🌍 El atributo lang - Hablando el idioma correcto</h3>
                 <p>
                     <span class="codigo-inline">lang="es"</span> le dice al navegador 
-                    que la página está en <strong>español</strong>. Esto ayuda a:
+                    que la página está en <strong>español</strong>. 
                 </p>
-                <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
-                    <li>🔊 Lectores de pantalla pronuncien bien</li>
-                    <li>🔍 Google entienda el idioma</li>
-                    <li>📝 El corrector ortográfico funcione</li>
-                </ul>
+                
+                <div style="margin-top: 20px;">
+                    <h4>🎯 ¿Por qué es importante?</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                        <li>🔊 <strong>Accesibilidad:</strong> Lectores de pantalla pronuncian correctamente</li>
+                        <li>🔍 <strong>SEO:</strong> Google entiende el idioma y muestra tu sitio a la audiencia correcta</li>
+                        <li>📝 <strong>Corrector:</strong> El navegador usa el diccionario correcto</li>
+                        <li>🌐 <strong>Traducción:</strong> Chrome puede ofrecer traducir la página</li>
+                        <li>📱 <strong>Teclado móvil:</strong> Muestra caracteres especiales del idioma (ñ, á, é)</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: #667eea;">📖 Ejemplos reales:</h4>
+                    <div style="font-family: monospace; margin-top: 10px; line-height: 2;">
+                        <div><code>&lt;html lang="es"&gt;</code> → Español de España</div>
+                        <div><code>&lt;html lang="es-MX"&gt;</code> → Español de México</div>
+                        <div><code>&lt;html lang="es-AR"&gt;</code> → Español de Argentina</div>
+                        <div><code>&lt;html lang="en-US"&gt;</code> → Inglés de Estados Unidos</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; padding: 12px; background: rgba(251, 191, 36, 0.1); border-left: 4px solid #f59e0b; border-radius: 8px;">
+                    ⚠️ <strong>Nota:</strong> Para la mayoría de casos, <code>lang="es"</code> es suficiente. 
+                    Solo usa variantes regionales si tu contenido tiene diferencias importantes de idioma.
+                </p>
             </div>
             
             <h3 style="margin-top: 25px; color: var(--primario);">📋 Tabla de códigos de idioma:</h3>
@@ -909,7 +978,7 @@
         <div class="desafio">
             <div class="desafio-header">
                 <span>🏆</span>
-                <span>Desafío: ¡Modifica el código!</span>
+                <span>Desafío Básico: ¡Modifica el código!</span>
             </div>
             <div class="desafio-instrucciones">
                 <p>Usa el editor de arriba para hacer estos cambios:</p>
@@ -923,6 +992,129 @@
             <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">
                 ▶️ Probar mis cambios
             </button>
+        </div>
+        
+        <!-- Ejemplos del mundo real -->
+        <div class="actividad" style="margin-top: 30px;">
+            <div class="actividad-header">
+                <span>🌍</span>
+                <span>Ejemplos del Mundo Real</span>
+            </div>
+            
+            <div style="padding: 25px;">
+                <h3 style="color: var(--primario); margin-bottom: 20px;">🔍 Así se ve en sitios web famosos:</h3>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid var(--primario);">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🎬 YouTube</h4>
+                        <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.9rem; overflow-x: auto;">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="en"&gt;<br>
+&nbsp;&nbsp;&lt;head&gt;...&lt;/head&gt;<br>
+&nbsp;&nbsp;&lt;body&gt;...&lt;/body&gt;<br>
+&lt;/html&gt;
+                        </code>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">✅ YouTube usa <strong>lang="en"</strong> porque su idioma principal es inglés</p>
+                    </div>
+                    
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                        <h4 style="color: #10b981; margin-bottom: 10px;">📰 El País (España)</h4>
+                        <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.9rem; overflow-x: auto;">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="es"&gt;<br>
+&nbsp;&nbsp;&lt;head&gt;...&lt;/head&gt;<br>
+&nbsp;&nbsp;&lt;body&gt;...&lt;/body&gt;<br>
+&lt;/html&gt;
+                        </code>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">✅ Un periódico español usa <strong>lang="es"</strong></p>
+                    </div>
+                    
+                    <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                        <h4 style="color: #f59e0b; margin-bottom: 10px;">🛒 Amazon</h4>
+                        <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.9rem; overflow-x: auto;">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="es-MX"&gt;<br>
+&nbsp;&nbsp;&lt;head&gt;...&lt;/head&gt;<br>
+&nbsp;&nbsp;&lt;body&gt;...&lt;/body&gt;<br>
+&lt;/html&gt;
+                        </code>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">✅ Amazon México usa <strong>lang="es-MX"</strong> para español mexicano</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding: 20px; background: rgba(102, 126, 234, 0.05); border-radius: 12px;">
+                    <h4 style="color: var(--primario); margin-bottom: 15px;">💡 Puntos clave que aprendimos:</h4>
+                    <ul style="line-height: 2; margin-left: 25px;">
+                        <li>📌 <strong>TODOS</strong> los sitios web profesionales usan DOCTYPE</li>
+                        <li>📌 El atributo <code>lang</code> coincide con el idioma del contenido</li>
+                        <li>📌 La estructura es SIEMPRE la misma: DOCTYPE → html → head → body</li>
+                        <li>📌 Es simple pero absolutamente necesario</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desafío avanzado -->
+        <div class="desafio" style="margin-top: 30px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));">
+            <div class="desafio-header" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                <span>🚀</span>
+                <span>Desafío Avanzado (Opcional)</span>
+            </div>
+            <div class="desafio-instrucciones">
+                <h4 style="color: #8b5cf6; margin-bottom: 15px;">🎯 Crea tu propia estructura HTML desde cero</h4>
+                <p style="margin-bottom: 15px;">En el editor de arriba, borra todo y escribe el código completo de memoria:</p>
+                <ol style="margin-left: 25px; line-height: 2.2;">
+                    <li>Comienza con el DOCTYPE</li>
+                    <li>Abre la etiqueta html con idioma francés (lang="fr")</li>
+                    <li>Crea el head con un title "Mon Site Web"</li>
+                    <li>Crea el body con:
+                        <ul style="margin-left: 25px; margin-top: 8px;">
+                            <li>Un h1 que diga "Bonjour!"</li>
+                            <li>Dos párrafos con texto en francés</li>
+                        </ul>
+                    </li>
+                    <li>Cierra todas las etiquetas correctamente</li>
+                </ol>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(139, 92, 246, 0.1); border-radius: 8px;">
+                    <strong>💡 Pista:</strong> Recuerda que cada etiqueta de apertura necesita su cierre con <code>/</code>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preguntas de reflexión -->
+        <div class="actividad" style="margin-top: 30px;">
+            <div class="actividad-header">
+                <span>🤔</span>
+                <span>Preguntas de Reflexión</span>
+            </div>
+            <div style="padding: 25px;">
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h4 style="color: var(--primario); margin-bottom: 12px;">❓ ¿Qué pasaría si...?</h4>
+                    <ol style="margin-left: 25px; line-height: 2.5;">
+                        <li><strong>¿Olvidaste cerrar la etiqueta &lt;html&gt;?</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.95rem;">→ El navegador tratará de adivinar dónde termina, pero puede causar errores</span>
+                        </li>
+                        <li><strong>¿Escribiste el DOCTYPE en mayúsculas o minúsculas?</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.95rem;">→ ¡No importa! Ambas formas funcionan: &lt;!DOCTYPE html&gt; o &lt;!doctype html&gt;</span>
+                        </li>
+                        <li><strong>¿Pusiste texto directamente en &lt;html&gt; sin head o body?</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.95rem;">→ El navegador lo aceptará pero no es correcto, siempre usa head y body</span>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <h4 style="color: #10b981; margin-bottom: 12px;">✅ Checklist de verificación</h4>
+                    <p style="margin-bottom: 10px;">Antes de pasar al siguiente nivel, asegúrate de que entiendes:</p>
+                    <ul style="margin-left: 25px; line-height: 2.2;">
+                        <li>☑️ Para qué sirve el DOCTYPE</li>
+                        <li>☑️ Qué hace la etiqueta &lt;html&gt;</li>
+                        <li>☑️ Por qué es importante el atributo lang</li>
+                        <li>☑️ Cómo abrir y cerrar etiquetas correctamente</li>
+                        <li>☑️ La estructura básica mínima de un documento HTML</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
     

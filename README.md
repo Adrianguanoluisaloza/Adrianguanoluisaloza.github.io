@@ -93,6 +93,34 @@ Si quieres contribuir o personalizar el tutorial, consulta el archivo **`README-
 
 ---
 
+## 📝 Registro de Mejoras por Nivel
+
+### ✅ Nivel 1 - DOCTYPE y Estructura Básica (Mejorado - 2 dic 2025)
+
+**Contenido ampliado:**
+- 📚 Explicación histórica de DOCTYPE (de HTML4 a HTML5)
+- 🎯 Analogía de "la caja de Lego" para entender &lt;html&gt;
+- 🌍 Explicación profunda del atributo lang con ejemplos regionales
+- ⚠️ Sección de "qué pasa sin DOCTYPE" (modo quirks)
+- 📋 Reglas detalladas de etiquetas de apertura/cierre
+- 🔍 Casos de uso del atributo lang (accesibilidad, SEO, teclado móvil)
+
+**Ejemplos del mundo real:**
+- 🎬 Estructura de YouTube
+- 📰 Estructura de periódicos españoles
+- 🛒 Estructura de Amazon con variantes regionales
+
+**Ejercicios y desafíos:**
+- 🎮 Quiz de 3 preguntas con feedback educativo
+- 🏆 Desafío básico: modificar código existente
+- 🚀 Desafío avanzado: escribir HTML desde cero en francés
+- 🤔 Preguntas de reflexión "¿Qué pasaría si...?"
+- ✅ Checklist de verificación antes de avanzar
+
+**Total de contenido nuevo:** ~3000 palabras de explicaciones adicionales
+
+---
+
 ## 📂 Estructura del Proyecto
 
 ```
