@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luz de Esmeraldas - Contacto (Básico)</title>
+  <link rel="stylesheet" href="css/basico.css">
+</head>
+<body>
+  <header>
+    <h1>Unidad Educativa Luz de Esmeraldas</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index_basico.html">Inicio</a></li>
+      <li><a href="nosotros_basico.html">Nosotros</a></li>
+      <li><a href="oferta_basico.html">Oferta Académica</a></li>
+      <li><a href="contacto_basico.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Contáctanos</h2>
+    <p>Completa el formulario para enviarnos un mensaje.</p>
+
+    <form action="#" method="post">
+      <p>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre">
+      </p>
+      <p>
+        <label for="email">Correo:</label><br>
+        <input type="email" id="email" name="email">
+      </p>
+      <p>
+        <label for="asunto">Asunto:</label><br>
+        <select id="asunto" name="asunto">
+          <option value="matricula">Matrículas</option>
+          <option value="reclamo">Sugerencias o Reclamos</option>
+          <option value="otro">Otro</option>
+        </select>
+      </p>
+      <p>
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" rows="4" cols="40"></textarea>
+      </p>
+      <p>
+        <button type="submit">Enviar</button>
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Luz de Esmeraldas</p>
+  </footer>
+  <script src="js/basico.js"></script>
+</body>
+</html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Nivel 8 - Modelo de Caja CSS</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #f97316;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        /* Diagrama Box Model */
+        .box-model-diagram {
+            background: #16213e;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .box-outer {
+            background: #fde68a;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .box-border {
+            background: #fbbf24;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .box-padding {
+            background: #d1fae5;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        .box-content {
+            background: #a5d6ff;
+            padding: 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+        
+        .box-label {
+            font-size: 0.8rem;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border: none;
+        }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Box Model Interactive */
+        .box-interactive {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        @media (max-width: 900px) { .box-interactive { grid-template-columns: 1fr; } }
+        
+        .controles-box {
+            background: rgba(249, 115, 22, 0.1);
+            border: 2px dashed var(--nivel-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .controles-box h4 {
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .control-grupo {
+            margin-bottom: 15px;
+        }
+        
+        .control-grupo label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #a5b4fc;
+        }
+        
+        .control-grupo input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: var(--borde);
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .control-grupo input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--nivel-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .control-grupo input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .preview-box-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .preview-box-wrapper {
+            background: #fde68a;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-box-border {
+            background: #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-box-padding {
+            background: #bbf7d0;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-box-content {
+            background: #93c5fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #1e3a5f;
+            transition: all 0.3s ease;
+        }
+        
+        .dimensions-display {
+            background: #1a1a2e;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            color: #a5d6ff;
+        }
+        
+        .codigo-box {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #ea580c);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Leyenda */
+        .leyenda {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .leyenda-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>📦</span>
+            <span>NIVEL 8</span>
+        </div>
+        <h1>Modelo de Caja CSS (Box Model)</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel07.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel09.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 8</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>El Modelo de Caja</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📦 ¿Qué es el Box Model?</h3>
+                <p>
+                    En CSS, cada elemento es una <strong>CAJA</strong> rectangular.
+                    El Box Model define cómo se calcula el espacio que ocupa cada elemento.
+                </p>
+            </div>
+            
+            <div class="box-model-diagram">
+                <div class="box-outer">
+                    <div class="box-label">📏 MARGIN (espacio externo)</div>
+                    <div class="box-border">
+                        <div class="box-label">🔲 BORDER (borde)</div>
+                        <div class="box-padding">
+                            <div class="box-label">📦 PADDING (espacio interno)</div>
+                            <div class="box-content">
+                                CONTENIDO
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leyenda">
+                <div class="leyenda-item">
+                    <div class="leyenda-color" style="background: #fde68a;"></div>
+                    <span>Margin</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="leyenda-color" style="background: #fbbf24;"></div>
+                    <span>Border</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="leyenda-color" style="background: #d1fae5;"></div>
+                    <span>Padding</span>
+                </div>
+                <div class="leyenda-item">
+                    <div class="leyenda-color" style="background: #a5d6ff;"></div>
+                    <span>Content</span>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Recuerda</h4>
+                <p><strong>Margin:</strong> Espacio FUERA del elemento (separa de otros)</p>
+                <p><strong>Border:</strong> El borde visible del elemento</p>
+                <p><strong>Padding:</strong> Espacio DENTRO del elemento</p>
+                <p><strong>Content:</strong> El contenido real (texto, imagen, etc.)</p>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🧮 Calculando el tamaño total:</h3>
+                <p>
+                    <strong>Ancho total =</strong> margin-left + border-left + padding-left + 
+                    width + padding-right + border-right + margin-right
+                </p>
+                <br>
+                <p>
+                    💡 <strong>Tip:</strong> Usa <code>box-sizing: border-box;</code> 
+                    para que padding y border se incluyan en el width/height.
+                </p>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor Box Model</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Box Model Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f9ff;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #f97316;
+            text-align: center;
+        }
+        
+        .contenedor {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 📦 Caja con todos los componentes */
+        .caja-ejemplo {
+            /* Contenido */
+            width: 300px;
+            height: 150px;
+            
+            /* Padding (espacio interno) */
+            padding: 20px;
+            
+            /* Border (borde) */
+            border: 5px solid #f97316;
+            
+            /* Margin (espacio externo) */
+            margin: 30px auto;
+            
+            /* Extras */
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
+        }
+        
+        /* 🔲 Caja con box-sizing */
+        .caja-border-box {
+            width: 300px;
+            height: 150px;
+            padding: 20px;
+            border: 5px solid #3b82f6;
+            margin: 30px auto;
+            background: #dbeafe;
+            border-radius: 15px;
+            
+            /* ¡Esto es importante! */
+            box-sizing: border-box;
+        }
+        
+        .info {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+            margin: 20px 0;
+        }
+        
+        .calculo {
+            background: #16213e;
+            color: #a5d6ff;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📦 Modelo de Caja CSS</h1>
+    
+    <div class="contenedor">
+        <div class="info">
+            <strong>Caja 1:</strong> Sin box-sizing (content-box por defecto)
+        </div>
+        
+        <div class="caja-ejemplo">
+            <p>Esta caja tiene:</p>
+            <p>width: 300px, padding: 20px, border: 5px</p>
+        </div>
+        
+        <div class="calculo">
+Ancho REAL = 300 + (20×2) + (5×2) = 350px</div>
+        
+        <div class="info">
+            <strong>Caja 2:</strong> Con box-sizing: border-box
+        </div>
+        
+        <div class="caja-border-box">
+            <p>Esta caja también dice width: 300px</p>
+            <p>¡Pero su ancho TOTAL es exactamente 300px!</p>
+        </div>
+        
+        <div class="calculo">
+Ancho REAL = 300px (incluye padding y border)</div>
+    </div>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Box Model Interactivo -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🎮</span>
+            <span>Actividad 1: Manipula el Box Model</span>
+        </div>
+        
+        <div class="box-interactive">
+            <div class="controles-box">
+                <h4>🎛️ Controles</h4>
+                
+                <div class="control-grupo">
+                    <label>
+                        <span>📏 Width (contenido)</span>
+                        <span id="widthValor">100px</span>
+                    </label>
+                    <input type="range" id="widthControl" min="50" max="200" value="100" oninput="actualizarBox()">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>
+                        <span>📐 Height (contenido)</span>
+                        <span id="heightValor">80px</span>
+                    </label>
+                    <input type="range" id="heightControl" min="40" max="150" value="80" oninput="actualizarBox()">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>
+                        <span>📦 Padding</span>
+                        <span id="paddingValor">20px</span>
+                    </label>
+                    <input type="range" id="paddingControl" min="0" max="50" value="20" oninput="actualizarBox()">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>
+                        <span>🔲 Border</span>
+                        <span id="borderValor">5px</span>
+                    </label>
+                    <input type="range" id="borderControl" min="0" max="20" value="5" oninput="actualizarBox()">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>
+                        <span>↔️ Margin</span>
+                        <span id="marginValor">20px</span>
+                    </label>
+                    <input type="range" id="marginControl" min="0" max="50" value="20" oninput="actualizarBox()">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>🎨 Color del borde</label>
+                    <input type="color" id="borderColorControl" value="#f97316" oninput="actualizarBox()">
+                </div>
+            </div>
+            
+            <div>
+                <div class="preview-box-container">
+                    <div class="preview-box-wrapper" id="boxMargin">
+                        <div class="preview-box-border" id="boxBorder">
+                            <div class="preview-box-padding" id="boxPadding">
+                                <div class="preview-box-content" id="boxContent">
+                                    CONTENIDO
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dimensions-display" id="dimensionsDisplay">
+                        Ancho total: 190px | Alto total: 170px
+                    </div>
+                </div>
+                
+                <div class="leyenda" style="margin-top: 15px;">
+                    <div class="leyenda-item">
+                        <div class="leyenda-color" style="background: #fde68a;"></div>
+                        <span>Margin</span>
+                    </div>
+                    <div class="leyenda-item">
+                        <div class="leyenda-color" style="background: #fbbf24;"></div>
+                        <span>Border</span>
+                    </div>
+                    <div class="leyenda-item">
+                        <div class="leyenda-color" style="background: #bbf7d0;"></div>
+                        <span>Padding</span>
+                    </div>
+                    <div class="leyenda-item">
+                        <div class="leyenda-color" style="background: #93c5fd;"></div>
+                        <span>Content</span>
+                    </div>
+                </div>
+                
+                <div class="codigo-box" id="codigoBox">
+.elemento {
+    width: 100px;
+    height: 80px;
+    padding: 20px;
+    border: 5px solid #f97316;
+    margin: 20px;
+}</div>
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarBox()" style="margin-top: 20px;">
+            ✅ Verificar (ancho total > 150px)
+        </button>
+        <div class="quiz-resultado" id="resultadoBox"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 2: Quiz Box Model</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué propiedad agrega espacio DENTRO del elemento?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    margin
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    padding
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    border
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. Si una caja tiene width: 200px, padding: 10px y border: 5px, ¿cuál es el ancho TOTAL?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    200px
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    220px
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    230px (200 + 10×2 + 5×2)
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Qué hace box-sizing: border-box?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    Agrega un borde a la caja
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    Incluye padding y border en el width/height
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    Elimina el margin de la caja
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <a href="nivel09.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
+            Siguiente Nivel ➡️
+        </a>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Tip del Box Model!</strong></p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 Piensa en una caja de regalo:
+            <br><br>
+            📦 Content = el regalo<br>
+            🧱 Padding = el relleno protector<br>
+            📋 Border = la caja misma<br>
+            ↔️ Margin = espacio hasta otras cajas
+        </p>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let boxCompletado = false;
+        let progreso = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            actualizarBox();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        // Box Model Interactivo
+        function actualizarBox() {
+            const width = parseInt(document.getElementById('widthControl').value);
+            const height = parseInt(document.getElementById('heightControl').value);
+            const padding = parseInt(document.getElementById('paddingControl').value);
+            const border = parseInt(document.getElementById('borderControl').value);
+            const margin = parseInt(document.getElementById('marginControl').value);
+            const borderColor = document.getElementById('borderColorControl').value;
+            
+            // Actualizar valores mostrados
+            document.getElementById('widthValor').textContent = width + 'px';
+            document.getElementById('heightValor').textContent = height + 'px';
+            document.getElementById('paddingValor').textContent = padding + 'px';
+            document.getElementById('borderValor').textContent = border + 'px';
+            document.getElementById('marginValor').textContent = margin + 'px';
+            
+            // Actualizar visualización
+            const boxContent = document.getElementById('boxContent');
+            const boxPadding = document.getElementById('boxPadding');
+            const boxBorder = document.getElementById('boxBorder');
+            const boxMargin = document.getElementById('boxMargin');
+            
+            boxContent.style.width = width + 'px';
+            boxContent.style.height = height + 'px';
+            boxPadding.style.padding = padding + 'px';
+            boxBorder.style.padding = border + 'px';
+            boxBorder.style.background = borderColor;
+            boxMargin.style.padding = margin + 'px';
+            
+            // Calcular dimensiones totales
+            const anchoTotal = width + (padding * 2) + (border * 2) + (margin * 2);
+            const altoTotal = height + (padding * 2) + (border * 2) + (margin * 2);
+            
+            document.getElementById('dimensionsDisplay').textContent = 
+                `Ancho total: ${anchoTotal}px | Alto total: ${altoTotal}px`;
+            
+            // Actualizar código generado
+            document.getElementById('codigoBox').textContent = `.elemento {
+    width: ${width}px;
+    height: ${height}px;
+    padding: ${padding}px;
+    border: ${border}px solid ${borderColor};
+    margin: ${margin}px;
+}
+
+/* Ancho total: ${width} + ${padding*2} + ${border*2} + ${margin*2} = ${anchoTotal}px */`;
+        }
+        
+        function verificarBox() {
+            const width = parseInt(document.getElementById('widthControl').value);
+            const padding = parseInt(document.getElementById('paddingControl').value);
+            const border = parseInt(document.getElementById('borderControl').value);
+            const anchoContenido = width + (padding * 2) + (border * 2);
+            
+            const resultado = document.getElementById('resultadoBox');
+            
+            if (anchoContenido > 150) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = `✅ ¡Excelente! Ancho de contenido: ${anchoContenido}px (sin margin)`;
+                boxCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ El ancho actual es ${anchoContenido}px. Necesitas más de 150px`;
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            progreso = (quizCompletado ? 50 : 0) + (boxCompletado ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                document.getElementById('btnContinuar').style.display = 'inline-block';
+                localStorage.setItem('nivel8_completado', 'true');
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

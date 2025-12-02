@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Nivel 2 - La Cabeza del Documento (HEAD)</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .contenido-principal { grid-template-columns: 1fr; }
+        }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: #06b6d4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid #06b6d4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: #06b6d4;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .seccion-explicacion p {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+            font-size: 0.95rem;
+        }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #0e7490, #155e75);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-ejecutar:hover { background: #059669; transform: scale(1.05); }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 350px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+            tab-size: 2;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid #06b6d4; }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 200px;
+            background: white;
+            border: none;
+        }
+        
+        .etiquetas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .etiqueta-card {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid #0e7490;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        
+        .etiqueta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+        
+        .etiqueta-nombre {
+            font-family: 'Consolas', monospace;
+            background: #0e7490;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .etiqueta-desc {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--exito);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Ejercicio de arrastrar */
+        .drag-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .drag-items {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed var(--primario);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .drag-items h4 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primario);
+        }
+        
+        .drag-item {
+            background: var(--primario);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: grab;
+            transition: all 0.3s;
+            font-family: 'Consolas', monospace;
+        }
+        
+        .drag-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .drag-item.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+        
+        .drop-zone {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px dashed var(--exito);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 200px;
+        }
+        
+        .drop-zone h4 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--exito);
+        }
+        
+        .drop-slot {
+            border: 2px dashed var(--borde);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            color: #64748b;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .drop-slot.drag-over {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .drop-slot.filled {
+            border-style: solid;
+            border-color: var(--exito);
+        }
+        
+        .drop-slot.filled .drag-item {
+            margin: 0;
+            background: var(--exito);
+        }
+        
+        .drop-slot.error {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .quiz-opcion.selected {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.2);
+        }
+        
+        .quiz-opcion.correcta {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .quiz-opcion.incorrecta {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion.selected .radio-custom {
+            background: var(--primario);
+            border-color: var(--primario);
+        }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-verificar:hover {
+            transform: scale(1.05);
+        }
+        
+        .desafio {
+            background: rgba(118, 75, 162, 0.1);
+            border: 2px solid var(--secundario);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+        }
+        
+        .desafio-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secundario);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .desafio-instrucciones {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .desafio-instrucciones ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-continuar:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid #06b6d4;
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .overlay.visible { display: block; }
+        
+        .logro-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--tarjeta);
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s ease;
+        }
+        
+        .logro-popup.visible {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .logro-popup .icono { font-size: 4rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>🧠</span>
+            <span>NIVEL 2</span>
+        </div>
+        <h1>La Cabeza del Documento - HEAD</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel01.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel03.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 2</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Todo sobre la etiqueta HEAD</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🧠 ¿Qué es el HEAD?</h3>
+                <p>
+                    El <span class="codigo-inline">&lt;head&gt;</span> es como el 
+                    <strong>"cerebro invisible"</strong> de tu página web. Contiene 
+                    información importante que el navegador necesita, pero que los 
+                    visitantes NO ven directamente.
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Analogía</h4>
+                <p>Piensa en el HEAD como la etiqueta de un libro: tiene el título, 
+                   autor e información, pero no es parte de la historia que lees.</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: #06b6d4;">📦 Etiquetas que van en el HEAD:</h3>
+            
+            <div class="etiquetas-grid">
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;title&gt;</span>
+                    <p class="etiqueta-desc">
+                        <strong>El título</strong> que aparece en la pestaña del navegador. 
+                        ¡Es lo primero que ven los usuarios!
+                    </p>
+                </div>
+                
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;meta charset&gt;</span>
+                    <p class="etiqueta-desc">
+                        Define el <strong>conjunto de caracteres</strong>. Con "UTF-8" 
+                        puedes usar acentos: á, é, ñ, ¿, ¡
+                    </p>
+                </div>
+                
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;meta viewport&gt;</span>
+                    <p class="etiqueta-desc">
+                        Hace que la página se vea <strong>bien en celulares</strong>. 
+                        ¡Muy importante hoy en día!
+                    </p>
+                </div>
+                
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;meta description&gt;</span>
+                    <p class="etiqueta-desc">
+                        Una descripción corta de tu página. <strong>Google la muestra</strong> 
+                        en los resultados de búsqueda.
+                    </p>
+                </div>
+                
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;link&gt;</span>
+                    <p class="etiqueta-desc">
+                        Conecta archivos externos como <strong>hojas de estilo CSS</strong> 
+                        o el favicon (icono de la pestaña).
+                    </p>
+                </div>
+                
+                <div class="etiqueta-card">
+                    <span class="etiqueta-nombre">&lt;style&gt;</span>
+                    <p class="etiqueta-desc">
+                        Permite agregar <strong>estilos CSS directamente</strong> en el HTML. 
+                        ¡Colores, tamaños y más!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🔤 Entendiendo charset="UTF-8"</h3>
+                <p>
+                    UTF-8 es un sistema de codificación que permite usar caracteres 
+                    especiales de todos los idiomas:
+                </p>
+                <ul style="margin: 15px 20px; line-height: 2;">
+                    <li>🇪🇸 Español: á, é, í, ó, ú, ñ, ¿, ¡</li>
+                    <li>🇫🇷 Francés: ç, é, è, ê</li>
+                    <li>🇯🇵 Japonés: あ, い, う</li>
+                    <li>😀 Emojis: 🎉, ❤️, 🚀</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor de Código En Vivo</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Codificación de caracteres -->
+    <meta charset="UTF-8">
+    
+    <!-- Para que se vea bien en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título en la pestaña del navegador -->
+    <title>Mi Página Increíble</title>
+    
+    <!-- Descripción para Google -->
+    <meta name="description" content="Esta es mi página web de prueba">
+    
+    <!-- Estilos internos -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 { color: #3498db; }
+        p { color: #555; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenido a mi página!</h1>
+    <p>Caracteres especiales: á, é, í, ó, ú, ñ, ¿Hola? ¡Adiós!</p>
+    <p>Emojis funcionan: 🎉 🚀 ⭐ ❤️</p>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Actividad de Drag & Drop -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🎮</span>
+            <span>Actividad: Arrastra las etiquetas al lugar correcto</span>
+        </div>
+        
+        <div class="drag-container">
+            <div class="drag-items" id="elementosDisponibles">
+                <h4>📦 Etiquetas disponibles</h4>
+                <div class="drag-item" draggable="true" data-etiqueta="title">&lt;title&gt;</div>
+                <div class="drag-item" draggable="true" data-etiqueta="charset">&lt;meta charset&gt;</div>
+                <div class="drag-item" draggable="true" data-etiqueta="viewport">&lt;meta viewport&gt;</div>
+                <div class="drag-item" draggable="true" data-etiqueta="style">&lt;style&gt;</div>
+            </div>
+            
+            <div class="drop-zone">
+                <h4>🎯 Coloca cada etiqueta según su función</h4>
+                <div class="drop-slot" data-respuesta="title">
+                    Aparece en la pestaña del navegador
+                </div>
+                <div class="drop-slot" data-respuesta="charset">
+                    Permite usar acentos y ñ
+                </div>
+                <div class="drop-slot" data-respuesta="viewport">
+                    Hace la página responsive para celulares
+                </div>
+                <div class="drop-slot" data-respuesta="style">
+                    Contiene estilos CSS
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarDragDrop()">✅ Verificar Respuestas</button>
+        <div class="quiz-resultado" id="resultadoDrag"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Quiz: Demuestra lo que aprendiste</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué pasaría si no pones meta charset="UTF-8"?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    La página no cargaría
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Los acentos y ñ se verían como símbolos raros
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    La página sería más rápida
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Para qué sirve el meta viewport?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Para agregar videos
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Para cambiar el color de fondo
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Para que la página se vea bien en celulares
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <!-- Desafío -->
+    <section class="desafio">
+        <div class="desafio-header">
+            <span>🏆</span>
+            <span>Desafío: Personaliza el HEAD</span>
+        </div>
+        <div class="desafio-instrucciones">
+            <p>Modifica el código del editor para:</p>
+            <ul>
+                <li>✏️ Cambiar el título a algo divertido</li>
+                <li>✏️ Modificar la descripción (meta description)</li>
+                <li>✏️ Cambiar el color del h1 en el &lt;style&gt;</li>
+                <li>✏️ Cambiar el color de fondo (background-color)</li>
+                <li>✏️ Agregar más emojis en el body</li>
+            </ul>
+        </div>
+        <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Probar mis cambios</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐⭐⭐</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <button class="btn-continuar" onclick="window.location.href='nivel03.html'">
+            🚀 Continuar al Nivel 3
+        </button>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Hola!</strong> Soy CodeBot.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 El HEAD es invisible para los visitantes, pero es MUY importante. 
+            Sin charset, tus tildes se verán raras. Sin viewport, ¡la página 
+            se verá diminuta en celulares!
+        </p>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="logro-popup" id="logroPopup">
+        <div class="icono">🧠</div>
+        <h2>¡Nivel 2 Completado!</h2>
+        <p style="margin: 15px 0;">Ahora entiendes el HEAD del documento</p>
+        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <button class="btn-continuar" onclick="window.location.href='nivel03.html'" style="margin-top: 20px;">
+            Ir al Nivel 3 ➡️
+        </button>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let dragCompletado = false;
+        let progreso = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarDragDrop();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        // Drag and Drop
+        function configurarDragDrop() {
+            const items = document.querySelectorAll('.drag-item');
+            const slots = document.querySelectorAll('.drop-slot');
+            
+            items.forEach(item => {
+                item.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text', item.dataset.etiqueta);
+                    item.classList.add('dragging');
+                });
+                item.addEventListener('dragend', () => item.classList.remove('dragging'));
+            });
+            
+            slots.forEach(slot => {
+                slot.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    slot.classList.add('drag-over');
+                });
+                slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+                slot.addEventListener('drop', e => {
+                    e.preventDefault();
+                    slot.classList.remove('drag-over');
+                    const etiqueta = e.dataTransfer.getData('text');
+                    const item = document.querySelector(`[data-etiqueta="${etiqueta}"]`);
+                    if (item && !slot.classList.contains('filled')) {
+                        slot.innerHTML = '';
+                        slot.appendChild(item.cloneNode(true));
+                        slot.classList.add('filled');
+                        slot.dataset.colocado = etiqueta;
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        function verificarDragDrop() {
+            const slots = document.querySelectorAll('.drop-slot');
+            let correctos = 0;
+            
+            slots.forEach(slot => {
+                slot.classList.remove('error');
+                if (slot.dataset.colocado === slot.dataset.respuesta) {
+                    correctos++;
+                    slot.style.borderColor = 'var(--exito)';
+                } else if (slot.dataset.colocado) {
+                    slot.classList.add('error');
+                }
+            });
+            
+            const resultado = document.getElementById('resultadoDrag');
+            if (correctos === 4) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = '✅ ¡Excelente! ¡Todas correctas!';
+                dragCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ ${correctos}/4 correctas. ¡Sigue intentando!`;
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 2) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            progreso = (quizCompletado ? 50 : 0) + (dragCompletado ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡Completaste todo!';
+                localStorage.setItem('nivel2_completado', 'true');
+                setTimeout(() => {
+                    document.getElementById('overlay').classList.add('visible');
+                    document.getElementById('logroPopup').classList.add('visible');
+                }, 500);
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

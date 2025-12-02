@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Nivel 3 - El Cuerpo del Documento (BODY)</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #f97316;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .contenido-principal { grid-template-columns: 1fr; }
+        }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+        }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #c2410c, #9a3412);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; flex-wrap: wrap; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-ejecutar:hover { background: #059669; transform: scale(1.05); }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 250px;
+            background: white;
+            border: none;
+        }
+        
+        /* Etiquetas del body */
+        .etiquetas-body {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .etiqueta-body {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1));
+            border: 2px solid var(--nivel-color);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .etiqueta-body:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+        }
+        
+        .etiqueta-body .tag {
+            font-family: 'Consolas', monospace;
+            font-size: 1.3rem;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+        
+        .etiqueta-body .desc { font-size: 0.9rem; color: #94a3b8; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--exito);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Actividad: Constructor de página */
+        .constructor-container {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .constructor-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        .constructor-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .constructor-layout { grid-template-columns: 1fr; }
+        }
+        
+        .elementos-disponibles {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed var(--primario);
+            border-radius: 15px;
+            padding: 15px;
+        }
+        
+        .elementos-disponibles h4 {
+            color: var(--primario);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .elemento-arrastrable {
+            background: var(--primario);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-family: 'Consolas', monospace;
+        }
+        
+        .elemento-arrastrable:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .elemento-arrastrable.dragging { opacity: 0.5; }
+        
+        .pagina-constructor {
+            background: white;
+            border-radius: 10px;
+            min-height: 400px;
+            padding: 20px;
+            color: black;
+        }
+        
+        .zona-drop {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            min-height: 60px;
+            text-align: center;
+            color: #999;
+            transition: all 0.3s;
+        }
+        
+        .zona-drop.drag-over {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .zona-drop.ocupada {
+            border-style: solid;
+            border-color: var(--exito);
+            text-align: left;
+            color: black;
+        }
+        
+        .elemento-colocado {
+            background: #f0f9ff;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid var(--primario);
+        }
+        
+        /* Quiz interactivo */
+        .quiz-container {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .quiz-opcion.selected {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.2);
+        }
+        
+        .quiz-opcion.correcta {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .quiz-opcion.incorrecta {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion.selected .radio-custom {
+            background: var(--primario);
+            border-color: var(--primario);
+        }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        /* Ejercicio de completar código */
+        .completar-codigo {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .completar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--secundario);
+            margin-bottom: 20px;
+        }
+        
+        .codigo-con-huecos {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            line-height: 2;
+        }
+        
+        .hueco {
+            display: inline-block;
+            min-width: 100px;
+            padding: 5px 10px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px dashed var(--warning);
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .hueco input {
+            background: transparent;
+            border: none;
+            color: #fbbf24;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .hueco input:focus { outline: none; }
+        
+        .hueco.correcto {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .hueco.incorrecto {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-continuar:hover { transform: scale(1.05); }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #ea580c);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(249, 115, 22, 0.4);
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .overlay.visible { display: block; }
+        
+        .logro-popup {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--tarjeta);
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s ease;
+        }
+        
+        .logro-popup.visible { transform: translate(-50%, -50%) scale(1); }
+        .logro-popup .icono { font-size: 4rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>📦</span>
+            <span>NIVEL 3</span>
+        </div>
+        <h1>El Cuerpo del Documento - BODY</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel02.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel04.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 3</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Todo sobre la etiqueta BODY</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📦 ¿Qué es el BODY?</h3>
+                <p>
+                    El <span class="codigo-inline">&lt;body&gt;</span> es el 
+                    <strong>cuerpo de tu página web</strong>. Aquí va TODO lo que 
+                    los visitantes pueden VER: textos, imágenes, botones, videos, 
+                    ¡absolutamente todo!
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Piensa así</h4>
+                <p>Si el HEAD es el cerebro (invisible), el BODY es el cuerpo 
+                   (visible). ¡Todo lo que muestras a tus visitantes va en el BODY!</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">
+                🏷️ Etiquetas comunes del BODY:
+            </h3>
+            
+            <div class="etiquetas-body">
+                <div class="etiqueta-body" onclick="insertarEtiqueta('h1')">
+                    <div class="tag">&lt;h1&gt; a &lt;h6&gt;</div>
+                    <div class="desc">Títulos y subtítulos</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('p')">
+                    <div class="tag">&lt;p&gt;</div>
+                    <div class="desc">Párrafos de texto</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('img')">
+                    <div class="tag">&lt;img&gt;</div>
+                    <div class="desc">Imágenes</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('a')">
+                    <div class="tag">&lt;a&gt;</div>
+                    <div class="desc">Enlaces/Links</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('div')">
+                    <div class="tag">&lt;div&gt;</div>
+                    <div class="desc">Contenedores</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('ul')">
+                    <div class="tag">&lt;ul&gt; &lt;ol&gt;</div>
+                    <div class="desc">Listas</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('button')">
+                    <div class="tag">&lt;button&gt;</div>
+                    <div class="desc">Botones</div>
+                </div>
+                <div class="etiqueta-body" onclick="insertarEtiqueta('span')">
+                    <div class="tag">&lt;span&gt;</div>
+                    <div class="desc">Texto en línea</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 Etiquetas de título (h1-h6)</h3>
+                <p>Los títulos van del más grande (h1) al más pequeño (h6):</p>
+                <ul style="margin: 15px 20px; line-height: 2;">
+                    <li><span class="codigo-inline">&lt;h1&gt;</span> - Título principal (¡solo uno por página!)</li>
+                    <li><span class="codigo-inline">&lt;h2&gt;</span> - Subtítulos importantes</li>
+                    <li><span class="codigo-inline">&lt;h3&gt;</span> - Sub-subtítulos</li>
+                    <li><span class="codigo-inline">&lt;h4&gt;</span> a <span class="codigo-inline">&lt;h6&gt;</span> - Títulos menores</li>
+                </ul>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🔗 La etiqueta de enlace</h3>
+                <p>
+                    La etiqueta <span class="codigo-inline">&lt;a href="url"&gt;</span> 
+                    crea links. El atributo <strong>href</strong> dice a dónde lleva el enlace.
+                </p>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor En Vivo - ¡Experimenta!</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Página con BODY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { color: #e74c3c; text-align: center; }
+        h2 { color: #3498db; border-bottom: 2px solid #3498db; }
+        p { line-height: 1.8; color: #333; }
+        a { color: #9b59b6; }
+        .destacado {
+            background: #fffbcc;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+        }
+        ul { background: #ecf0f1; padding: 20px 40px; border-radius: 10px; }
+        li { margin: 8px 0; }
+        button {
+            background: #2ecc71;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background: #27ae60; }
+    </style>
+</head>
+<body>
+    <h1>🎉 Mi Primera Página Completa</h1>
+    
+    <h2>Sobre Mí</h2>
+    <p>¡Hola! Estoy aprendiendo a crear páginas web con HTML. 
+       Es muy divertido ver cómo todo aparece en el navegador.</p>
+    
+    <div class="destacado">
+        <strong>💡 Dato interesante:</strong> Esta caja tiene estilos especiales
+        usando una clase CSS llamada "destacado".
+    </div>
+    
+    <h2>Mis Pasatiempos</h2>
+    <ul>
+        <li>🎮 Jugar videojuegos</li>
+        <li>📚 Leer libros</li>
+        <li>💻 Programar</li>
+        <li>🎨 Dibujar</li>
+    </ul>
+    
+    <h2>Enlaces Útiles</h2>
+    <p>Visita <a href="https://www.google.com" target="_blank">Google</a> 
+       para buscar información.</p>
+    
+    <button onclick="alert('¡Hiciste clic! 🎉')">¡Haz clic aquí!</button>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa - Resultado</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Ejercicio de completar código -->
+    <section class="completar-codigo">
+        <div class="completar-header">
+            <span>✏️</span>
+            <span>Actividad 1: Completa el código</span>
+        </div>
+        <p style="margin-bottom: 20px;">Escribe las etiquetas que faltan:</p>
+        
+        <div class="codigo-con-huecos">
+            <div>&lt;body&gt;</div>
+            <div style="margin-left: 20px;">
+                &lt;<span class="hueco"><input type="text" id="hueco1" placeholder="?" maxlength="2"></span>&gt;Título Principal&lt;/h1&gt;
+            </div>
+            <div style="margin-left: 20px;">
+                &lt;<span class="hueco"><input type="text" id="hueco2" placeholder="?" maxlength="1"></span>&gt;Este es un párrafo de texto&lt;/p&gt;
+            </div>
+            <div style="margin-left: 20px;">
+                &lt;<span class="hueco"><input type="text" id="hueco3" placeholder="?" maxlength="1"></span> href="pagina.html"&gt;Enlace&lt;/a&gt;
+            </div>
+            <div>&lt;/body&gt;</div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarHuecos()">✅ Verificar</button>
+        <div class="quiz-resultado" id="resultadoHuecos"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="quiz-container">
+        <div class="quiz-header">
+            <span>❓</span>
+            <span>Actividad 2: Quiz del BODY</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Cuántas etiquetas &lt;h1&gt; debe tener una página?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Solo una (es el título principal)
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Todas las que quieras
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Ninguna, no es necesaria
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Qué etiqueta se usa para crear un párrafo?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    &lt;text&gt;
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    &lt;p&gt;
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    &lt;paragraph&gt;
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Qué atributo usa &lt;a&gt; para indicar a dónde lleva el enlace?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    src
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    link
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    href
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <button class="btn-continuar" onclick="window.location.href='nivel04.html'">
+            🚀 Continuar al Nivel 4
+        </button>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Hola!</strong> Soy CodeBot.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 Recuerda: el BODY contiene TODO lo visible. 
+            Usa h1 para el título principal y p para párrafos. 
+            ¡Haz clic en las etiquetas de arriba para ver ejemplos!
+        </p>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="logro-popup" id="logroPopup">
+        <div class="icono">📦</div>
+        <h2>¡Nivel 3 Completado!</h2>
+        <p style="margin: 15px 0;">Ahora dominas el BODY del documento</p>
+        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <button class="btn-continuar" onclick="window.location.href='nivel04.html'" style="margin-top: 20px;">
+            Ir al Nivel 4 ➡️
+        </button>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let huecosCompletados = false;
+        let progreso = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        function insertarEtiqueta(tag) {
+            const editor = document.getElementById('codigoEditor');
+            const ejemplos = {
+                'h1': '\n    <h1>Nuevo Título</h1>',
+                'p': '\n    <p>Nuevo párrafo de texto aquí.</p>',
+                'img': '\n    <img src="imagen.jpg" alt="Descripción">',
+                'a': '\n    <a href="https://ejemplo.com">Link de ejemplo</a>',
+                'div': '\n    <div>\n        Contenido del div\n    </div>',
+                'ul': '\n    <ul>\n        <li>Elemento 1</li>\n        <li>Elemento 2</li>\n    </ul>',
+                'button': '\n    <button>Nuevo Botón</button>',
+                'span': '\n    <span>Texto en línea</span>'
+            };
+            
+            const posicion = editor.value.lastIndexOf('</body>');
+            if (posicion !== -1) {
+                editor.value = editor.value.slice(0, posicion) + ejemplos[tag] + '\n' + editor.value.slice(posicion);
+                ejecutarCodigo();
+            }
+        }
+        
+        function verificarHuecos() {
+            const respuestas = {
+                hueco1: 'h1',
+                hueco2: 'p',
+                hueco3: 'a'
+            };
+            
+            let correctos = 0;
+            
+            for (let [id, respuesta] of Object.entries(respuestas)) {
+                const input = document.getElementById(id);
+                const hueco = input.parentElement;
+                
+                if (input.value.toLowerCase().trim() === respuesta) {
+                    hueco.classList.add('correcto');
+                    hueco.classList.remove('incorrecto');
+                    correctos++;
+                } else {
+                    hueco.classList.add('incorrecto');
+                    hueco.classList.remove('correcto');
+                }
+            }
+            
+            const resultado = document.getElementById('resultadoHuecos');
+            if (correctos === 3) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = '✅ ¡Excelente! ¡Todas correctas!';
+                huecosCompletados = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ ${correctos}/3 correctas. Pista: h1, p, a`;
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            progreso = (quizCompletado ? 50 : 0) + (huecosCompletados ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡Completaste todo!';
+                localStorage.setItem('nivel3_completado', 'true');
+                setTimeout(() => {
+                    document.getElementById('overlay').classList.add('visible');
+                    document.getElementById('logroPopup').classList.add('visible');
+                }, 500);
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

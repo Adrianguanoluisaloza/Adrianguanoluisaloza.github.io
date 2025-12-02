@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Nivel 6 - Formularios Interactivos</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #14b8a6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(20, 184, 166, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+        }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; flex-wrap: wrap; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-ejecutar:hover { background: #059669; transform: scale(1.05); }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 450px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 350px;
+            background: white;
+            border: none;
+        }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        /* Tipos de input */
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .input-tipo {
+            background: rgba(20, 184, 166, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .input-tipo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.3);
+        }
+        
+        .input-tipo .nombre {
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+            font-size: 0.9rem;
+        }
+        
+        .input-tipo .icono { font-size: 1.5rem; margin-bottom: 5px; }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Constructor de formulario */
+        .constructor-form {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) { .constructor-form { grid-template-columns: 1fr; } }
+        
+        .campos-disponibles {
+            background: rgba(20, 184, 166, 0.1);
+            border: 2px dashed var(--nivel-color);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .campos-disponibles h4 {
+            color: var(--nivel-color);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .campo-agregar {
+            background: var(--nivel-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .campo-agregar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+        }
+        
+        .formulario-construido {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .formulario-construido h3 {
+            color: #0d9488;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .campo-form {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .campo-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .campo-form input,
+        .campo-form textarea,
+        .campo-form select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .campo-form input:focus,
+        .campo-form textarea:focus,
+        .campo-form select:focus {
+            outline: none;
+            border-color: var(--nivel-color);
+        }
+        
+        .btn-eliminar-campo {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--error);
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .codigo-form {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #0d9488);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .overlay.visible { display: block; }
+        
+        .logro-popup {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--tarjeta);
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s ease;
+        }
+        
+        .logro-popup.visible { transform: translate(-50%, -50%) scale(1); }
+        .logro-popup .icono { font-size: 4rem; margin-bottom: 15px; }
+        
+        /* Certificado */
+        .certificado {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 5px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px;
+            color: #92400e;
+        }
+        
+        .certificado h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .certificado .nombre-estudiante {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #78350f;
+            padding: 10px;
+            border-bottom: 3px solid gold;
+            display: inline-block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>📝</span>
+            <span>NIVEL 6 - FINAL</span>
+        </div>
+        <h1>Formularios Interactivos</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel05.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="inicio.html" class="nav-btn">🏆 Certificado</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 6 (FINAL)</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Aprende sobre Formularios</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 ¿Qué es un Formulario?</h3>
+                <p>
+                    Los formularios permiten a los usuarios <strong>ingresar datos</strong>. 
+                    Se usan para login, contacto, búsquedas, encuestas y mucho más.
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Estructura básica</h4>
+                <p>Un formulario usa <code>&lt;form&gt;</code> como contenedor, 
+                   <code>&lt;input&gt;</code> para campos, y 
+                   <code>&lt;label&gt;</code> para etiquetas descriptivas.</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">
+                🎨 Tipos de input (haz clic para agregar al editor):
+            </h3>
+            
+            <div class="inputs-grid">
+                <div class="input-tipo" onclick="agregarInput('text')">
+                    <div class="icono">📝</div>
+                    <div class="nombre">text</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('email')">
+                    <div class="icono">📧</div>
+                    <div class="nombre">email</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('password')">
+                    <div class="icono">🔒</div>
+                    <div class="nombre">password</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('number')">
+                    <div class="icono">🔢</div>
+                    <div class="nombre">number</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('date')">
+                    <div class="icono">📅</div>
+                    <div class="nombre">date</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('checkbox')">
+                    <div class="icono">☑️</div>
+                    <div class="nombre">checkbox</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('radio')">
+                    <div class="icono">🔘</div>
+                    <div class="nombre">radio</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('color')">
+                    <div class="icono">🎨</div>
+                    <div class="nombre">color</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('range')">
+                    <div class="icono">📊</div>
+                    <div class="nombre">range</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('file')">
+                    <div class="icono">📁</div>
+                    <div class="nombre">file</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('tel')">
+                    <div class="icono">📞</div>
+                    <div class="nombre">tel</div>
+                </div>
+                <div class="input-tipo" onclick="agregarInput('url')">
+                    <div class="icono">🔗</div>
+                    <div class="nombre">url</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📋 Atributos importantes:</h3>
+                <ul style="margin: 15px 20px; line-height: 2;">
+                    <li><code>name</code> - Nombre del campo (para enviar datos)</li>
+                    <li><code>placeholder</code> - Texto de ayuda dentro del campo</li>
+                    <li><code>required</code> - Campo obligatorio</li>
+                    <li><code>value</code> - Valor predeterminado</li>
+                    <li><code>disabled</code> - Campo deshabilitado</li>
+                </ul>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📨 Otros elementos de formulario:</h3>
+                <ul style="margin: 15px 20px; line-height: 2;">
+                    <li><code>&lt;textarea&gt;</code> - Área de texto grande</li>
+                    <li><code>&lt;select&gt;</code> - Lista desplegable</li>
+                    <li><code>&lt;button&gt;</code> - Botón de envío</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor de Formularios</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contacto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .formulario {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #0d9488;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .campo {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #14b8a6;
+        }
+        
+        .checkbox-grupo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-grupo input {
+            width: auto;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        button:hover {
+            transform: scale(1.02);
+        }
+        
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background: #d1fae5;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form class="formulario" onsubmit="enviarFormulario(event)">
+        <h1>📝 Formulario de Contacto</h1>
+        
+        <div class="campo">
+            <label for="nombre">👤 Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" 
+                   placeholder="Ej: Juan Pérez" required>
+        </div>
+        
+        <div class="campo">
+            <label for="email">📧 Correo electrónico:</label>
+            <input type="email" id="email" name="email" 
+                   placeholder="ejemplo@correo.com" required>
+        </div>
+        
+        <div class="campo">
+            <label for="telefono">📞 Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" 
+                   placeholder="123-456-7890">
+        </div>
+        
+        <div class="campo">
+            <label for="fecha">📅 Fecha de nacimiento:</label>
+            <input type="date" id="fecha" name="fecha">
+        </div>
+        
+        <div class="campo">
+            <label for="asunto">📋 Asunto:</label>
+            <select id="asunto" name="asunto">
+                <option value="">Selecciona una opción</option>
+                <option value="consulta">Consulta general</option>
+                <option value="soporte">Soporte técnico</option>
+                <option value="sugerencia">Sugerencia</option>
+            </select>
+        </div>
+        
+        <div class="campo">
+            <label for="mensaje">💬 Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" 
+                      placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+        
+        <div class="campo checkbox-grupo">
+            <input type="checkbox" id="terminos" name="terminos" required>
+            <label for="terminos" style="margin: 0;">
+                Acepto los términos y condiciones
+            </label>
+        </div>
+        
+        <button type="submit">🚀 Enviar Mensaje</button>
+        
+        <div class="resultado" id="resultado">
+            <strong>✅ ¡Formulario enviado!</strong>
+            <p id="datosEnviados"></p>
+        </div>
+    </form>
+    
+    <script>
+        function enviarFormulario(e) {
+            e.preventDefault();
+            const form = e.target;
+            const datos = new FormData(form);
+            let info = '';
+            datos.forEach((valor, nombre) => {
+                if (valor) info += nombre + ': ' + valor + ' | ';
+            });
+            document.getElementById('datosEnviados').textContent = info;
+            document.getElementById('resultado').style.display = 'block';
+        }
+    </script>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Constructor de formulario -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🔧</span>
+            <span>Actividad 1: Construye tu formulario</span>
+        </div>
+        
+        <div class="constructor-form">
+            <div class="campos-disponibles">
+                <h4>Agregar campos:</h4>
+                <div class="campo-agregar" onclick="agregarCampo('text')">
+                    📝 Campo de texto
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('email')">
+                    📧 Campo de email
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('password')">
+                    🔒 Campo de contraseña
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('number')">
+                    🔢 Campo numérico
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('date')">
+                    📅 Campo de fecha
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('textarea')">
+                    📜 Área de texto
+                </div>
+                <div class="campo-agregar" onclick="agregarCampo('select')">
+                    📋 Lista desplegable
+                </div>
+            </div>
+            
+            <div>
+                <div class="formulario-construido" id="formularioConstruido">
+                    <h3>🏗️ Mi Formulario</h3>
+                    <p style="color: #999; text-align: center;">
+                        Haz clic en los campos de la izquierda para agregarlos
+                    </p>
+                </div>
+                
+                <div class="preview-header" style="margin-top: 15px; border-radius: 8px 8px 0 0;">
+                    <span>📋</span>
+                    <span>Código HTML generado:</span>
+                </div>
+                <div class="codigo-form" id="codigoFormGenerado">
+&lt;form&gt;
+    &lt;!-- Agrega campos aquí --&gt;
+&lt;/form&gt;</div>
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarFormulario()" style="margin-top: 20px;">
+            ✅ Verificar (mínimo 3 campos)
+        </button>
+        <div class="quiz-resultado" id="resultadoForm"></div>
+    </section>
+    
+    <!-- Quiz final -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 2: Quiz Final de Formularios</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué tipo de input se usa para contraseñas?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    type="text"
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    type="password"
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    type="secret"
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Para qué sirve el atributo "required"?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Hace que el campo sea obligatorio
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Cambia el color del campo
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Agrega un borde al campo
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Qué elemento se usa para crear una lista desplegable?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    &lt;list&gt;
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    &lt;select&gt; con &lt;option&gt;
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    &lt;dropdown&gt;
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <!-- Certificado -->
+    <section class="certificado" id="certificado" style="display: none;">
+        <h2>🎓 CERTIFICADO DE COMPLETACIÓN</h2>
+        <p>Se certifica que</p>
+        <div class="nombre-estudiante" id="nombreEstudiante">Estudiante Estrella</div>
+        <p>Ha completado exitosamente el</p>
+        <h3>📚 Curso de HTML Básico</h3>
+        <p>Dominando los 6 niveles:</p>
+        <p>Estructura HTML • HEAD • BODY • Navegación • Imágenes • Formularios</p>
+        <div style="font-size: 2rem; margin: 20px 0;">⭐⭐⭐⭐⭐⭐</div>
+        <p>¡Felicitaciones! 🎉</p>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar tu certificado</p>
+        <br>
+        <button class="btn-continuar" onclick="mostrarCertificado()">
+            🎓 Ver mi Certificado
+        </button>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Felicitaciones!</strong></p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 ¡Has llegado al último nivel! Los formularios son 
+            fundamentales para crear páginas web interactivas. 
+            Recuerda usar label para accesibilidad y required 
+            para campos obligatorios.
+        </p>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="logro-popup" id="logroPopup">
+        <div class="icono">🏆</div>
+        <h2>¡CURSO COMPLETADO!</h2>
+        <p style="margin: 15px 0;">¡Felicitaciones, eres un experto en HTML básico!</p>
+        <div style="font-size: 2rem;">⭐⭐⭐⭐⭐⭐</div>
+        <button class="btn-continuar" onclick="mostrarCertificado()" style="margin-top: 20px;">
+            🎓 Ver mi Certificado
+        </button>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let formCompletado = false;
+        let progreso = 0;
+        let camposAgregados = [];
+        let contadorCampos = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        function agregarInput(tipo) {
+            const editor = document.getElementById('codigoEditor');
+            const templates = {
+                'text': '\n        <div class="campo">\n            <label for="nuevo">Texto:</label>\n            <input type="text" id="nuevo" name="nuevo" placeholder="Escribe aquí">\n        </div>',
+                'email': '\n        <div class="campo">\n            <label for="correo">Email:</label>\n            <input type="email" id="correo" name="correo" placeholder="tu@email.com">\n        </div>',
+                'password': '\n        <div class="campo">\n            <label for="pass">Contraseña:</label>\n            <input type="password" id="pass" name="pass" placeholder="••••••••">\n        </div>',
+                'number': '\n        <div class="campo">\n            <label for="num">Número:</label>\n            <input type="number" id="num" name="num" min="0" max="100">\n        </div>',
+                'date': '\n        <div class="campo">\n            <label for="fecha2">Fecha:</label>\n            <input type="date" id="fecha2" name="fecha2">\n        </div>',
+                'checkbox': '\n        <div class="campo checkbox-grupo">\n            <input type="checkbox" id="check" name="check">\n            <label for="check">Acepto</label>\n        </div>',
+                'radio': '\n        <div class="campo">\n            <label>Opción:</label>\n            <label><input type="radio" name="opcion" value="1"> Opción 1</label>\n            <label><input type="radio" name="opcion" value="2"> Opción 2</label>\n        </div>',
+                'color': '\n        <div class="campo">\n            <label for="color">Color favorito:</label>\n            <input type="color" id="color" name="color">\n        </div>',
+                'range': '\n        <div class="campo">\n            <label for="rango">Nivel (1-100):</label>\n            <input type="range" id="rango" name="rango" min="0" max="100">\n        </div>',
+                'file': '\n        <div class="campo">\n            <label for="archivo">Subir archivo:</label>\n            <input type="file" id="archivo" name="archivo">\n        </div>',
+                'tel': '\n        <div class="campo">\n            <label for="tel">Teléfono:</label>\n            <input type="tel" id="tel" name="tel" placeholder="123-456-7890">\n        </div>',
+                'url': '\n        <div class="campo">\n            <label for="web">Sitio web:</label>\n            <input type="url" id="web" name="web" placeholder="https://">\n        </div>'
+            };
+            
+            const pos = editor.value.lastIndexOf('</form>');
+            if (pos !== -1) {
+                editor.value = editor.value.slice(0, pos) + templates[tipo] + '\n        ' + editor.value.slice(pos);
+                ejecutarCodigo();
+            }
+        }
+        
+        // Constructor de formulario
+        function agregarCampo(tipo) {
+            contadorCampos++;
+            const id = `campo_${contadorCampos}`;
+            
+            const campos = {
+                'text': { label: 'Nombre', placeholder: 'Escribe tu nombre' },
+                'email': { label: 'Email', placeholder: 'tu@email.com' },
+                'password': { label: 'Contraseña', placeholder: '••••••••' },
+                'number': { label: 'Edad', placeholder: '25' },
+                'date': { label: 'Fecha', placeholder: '' },
+                'textarea': { label: 'Mensaje', placeholder: 'Escribe aquí...' },
+                'select': { label: 'Opciones', options: ['Opción 1', 'Opción 2', 'Opción 3'] }
+            };
+            
+            const config = campos[tipo];
+            camposAgregados.push({ id, tipo, ...config });
+            renderizarFormulario();
+        }
+        
+        function eliminarCampo(id) {
+            camposAgregados = camposAgregados.filter(c => c.id !== id);
+            renderizarFormulario();
+        }
+        
+        function renderizarFormulario() {
+            const container = document.getElementById('formularioConstruido');
+            
+            if (camposAgregados.length === 0) {
+                container.innerHTML = `
+                    <h3>🏗️ Mi Formulario</h3>
+                    <p style="color: #999; text-align: center;">
+                        Haz clic en los campos de la izquierda para agregarlos
+                    </p>
+                `;
+            } else {
+                let html = '<h3>🏗️ Mi Formulario</h3><form>';
+                
+                camposAgregados.forEach(campo => {
+                    html += `<div class="campo-form">
+                        <button class="btn-eliminar-campo" onclick="eliminarCampo('${campo.id}')">×</button>
+                        <label>${campo.label}:</label>`;
+                    
+                    if (campo.tipo === 'textarea') {
+                        html += `<textarea placeholder="${campo.placeholder}"></textarea>`;
+                    } else if (campo.tipo === 'select') {
+                        html += `<select>
+                            ${campo.options.map(o => `<option>${o}</option>`).join('')}
+                        </select>`;
+                    } else {
+                        html += `<input type="${campo.tipo}" placeholder="${campo.placeholder || ''}">`;
+                    }
+                    
+                    html += '</div>';
+                });
+                
+                html += '<button type="submit" style="width:100%;padding:12px;background:#14b8a6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:bold;">Enviar</button></form>';
+                container.innerHTML = html;
+            }
+            
+            generarCodigoFormulario();
+        }
+        
+        function generarCodigoFormulario() {
+            let codigo = '&lt;form&gt;\n';
+            
+            camposAgregados.forEach(campo => {
+                codigo += `    &lt;label&gt;${campo.label}:&lt;/label&gt;\n`;
+                
+                if (campo.tipo === 'textarea') {
+                    codigo += `    &lt;textarea placeholder="${campo.placeholder}"&gt;&lt;/textarea&gt;\n\n`;
+                } else if (campo.tipo === 'select') {
+                    codigo += `    &lt;select&gt;\n`;
+                    campo.options.forEach(o => {
+                        codigo += `        &lt;option&gt;${o}&lt;/option&gt;\n`;
+                    });
+                    codigo += `    &lt;/select&gt;\n\n`;
+                } else {
+                    codigo += `    &lt;input type="${campo.tipo}" placeholder="${campo.placeholder || ''}"&gt;\n\n`;
+                }
+            });
+            
+            codigo += '    &lt;button type="submit"&gt;Enviar&lt;/button&gt;\n';
+            codigo += '&lt;/form&gt;';
+            
+            document.getElementById('codigoFormGenerado').innerHTML = codigo;
+        }
+        
+        function verificarFormulario() {
+            const resultado = document.getElementById('resultadoForm');
+            
+            if (camposAgregados.length >= 3) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = `✅ ¡Excelente! Has creado un formulario con ${camposAgregados.length} campos`;
+                formCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ Necesitas al menos 3 campos. Tienes: ${camposAgregados.length}`;
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            progreso = (quizCompletado ? 50 : 0) + (formCompletado ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡CURSO COMPLETADO! 🎉';
+                localStorage.setItem('nivel6_completado', 'true');
+                localStorage.setItem('curso_completado', 'true');
+                setTimeout(() => {
+                    document.getElementById('overlay').classList.add('visible');
+                    document.getElementById('logroPopup').classList.add('visible');
+                }, 500);
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function mostrarCertificado() {
+            document.getElementById('overlay').classList.remove('visible');
+            document.getElementById('logroPopup').classList.remove('visible');
+            document.getElementById('certificado').style.display = 'block';
+            document.getElementById('certificado').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

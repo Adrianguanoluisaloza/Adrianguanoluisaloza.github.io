@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 Aprende HTML - Tutorial Interactivo para Niños</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+    }
+    h1 {
+      text-align: center;
+      color: #667eea;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .etiqueta-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 5px solid #667eea;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .etiqueta-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    }
+    .etiqueta-nombre {
+      font-size: 1.8em;
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .emoji {
+      font-size: 1.3em;
+    }
+    .descripcion {
+      color: #444;
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .codigo-ejemplo {
+      background: #2d3748;
+      color: #68d391;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 1em;
+      margin: 10px 0;
+      overflow-x: auto;
+      border: 2px solid #4a5568;
+    }
+    .codigo-ejemplo .tag { color: #fc8181; }
+    .codigo-ejemplo .attr { color: #63b3ed; }
+    .codigo-ejemplo .value { color: #fbd38d; }
+    .demo-visual {
+      background: white;
+      border: 3px dashed #667eea;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+    .demo-titulo {
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .btn-probar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-weight: bold;
+    }
+    .btn-probar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .seccion-titulo {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.5em;
+      margin: 30px 0 20px 0;
+      font-weight: bold;
+    }
+    .menu-etiquetas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .menu-btn {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+    .menu-btn:hover, .menu-btn.activo {
+      background: #667eea;
+      color: white;
+      transform: scale(1.1);
+    }
+    .oculto { display: none; }
+    .ejemplo-interactivo {
+      background: #fff3cd;
+      border: 3px solid #ffc107;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+    .nota-importante {
+      background: #d1ecf1;
+      border-left: 5px solid #0c5460;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+      color: #0c5460;
+      font-weight: bold;
+    }
+    .felicitaciones {
+      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.3em;
+      color: #155724;
+      font-weight: bold;
+      margin-top: 20px;
+      animation: pulso 2s infinite;
+    }
+    @keyframes pulso {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Aprende HTML Jugando 🚀</h1>
+    <p class="subtitle">¡Tutorial interactivo para aprender HTML de forma divertida!</p>
+
+    <div class="menu-etiquetas">
+      <button class="menu-btn activo" onclick="mostrarSeccion('basicas')">🌟 Básicas</button>
+      <button class="menu-btn" onclick="mostrarSeccion('estructura')">🏗️ Estructura</button>
+      <button class="menu-btn" onclick="mostrarSeccion('multimedia')">🎨 Multimedia</button>
+      <button class="menu-btn" onclick="mostrarSeccion('formularios')">📝 Formularios</button>
+    </div>
+
+    <!-- SECCIÓN BÁSICAS -->
+    <div id="seccion-basicas">
+      <div class="seccion-titulo">🌟 Etiquetas Básicas de HTML</div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📄</span> &lt;html&gt;</div>
+        <div class="descripcion">
+          Es como la <strong>caja grande</strong> que contiene TODA tu página web. 
+          Todo lo que escribas en tu página va dentro de esta etiqueta.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"es"</span><span class="tag">&gt;</span>
+  ... Todo tu contenido aquí ...
+<span class="tag">&lt;/html&gt;</span>
+        </div>
+        <div class="nota-importante">
+          💡 <strong>lang="es"</strong> significa que tu página está en español
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🧠</span> &lt;head&gt;</div>
+        <div class="descripcion">
+          Es la <strong>cabeza invisible</strong> de tu página. Aquí pones información que no se ve, 
+          como el título de la pestaña, los colores y estilos.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Mi Primera Página<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          El título aparece en la pestaña del navegador ⬆️
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🎯</span> &lt;body&gt;</div>
+        <div class="descripcion">
+          Es el <strong>cuerpo</strong> de tu página. TODO lo que quieres que la gente vea 
+          (textos, imágenes, videos) va dentro del body.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>¡Hola Mundo!<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Este es mi primer párrafo<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <h1 style="color: #667eea;">¡Hola Mundo!</h1>
+          <p>Este es mi primer párrafo</p>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📝</span> &lt;h1&gt; hasta &lt;h6&gt;</div>
+        <div class="descripcion">
+          Son los <strong>títulos</strong> de diferentes tamaños. 
+          &lt;h1&gt; es el MÁS GRANDE (título principal) y &lt;h6&gt; es el más pequeño.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;h1&gt;</span>Título Gigante<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Título Grande<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Título Mediano<span class="tag">&lt;/h3&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <h1 style="margin: 5px 0;">Título Gigante</h1>
+          <h2 style="margin: 5px 0;">Título Grande</h2>
+          <h3 style="margin: 5px 0;">Título Mediano</h3>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📖</span> &lt;p&gt;</div>
+        <div class="descripcion">
+          Es un <strong>párrafo</strong> de texto. Como cuando escribes en un cuaderno.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;p&gt;</span>Este es un párrafo de texto. Puedes escribir todo lo que quieras aquí.<span class="tag">&lt;/p&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <p>Este es un párrafo de texto. Puedes escribir todo lo que quieras aquí.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN ESTRUCTURA -->
+    <div id="seccion-estructura" class="oculto">
+      <div class="seccion-titulo">🏗️ Estructura y Organización</div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📦</span> &lt;div&gt;</div>
+        <div class="descripcion">
+          Es una <strong>caja invisible</strong> para agrupar cosas. Como una caja de juguetes donde guardas varios objetos juntos.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;div</span> <span class="attr">style</span>=<span class="value">"background: lightblue; padding: 10px;"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Mi Caja<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Contenido dentro de la caja<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <div style="background: lightblue; padding: 10px; border-radius: 5px;">
+            <h2 style="margin: 0 0 10px 0;">Mi Caja</h2>
+            <p style="margin: 0;">Contenido dentro de la caja</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📋</span> &lt;ul&gt; y &lt;li&gt;</div>
+        <div class="descripcion">
+          Crea una <strong>lista con viñetas</strong> (como puntitos). &lt;ul&gt; es la lista completa y &lt;li&gt; es cada elemento.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Manzanas 🍎<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Bananas 🍌<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Naranjas 🍊<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <ul>
+            <li>Manzanas 🍎</li>
+            <li>Bananas 🍌</li>
+            <li>Naranjas 🍊</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🔢</span> &lt;ol&gt; y &lt;li&gt;</div>
+        <div class="descripcion">
+          Crea una <strong>lista numerada</strong>. Como los pasos de una receta: 1, 2, 3...
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Primer paso<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Segundo paso<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Tercer paso<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <ol>
+            <li>Primer paso</li>
+            <li>Segundo paso</li>
+            <li>Tercer paso</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📊</span> &lt;table&gt;</div>
+        <div class="descripcion">
+          Crea una <strong>tabla</strong> con filas y columnas. Como una hoja de Excel o un cuaderno cuadriculado.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;table</span> <span class="attr">border</span>=<span class="value">"1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;th&gt;</span>Nombre<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;th&gt;</span>Edad<span class="tag">&lt;/th&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;</span>
+    <span class="tag">&lt;td&gt;</span>Juan<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;td&gt;</span>9<span class="tag">&lt;/td&gt;</span>
+  <span class="tag">&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <table border="1" style="border-collapse: collapse; width: 100%;">
+            <tr>
+              <th style="background: #667eea; color: white; padding: 8px;">Nombre</th>
+              <th style="background: #667eea; color: white; padding: 8px;">Edad</th>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">Juan</td>
+              <td style="padding: 8px;">9</td>
+            </tr>
+          </table>
+        </div>
+        <div class="nota-importante">
+          💡 &lt;tr&gt; = fila, &lt;th&gt; = cabecera, &lt;td&gt; = celda normal
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN MULTIMEDIA -->
+    <div id="seccion-multimedia" class="oculto">
+      <div class="seccion-titulo">🎨 Imágenes, Videos y Enlaces</div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🖼️</span> &lt;img&gt;</div>
+        <div class="descripcion">
+          Muestra una <strong>imagen</strong> en tu página. ¡Es como pegar una foto!
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"foto.jpg"</span> <span class="attr">alt</span>=<span class="value">"Descripción"</span> <span class="attr">width</span>=<span class="value">"200"</span><span class="tag">&gt;</span>
+        </div>
+        <div class="nota-importante">
+          💡 <strong>src</strong> = dirección de la imagen | <strong>alt</strong> = descripción si la imagen no carga
+        </div>
+        <div class="ejemplo-interactivo">
+          <button class="btn-probar" onclick="probarImagen()">🎨 ¡Probar con una imagen!</button>
+          <div id="resultado-imagen" style="margin-top: 10px;"></div>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🔗</span> &lt;a&gt;</div>
+        <div class="descripcion">
+          Crea un <strong>enlace</strong> (link) a otra página. Como un portal mágico a otro sitio web.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://www.google.com"</span><span class="tag">&gt;</span>Ir a Google<span class="tag">&lt;/a&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <a href="https://www.google.com" target="_blank" style="color: #667eea; font-weight: bold; font-size: 1.2em;">Ir a Google 🔗</a>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🎬</span> &lt;iframe&gt;</div>
+        <div class="descripcion">
+          Muestra un <strong>video</strong> de YouTube u otro contenido dentro de tu página.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;iframe</span> <span class="attr">width</span>=<span class="value">"400"</span> <span class="attr">height</span>=<span class="value">"300"</span>
+  <span class="attr">src</span>=<span class="value">"https://www.youtube.com/embed/VIDEO_ID"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span>
+        </div>
+        <div class="nota-importante">
+          💡 Copia el enlace "insertar" de YouTube para poner videos
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">💪</span> &lt;strong&gt; y &lt;em&gt;</div>
+        <div class="descripcion">
+          &lt;strong&gt; hace el texto en <strong>negrita</strong> y &lt;em&gt; en <em>cursiva</em>.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;strong&gt;</span>Texto en negrita<span class="tag">&lt;/strong&gt;</span>
+<span class="tag">&lt;em&gt;</span>Texto en cursiva<span class="tag">&lt;/em&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <p><strong>Texto en negrita</strong></p>
+          <p><em>Texto en cursiva</em></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN FORMULARIOS -->
+    <div id="seccion-formularios" class="oculto">
+      <div class="seccion-titulo">📝 Formularios Interactivos</div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">📋</span> &lt;form&gt;</div>
+        <div class="descripcion">
+          Es un <strong>formulario</strong> donde la gente puede escribir información. Como una hoja de inscripción.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;form&gt;</span>
+  ... campos del formulario ...
+<span class="tag">&lt;/form&gt;</span>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">✍️</span> &lt;input&gt;</div>
+        <div class="descripcion">
+          Crea una <strong>cajita</strong> donde puedes escribir texto, números, elegir fechas, etc.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">placeholder</span>=<span class="value">"Escribe tu nombre"</span><span class="tag">&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <input type="text" placeholder="Escribe tu nombre" style="padding: 10px; font-size: 1em; border: 2px solid #667eea; border-radius: 5px; width: 100%;">
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🎚️</span> &lt;select&gt;</div>
+        <div class="descripcion">
+          Crea una <strong>lista desplegable</strong> donde puedes elegir una opción.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;select&gt;</span>
+  <span class="tag">&lt;option&gt;</span>Opción 1<span class="tag">&lt;/option&gt;</span>
+  <span class="tag">&lt;option&gt;</span>Opción 2<span class="tag">&lt;/option&gt;</span>
+<span class="tag">&lt;/select&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <select style="padding: 10px; font-size: 1em; border: 2px solid #667eea; border-radius: 5px; width: 100%;">
+            <option>Elige tu color favorito</option>
+            <option>Rojo 🔴</option>
+            <option>Azul 🔵</option>
+            <option>Verde 🟢</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="etiqueta-card">
+        <div class="etiqueta-nombre"><span class="emoji">🖱️</span> &lt;button&gt;</div>
+        <div class="descripcion">
+          Crea un <strong>botón</strong> que la gente puede hacer clic.
+        </div>
+        <div class="codigo-ejemplo">
+<span class="tag">&lt;button&gt;</span>¡Haz clic aquí!<span class="tag">&lt;/button&gt;</span>
+        </div>
+        <div class="demo-visual">
+          <div class="demo-titulo">👀 Resultado:</div>
+          <button onclick="alert('¡Muy bien! 🎉')" style="background: #667eea; color: white; padding: 15px 30px; font-size: 1.2em; border: none; border-radius: 10px; cursor: pointer;">¡Haz clic aquí!</button>
+        </div>
+      </div>
+
+      <div class="ejemplo-interactivo">
+        <h3 style="color: #667eea; margin-bottom: 15px;">🎮 ¡Prueba un formulario completo!</h3>
+        <form onsubmit="event.preventDefault(); mostrarSaludo();" style="background: white; padding: 20px; border-radius: 10px;">
+          <p>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tu nombre:</label>
+            <input type="text" id="nombreUsuario" placeholder="Escribe tu nombre" style="width: 100%; padding: 10px; border: 2px solid #667eea; border-radius: 5px; font-size: 1em;">
+          </p>
+          <p>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tu edad:</label>
+            <input type="number" id="edadUsuario" placeholder="¿Cuántos años tienes?" style="width: 100%; padding: 10px; border: 2px solid #667eea; border-radius: 5px; font-size: 1em;">
+          </p>
+          <button type="submit" class="btn-probar">¡Enviar! 🚀</button>
+        </form>
+        <div id="saludo-resultado" style="margin-top: 15px;"></div>
+      </div>
+    </div>
+
+    <div class="felicitaciones">
+      🎉 ¡Felicitaciones! Ya conoces las etiquetas HTML más importantes 🎉
+      <br>¡Sigue practicando y serás un experto! 💪
+    </div>
+  </div>
+
+  <script>
+    function mostrarSeccion(seccion) {
+      // Ocultar todas las secciones
+      document.getElementById('seccion-basicas').classList.add('oculto');
+      document.getElementById('seccion-estructura').classList.add('oculto');
+      document.getElementById('seccion-multimedia').classList.add('oculto');
+      document.getElementById('seccion-formularios').classList.add('oculto');
+
+      // Mostrar la sección seleccionada
+      document.getElementById('seccion-' + seccion).classList.remove('oculto');
+
+      // Actualizar botones
+      var botones = document.querySelectorAll('.menu-btn');
+      for (var i = 0; i < botones.length; i++) {
+        botones[i].classList.remove('activo');
+      }
+      event.target.classList.add('activo');
+
+      // Scroll suave al inicio
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function probarImagen() {
+      var resultado = document.getElementById('resultado-imagen');
+      resultado.innerHTML = '<img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300" alt="Gato lindo" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">' +
+        '<p style="margin-top: 10px; color: #667eea; font-weight: bold;">¡Mira! Una imagen de un gatito 🐱</p>';
+    }
+
+    function mostrarSaludo() {
+      var nombre = document.getElementById('nombreUsuario').value;
+      var edad = document.getElementById('edadUsuario').value;
+      var resultado = document.getElementById('saludo-resultado');
+      
+      if (nombre && edad) {
+        resultado.innerHTML = '<div style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); padding: 20px; border-radius: 10px; text-align: center; animation: pulso 2s infinite;">' +
+          '<h2 style="color: #155724; margin: 0;">🎉 ¡Hola ' + nombre + '! 🎉</h2>' +
+          '<p style="font-size: 1.3em; margin: 10px 0 0 0; color: #155724;">¡Tienes ' + edad + ' años! ¡Qué genial! 🚀</p>' +
+          '</div>';
+      } else {
+        alert('¡Por favor completa todos los campos! 😊');
+      }
+    }
+
+    // Animación de entrada
+    window.addEventListener('load', function() {
+      document.querySelector('.container').style.animation = 'aparecer 0.8s ease-out';
+    });
+  </script>
+
+  <style>
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</body>
+</html>

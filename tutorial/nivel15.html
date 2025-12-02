@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Nivel 15 - Eventos JavaScript</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #f97316;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: white; }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .progreso-barra { height: 10px; background: var(--borde); border-radius: 5px; overflow: hidden; }
+        .progreso-fill { height: 100%; background: linear-gradient(90deg, var(--exito), #34d399); transition: width 0.5s ease; }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 { color: var(--nivel-color); margin-bottom: 10px; }
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        .eventos-lista {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .evento-item {
+            background: rgba(249, 115, 22, 0.15);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .evento-item .nombre { font-family: 'Consolas', monospace; color: #fb923c; font-size: 0.85rem; }
+        .evento-item .desc { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo { display: flex; align-items: center; gap: 10px; font-weight: bold; }
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame { width: 100%; min-height: 350px; background: white; border: none; }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Zona de eventos */
+        .eventos-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .evento-box {
+            background: rgba(249, 115, 22, 0.1);
+            border: 3px dashed var(--nivel-color);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+        }
+        
+        .evento-box:hover { transform: scale(1.02); }
+        .evento-box.activo { background: rgba(16, 185, 129, 0.2); border-color: var(--exito); border-style: solid; }
+        .evento-box .icono { font-size: 3rem; margin-bottom: 10px; }
+        .evento-box .titulo { color: var(--nivel-color); font-weight: bold; font-size: 1.1rem; }
+        .evento-box .instruccion { color: #94a3b8; font-size: 0.9rem; margin-top: 8px; }
+        .evento-box .resultado { margin-top: 10px; font-weight: bold; color: var(--exito); min-height: 24px; }
+        
+        /* Input demo */
+        .input-demo {
+            background: rgba(249, 115, 22, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .input-demo input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            background: #1a1a2e;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .input-demo input:focus { outline: none; border-color: var(--nivel-color); }
+        
+        .input-resultado {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 50px;
+            color: #fb923c;
+            font-family: 'Consolas', monospace;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom { width: 22px; height: 22px; border: 2px solid var(--borde); border-radius: 50%; }
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; }
+        .quiz-resultado.exito { display: flex; background: rgba(16, 185, 129, 0.2); border: 2px solid var(--exito); color: var(--exito); }
+        .quiz-resultado.error { display: flex; background: rgba(239, 68, 68, 0.2); border: 2px solid var(--error); color: var(--error); }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>🎯</span>
+            <span>NIVEL 15</span>
+        </div>
+        <h1>Eventos JavaScript - ¡Interactividad total!</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel14.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel16.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 15</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Eventos en JavaScript</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🎯 ¿Qué son los Eventos?</h3>
+                <p>
+                    Los <strong>eventos</strong> son acciones que ocurren en la página: 
+                    clics, teclas presionadas, movimientos del mouse, etc. 
+                    JavaScript puede "escuchar" estos eventos y responder a ellos.
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Eventos = Disparadores</h4>
+                <p>Piensa en los eventos como botones que disparan acciones. ¡Tú decides qué pasa cuando el usuario hace algo!</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">🎮 Eventos más comunes:</h3>
+            
+            <div class="eventos-lista">
+                <div class="evento-item">
+                    <div class="nombre">click</div>
+                    <div class="desc">Al hacer clic</div>
+                </div>
+                <div class="evento-item">
+                    <div class="nombre">mouseover</div>
+                    <div class="desc">Mouse encima</div>
+                </div>
+                <div class="evento-item">
+                    <div class="nombre">mouseout</div>
+                    <div class="desc">Mouse sale</div>
+                </div>
+                <div class="evento-item">
+                    <div class="nombre">keydown</div>
+                    <div class="desc">Tecla presionada</div>
+                </div>
+                <div class="evento-item">
+                    <div class="nombre">input</div>
+                    <div class="desc">Al escribir</div>
+                </div>
+                <div class="evento-item">
+                    <div class="nombre">submit</div>
+                    <div class="desc">Enviar formulario</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 Formas de agregar eventos:</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+// Forma 1: En el HTML
+&lt;button onclick="saludar()"&gt;Clic&lt;/button&gt;
+
+// Forma 2: addEventListener (recomendada)
+boton.addEventListener("click", function() {
+    alert("¡Hiciste clic!");
+});
+
+// Forma 3: Con función separada
+boton.addEventListener("click", saludar);
+
+function saludar() {
+    alert("¡Hola!");
+}</pre>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor de Eventos</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1 { text-align: center; color: #ea580c; }
+        
+        .contenedor {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .caja-eventos {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .caja-eventos h3 { color: #f97316; margin-bottom: 15px; }
+        
+        /* Botón de clic */
+        .btn-magico {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-magico:hover { transform: scale(1.02); }
+        .btn-magico:active { transform: scale(0.98); }
+        
+        /* Caja hover */
+        .caja-hover {
+            padding: 30px;
+            background: #fed7aa;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .caja-hover.activa {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Input en tiempo real */
+        .input-live {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 3px solid #f97316;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .preview-texto {
+            padding: 15px;
+            background: #1a1a2e;
+            color: #fb923c;
+            border-radius: 10px;
+            min-height: 50px;
+            font-family: monospace;
+        }
+        
+        /* Contador */
+        .contador-display {
+            font-size: 4rem;
+            text-align: center;
+            color: #f97316;
+            font-weight: bold;
+        }
+        
+        .contador-botones {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .contador-botones button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .btn-mas { background: #22c55e; color: white; }
+        .btn-menos { background: #ef4444; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Eventos en Acción</h1>
+    
+    <div class="contenedor">
+        <!-- Evento Click -->
+        <div class="caja-eventos">
+            <h3>👆 Evento: click</h3>
+            <button class="btn-magico" id="btnMagico">
+                ¡Haz clic aquí! (0 clics)
+            </button>
+        </div>
+        
+        <!-- Eventos mouseover/mouseout -->
+        <div class="caja-eventos">
+            <h3>🖱️ Eventos: mouseover / mouseout</h3>
+            <div class="caja-hover" id="cajaHover">
+                Pasa el mouse por aquí 👆
+            </div>
+        </div>
+        
+        <!-- Evento input -->
+        <div class="caja-eventos">
+            <h3>⌨️ Evento: input (en tiempo real)</h3>
+            <input type="text" class="input-live" id="inputLive" 
+                   placeholder="Escribe algo...">
+            <div class="preview-texto" id="previewTexto">
+                Tu texto aparecerá aquí...
+            </div>
+        </div>
+        
+        <!-- Contador con eventos -->
+        <div class="caja-eventos">
+            <h3>🔢 Contador Interactivo</h3>
+            <div class="contador-display" id="contadorDisplay">0</div>
+            <div class="contador-botones">
+                <button class="btn-menos" id="btnMenos">➖</button>
+                <button class="btn-mas" id="btnMas">➕</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 👆 Evento CLICK en botón
+        let clics = 0;
+        const btnMagico = document.getElementById("btnMagico");
+        
+        btnMagico.addEventListener("click", function() {
+            clics++;
+            this.textContent = "¡Haz clic aquí! (" + clics + " clics)";
+            
+            // Cambiar color cada 5 clics
+            if (clics % 5 === 0) {
+                const colores = ["#ec4899", "#8b5cf6", "#3b82f6", "#14b8a6"];
+                const color = colores[Math.floor(Math.random() * colores.length)];
+                this.style.background = color;
+            }
+        });
+        
+        // 🖱️ Eventos MOUSEOVER y MOUSEOUT
+        const cajaHover = document.getElementById("cajaHover");
+        
+        cajaHover.addEventListener("mouseover", function() {
+            this.classList.add("activa");
+            this.textContent = "¡Mouse dentro! 🎉";
+        });
+        
+        cajaHover.addEventListener("mouseout", function() {
+            this.classList.remove("activa");
+            this.textContent = "Pasa el mouse por aquí 👆";
+        });
+        
+        // ⌨️ Evento INPUT
+        const inputLive = document.getElementById("inputLive");
+        const previewTexto = document.getElementById("previewTexto");
+        
+        inputLive.addEventListener("input", function() {
+            if (this.value === "") {
+                previewTexto.textContent = "Tu texto aparecerá aquí...";
+            } else {
+                previewTexto.textContent = "📝 " + this.value;
+            }
+        });
+        
+        // 🔢 Contador
+        let contador = 0;
+        const display = document.getElementById("contadorDisplay");
+        
+        document.getElementById("btnMas").addEventListener("click", function() {
+            contador++;
+            display.textContent = contador;
+            display.style.color = "#22c55e";
+        });
+        
+        document.getElementById("btnMenos").addEventListener("click", function() {
+            contador--;
+            display.textContent = contador;
+            display.style.color = "#ef4444";
+        });
+    </script>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa Interactiva</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Práctica de eventos -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🎮</span>
+            <span>Actividad 1: Prueba los Eventos</span>
+        </div>
+        
+        <p style="margin-bottom: 20px; color: #94a3b8;">
+            Interactúa con cada caja para activar diferentes eventos:
+        </p>
+        
+        <div class="eventos-demo">
+            <div class="evento-box" id="boxClick">
+                <div class="icono">👆</div>
+                <div class="titulo">CLICK</div>
+                <div class="instruccion">Haz clic aquí</div>
+                <div class="resultado" id="resultClick"></div>
+            </div>
+            
+            <div class="evento-box" id="boxDblClick">
+                <div class="icono">👆👆</div>
+                <div class="titulo">DOUBLE CLICK</div>
+                <div class="instruccion">Doble clic rápido</div>
+                <div class="resultado" id="resultDblClick"></div>
+            </div>
+            
+            <div class="evento-box" id="boxHover">
+                <div class="icono">🖱️</div>
+                <div class="titulo">MOUSE OVER</div>
+                <div class="instruccion">Pasa el mouse</div>
+                <div class="resultado" id="resultHover"></div>
+            </div>
+            
+            <div class="evento-box" id="boxContextMenu">
+                <div class="icono">🖱️</div>
+                <div class="titulo">RIGHT CLICK</div>
+                <div class="instruccion">Clic derecho</div>
+                <div class="resultado" id="resultContextMenu"></div>
+            </div>
+        </div>
+        
+        <div class="input-demo">
+            <h4 style="color: var(--nivel-color); margin-bottom: 15px;">⌨️ Evento de teclado:</h4>
+            <input type="text" id="inputPrueba" placeholder="Escribe algo aquí...">
+            <div class="input-resultado" id="inputResultado">
+                Esperando que escribas...
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarEventos()" style="margin-top: 20px;">
+            ✅ Verificar (activa al menos 4 eventos)
+        </button>
+        <div class="quiz-resultado" id="resultadoEventos"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 2: Quiz de Eventos</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Cuál es el método recomendado para agregar eventos?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    onclick="funcion()" en el HTML
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    addEventListener("click", funcion)
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    elemento.click = funcion
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Qué evento se dispara al escribir en un input?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    click
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    input
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    write
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Qué evento se dispara cuando el mouse entra a un elemento?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    mouseenter-event
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    mouseover
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    hover
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <a href="nivel16.html" class="btn-continuar" id="btnContinuar">
+            Siguiente Nivel ➡️
+        </a>
+    </footer>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let eventosCompletado = false;
+        let eventosActivados = new Set();
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+            configurarEventosDemo();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        function configurarEventosDemo() {
+            // Click
+            document.getElementById('boxClick').addEventListener('click', function() {
+                this.classList.add('activo');
+                document.getElementById('resultClick').textContent = '✅ ¡Click detectado!';
+                eventosActivados.add('click');
+            });
+            
+            // Double Click
+            document.getElementById('boxDblClick').addEventListener('dblclick', function() {
+                this.classList.add('activo');
+                document.getElementById('resultDblClick').textContent = '✅ ¡Doble clic!';
+                eventosActivados.add('dblclick');
+            });
+            
+            // Hover
+            document.getElementById('boxHover').addEventListener('mouseover', function() {
+                this.classList.add('activo');
+                document.getElementById('resultHover').textContent = '✅ ¡Mouse encima!';
+                eventosActivados.add('hover');
+            });
+            
+            // Context Menu
+            document.getElementById('boxContextMenu').addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                this.classList.add('activo');
+                document.getElementById('resultContextMenu').textContent = '✅ ¡Clic derecho!';
+                eventosActivados.add('contextmenu');
+            });
+            
+            // Input
+            document.getElementById('inputPrueba').addEventListener('input', function() {
+                document.getElementById('inputResultado').textContent = 
+                    '📝 Escribiste: ' + this.value + ' (longitud: ' + this.value.length + ')';
+                eventosActivados.add('input');
+            });
+        }
+        
+        function verificarEventos() {
+            const resultado = document.getElementById('resultadoEventos');
+            if (eventosActivados.size >= 4) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = '✅ ¡Excelente! Has probado ' + eventosActivados.size + ' eventos diferentes';
+                eventosCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = '❌ Has probado ' + eventosActivados.size + '/4 eventos. ¡Sigue intentando!';
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => o.classList.remove('correcta', 'incorrecta'));
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            let progreso = (quizCompletado ? 50 : 0) + (eventosCompletado ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                document.getElementById('btnContinuar').style.display = 'inline-block';
+                localStorage.setItem('nivel15_completado', 'true');
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            }
+        }
+    </script>
+</body>
+</html>

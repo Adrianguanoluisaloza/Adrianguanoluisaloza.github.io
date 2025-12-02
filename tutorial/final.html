@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Proyecto Final - ¡Tu Página Web Completa!</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --oro: #fbbf24;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .final-header {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-header::before {
+            content: '🎉 ✨ 🎊 ⭐ 🏆 ⭐ 🎊 ✨ 🎉';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            font-size: 1.5rem;
+            animation: celebrar 3s infinite;
+        }
+        
+        @keyframes celebrar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .trofeo-grande {
+            font-size: 5rem;
+            animation: brillar 2s infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+        
+        @keyframes brillar {
+            0%, 100% { transform: scale(1) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .final-header h1 {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+            margin: 15px 0;
+        }
+        
+        .final-header p {
+            color: #422006;
+            font-size: 1.2rem;
+        }
+        
+        .nav-final {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        .nav-btn.oro { background: linear-gradient(135deg, #fbbf24, #d97706); color: #1a1a2e; }
+        
+        /* Logros */
+        .logros-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .logros-titulo {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--oro);
+            margin-bottom: 30px;
+        }
+        
+        .logros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .logro {
+            background: var(--tarjeta);
+            border: 2px solid var(--borde);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            opacity: 0.5;
+        }
+        
+        .logro.completado {
+            opacity: 1;
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .logro .icono { font-size: 2.5rem; margin-bottom: 10px; }
+        .logro .nombre { font-weight: bold; color: var(--texto); }
+        .logro .estado { font-size: 0.85rem; color: #94a3b8; margin-top: 5px; }
+        
+        /* Editor principal */
+        .editor-final {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .editor-instrucciones {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(217, 119, 6, 0.1));
+            border: 2px solid var(--oro);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .editor-instrucciones h2 {
+            color: var(--oro);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instrucciones-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .instruccion-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .instruccion-item .numero {
+            background: var(--oro);
+            color: #1a1a2e;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .editor-contenedor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 1100px) { .editor-contenedor { grid-template-columns: 1fr; } }
+        
+        .panel-codigo {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-header {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .panel-botones { display: flex; gap: 10px; }
+        
+        .btn-panel {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        .btn-descargar { background: #8b5cf6; color: white; }
+        
+        .btn-panel:hover { transform: scale(1.05); }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 600px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1e1e2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--oro); }
+        
+        .panel-preview {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .preview-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 600px;
+            background: white;
+            border: none;
+        }
+        
+        /* Plantillas */
+        .plantillas-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .plantillas-titulo {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--primario);
+            margin-bottom: 25px;
+        }
+        
+        .plantillas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .plantilla-card {
+            background: var(--tarjeta);
+            border: 2px solid var(--borde);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .plantilla-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primario);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .plantilla-preview {
+            height: 180px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .plantilla-preview iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+        }
+        
+        .plantilla-info {
+            padding: 15px;
+        }
+        
+        .plantilla-info h4 { color: var(--primario); margin-bottom: 8px; }
+        .plantilla-info p { color: #94a3b8; font-size: 0.9rem; }
+        
+        /* Certificado */
+        .certificado-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .certificado {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 8px solid #d97706;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.3);
+        }
+        
+        .certificado::before {
+            content: '🏆';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+        }
+        
+        .certificado-titulo {
+            font-size: 2.5rem;
+            color: #92400e;
+            margin: 20px 0;
+            font-family: Georgia, serif;
+        }
+        
+        .certificado-texto {
+            color: #78350f;
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+        
+        .certificado-nombre {
+            font-size: 2rem;
+            color: #b45309;
+            font-family: 'Brush Script MT', cursive;
+            margin: 20px 0;
+            padding: 10px;
+            border-bottom: 3px solid #d97706;
+            display: inline-block;
+        }
+        
+        .certificado-fecha {
+            color: #92400e;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        .estrellas-certificado {
+            font-size: 2.5rem;
+            margin: 15px 0;
+        }
+        
+        .btn-imprimir {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d97706, #b45309);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-imprimir:hover { transform: scale(1.05); }
+        
+        .footer-final {
+            background: var(--tarjeta);
+            padding: 30px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 40px;
+        }
+        
+        .footer-mensaje {
+            font-size: 1.5rem;
+            color: var(--oro);
+            margin-bottom: 15px;
+        }
+        
+        .footer-creditos { color: #94a3b8; }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: caer 3s linear forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        @keyframes caer {
+            to {
+                top: 100vh;
+                transform: rotate(720deg);
+            }
+        }
+        
+        .modal-nombre {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .modal-contenido {
+            background: var(--tarjeta);
+            border: 2px solid var(--oro);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 450px;
+        }
+        
+        .modal-contenido h2 { color: var(--oro); margin-bottom: 20px; }
+        
+        .modal-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .modal-input:focus { outline: none; border-color: var(--oro); }
+        
+        .modal-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--oro), #d97706);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Modal para nombre -->
+    <div class="modal-nombre" id="modalNombre">
+        <div class="modal-contenido">
+            <div style="font-size: 4rem;">🎓</div>
+            <h2>¡Felicidades, has llegado al final!</h2>
+            <p style="color: #94a3b8; margin-bottom: 15px;">Escribe tu nombre para el certificado:</p>
+            <input type="text" class="modal-input" id="inputNombreEstudiante" placeholder="Tu nombre aquí...">
+            <br>
+            <button class="modal-btn" onclick="guardarNombre()">✨ Continuar</button>
+        </div>
+    </div>
+
+    <header class="final-header">
+        <div class="trofeo-grande">🏆</div>
+        <h1>¡PROYECTO FINAL!</h1>
+        <p>Crea tu propia página web usando todo lo que aprendiste</p>
+    </header>
+    
+    <nav class="nav-final">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <a href="nivel18.html" class="nav-btn">⬅️ Volver al Nivel 18</a>
+        <a href="#certificado" class="nav-btn oro">🎓 Ver mi Certificado</a>
+    </nav>
+    
+    <!-- Logros -->
+    <section class="logros-container">
+        <h2 class="logros-titulo">🏅 Tus Logros en el Curso</h2>
+        <div class="logros-grid" id="logrosGrid">
+            <div class="logro" data-nivel="1"><div class="icono">📄</div><div class="nombre">DOCTYPE</div><div class="estado">Nivel 1</div></div>
+            <div class="logro" data-nivel="2"><div class="icono">🧠</div><div class="nombre">Head</div><div class="estado">Nivel 2</div></div>
+            <div class="logro" data-nivel="3"><div class="icono">📦</div><div class="nombre">Body</div><div class="estado">Nivel 3</div></div>
+            <div class="logro" data-nivel="4"><div class="icono">🧭</div><div class="nombre">Navegación</div><div class="estado">Nivel 4</div></div>
+            <div class="logro" data-nivel="5"><div class="icono">🖼️</div><div class="nombre">Imágenes</div><div class="estado">Nivel 5</div></div>
+            <div class="logro" data-nivel="6"><div class="icono">📝</div><div class="nombre">Formularios</div><div class="estado">Nivel 6</div></div>
+            <div class="logro" data-nivel="7"><div class="icono">🎨</div><div class="nombre">CSS Intro</div><div class="estado">Nivel 7</div></div>
+            <div class="logro" data-nivel="8"><div class="icono">📦</div><div class="nombre">Box Model</div><div class="estado">Nivel 8</div></div>
+            <div class="logro" data-nivel="9"><div class="icono">📐</div><div class="nombre">Flexbox</div><div class="estado">Nivel 9</div></div>
+            <div class="logro" data-nivel="10"><div class="icono">🎬</div><div class="nombre">Animaciones</div><div class="estado">Nivel 10</div></div>
+            <div class="logro" data-nivel="11"><div class="icono">⚡</div><div class="nombre">JavaScript</div><div class="estado">Nivel 11</div></div>
+            <div class="logro" data-nivel="12"><div class="icono">🌐</div><div class="nombre">DOM</div><div class="estado">Nivel 12</div></div>
+            <div class="logro" data-nivel="13"><div class="icono">📐</div><div class="nombre">CSS Grid</div><div class="estado">Nivel 13</div></div>
+            <div class="logro" data-nivel="14"><div class="icono">📱</div><div class="nombre">Responsive</div><div class="estado">Nivel 14</div></div>
+            <div class="logro" data-nivel="15"><div class="icono">🎯</div><div class="nombre">Eventos JS</div><div class="estado">Nivel 15</div></div>
+            <div class="logro" data-nivel="16"><div class="icono">💾</div><div class="nombre">LocalStorage</div><div class="estado">Nivel 16</div></div>
+            <div class="logro" data-nivel="17"><div class="icono">🌈</div><div class="nombre">Animaciones CSS</div><div class="estado">Nivel 17</div></div>
+            <div class="logro" data-nivel="18"><div class="icono">🎓</div><div class="nombre">Proyecto Final</div><div class="estado">Nivel 18</div></div>
+        </div>
+    </section>
+    
+    <!-- Instrucciones -->
+    <section class="editor-final">
+        <div class="editor-instrucciones">
+            <h2>📋 Tu Misión Final</h2>
+            <p style="margin-bottom: 15px; color: #94a3b8;">
+                ¡Es hora de crear tu propia página web! Usa todo lo que aprendiste en los 18 niveles:
+            </p>
+            <div class="instrucciones-lista">
+                <div class="instruccion-item">
+                    <span class="numero">1</span>
+                    <span>Estructura HTML correcta (DOCTYPE, head, body)</span>
+                </div>
+                <div class="instruccion-item">
+                    <span class="numero">2</span>
+                    <span>Título y metadatos en el head</span>
+                </div>
+                <div class="instruccion-item">
+                    <span class="numero">3</span>
+                    <span>Navegación con enlaces</span>
+                </div>
+                <div class="instruccion-item">
+                    <span class="numero">4</span>
+                    <span>Al menos una imagen</span>
+                </div>
+                <div class="instruccion-item">
+                    <span class="numero">5</span>
+                    <span>Estilos CSS (colores, fuentes, layouts)</span>
+                </div>
+                <div class="instruccion-item">
+                    <span class="numero">6</span>
+                    <span>Algo de JavaScript interactivo</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plantillas -->
+        <div class="plantillas-section" style="padding: 0; margin-bottom: 20px;">
+            <h3 class="plantillas-titulo">✨ Elige una plantilla para empezar o crea la tuya</h3>
+            <div class="plantillas-grid">
+                <div class="plantilla-card" onclick="cargarPlantilla('personal')">
+                    <div class="plantilla-preview" id="preview-personal"></div>
+                    <div class="plantilla-info">
+                        <h4>👤 Página Personal</h4>
+                        <p>Perfecta para presentarte a ti mismo</p>
+                    </div>
+                </div>
+                <div class="plantilla-card" onclick="cargarPlantilla('mascotas')">
+                    <div class="plantilla-preview" id="preview-mascotas"></div>
+                    <div class="plantilla-info">
+                        <h4>🐾 Mis Mascotas</h4>
+                        <p>Muestra a tus amigos peludos</p>
+                    </div>
+                </div>
+                <div class="plantilla-card" onclick="cargarPlantilla('juegos')">
+                    <div class="plantilla-preview" id="preview-juegos"></div>
+                    <div class="plantilla-info">
+                        <h4>🎮 Mis Juegos Favoritos</h4>
+                        <p>Comparte tus videojuegos preferidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Editor -->
+        <div class="editor-contenedor">
+            <div class="panel-codigo">
+                <div class="panel-header">
+                    <div class="panel-titulo">
+                        <span>💻</span>
+                        <span>Tu Código HTML/CSS/JS</span>
+                    </div>
+                    <div class="panel-botones">
+                        <button class="btn-panel btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                        <button class="btn-panel btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                        <button class="btn-panel btn-descargar" onclick="descargarHTML()">💾 Descargar</button>
+                        <button class="btn-panel btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ver</button>
+                    </div>
+                </div>
+                <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"></textarea>
+            </div>
+            
+            <div class="panel-preview">
+                <div class="preview-header">
+                    <div class="preview-titulo">
+                        <span>👁️</span>
+                        <span>Vista Previa de tu Página</span>
+                    </div>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certificado -->
+    <section class="certificado-section" id="certificado">
+        <div class="certificado">
+            <h2 class="certificado-titulo">Certificado de Logro</h2>
+            <p class="certificado-texto">Este certificado reconoce que</p>
+            <div class="certificado-nombre" id="nombreCertificado">Tu Nombre</div>
+            <p class="certificado-texto">ha completado exitosamente el curso</p>
+            <p style="font-size: 1.5rem; color: #92400e; font-weight: bold;">
+                "Introducción al Desarrollo Web"
+            </p>
+            <p class="certificado-texto">
+                Aprendiendo HTML, CSS y JavaScript
+            </p>
+            <div class="estrellas-certificado">⭐⭐⭐</div>
+            <p class="certificado-fecha" id="fechaCertificado"></p>
+            <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir Certificado</button>
+        </div>
+    </section>
+    
+    <footer class="footer-final">
+        <div class="footer-mensaje">🎉 ¡Felicidades por completar el curso!</div>
+        <p class="footer-creditos">
+            Ahora eres un desarrollador web junior. ¡Sigue practicando y creando proyectos increíbles!
+            <br>
+            <span style="font-size: 2rem;">🚀</span>
+        </p>
+    </footer>
+
+    <script>
+        // Plantillas
+        const plantillas = {
+            personal: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Página Personal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .tarjeta {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .foto {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 20px;
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .edad { color: #667eea; font-size: 1.2rem; margin-bottom: 20px; }
+        .hobbies {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .hobby {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        button:hover { transform: scale(1.1); }
+        #saludo { margin-top: 15px; color: #667eea; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="tarjeta">
+        <div class="foto">😊</div>
+        <h1 id="nombre">Tu Nombre</h1>
+        <p class="edad">📅 Tengo <span id="edadTexto">10</span> años</p>
+        
+        <p>🏠 Vivo en: <strong>Mi Ciudad</strong></p>
+        <p>🏫 Estudio en: <strong>Mi Escuela</strong></p>
+        
+        <div class="hobbies">
+            <span class="hobby">🎮 Videojuegos</span>
+            <span class="hobby">📚 Leer</span>
+            <span class="hobby">⚽ Deportes</span>
+        </div>
+        
+        <button onclick="saludar()">👋 ¡Salúdame!</button>
+        <p id="saludo"></p>
+    </div>
+
+    <script>
+        function saludar() {
+            const saludos = [
+                "¡Hola! Gracias por visitarme 😊",
+                "¡Qué bueno verte por aquí! 🎉",
+                "¡Bienvenido a mi página! ⭐",
+                "¡Espero que te guste mi web! 🚀"
+            ];
+            const random = Math.floor(Math.random() * saludos.length);
+            document.getElementById("saludo").textContent = saludos[random];
+        }
+    <\/script>
+</body>
+</html>`,
+
+            mascotas: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Mascotas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #ff6b9d;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .mascotas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .mascota {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .mascota:hover { transform: translateY(-10px); }
+        .mascota .emoji { font-size: 5rem; margin-bottom: 15px; }
+        .mascota h3 { color: #333; margin-bottom: 10px; }
+        .mascota .info { color: #666; font-size: 0.95rem; }
+        .mascota .dato {
+            background: #ff6b9d;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 0.85rem;
+        }
+        .likes { margin-top: 15px; }
+        .btn-like {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-like:hover { transform: scale(1.1); }
+        .contador { font-weight: bold; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐾 Mis Mascotas</h1>
+        <p style="color: #666; font-size: 1.2rem;">¡Conoce a mis amigos peludos!</p>
+    </header>
+    
+    <div class="mascotas">
+        <div class="mascota">
+            <div class="emoji">🐕</div>
+            <h3>Max</h3>
+            <p class="info">Mi perrito juguetón</p>
+            <div>
+                <span class="dato">3 años</span>
+                <span class="dato">Golden</span>
+            </div>
+            <div class="likes">
+                <button class="btn-like" onclick="darLike(this)">❤️ Me gusta</button>
+                <span class="contador">0</span>
+            </div>
+        </div>
+        
+        <div class="mascota">
+            <div class="emoji">🐈</div>
+            <h3>Luna</h3>
+            <p class="info">Mi gatita dormilona</p>
+            <div>
+                <span class="dato">2 años</span>
+                <span class="dato">Siamés</span>
+            </div>
+            <div class="likes">
+                <button class="btn-like" onclick="darLike(this)">❤️ Me gusta</button>
+                <span class="contador">0</span>
+            </div>
+        </div>
+        
+        <div class="mascota">
+            <div class="emoji">🐹</div>
+            <h3>Bolita</h3>
+            <p class="info">Mi hámster veloz</p>
+            <div>
+                <span class="dato">1 año</span>
+                <span class="dato">Sirio</span>
+            </div>
+            <div class="likes">
+                <button class="btn-like" onclick="darLike(this)">❤️ Me gusta</button>
+                <span class="contador">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function darLike(boton) {
+            const contador = boton.nextElementSibling;
+            let likes = parseInt(contador.textContent);
+            likes++;
+            contador.textContent = likes;
+            boton.style.background = "#22c55e";
+            boton.textContent = "💚 ¡Gracias!";
+        }
+    <\/script>
+</body>
+</html>`,
+
+            juegos: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Juegos Favoritos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 100vh;
+            padding: 30px;
+            color: white;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .juegos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .juego {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .juego:hover {
+            border-color: #ff6b6b;
+            transform: scale(1.02);
+        }
+        .juego.favorito {
+            border-color: #feca57;
+            background: rgba(254, 202, 87, 0.1);
+        }
+        .juego .icono { font-size: 3rem; margin-bottom: 15px; }
+        .juego h3 { color: #feca57; margin-bottom: 10px; }
+        .juego .rating { color: #ff6b6b; margin: 10px 0; }
+        .juego p { color: #aaa; font-size: 0.95rem; }
+        .filtros {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .filtro {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filtro:hover, .filtro.activo {
+            background: #667eea;
+        }
+        .total {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #feca57;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎮 Mis Juegos Favoritos</h1>
+        <p style="color: #aaa; margin-top: 10px;">Haz clic en un juego para marcarlo como favorito</p>
+    </header>
+    
+    <div class="filtros">
+        <button class="filtro activo" onclick="filtrar('todos')">🎯 Todos</button>
+        <button class="filtro" onclick="filtrar('accion')">⚔️ Acción</button>
+        <button class="filtro" onclick="filtrar('aventura')">🗺️ Aventura</button>
+        <button class="filtro" onclick="filtrar('deportes')">⚽ Deportes</button>
+    </div>
+    
+    <div class="juegos" id="listaJuegos">
+        <div class="juego" data-tipo="aventura" onclick="toggleFavorito(this)">
+            <div class="icono">🌍</div>
+            <h3>Minecraft</h3>
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+            <p>Construye mundos increíbles bloque a bloque</p>
+        </div>
+        
+        <div class="juego" data-tipo="accion" onclick="toggleFavorito(this)">
+            <div class="icono">🔫</div>
+            <h3>Fortnite</h3>
+            <div class="rating">⭐⭐⭐⭐</div>
+            <p>Battle royale con construcciones</p>
+        </div>
+        
+        <div class="juego" data-tipo="deportes" onclick="toggleFavorito(this)">
+            <div class="icono">⚽</div>
+            <h3>FIFA</h3>
+            <div class="rating">⭐⭐⭐⭐</div>
+            <p>El mejor juego de fútbol</p>
+        </div>
+        
+        <div class="juego" data-tipo="aventura" onclick="toggleFavorito(this)">
+            <div class="icono">🗡️</div>
+            <h3>Zelda</h3>
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+            <p>Aventuras épicas en Hyrule</p>
+        </div>
+    </div>
+    
+    <div class="total">
+        ⭐ Favoritos: <span id="contadorFavoritos">0</span>
+    </div>
+
+    <script>
+        function toggleFavorito(elemento) {
+            elemento.classList.toggle("favorito");
+            actualizarContador();
+        }
+        
+        function actualizarContador() {
+            const favoritos = document.querySelectorAll(".juego.favorito").length;
+            document.getElementById("contadorFavoritos").textContent = favoritos;
+        }
+        
+        function filtrar(tipo) {
+            document.querySelectorAll(".filtro").forEach(f => f.classList.remove("activo"));
+            event.target.classList.add("activo");
+            
+            document.querySelectorAll(".juego").forEach(j => {
+                if (tipo === "todos" || j.dataset.tipo === tipo) {
+                    j.style.display = "block";
+                } else {
+                    j.style.display = "none";
+                }
+            });
+        }
+    <\/script>
+</body>
+</html>`
+        };
+        
+        let nombreEstudiante = localStorage.getItem('nombreEstudiante') || '';
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificar nombre
+            if (!nombreEstudiante) {
+                document.getElementById('modalNombre').classList.remove('hidden');
+            } else {
+                document.getElementById('modalNombre').classList.add('hidden');
+                document.getElementById('nombreCertificado').textContent = nombreEstudiante;
+            }
+            
+            // Fecha certificado
+            const hoy = new Date();
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('fechaCertificado').textContent = 
+                'Fecha: ' + hoy.toLocaleDateString('es-ES', opciones);
+            
+            // Cargar logros
+            cargarLogros();
+            
+            // Cargar plantilla por defecto
+            cargarPlantilla('personal');
+            
+            // Crear previews de plantillas
+            crearPreviews();
+            
+            // Confetti si completó todo
+            if (todosLogrosCompletados()) {
+                lanzarConfetti();
+            }
+        });
+        
+        function guardarNombre() {
+            const nombre = document.getElementById('inputNombreEstudiante').value.trim();
+            if (nombre) {
+                nombreEstudiante = nombre;
+                localStorage.setItem('nombreEstudiante', nombre);
+                document.getElementById('nombreCertificado').textContent = nombre;
+                document.getElementById('modalNombre').classList.add('hidden');
+                lanzarConfetti();
+            }
+        }
+        
+        function cargarLogros() {
+            for (let i = 1; i <= 12; i++) {
+                if (localStorage.getItem(`nivel${i.toString().padStart(2, '0')}_completado`) === 'true' ||
+                    localStorage.getItem(`nivel${i}_completado`) === 'true') {
+                    const logro = document.querySelector(`.logro[data-nivel="${i}"]`);
+                    if (logro) {
+                        logro.classList.add('completado');
+                        logro.querySelector('.estado').textContent = '✅ Completado';
+                    }
+                }
+            }
+        }
+        
+        function todosLogrosCompletados() {
+            for (let i = 1; i <= 12; i++) {
+                if (localStorage.getItem(`nivel${i.toString().padStart(2, '0')}_completado`) !== 'true' &&
+                    localStorage.getItem(`nivel${i}_completado`) !== 'true') {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        function crearPreviews() {
+            Object.keys(plantillas).forEach(key => {
+                const container = document.getElementById(`preview-${key}`);
+                if (container) {
+                    const iframe = document.createElement('iframe');
+                    iframe.srcdoc = plantillas[key];
+                    container.appendChild(iframe);
+                }
+            });
+        }
+        
+        function cargarPlantilla(tipo) {
+            document.getElementById('codigoEditor').value = plantillas[tipo];
+            ejecutarCodigo();
+        }
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            cargarPlantilla('personal');
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        function descargarHTML() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const blob = new Blob([codigo], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mi-pagina-web.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function lanzarConfetti() {
+            const colores = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colores[Math.floor(Math.random() * colores.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>

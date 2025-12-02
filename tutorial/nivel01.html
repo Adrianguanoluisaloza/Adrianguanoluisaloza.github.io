@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 Nivel 1 - DOCTYPE y estructura básica</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        /* Header del nivel */
+        .nivel-header {
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Navegación entre niveles */
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        /* Barra de progreso del nivel */
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Contenido principal */
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .contenido-principal {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Panel de explicación */
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--primario);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        /* Secciones de explicación */
+        .seccion-explicacion {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid var(--primario);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--primario);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .seccion-explicacion p {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        
+        /* Código explicado inline */
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+            font-size: 0.95rem;
+        }
+        
+        /* Panel del editor */
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #1e3a5f, #2d4a6f);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-ejecutar {
+            background: var(--exito);
+            color: white;
+        }
+        
+        .btn-ejecutar:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+        
+        .btn-reset {
+            background: var(--warning);
+            color: black;
+        }
+        
+        .btn-reset:hover {
+            background: #d97706;
+        }
+        
+        .btn-copiar {
+            background: var(--primario);
+            color: white;
+        }
+        
+        .btn-copiar:hover {
+            background: #5a67d8;
+        }
+        
+        /* Editor de código */
+        .editor-codigo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+            tab-size: 2;
+        }
+        
+        .codigo-textarea:focus {
+            outline: 2px solid var(--primario);
+        }
+        
+        /* Vista previa */
+        .preview-container {
+            border-top: 2px solid var(--borde);
+        }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 200px;
+            background: white;
+            border: none;
+        }
+        
+        /* Actividades interactivas */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--warning);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .quiz-opcion.correcta {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .quiz-opcion.incorrecta {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .quiz-opcion input[type="radio"] {
+            display: none;
+        }
+        
+        .quiz-opcion .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion.selected .radio-custom {
+            border-color: var(--primario);
+            background: var(--primario);
+        }
+        
+        .quiz-opcion.correcta .radio-custom {
+            border-color: var(--exito);
+            background: var(--exito);
+        }
+        
+        .quiz-opcion.incorrecta .radio-custom {
+            border-color: var(--error);
+            background: var(--error);
+        }
+        
+        /* Botón verificar */
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-verificar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Resultado del quiz */
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        /* Desafío de código */
+        .desafio {
+            background: rgba(118, 75, 162, 0.1);
+            border: 2px solid var(--secundario);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .desafio-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secundario);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .desafio-instrucciones {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .desafio-instrucciones ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        /* Tips */
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--exito);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .animar-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Mascota */
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--primario);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible {
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mascota-icono {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .btn-ayuda-flotante:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer del nivel */
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-continuar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-continuar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Tabla de referencia */
+        .tabla-referencia {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .tabla-referencia th,
+        .tabla-referencia td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--borde);
+        }
+        
+        .tabla-referencia th {
+            background: var(--primario);
+            color: white;
+        }
+        
+        .tabla-referencia tr:nth-child(even) {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        /* Logros */
+        .logro-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--tarjeta);
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s ease;
+        }
+        
+        .logro-popup.visible {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .logro-popup .icono {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .overlay.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header del nivel -->
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>🏠</span>
+            <span>NIVEL 1</span>
+        </div>
+        <h1>DOCTYPE y Estructura Básica del HTML</h1>
+    </header>
+    
+    <!-- Navegación -->
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">
+            <span>🏠</span> Menú Principal
+        </a>
+        <div style="display: flex; gap: 10px;">
+            <button class="nav-btn disabled">
+                <span>⬅️</span> Anterior
+            </button>
+            <a href="nivel02.html" class="nav-btn" id="btnSiguiente">
+                Siguiente <span>➡️</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Barra de progreso -->
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 1</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <!-- Contenido Principal -->
+    <main class="contenido-principal">
+        <!-- Panel de Explicación -->
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Aprende sobre DOCTYPE y la estructura HTML</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🤔 ¿Qué es DOCTYPE?</h3>
+                <p>
+                    El <span class="codigo-inline">&lt;!DOCTYPE html&gt;</span> es como 
+                    <strong>una tarjeta de identificación</strong> para tu página web. 
+                    Le dice al navegador (Chrome, Firefox, Edge) que tu archivo es un 
+                    documento HTML5 moderno.
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Dato Curioso</h4>
+                <p>¡DOCTYPE siempre va en la primera línea del archivo! Si no lo pones, 
+                   el navegador puede mostrar tu página de forma incorrecta.</p>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🏗️ La etiqueta HTML</h3>
+                <p>
+                    La etiqueta <span class="codigo-inline">&lt;html&gt;</span> es como 
+                    una <strong>caja gigante</strong> que contiene TODO tu sitio web. 
+                    Siempre tiene una etiqueta de apertura y una de cierre.
+                </p>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🌍 El atributo lang</h3>
+                <p>
+                    <span class="codigo-inline">lang="es"</span> le dice al navegador 
+                    que la página está en <strong>español</strong>. Esto ayuda a:
+                </p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>🔊 Lectores de pantalla pronuncien bien</li>
+                    <li>🔍 Google entienda el idioma</li>
+                    <li>📝 El corrector ortográfico funcione</li>
+                </ul>
+            </div>
+            
+            <h3 style="margin-top: 25px; color: var(--primario);">📋 Tabla de códigos de idioma:</h3>
+            <table class="tabla-referencia">
+                <tr>
+                    <th>Código</th>
+                    <th>Idioma</th>
+                    <th>Ejemplo</th>
+                </tr>
+                <tr>
+                    <td><code>es</code></td>
+                    <td>🇪🇸 Español</td>
+                    <td>lang="es"</td>
+                </tr>
+                <tr>
+                    <td><code>en</code></td>
+                    <td>🇺🇸 Inglés</td>
+                    <td>lang="en"</td>
+                </tr>
+                <tr>
+                    <td><code>fr</code></td>
+                    <td>🇫🇷 Francés</td>
+                    <td>lang="fr"</td>
+                </tr>
+                <tr>
+                    <td><code>pt</code></td>
+                    <td>🇧🇷 Portugués</td>
+                    <td>lang="pt"</td>
+                </tr>
+            </table>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 Estructura básica completa</h3>
+                <p>
+                    Todo documento HTML tiene esta estructura mínima:
+                </p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li><strong>DOCTYPE</strong> - Identifica el tipo de documento</li>
+                    <li><strong>html</strong> - Contenedor principal</li>
+                    <li><strong>head</strong> - Información del documento (nivel 2)</li>
+                    <li><strong>body</strong> - Contenido visible (nivel 3)</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Panel del Editor -->
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor de Código En Vivo</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">
+                        📋 Copiar
+                    </button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">
+                        🔄 Reset
+                    </button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">
+                        ▶️ Ejecutar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="editor-codigo">
+                <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Mi Primera Página</title>
+</head>
+<body>
+    <h1>¡Hola Mundo!</h1>
+    <p>Esta es mi primera página web.</p>
+    <p>¡Estoy aprendiendo HTML!</p>
+</body>
+</html></textarea>
+            </div>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Actividades -->
+    <section style="padding: 20px; max-width: 1600px; margin: 0 auto;">
+        <div class="actividad">
+            <div class="actividad-header">
+                <span>🎮</span>
+                <span>Actividad 1: Responde las preguntas</span>
+            </div>
+            
+            <div class="quiz-pregunta" id="quiz1">
+                <h4>Pregunta 1: ¿Qué hace el DOCTYPE?</h4>
+                <div class="quiz-opciones">
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q1" value="a">
+                        <span class="radio-custom"></span>
+                        <span>Define el color de la página</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="true">
+                        <input type="radio" name="q1" value="b">
+                        <span class="radio-custom"></span>
+                        <span>Le dice al navegador que es un documento HTML5</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q1" value="c">
+                        <span class="radio-custom"></span>
+                        <span>Agrega imágenes a la página</span>
+                    </label>
+                </div>
+                <div class="quiz-resultado" id="resultado1"></div>
+            </div>
+            
+            <div class="quiz-pregunta" id="quiz2">
+                <h4>Pregunta 2: ¿Qué significa lang="es"?</h4>
+                <div class="quiz-opciones">
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q2" value="a">
+                        <span class="radio-custom"></span>
+                        <span>El tamaño de la letra es grande</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q2" value="b">
+                        <span class="radio-custom"></span>
+                        <span>La página es de Estados Unidos</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="true">
+                        <input type="radio" name="q2" value="c">
+                        <span class="radio-custom"></span>
+                        <span>El idioma de la página es español</span>
+                    </label>
+                </div>
+                <div class="quiz-resultado" id="resultado2"></div>
+            </div>
+            
+            <div class="quiz-pregunta" id="quiz3">
+                <h4>Pregunta 3: ¿Dónde va el DOCTYPE?</h4>
+                <div class="quiz-opciones">
+                    <label class="quiz-opcion" data-correcta="true">
+                        <input type="radio" name="q3" value="a">
+                        <span class="radio-custom"></span>
+                        <span>En la primera línea del archivo</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q3" value="b">
+                        <span class="radio-custom"></span>
+                        <span>Dentro del body</span>
+                    </label>
+                    <label class="quiz-opcion" data-correcta="false">
+                        <input type="radio" name="q3" value="c">
+                        <span class="radio-custom"></span>
+                        <span>Al final del documento</span>
+                    </label>
+                </div>
+                <div class="quiz-resultado" id="resultado3"></div>
+            </div>
+            
+            <button class="btn-verificar" onclick="verificarQuiz()">
+                ✅ Verificar Respuestas
+            </button>
+        </div>
+        
+        <!-- Desafío de código -->
+        <div class="desafio">
+            <div class="desafio-header">
+                <span>🏆</span>
+                <span>Desafío: ¡Modifica el código!</span>
+            </div>
+            <div class="desafio-instrucciones">
+                <p>Usa el editor de arriba para hacer estos cambios:</p>
+                <ul>
+                    <li>✏️ Cambia el idioma de "es" a "en" (inglés)</li>
+                    <li>✏️ Modifica el título dentro de &lt;title&gt;</li>
+                    <li>✏️ Cambia el texto del &lt;h1&gt; por tu nombre</li>
+                    <li>✏️ Agrega un nuevo párrafo &lt;p&gt; con tu edad</li>
+                </ul>
+            </div>
+            <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">
+                ▶️ Probar mis cambios
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer con navegación -->
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐⭐⭐</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <button class="btn-continuar" id="btnContinuar" onclick="continuarNivel()">
+            🚀 Continuar al Nivel 2
+        </button>
+    </footer>
+    
+    <!-- Botón de ayuda -->
+    <button class="btn-ayuda-flotante" onclick="mostrarAyuda()">🤖</button>
+    
+    <!-- Mascota de ayuda -->
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="cerrarAyuda()">×</button>
+        <div class="mascota-icono">🤖</div>
+        <p><strong>¡Hola!</strong> Soy CodeBot, tu asistente.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 <strong>Tip:</strong> Prueba cambiar el texto dentro de las etiquetas 
+            y haz clic en "Ejecutar" para ver los cambios en la vista previa.
+        </p>
+    </div>
+    
+    <!-- Popup de logro -->
+    <div class="overlay" id="overlay"></div>
+    <div class="logro-popup" id="logroPopup">
+        <div class="icono">🏆</div>
+        <h2>¡Nivel Completado!</h2>
+        <p style="margin: 15px 0;">Has aprendido sobre DOCTYPE y la estructura HTML</p>
+        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <button class="btn-continuar" onclick="irSiguienteNivel()" style="margin-top: 20px;">
+            Ir al Nivel 2 ➡️
+        </button>
+    </div>
+
+    <script>
+        // Código inicial para reset
+        const codigoInicial = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Mi Primera Página</title>
+</head>
+<body>
+    <h1>¡Hola Mundo!</h1>
+    <p>Esta es mi primera página web.</p>
+    <p>¡Estoy aprendiendo HTML!</p>
+</body>
+</html>`;
+
+        // Variables de estado
+        let quizCompletado = false;
+        let codigoModificado = false;
+        let progreso = 0;
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            cargarProgreso();
+            
+            // Detectar cambios en el editor
+            document.getElementById('codigoEditor').addEventListener('input', () => {
+                codigoModificado = true;
+                actualizarProgreso();
+            });
+            
+            // Configurar opciones del quiz
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    const grupo = opcion.closest('.quiz-pregunta');
+                    grupo.querySelectorAll('.quiz-opcion').forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        });
+        
+        // Ejecutar código en el preview
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const previewDoc = preview.contentDocument || preview.contentWindow.document;
+            previewDoc.open();
+            previewDoc.write(codigo);
+            previewDoc.close();
+        }
+        
+        // Resetear código
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        // Copiar código
+        function copiarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            navigator.clipboard.writeText(codigo).then(() => {
+                const btn = document.querySelector('.btn-copiar');
+                btn.innerHTML = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.innerHTML = '📋 Copiar';
+                }, 2000);
+            });
+        }
+        
+        // Verificar quiz
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            for (let i = 1; i <= 3; i++) {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(op => {
+                    op.classList.remove('correcta', 'incorrecta');
+                });
+                
+                if (seleccionada) {
+                    const esCorrecta = seleccionada.dataset.correcta === 'true';
+                    if (esCorrecta) {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto! Muy bien';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto. Intenta de nuevo';
+                        // Mostrar la correcta
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            }
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        // Actualizar progreso
+        function actualizarProgreso() {
+            let nuevoProgreso = 0;
+            if (quizCompletado) nuevoProgreso += 50;
+            if (codigoModificado) nuevoProgreso += 50;
+            
+            progreso = nuevoProgreso;
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            // Actualizar estrellas
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡Excelente! ¡Completaste todo!';
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+                document.getElementById('mensajeFinal').textContent = '¡Muy bien! Casi terminas';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+            
+            guardarProgreso();
+            
+            // Si completó todo, mostrar logro
+            if (progreso >= 100 && quizCompletado) {
+                setTimeout(mostrarLogro, 500);
+            }
+        }
+        
+        // Guardar/cargar progreso
+        function guardarProgreso() {
+            localStorage.setItem('nivel1_progreso', progreso);
+            localStorage.setItem('nivel1_completado', progreso >= 100);
+        }
+        
+        function cargarProgreso() {
+            const guardado = localStorage.getItem('nivel1_progreso');
+            if (guardado) {
+                progreso = parseInt(guardado);
+                document.getElementById('progresoFill').style.width = progreso + '%';
+                document.getElementById('progresoTexto').textContent = progreso + '%';
+            }
+        }
+        
+        // Mostrar logro
+        function mostrarLogro() {
+            document.getElementById('overlay').classList.add('visible');
+            document.getElementById('logroPopup').classList.add('visible');
+        }
+        
+        // Ir al siguiente nivel
+        function irSiguienteNivel() {
+            window.location.href = 'nivel02.html';
+        }
+        
+        // Continuar nivel
+        function continuarNivel() {
+            window.location.href = 'nivel02.html';
+        }
+        
+        // Ayuda
+        function mostrarAyuda() {
+            document.getElementById('mascotaAyuda').classList.add('visible');
+        }
+        
+        function cerrarAyuda() {
+            document.getElementById('mascotaAyuda').classList.remove('visible');
+        }
+    </script>
+</body>
+</html>

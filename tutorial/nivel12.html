@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 Nivel 12 - DOM: Manipulando la Página</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #06b6d4;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: white; }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        .metodos-dom {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .metodo-dom {
+            background: rgba(6, 182, 212, 0.15);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.3s;
+        }
+        
+        .metodo-dom:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.3);
+        }
+        
+        .metodo-dom .metodo { font-family: 'Consolas', monospace; color: #22d3ee; font-weight: bold; }
+        .metodo-dom .descripcion { color: #94a3b8; font-size: 0.9rem; margin-top: 5px; }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 420px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border: none;
+        }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Playground DOM */
+        .dom-playground {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) { .dom-playground { grid-template-columns: 1fr; } }
+        
+        .dom-controles {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .dom-controles h4 {
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .control-grupo {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .control-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .control-grupo input,
+        .control-grupo select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .control-grupo input:focus,
+        .control-grupo select:focus {
+            outline: none;
+            border-color: var(--nivel-color);
+        }
+        
+        .btn-aplicar {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, var(--nivel-color), #0891b2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .btn-aplicar:hover { transform: scale(1.02); }
+        
+        .dom-resultado {
+            background: #0d1117;
+            border: 2px solid #30363d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .dom-resultado-header {
+            background: #161b22;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .dom-preview {
+            padding: 30px;
+            min-height: 250px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        #elementoDemo {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        /* Retos */
+        .retos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .reto {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .reto h5 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reto p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
+        
+        .reto-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: white;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .reto-input:focus { outline: none; border-color: var(--nivel-color); }
+        
+        .btn-reto {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: var(--primario);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-reto:hover { transform: scale(1.02); }
+        
+        .reto-resultado {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .reto-resultado.correcto {
+            display: block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .reto-resultado.incorrecto {
+            display: block;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #0891b2);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>🌐</span>
+            <span>NIVEL 12</span>
+        </div>
+        <h1>DOM - ¡Controla toda la página!</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel11.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel13.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 12</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>El DOM (Document Object Model)</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🌐 ¿Qué es el DOM?</h3>
+                <p>
+                    El <strong>DOM</strong> es como un mapa de todos los elementos de tu página web. 
+                    JavaScript usa este mapa para encontrar y modificar cualquier parte de la página:
+                    textos, colores, estilos, ¡todo!
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Piensa en el DOM como...</h4>
+                <p>Un árbol familiar donde <code>document</code> es el abuelo, y todos los elementos HTML son sus hijos y nietos. ¡Puedes visitar y cambiar a cualquier familiar!</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">
+                🛠️ Métodos principales:
+            </h3>
+            
+            <div class="metodos-dom">
+                <div class="metodo-dom">
+                    <div class="metodo">document.getElementById("id")</div>
+                    <div class="descripcion">Busca UN elemento por su ID único</div>
+                </div>
+                <div class="metodo-dom">
+                    <div class="metodo">document.querySelector(".clase")</div>
+                    <div class="descripcion">Busca el PRIMER elemento que coincida</div>
+                </div>
+                <div class="metodo-dom">
+                    <div class="metodo">document.querySelectorAll("p")</div>
+                    <div class="descripcion">Busca TODOS los elementos que coincidan</div>
+                </div>
+                <div class="metodo-dom">
+                    <div class="metodo">elemento.textContent</div>
+                    <div class="descripcion">Lee o cambia el texto de un elemento</div>
+                </div>
+                <div class="metodo-dom">
+                    <div class="metodo">elemento.style.propiedad</div>
+                    <div class="descripcion">Cambia estilos CSS desde JavaScript</div>
+                </div>
+                <div class="metodo-dom">
+                    <div class="metodo">elemento.classList.add/remove</div>
+                    <div class="descripcion">Agrega o quita clases CSS</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 Ejemplo completo:</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+// 1. Obtener elemento
+let titulo = document.getElementById("miTitulo");
+
+// 2. Cambiar texto
+titulo.textContent = "¡Nuevo título!";
+
+// 3. Cambiar estilos
+titulo.style.color = "blue";
+titulo.style.fontSize = "2rem";
+
+// 4. Agregar clase CSS
+titulo.classList.add("destacado");
+
+// 5. Agregar evento
+titulo.addEventListener("click", function() {
+    alert("¡Hiciste clic!");
+});</pre>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor DOM Interactivo</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manipulando el DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #cffafe, #a5f3fc);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .contenedor {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #0891b2;
+            transition: all 0.3s;
+        }
+        
+        .tarjeta {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .destacada {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            transform: scale(1.05);
+            border: 3px solid #f59e0b;
+        }
+        
+        .lista {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .lista li {
+            background: #f1f5f9;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lista li:hover {
+            background: #e2e8f0;
+            transform: translateX(10px);
+        }
+        
+        .lista li.completado {
+            background: #d1fae5;
+            text-decoration: line-through;
+        }
+        
+        button {
+            padding: 12px 25px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        button:hover { transform: scale(1.1); }
+        
+        .btn-agregar { background: #22c55e; color: white; }
+        .btn-color { background: #8b5cf6; color: white; }
+        .btn-toggle { background: #f59e0b; color: white; }
+        
+        input {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #0891b2;
+            border-radius: 8px;
+            width: 250px;
+        }
+        
+        #contador {
+            font-size: 2rem;
+            color: #0891b2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 id="titulo">🌐 Manipulando el DOM</h1>
+        
+        <div class="tarjeta" id="tarjeta1">
+            <h3>Contador de clics</h3>
+            <p id="contador">0</p>
+            <button onclick="sumarClic()">👆 ¡Haz clic!</button>
+            <button onclick="resetearContador()">🔄 Resetear</button>
+        </div>
+        
+        <div class="tarjeta" id="tarjeta2">
+            <h3>Cambiar estilos</h3>
+            <button class="btn-color" onclick="cambiarColorTitulo()">
+                🎨 Cambiar color título
+            </button>
+            <button class="btn-toggle" onclick="toggleDestacada()">
+                ⭐ Toggle destacada
+            </button>
+        </div>
+        
+        <div class="tarjeta" id="tarjeta3">
+            <h3>Lista de tareas</h3>
+            <input type="text" id="nuevaTarea" placeholder="Nueva tarea...">
+            <button class="btn-agregar" onclick="agregarTarea()">
+                ➕ Agregar
+            </button>
+            <ul class="lista" id="listaTareas">
+                <li onclick="toggleCompletado(this)">Aprender HTML</li>
+                <li onclick="toggleCompletado(this)">Aprender CSS</li>
+                <li onclick="toggleCompletado(this)">Aprender JavaScript</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Variables
+        let clics = 0;
+        const colores = ["#ef4444", "#22c55e", "#3b82f6", "#8b5cf6", "#f59e0b"];
+        let colorIndex = 0;
+        
+        // Función: Sumar clic
+        function sumarClic() {
+            clics++;
+            document.getElementById("contador").textContent = clics;
+        }
+        
+        // Función: Resetear contador
+        function resetearContador() {
+            clics = 0;
+            document.getElementById("contador").textContent = "0";
+        }
+        
+        // Función: Cambiar color del título
+        function cambiarColorTitulo() {
+            let titulo = document.getElementById("titulo");
+            titulo.style.color = colores[colorIndex];
+            colorIndex = (colorIndex + 1) % colores.length;
+        }
+        
+        // Función: Toggle clase destacada
+        function toggleDestacada() {
+            let tarjeta = document.getElementById("tarjeta1");
+            tarjeta.classList.toggle("destacada");
+        }
+        
+        // Función: Agregar tarea
+        function agregarTarea() {
+            let input = document.getElementById("nuevaTarea");
+            let texto = input.value.trim();
+            
+            if (texto !== "") {
+                let lista = document.getElementById("listaTareas");
+                let nuevaLi = document.createElement("li");
+                nuevaLi.textContent = texto;
+                nuevaLi.onclick = function() { toggleCompletado(this); };
+                lista.appendChild(nuevaLi);
+                input.value = "";
+            }
+        }
+        
+        // Función: Marcar como completado
+        function toggleCompletado(elemento) {
+            elemento.classList.toggle("completado");
+        }
+    </script>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa Interactiva</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Playground DOM -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🎮</span>
+            <span>Actividad 1: Playground DOM</span>
+        </div>
+        
+        <p style="margin-bottom: 20px; color: #94a3b8;">
+            Usa los controles para modificar el elemento de abajo. ¡Experimenta con diferentes valores!
+        </p>
+        
+        <div class="dom-playground">
+            <div class="dom-controles">
+                <h4>🛠️ Controles del DOM</h4>
+                
+                <div class="control-grupo">
+                    <label>📝 Cambiar texto (textContent):</label>
+                    <input type="text" id="inputTexto" value="¡Hola Mundo!" placeholder="Nuevo texto...">
+                </div>
+                
+                <div class="control-grupo">
+                    <label>🎨 Color de fondo (style.background):</label>
+                    <select id="selectFondo">
+                        <option value="linear-gradient(135deg, #667eea, #764ba2)">Púrpura</option>
+                        <option value="linear-gradient(135deg, #22c55e, #16a34a)">Verde</option>
+                        <option value="linear-gradient(135deg, #ef4444, #dc2626)">Rojo</option>
+                        <option value="linear-gradient(135deg, #f59e0b, #d97706)">Naranja</option>
+                        <option value="linear-gradient(135deg, #06b6d4, #0891b2)">Cian</option>
+                    </select>
+                </div>
+                
+                <div class="control-grupo">
+                    <label>📐 Tamaño de fuente (style.fontSize):</label>
+                    <select id="selectTamano">
+                        <option value="1rem">Pequeño (1rem)</option>
+                        <option value="1.5rem" selected>Normal (1.5rem)</option>
+                        <option value="2rem">Grande (2rem)</option>
+                        <option value="2.5rem">Muy grande (2.5rem)</option>
+                    </select>
+                </div>
+                
+                <div class="control-grupo">
+                    <label>📦 Border radius (style.borderRadius):</label>
+                    <select id="selectBorde">
+                        <option value="10px" selected>Redondeado (10px)</option>
+                        <option value="25px">Más redondeado (25px)</option>
+                        <option value="50px">Muy redondeado (50px)</option>
+                        <option value="0px">Sin redondeo</option>
+                    </select>
+                </div>
+                
+                <button class="btn-aplicar" onclick="aplicarCambios()">
+                    ✨ Aplicar cambios al DOM
+                </button>
+            </div>
+            
+            <div class="dom-resultado">
+                <div class="dom-resultado-header">
+                    <span>🎯 Resultado en vivo</span>
+                    <button onclick="resetElemento()" style="background: #ef4444; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">🔄 Reset</button>
+                </div>
+                <div class="dom-preview">
+                    <div id="elementoDemo">¡Hola Mundo!</div>
+                    <p style="color: #6b7280; font-size: 0.9rem;">
+                        Este elemento está siendo modificado con JavaScript DOM
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarPlayground()" style="margin-top: 20px;">
+            ✅ Verificar (haz al menos 3 cambios)
+        </button>
+        <div class="quiz-resultado" id="resultadoPlayground"></div>
+    </section>
+    
+    <!-- Retos DOM -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🧩</span>
+            <span>Actividad 2: Retos de código</span>
+        </div>
+        
+        <p style="margin-bottom: 20px; color: #94a3b8;">
+            Completa el código JavaScript para cada reto:
+        </p>
+        
+        <div class="retos-container">
+            <div class="reto" id="reto1">
+                <h5>🎯 Reto 1</h5>
+                <p>Obtén un elemento con ID "titulo". Completa:</p>
+                <input class="reto-input" id="respuesta1" placeholder="document.____('titulo')">
+                <button class="btn-reto" onclick="verificarReto(1)">Verificar</button>
+                <div class="reto-resultado" id="resultado1"></div>
+            </div>
+            
+            <div class="reto" id="reto2">
+                <h5>🎨 Reto 2</h5>
+                <p>Cambia el color del elemento a rojo. Completa:</p>
+                <input class="reto-input" id="respuesta2" placeholder="elemento.____.color = 'red'">
+                <button class="btn-reto" onclick="verificarReto(2)">Verificar</button>
+                <div class="reto-resultado" id="resultado2"></div>
+            </div>
+            
+            <div class="reto" id="reto3">
+                <h5>📝 Reto 3</h5>
+                <p>Cambia el texto de un elemento. Completa:</p>
+                <input class="reto-input" id="respuesta3" placeholder="elemento.____ = 'Nuevo texto'">
+                <button class="btn-reto" onclick="verificarReto(3)">Verificar</button>
+                <div class="reto-resultado" id="resultado3"></div>
+            </div>
+            
+            <div class="reto" id="reto4">
+                <h5>➕ Reto 4</h5>
+                <p>Agrega una clase "activo" al elemento. Completa:</p>
+                <input class="reto-input" id="respuesta4" placeholder="elemento.classList.____('activo')">
+                <button class="btn-reto" onclick="verificarReto(4)">Verificar</button>
+                <div class="reto-resultado" id="resultado4"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 3: Quiz DOM</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué significa DOM?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Document Object Model
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Data Output Method
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    Design Object Manager
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultadoQ1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Cuál método busca un elemento por su ID?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    document.findById()
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    document.getElementById()
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    document.searchId()
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultadoQ2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Cómo cambias el color de un elemento?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    elemento.color = "rojo"
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    elemento.style.color = "rojo"
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    elemento.css.color = "rojo"
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultadoQ3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <a href="final.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
+            🏆 Ir al Proyecto Final ➡️
+        </a>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Tip del DOM!</strong></p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 El DOM es tu superpoder para hacer páginas interactivas.
+            <br><br>
+            Recuerda: primero OBTÉN el elemento, luego MODIFÍCALO. ¡Siempre en ese orden!
+        </p>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let playgroundCompletado = false;
+        let retosCompletados = 0;
+        let cambiosRealizados = 0;
+        let progreso = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        // Playground DOM
+        function aplicarCambios() {
+            const elemento = document.getElementById('elementoDemo');
+            const texto = document.getElementById('inputTexto').value;
+            const fondo = document.getElementById('selectFondo').value;
+            const tamano = document.getElementById('selectTamano').value;
+            const borde = document.getElementById('selectBorde').value;
+            
+            elemento.textContent = texto;
+            elemento.style.background = fondo;
+            elemento.style.fontSize = tamano;
+            elemento.style.borderRadius = borde;
+            
+            cambiosRealizados++;
+        }
+        
+        function resetElemento() {
+            const elemento = document.getElementById('elementoDemo');
+            elemento.textContent = '¡Hola Mundo!';
+            elemento.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            elemento.style.fontSize = '1.5rem';
+            elemento.style.borderRadius = '10px';
+        }
+        
+        function verificarPlayground() {
+            const resultado = document.getElementById('resultadoPlayground');
+            
+            if (cambiosRealizados >= 3) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = '✅ ¡Excelente! Has manipulado el DOM correctamente';
+                playgroundCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = '❌ Haz al menos 3 cambios usando los controles';
+            }
+        }
+        
+        // Retos
+        const respuestasCorrectas = {
+            1: ['getelementbyid', 'getElementById'],
+            2: ['style'],
+            3: ['textcontent', 'textContent', 'innerText', 'innerHTML'],
+            4: ['add']
+        };
+        
+        function verificarReto(num) {
+            const respuesta = document.getElementById(`respuesta${num}`).value.trim().toLowerCase();
+            const resultado = document.getElementById(`resultado${num}`);
+            const correctas = respuestasCorrectas[num].map(r => r.toLowerCase());
+            
+            if (correctas.includes(respuesta)) {
+                resultado.className = 'reto-resultado correcto';
+                resultado.innerHTML = '✅ ¡Correcto!';
+                retosCompletados++;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'reto-resultado incorrecto';
+                resultado.innerHTML = '❌ Incorrecto. Pista: ' + respuestasCorrectas[num][0];
+            }
+        }
+        
+        // Quiz
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultadoQ${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            let puntos = 0;
+            if (playgroundCompletado) puntos += 30;
+            if (retosCompletados >= 4) puntos += 35;
+            else puntos += (retosCompletados / 4) * 35;
+            if (quizCompletado) puntos += 35;
+            
+            progreso = Math.round(puntos);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉 ¡Listo para el proyecto final!';
+                document.getElementById('btnContinuar').style.display = 'inline-block';
+                localStorage.setItem('nivel12_completado', 'true');
+            } else if (progreso >= 65) {
+                estrellas.textContent = '⭐⭐☆';
+            } else if (progreso >= 30) {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

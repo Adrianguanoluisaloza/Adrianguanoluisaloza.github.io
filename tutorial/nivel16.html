@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 Nivel 16 - LocalStorage</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #06b6d4;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: white; }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .progreso-barra { height: 10px; background: var(--borde); border-radius: 5px; overflow: hidden; }
+        .progreso-fill { height: 100%; background: linear-gradient(90deg, var(--exito), #34d399); transition: width 0.5s ease; }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 { color: var(--nivel-color); margin-bottom: 10px; }
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        .metodos-lista {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .metodo-item {
+            background: rgba(6, 182, 212, 0.15);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .metodo-item .codigo { font-family: 'Consolas', monospace; color: #22d3ee; font-size: 0.9rem; }
+        .metodo-item .desc { color: #94a3b8; font-size: 0.9rem; }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo { display: flex; align-items: center; gap: 10px; font-weight: bold; }
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame { width: 100%; min-height: 350px; background: white; border: none; }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Demo LocalStorage */
+        .storage-demo {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .storage-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .storage-input input {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            background: #1a1a2e;
+            color: white;
+        }
+        
+        .storage-input input:focus { outline: none; border-color: var(--nivel-color); }
+        
+        .storage-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-guardar { background: var(--exito); color: white; }
+        .btn-leer { background: var(--primario); color: white; }
+        .btn-borrar { background: var(--error); color: white; }
+        
+        .storage-visor {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            min-height: 150px;
+        }
+        
+        .storage-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(6, 182, 212, 0.2);
+            margin: 5px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--nivel-color);
+        }
+        
+        .storage-item .key { color: #22d3ee; }
+        .storage-item .value { color: #a5f3fc; }
+        
+        /* Notas App */
+        .notas-app {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .nota-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            background: #1a1a2e;
+            color: white;
+            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .nota-input:focus { outline: none; border-color: var(--nivel-color); }
+        
+        .notas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nota-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #1a1a2e;
+            border-radius: 10px;
+            border-left: 4px solid var(--nivel-color);
+        }
+        
+        .nota-item .texto { flex: 1; color: #e2e8f0; }
+        .nota-item .borrar {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom { width: 22px; height: 22px; border: 2px solid var(--borde); border-radius: 50%; }
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; }
+        .quiz-resultado.exito { display: flex; background: rgba(16, 185, 129, 0.2); border: 2px solid var(--exito); color: var(--exito); }
+        .quiz-resultado.error { display: flex; background: rgba(239, 68, 68, 0.2); border: 2px solid var(--error); color: var(--error); }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>💾</span>
+            <span>NIVEL 16</span>
+        </div>
+        <h1>LocalStorage - ¡Guarda información!</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel15.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel17.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 16</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>LocalStorage - Tu disco duro del navegador</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>💾 ¿Qué es LocalStorage?</h3>
+                <p>
+                    <strong>LocalStorage</strong> es como una memoria especial del navegador 
+                    donde puedes guardar información. ¡Lo mejor es que la información se 
+                    queda guardada incluso si cierras el navegador!
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Piensa en LocalStorage como...</h4>
+                <p>¡Un pequeño armario en tu navegador donde puedes guardar notas, puntuaciones, preferencias y más!</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">🛠️ Métodos principales:</h3>
+            
+            <div class="metodos-lista">
+                <div class="metodo-item">
+                    <div class="codigo">localStorage.setItem("clave", "valor")</div>
+                    <div class="desc">Guarda un dato</div>
+                </div>
+                <div class="metodo-item">
+                    <div class="codigo">localStorage.getItem("clave")</div>
+                    <div class="desc">Lee un dato</div>
+                </div>
+                <div class="metodo-item">
+                    <div class="codigo">localStorage.removeItem("clave")</div>
+                    <div class="desc">Borra un dato</div>
+                </div>
+                <div class="metodo-item">
+                    <div class="codigo">localStorage.clear()</div>
+                    <div class="desc">Borra TODO</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📝 Ejemplo práctico:</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px;">
+// Guardar
+localStorage.setItem("nombre", "Ana");
+localStorage.setItem("edad", "9");
+
+// Leer
+let nombre = localStorage.getItem("nombre");
+console.log(nombre); // "Ana"
+
+// Borrar uno
+localStorage.removeItem("edad");
+
+// Borrar todo
+localStorage.clear();</pre>
+            </div>
+            
+            <div class="tip-box">
+                <h4>⚠️ Importante:</h4>
+                <p>LocalStorage solo guarda texto (strings). Si quieres guardar números u objetos, usa JSON.stringify() para guardar y JSON.parse() para leer.</p>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor de LocalStorage</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ecfeff, #cffafe);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1 { text-align: center; color: #0891b2; }
+        
+        .contenedor {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tarjeta {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .tarjeta h3 { color: #06b6d4; margin-bottom: 15px; }
+        
+        /* Perfil */
+        .perfil-input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #06b6d4;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .perfil-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        
+        .perfil-btn:hover { transform: scale(1.02); }
+        
+        .perfil-display {
+            padding: 20px;
+            background: linear-gradient(135deg, #ecfeff, white);
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 2px solid #06b6d4;
+        }
+        
+        .perfil-display p { margin: 8px 0; color: #0e7490; }
+        .perfil-display strong { color: #06b6d4; }
+        
+        /* Contador persistente */
+        .contador-display {
+            font-size: 4rem;
+            text-align: center;
+            color: #06b6d4;
+            font-weight: bold;
+        }
+        
+        .contador-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .contador-btns button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .btn-sumar { background: #22c55e; color: white; }
+        .btn-restar { background: #ef4444; color: white; }
+        .btn-reset { background: #f59e0b; color: white; }
+        
+        /* Color favorito */
+        .color-opciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .color-btn {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .color-btn:hover { transform: scale(1.1); }
+        .color-btn.activo { border-color: #1e293b; }
+        
+        .mensaje-color {
+            text-align: center;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>💾 LocalStorage en Acción</h1>
+    
+    <div class="contenedor">
+        <!-- Perfil guardado -->
+        <div class="tarjeta">
+            <h3>👤 Tu Perfil (se guarda)</h3>
+            <input type="text" id="inputNombre" class="perfil-input" 
+                   placeholder="Tu nombre">
+            <input type="number" id="inputEdad" class="perfil-input" 
+                   placeholder="Tu edad">
+            <input type="text" id="inputColor" class="perfil-input" 
+                   placeholder="Color favorito">
+            <button class="perfil-btn" onclick="guardarPerfil()">
+                💾 Guardar Perfil
+            </button>
+            <div class="perfil-display" id="perfilDisplay">
+                <p>No hay perfil guardado</p>
+            </div>
+        </div>
+        
+        <!-- Contador persistente -->
+        <div class="tarjeta">
+            <h3>🔢 Contador que Recuerda</h3>
+            <div class="contador-display" id="contador">0</div>
+            <div class="contador-btns">
+                <button class="btn-restar" onclick="cambiarContador(-1)">➖</button>
+                <button class="btn-reset" onclick="resetContador()">🔄</button>
+                <button class="btn-sumar" onclick="cambiarContador(1)">➕</button>
+            </div>
+        </div>
+        
+        <!-- Tema color -->
+        <div class="tarjeta">
+            <h3>🎨 Elige y Guarda tu Color</h3>
+            <div class="color-opciones" id="colorOpciones">
+                <button class="color-btn" style="background: #ef4444" onclick="elegirColor('#ef4444', 'Rojo')"></button>
+                <button class="color-btn" style="background: #f97316" onclick="elegirColor('#f97316', 'Naranja')"></button>
+                <button class="color-btn" style="background: #eab308" onclick="elegirColor('#eab308', 'Amarillo')"></button>
+                <button class="color-btn" style="background: #22c55e" onclick="elegirColor('#22c55e', 'Verde')"></button>
+                <button class="color-btn" style="background: #06b6d4" onclick="elegirColor('#06b6d4', 'Cyan')"></button>
+                <button class="color-btn" style="background: #8b5cf6" onclick="elegirColor('#8b5cf6', 'Morado')"></button>
+                <button class="color-btn" style="background: #ec4899" onclick="elegirColor('#ec4899', 'Rosa')"></button>
+            </div>
+            <div class="mensaje-color" id="mensajeColor">
+                Elige un color
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 👤 PERFIL - Cargar al inicio
+        window.onload = function() {
+            cargarPerfil();
+            cargarContador();
+            cargarColor();
+        };
+        
+        function guardarPerfil() {
+            const nombre = document.getElementById("inputNombre").value;
+            const edad = document.getElementById("inputEdad").value;
+            const color = document.getElementById("inputColor").value;
+            
+            // Guardar en localStorage
+            localStorage.setItem("perfil_nombre", nombre);
+            localStorage.setItem("perfil_edad", edad);
+            localStorage.setItem("perfil_color", color);
+            
+            cargarPerfil();
+            alert("¡Perfil guardado! 💾");
+        }
+        
+        function cargarPerfil() {
+            const nombre = localStorage.getItem("perfil_nombre");
+            const edad = localStorage.getItem("perfil_edad");
+            const color = localStorage.getItem("perfil_color");
+            
+            if (nombre) {
+                document.getElementById("perfilDisplay").innerHTML = `
+                    <p>👤 <strong>Nombre:</strong> ${nombre}</p>
+                    <p>🎂 <strong>Edad:</strong> ${edad} años</p>
+                    <p>🎨 <strong>Color:</strong> ${color}</p>
+                `;
+                // También llenar los inputs
+                document.getElementById("inputNombre").value = nombre;
+                document.getElementById("inputEdad").value = edad;
+                document.getElementById("inputColor").value = color;
+            }
+        }
+        
+        // 🔢 CONTADOR
+        function cargarContador() {
+            const guardado = localStorage.getItem("mi_contador");
+            const valor = guardado ? parseInt(guardado) : 0;
+            document.getElementById("contador").textContent = valor;
+        }
+        
+        function cambiarContador(cambio) {
+            const display = document.getElementById("contador");
+            let valor = parseInt(display.textContent) + cambio;
+            display.textContent = valor;
+            localStorage.setItem("mi_contador", valor);
+            
+            // Efecto visual
+            display.style.color = cambio > 0 ? "#22c55e" : "#ef4444";
+            setTimeout(() => display.style.color = "#06b6d4", 300);
+        }
+        
+        function resetContador() {
+            localStorage.removeItem("mi_contador");
+            document.getElementById("contador").textContent = "0";
+        }
+        
+        // 🎨 COLOR
+        function cargarColor() {
+            const colorGuardado = localStorage.getItem("color_favorito");
+            const nombreGuardado = localStorage.getItem("color_nombre");
+            
+            if (colorGuardado) {
+                const mensaje = document.getElementById("mensajeColor");
+                mensaje.style.background = colorGuardado;
+                mensaje.style.color = "white";
+                mensaje.textContent = "Tu color guardado: " + nombreGuardado;
+                
+                // Marcar botón activo
+                document.querySelectorAll(".color-btn").forEach(btn => {
+                    btn.classList.remove("activo");
+                    if (btn.style.background === colorGuardado) {
+                        btn.classList.add("activo");
+                    }
+                });
+            }
+        }
+        
+        function elegirColor(color, nombre) {
+            localStorage.setItem("color_favorito", color);
+            localStorage.setItem("color_nombre", nombre);
+            cargarColor();
+        }
+    </script>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa Interactiva</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Práctica LocalStorage -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🎮</span>
+            <span>Actividad 1: Experimenta con LocalStorage</span>
+        </div>
+        
+        <p style="margin-bottom: 20px; color: #94a3b8;">
+            Usa los controles para guardar, leer y borrar datos del LocalStorage:
+        </p>
+        
+        <div class="storage-demo">
+            <div class="storage-input">
+                <input type="text" id="inputClave" placeholder="Clave (ej: nombre)">
+                <input type="text" id="inputValor" placeholder="Valor (ej: Ana)">
+                <button class="storage-btn btn-guardar" onclick="guardarDato()">💾 Guardar</button>
+            </div>
+            
+            <div class="storage-input">
+                <input type="text" id="inputLeer" placeholder="Clave a leer">
+                <button class="storage-btn btn-leer" onclick="leerDato()">📖 Leer</button>
+                <button class="storage-btn btn-borrar" onclick="borrarDato()">🗑️ Borrar</button>
+            </div>
+            
+            <h4 style="color: var(--nivel-color); margin: 15px 0;">📦 Contenido actual del LocalStorage:</h4>
+            <div class="storage-visor" id="storageVisor">
+                <!-- Se llena con JavaScript -->
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarStorage()" style="margin-top: 20px;">
+            ✅ Verificar (guarda al menos 2 datos)
+        </button>
+        <div class="quiz-resultado" id="resultadoStorage"></div>
+    </section>
+    
+    <!-- App de Notas -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>📝</span>
+            <span>Actividad 2: App de Notas con LocalStorage</span>
+        </div>
+        
+        <p style="margin-bottom: 20px; color: #94a3b8;">
+            Crea notas que se guardan automáticamente. ¡Permanecen aunque cierres el navegador!
+        </p>
+        
+        <div class="notas-app">
+            <textarea class="nota-input" id="notaInput" placeholder="Escribe tu nota aquí..."></textarea>
+            <button class="storage-btn btn-guardar" onclick="agregarNota()" style="width: 100%; margin-bottom: 15px;">
+                ➕ Agregar Nota
+            </button>
+            <div class="notas-lista" id="notasLista">
+                <!-- Se llena con JavaScript -->
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarNotas()" style="margin-top: 20px;">
+            ✅ Verificar (agrega al menos 2 notas)
+        </button>
+        <div class="quiz-resultado" id="resultadoNotas"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 3: Quiz de LocalStorage</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué método usas para guardar datos en localStorage?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    localStorage.setItem("clave", "valor")
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    localStorage.save("clave", "valor")
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    localStorage.add("clave", "valor")
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Qué pasa con los datos de localStorage cuando cierras el navegador?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Se borran automáticamente
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Permanecen guardados
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    Se envían a un servidor
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Cómo obtienes un dato guardado en localStorage?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    localStorage.read("clave")
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    localStorage.fetch("clave")
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    localStorage.getItem("clave")
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <a href="nivel17.html" class="btn-continuar" id="btnContinuar">
+            Siguiente Nivel ➡️
+        </a>
+    </footer>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let storageCompletado = false;
+        let notasCompletado = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+            actualizarVisor();
+            cargarNotas();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        // LocalStorage Demo
+        function guardarDato() {
+            const clave = document.getElementById('inputClave').value;
+            const valor = document.getElementById('inputValor').value;
+            if (clave && valor) {
+                localStorage.setItem('demo_' + clave, valor);
+                actualizarVisor();
+                document.getElementById('inputClave').value = '';
+                document.getElementById('inputValor').value = '';
+            }
+        }
+        
+        function leerDato() {
+            const clave = document.getElementById('inputLeer').value;
+            const valor = localStorage.getItem('demo_' + clave);
+            alert(valor ? `Valor de "${clave}": ${valor}` : `No existe la clave "${clave}"`);
+        }
+        
+        function borrarDato() {
+            const clave = document.getElementById('inputLeer').value;
+            localStorage.removeItem('demo_' + clave);
+            actualizarVisor();
+        }
+        
+        function actualizarVisor() {
+            const visor = document.getElementById('storageVisor');
+            visor.innerHTML = '';
+            let contador = 0;
+            for (let i = 0; i < localStorage.length; i++) {
+                const clave = localStorage.key(i);
+                if (clave.startsWith('demo_')) {
+                    contador++;
+                    const valor = localStorage.getItem(clave);
+                    visor.innerHTML += `
+                        <div class="storage-item">
+                            <span class="key">${clave.replace('demo_', '')}</span>
+                            <span class="value">"${valor}"</span>
+                        </div>
+                    `;
+                }
+            }
+            if (contador === 0) visor.innerHTML = '<p style="color: #64748b;">No hay datos guardados</p>';
+        }
+        
+        function verificarStorage() {
+            let contador = 0;
+            for (let i = 0; i < localStorage.length; i++) {
+                if (localStorage.key(i).startsWith('demo_')) contador++;
+            }
+            const resultado = document.getElementById('resultadoStorage');
+            if (contador >= 2) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = `✅ ¡Excelente! Tienes ${contador} datos guardados`;
+                storageCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ Tienes ${contador}/2 datos. ¡Guarda más!`;
+            }
+        }
+        
+        // Notas App
+        function getNotas() {
+            const notasJSON = localStorage.getItem('mis_notas');
+            return notasJSON ? JSON.parse(notasJSON) : [];
+        }
+        
+        function guardarNotas(notas) {
+            localStorage.setItem('mis_notas', JSON.stringify(notas));
+        }
+        
+        function agregarNota() {
+            const texto = document.getElementById('notaInput').value.trim();
+            if (texto) {
+                const notas = getNotas();
+                notas.push({ id: Date.now(), texto });
+                guardarNotas(notas);
+                cargarNotas();
+                document.getElementById('notaInput').value = '';
+            }
+        }
+        
+        function borrarNota(id) {
+            let notas = getNotas();
+            notas = notas.filter(n => n.id !== id);
+            guardarNotas(notas);
+            cargarNotas();
+        }
+        
+        function cargarNotas() {
+            const lista = document.getElementById('notasLista');
+            const notas = getNotas();
+            lista.innerHTML = notas.length === 0 ? '<p style="color: #64748b;">No hay notas</p>' :
+                notas.map(n => `
+                    <div class="nota-item">
+                        <span class="texto">${n.texto}</span>
+                        <button class="borrar" onclick="borrarNota(${n.id})">🗑️</button>
+                    </div>
+                `).join('');
+        }
+        
+        function verificarNotas() {
+            const notas = getNotas();
+            const resultado = document.getElementById('resultadoNotas');
+            if (notas.length >= 2) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = `✅ ¡Genial! Tienes ${notas.length} notas guardadas`;
+                notasCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = `❌ Tienes ${notas.length}/2 notas. ¡Agrega más!`;
+            }
+        }
+        
+        // Quiz
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => o.classList.remove('correcta', 'incorrecta'));
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            let progreso = (quizCompletado ? 34 : 0) + (storageCompletado ? 33 : 0) + (notasCompletado ? 33 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 99) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                document.getElementById('btnContinuar').style.display = 'inline-block';
+                localStorage.setItem('nivel16_completado', 'true');
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else if (progreso >= 30) {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+    </script>
+</body>
+</html>

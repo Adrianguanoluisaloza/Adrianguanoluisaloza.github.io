@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Nivel 11 - JavaScript Básico</title>
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #eab308;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: #1a1a2e; }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        .conceptos-js {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .concepto-js {
+            background: rgba(234, 179, 8, 0.15);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .concepto-js:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(234, 179, 8, 0.3);
+        }
+        
+        .concepto-js .icono { font-size: 1.5rem; margin-bottom: 5px; }
+        .concepto-js .nombre { font-family: 'Consolas', monospace; color: #fbbf24; font-size: 0.85rem; }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #ca8a04, #a16207);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border: none;
+        }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Consola interactiva */
+        .consola-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) { .consola-container { grid-template-columns: 1fr; } }
+        
+        .consola-input {
+            background: rgba(234, 179, 8, 0.1);
+            border: 2px dashed var(--nivel-color);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .consola-input h4 {
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .codigo-mini {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            background: #1a1a2e;
+            color: #fbbf24;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            resize: vertical;
+        }
+        
+        .codigo-mini:focus { outline: none; border-color: var(--nivel-color); }
+        
+        .btn-ejecutar-js {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, var(--nivel-color), #ca8a04);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .btn-ejecutar-js:hover { transform: scale(1.02); }
+        
+        .consola-output {
+            background: #0d1117;
+            border: 2px solid #30363d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .consola-output-header {
+            background: #161b22;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .consola-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .consola-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        .consola-salida {
+            padding: 15px;
+            min-height: 200px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            color: #58a6ff;
+            line-height: 1.8;
+        }
+        
+        .consola-salida .error { color: #f85149; }
+        .consola-salida .success { color: #3fb950; }
+        .consola-salida .info { color: #a5d6ff; }
+        
+        /* Snippets de código */
+        .snippets-js {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .snippet {
+            background: rgba(234, 179, 8, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .snippet:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(234, 179, 8, 0.3);
+        }
+        
+        .snippet h5 { color: var(--nivel-color); margin-bottom: 10px; }
+        
+        .snippet code {
+            display: block;
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #ca8a04);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="nivel-header">
+        <div class="nivel-badge">
+            <span>⚡</span>
+            <span>NIVEL 11</span>
+        </div>
+        <h1>JavaScript - ¡Dale vida a tu web!</h1>
+    </header>
+    
+    <nav class="nav-niveles">
+        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <div style="display: flex; gap: 10px;">
+            <a href="nivel10.html" class="nav-btn">⬅️ Anterior</a>
+            <a href="nivel12.html" class="nav-btn">Siguiente ➡️</a>
+        </div>
+    </nav>
+    
+    <div class="progreso-nivel">
+        <div class="progreso-info">
+            <span>📊 Progreso del Nivel 11</span>
+            <span id="progresoTexto">0%</span>
+        </div>
+        <div class="progreso-barra">
+            <div class="progreso-fill" id="progresoFill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <main class="contenido-principal">
+        <div class="panel-explicacion">
+            <div class="panel-titulo">
+                <span>📖</span>
+                <span>Introducción a JavaScript</span>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>⚡ ¿Qué es JavaScript?</h3>
+                <p>
+                    <strong>JavaScript</strong> es el lenguaje de programación que hace 
+                    que las páginas web sean <strong>interactivas</strong>. Con JS puedes:
+                    responder a clics, cambiar contenido, validar formularios, crear juegos y mucho más.
+                </p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 HTML + CSS + JS</h4>
+                <p><strong>HTML</strong> = Estructura (esqueleto)</p>
+                <p><strong>CSS</strong> = Estilo (ropa y maquillaje)</p>
+                <p><strong>JavaScript</strong> = Comportamiento (movimiento y vida)</p>
+            </div>
+            
+            <h3 style="margin: 20px 0; color: var(--nivel-color);">
+                🧱 Conceptos básicos:
+            </h3>
+            
+            <div class="conceptos-js">
+                <div class="concepto-js">
+                    <div class="icono">📦</div>
+                    <div class="nombre">Variables<br>let, const</div>
+                </div>
+                <div class="concepto-js">
+                    <div class="icono">🔢</div>
+                    <div class="nombre">Tipos de datos<br>string, number</div>
+                </div>
+                <div class="concepto-js">
+                    <div class="icono">⚙️</div>
+                    <div class="nombre">Funciones<br>function()</div>
+                </div>
+                <div class="concepto-js">
+                    <div class="icono">🎯</div>
+                    <div class="nombre">Eventos<br>onclick, etc.</div>
+                </div>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>📦 Variables (guardar datos):</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto;">
+// Crear variables
+let nombre = "María";
+let edad = 12;
+const PI = 3.14159;
+
+// Mostrar en consola
+console.log(nombre);
+console.log("Tengo " + edad + " años");</pre>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>⚙️ Funciones (acciones):</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto;">
+// Crear una función
+function saludar(nombre) {
+    alert("¡Hola, " + nombre + "!");
+}
+
+// Llamar la función
+saludar("Carlos");</pre>
+            </div>
+            
+            <div class="seccion-explicacion">
+                <h3>🎯 Seleccionar elementos:</h3>
+                <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto;">
+// Obtener elemento por ID
+let titulo = document.getElementById("miTitulo");
+
+// Cambiar contenido
+titulo.textContent = "¡Nuevo título!";
+
+// Cambiar estilo
+titulo.style.color = "red";</pre>
+            </div>
+        </div>
+        
+        <div class="panel-editor">
+            <div class="editor-header">
+                <div class="editor-titulo">
+                    <span>💻</span>
+                    <span>Editor JavaScript</span>
+                </div>
+                <div class="editor-botones">
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                </div>
+            </div>
+            
+            <textarea class="codigo-textarea" id="codigoEditor" spellcheck="false"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi primer JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #92400e;
+            transition: all 0.3s;
+        }
+        
+        .contador {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #d97706;
+            background: white;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .botones {
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        button:hover { transform: scale(1.1); }
+        
+        .btn-sumar { background: #22c55e; color: white; }
+        .btn-restar { background: #ef4444; color: white; }
+        .btn-reset { background: #6366f1; color: white; }
+        
+        .mensaje {
+            padding: 15px 30px;
+            background: white;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .input-nombre {
+            padding: 15px;
+            font-size: 1rem;
+            border: 3px solid #d97706;
+            border-radius: 10px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">⚡ Mi Primer JavaScript</h1>
+    
+    <div class="contador" id="contador">0</div>
+    
+    <div class="botones">
+        <button class="btn-sumar" onclick="sumar()">➕ Sumar</button>
+        <button class="btn-restar" onclick="restar()">➖ Restar</button>
+        <button class="btn-reset" onclick="resetear()">🔄 Reset</button>
+    </div>
+    
+    <input type="text" class="input-nombre" id="nombreInput" placeholder="Escribe tu nombre...">
+    <button onclick="saludar()">👋 Saludar</button>
+    
+    <div class="mensaje" id="mensaje">
+        ¡Haz clic en los botones!
+    </div>
+
+    <script>
+        // 📦 Variable para el contador
+        let numero = 0;
+        
+        // ⚙️ Función para sumar
+        function sumar() {
+            numero = numero + 1;
+            actualizarContador();
+        }
+        
+        // ⚙️ Función para restar
+        function restar() {
+            numero = numero - 1;
+            actualizarContador();
+        }
+        
+        // ⚙️ Función para resetear
+        function resetear() {
+            numero = 0;
+            actualizarContador();
+        }
+        
+        // ⚙️ Actualizar el display
+        function actualizarContador() {
+            // Obtener el elemento
+            let display = document.getElementById("contador");
+            // Cambiar el texto
+            display.textContent = numero;
+            
+            // Cambiar color según el número
+            if (numero > 0) {
+                display.style.color = "#22c55e";
+            } else if (numero < 0) {
+                display.style.color = "#ef4444";
+            } else {
+                display.style.color = "#d97706";
+            }
+        }
+        
+        // ⚙️ Función para saludar
+        function saludar() {
+            let nombre = document.getElementById("nombreInput").value;
+            let mensaje = document.getElementById("mensaje");
+            
+            if (nombre === "") {
+                mensaje.textContent = "⚠️ ¡Escribe tu nombre primero!";
+            } else {
+                mensaje.textContent = "👋 ¡Hola, " + nombre + "! Bienvenido/a";
+            }
+        }
+    </script>
+</body>
+</html></textarea>
+            
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>👁️</span>
+                    <span>Vista Previa</span>
+                </div>
+                <iframe class="preview-frame" id="previewFrame"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Consola interactiva -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>🖥️</span>
+            <span>Actividad 1: Consola JavaScript</span>
+        </div>
+        
+        <div class="consola-container">
+            <div class="consola-input">
+                <h4>📝 Escribe código JavaScript:</h4>
+                
+                <textarea class="codigo-mini" id="codigoMini" placeholder="// Escribe tu código aquí
+// Ejemplo:
+let saludo = 'Hola Mundo';
+console.log(saludo);
+console.log(2 + 2);
+console.log('Mi nombre es ' + 'Ana');"></textarea>
+                
+                <button class="btn-ejecutar-js" onclick="ejecutarMiniConsola()">
+                    ▶️ Ejecutar Código
+                </button>
+                
+                <div class="snippets-js">
+                    <div class="snippet" onclick="insertarSnippet('variables')">
+                        <h5>📦 Variables</h5>
+                        <code>let nombre = "Tu nombre";
+console.log(nombre);</code>
+                    </div>
+                    <div class="snippet" onclick="insertarSnippet('matematicas')">
+                        <h5>🔢 Matemáticas</h5>
+                        <code>let resultado = 10 + 5 * 2;
+console.log("Resultado: " + resultado);</code>
+                    </div>
+                    <div class="snippet" onclick="insertarSnippet('condicion')">
+                        <h5>❓ Condición</h5>
+                        <code>let edad = 12;
+if (edad >= 18) {
+  console.log("Mayor de edad");
+} else {
+  console.log("Menor de edad");
+}</code>
+                    </div>
+                    <div class="snippet" onclick="insertarSnippet('bucle')">
+                        <h5>🔄 Bucle</h5>
+                        <code>for (let i = 1; i <= 5; i++) {
+  console.log("Número: " + i);
+}</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="consola-output">
+                <div class="consola-output-header">
+                    <div class="consola-dots">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+                    <span>Consola</span>
+                </div>
+                <div class="consola-salida" id="consolaSalida">
+                    <span class="info">// La salida aparecerá aquí...</span>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarConsola()" style="margin-top: 20px;">
+            ✅ Verificar (ejecuta algún código)
+        </button>
+        <div class="quiz-resultado" id="resultadoConsola"></div>
+    </section>
+    
+    <!-- Quiz -->
+    <section class="actividad">
+        <div class="actividad-header">
+            <span>❓</span>
+            <span>Actividad 2: Quiz JavaScript</span>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz1">
+            <h4>1. ¿Qué palabra clave se usa para crear una variable?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    variable
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    let
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q1">
+                    <span class="radio-custom"></span>
+                    var = new
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado1"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz2">
+            <h4>2. ¿Cómo mostramos algo en la consola?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    print("Hola");
+                </label>
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    console.log("Hola");
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q2">
+                    <span class="radio-custom"></span>
+                    show("Hola");
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado2"></div>
+        </div>
+        
+        <div class="quiz-pregunta" id="quiz3">
+            <h4>3. ¿Cómo obtenemos un elemento por su ID?</h4>
+            <div class="quiz-opciones">
+                <label class="quiz-opcion" data-correcta="true">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    document.getElementById("id")
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    html.get("id")
+                </label>
+                <label class="quiz-opcion" data-correcta="false">
+                    <input type="radio" name="q3">
+                    <span class="radio-custom"></span>
+                    element.find("id")
+                </label>
+            </div>
+            <div class="quiz-resultado" id="resultado3"></div>
+        </div>
+        
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+    </section>
+    
+    <footer class="nivel-footer">
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <br>
+        <a href="nivel12.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
+            Siguiente Nivel ➡️
+        </a>
+    </footer>
+    
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    
+    <div class="mascota-ayuda" id="mascotaAyuda">
+        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
+        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
+        <p><strong>¡Tip de JavaScript!</strong></p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+            💡 Usa <code>console.log()</code> para ver qué está pasando en tu código.
+            <br><br>
+            ¡Es como poner "espías" en tu programa para saber qué valores tienen las variables!
+        </p>
+    </div>
+
+    <script>
+        const codigoInicial = document.getElementById('codigoEditor').value;
+        let quizCompletado = false;
+        let consolaCompletado = false;
+        let progreso = 0;
+        let codigoEjecutado = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            ejecutarCodigo();
+            configurarQuiz();
+        });
+        
+        function ejecutarCodigo() {
+            const codigo = document.getElementById('codigoEditor').value;
+            const preview = document.getElementById('previewFrame');
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(codigo);
+            doc.close();
+        }
+        
+        function resetearCodigo() {
+            document.getElementById('codigoEditor').value = codigoInicial;
+            ejecutarCodigo();
+        }
+        
+        function copiarCodigo() {
+            navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
+            event.target.innerHTML = '✅ Copiado!';
+            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+        }
+        
+        // Mini consola
+        function ejecutarMiniConsola() {
+            const codigo = document.getElementById('codigoMini').value;
+            const salida = document.getElementById('consolaSalida');
+            salida.innerHTML = '';
+            
+            // Capturar console.log
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
+            };
+            
+            try {
+                eval(codigo);
+                
+                if (logs.length > 0) {
+                    logs.forEach(log => {
+                        salida.innerHTML += `<div class="success">➜ ${log}</div>`;
+                    });
+                    codigoEjecutado = true;
+                } else {
+                    salida.innerHTML = '<div class="info">✅ Código ejecutado (sin salida)</div>';
+                    codigoEjecutado = true;
+                }
+            } catch (error) {
+                salida.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+            
+            console.log = originalLog;
+        }
+        
+        function insertarSnippet(tipo) {
+            const snippets = {
+                'variables': `let nombre = "Tu nombre";
+let edad = 12;
+console.log("Me llamo " + nombre);
+console.log("Tengo " + edad + " años");`,
+                'matematicas': `let a = 10;
+let b = 5;
+console.log("Suma: " + (a + b));
+console.log("Resta: " + (a - b));
+console.log("Multiplicación: " + (a * b));
+console.log("División: " + (a / b));`,
+                'condicion': `let edad = 12;
+if (edad >= 18) {
+    console.log("Eres mayor de edad 👨");
+} else {
+    console.log("Eres menor de edad 👧");
+}`,
+                'bucle': `// Contar del 1 al 5
+for (let i = 1; i <= 5; i++) {
+    console.log("Número: " + i);
+}
+console.log("¡Terminé de contar!");`
+            };
+            
+            document.getElementById('codigoMini').value = snippets[tipo];
+        }
+        
+        function verificarConsola() {
+            const resultado = document.getElementById('resultadoConsola');
+            
+            if (codigoEjecutado) {
+                resultado.className = 'quiz-resultado exito';
+                resultado.innerHTML = '✅ ¡Genial! Has ejecutado código JavaScript';
+                consolaCompletado = true;
+                actualizarProgreso();
+            } else {
+                resultado.className = 'quiz-resultado error';
+                resultado.innerHTML = '❌ Escribe código y haz clic en "Ejecutar Código"';
+            }
+        }
+        
+        function configurarQuiz() {
+            document.querySelectorAll('.quiz-opcion').forEach(opcion => {
+                opcion.addEventListener('click', () => {
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                        .forEach(o => o.classList.remove('selected'));
+                    opcion.classList.add('selected');
+                    opcion.querySelector('input').checked = true;
+                });
+            });
+        }
+        
+        function verificarQuiz() {
+            let correctas = 0;
+            
+            [1, 2, 3].forEach(i => {
+                const quiz = document.getElementById(`quiz${i}`);
+                const seleccionada = quiz.querySelector('.quiz-opcion.selected');
+                const resultado = document.getElementById(`resultado${i}`);
+                
+                quiz.querySelectorAll('.quiz-opcion').forEach(o => 
+                    o.classList.remove('correcta', 'incorrecta'));
+                
+                if (seleccionada) {
+                    if (seleccionada.dataset.correcta === 'true') {
+                        seleccionada.classList.add('correcta');
+                        resultado.className = 'quiz-resultado exito';
+                        resultado.innerHTML = '✅ ¡Correcto!';
+                        correctas++;
+                    } else {
+                        seleccionada.classList.add('incorrecta');
+                        resultado.className = 'quiz-resultado error';
+                        resultado.innerHTML = '❌ Incorrecto';
+                        quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
+                    }
+                }
+            });
+            
+            if (correctas === 3) {
+                quizCompletado = true;
+                actualizarProgreso();
+            }
+        }
+        
+        function actualizarProgreso() {
+            progreso = (quizCompletado ? 50 : 0) + (consolaCompletado ? 50 : 0);
+            document.getElementById('progresoFill').style.width = progreso + '%';
+            document.getElementById('progresoTexto').textContent = progreso + '%';
+            
+            const estrellas = document.getElementById('estrellas');
+            if (progreso >= 100) {
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                document.getElementById('btnContinuar').style.display = 'inline-block';
+                localStorage.setItem('nivel11_completado', 'true');
+            } else if (progreso >= 50) {
+                estrellas.textContent = '⭐⭐☆';
+            } else {
+                estrellas.textContent = '⭐☆☆';
+            }
+        }
+        
+        function toggleAyuda() {
+            document.getElementById('mascotaAyuda').classList.toggle('visible');
+        }
+    </script>
+</body>
+</html>

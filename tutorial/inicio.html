@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 CodeQuest - Aprende Programación Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas animadas */
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: floatUp 15s infinite;
+        }
+        
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* Header */
+        .header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+        }
+        
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #00d9ff, #00ff88, #ffd700, #ff6b6b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 5s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle { font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
+        
+        /* Stats */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .stat-icon { font-size: 1.5rem; }
+        .stat-value { font-size: 1.5rem; font-weight: bold; color: #00ff88; }
+        .stat-label { font-size: 0.9rem; opacity: 0.8; }
+        
+        /* Progress bar */
+        .global-progress {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00d9ff, #a78bfa);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+            border-radius: 25px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            min-width: 50px;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Section titles */
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            margin: 40px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, currentColor, transparent);
+            border-radius: 3px;
+        }
+        
+        .section-html { color: #ff6b6b; }
+        .section-css { color: #3b82f6; }
+        .section-js { color: #fbbf24; }
+        .section-final { color: #a78bfa; }
+        
+        /* Levels grid */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Level card */
+        .level-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--card-color);
+        }
+        
+        .level-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--card-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--card-glow);
+        }
+        
+        .level-card.completed { border-color: #00ff88; }
+        
+        .level-card.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 15px; right: 15px;
+            background: #00ff88;
+            color: #1a1a2e;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .level-number {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--card-color);
+            opacity: 0.2;
+            position: absolute;
+            right: 20px; bottom: 20px;
+        }
+        
+        .level-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .level-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--card-color);
+        }
+        
+        .level-desc {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .level-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .topic-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .level-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .level-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        
+        .level-difficulty {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .difficulty-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .difficulty-dot.filled { background: var(--card-color); }
+        
+        /* Final card */
+        .final-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(59,130,246,0.2));
+            border: 2px solid #a78bfa;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .final-card .level-icon { font-size: 5rem; }
+        .final-card .level-title { font-size: 2rem; }
+        .final-card .level-number { display: none; }
+        
+        /* Floating buttons */
+        .achievements-btn {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 65px; height: 65px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            border: none;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(255,215,0,0.4);
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 25px rgba(255,215,0,0.4); }
+            50% { box-shadow: 0 5px 40px rgba(255,215,0,0.6); }
+        }
+        
+        .achievements-btn:hover { transform: scale(1.15) rotate(10deg); }
+        
+        .reset-btn {
+            position: fixed;
+            bottom: 30px; left: 30px;
+            background: rgba(255,71,87,0.2);
+            border: 1px solid #ff4757;
+            color: #ff4757;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover { background: #ff4757; color: white; }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.show { display: flex; }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1e1e2e, #2d2d44);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #ffd700;
+            animation: modalIn 0.3s ease;
+        }
+        
+        @keyframes modalIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal h2 { font-family: 'Fredoka One', cursive; color: #ffd700; margin-bottom: 20px; font-size: 2rem; }
+        
+        .achievement-list { text-align: left; margin: 20px 0; }
+        
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .achievement-item.unlocked { background: rgba(0,255,136,0.1); border: 1px solid #00ff88; }
+        .achievement-item.locked { opacity: 0.5; }
+        
+        .achievement-icon { font-size: 2rem; }
+        .achievement-info h4 { color: #00d9ff; margin-bottom: 5px; }
+        .achievement-info p { font-size: 0.85rem; opacity: 0.7; }
+        
+        .close-modal {
+            background: linear-gradient(45deg, #00d9ff, #00ff88);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .close-modal:hover { transform: scale(1.05); }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.6;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .stats-bar { gap: 15px; }
+            .stat { padding: 12px 20px; }
+            .section-title { font-size: 1.5rem; }
+            .levels-grid { grid-template-columns: 1fr; }
+            .final-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <h1 class="logo">🚀 CodeQuest</h1>
+        <p class="subtitle">Aprende a crear páginas web paso a paso</p>
+    </header>
+    
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stat">
+            <span class="stat-icon">⭐</span>
+            <div>
+                <div class="stat-value" id="completedCount">0</div>
+                <div class="stat-label">Completados</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="stat-icon">📚</span>
+            <div>
+                <div class="stat-value">18</div>
+                <div class="stat-label">Niveles</div>
+            </div>
+        </div>
+        <div class="stat">
+            <span class="stat-icon">🏆</span>
+            <div>
+                <div class="stat-value" id="achievementCount">0</div>
+                <div class="stat-label">Logros</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Progreso global -->
+    <div class="global-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <!-- Contenido -->
+    <div class="container">
+        
+        <!-- HTML -->
+        <h2 class="section-title section-html">🏗️ HTML - Estructura</h2>
+        <div class="levels-grid">
+            <a href="nivel01.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="1">
+                <span class="level-number">01</span>
+                <span class="level-icon">📄</span>
+                <h3 class="level-title">Mi Primera Página</h3>
+                <p class="level-desc">Aprende la estructura básica: DOCTYPE, html, head y body. ¡Tu primer código!</p>
+                <div class="level-topics">
+                    <span class="topic-tag">DOCTYPE</span>
+                    <span class="topic-tag">html</span>
+                    <span class="topic-tag">head</span>
+                    <span class="topic-tag">body</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 10 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel02.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="2">
+                <span class="level-number">02</span>
+                <span class="level-icon">🏷️</span>
+                <h3 class="level-title">Metadatos y Título</h3>
+                <p class="level-desc">Configura el título en la pestaña, charset y viewport para móviles.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">title</span>
+                    <span class="topic-tag">meta charset</span>
+                    <span class="topic-tag">viewport</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 12 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel03.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="3">
+                <span class="level-number">03</span>
+                <span class="level-icon">📝</span>
+                <h3 class="level-title">Textos y Encabezados</h3>
+                <p class="level-desc">Crea títulos h1-h6, párrafos, negritas y texto con formato.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">h1-h6</span>
+                    <span class="topic-tag">p</span>
+                    <span class="topic-tag">strong</span>
+                    <span class="topic-tag">em</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 15 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel04.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="4">
+                <span class="level-number">04</span>
+                <span class="level-icon">🧭</span>
+                <h3 class="level-title">Navegación y Enlaces</h3>
+                <p class="level-desc">Construye menús con listas y enlaces para navegar.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">nav</span>
+                    <span class="topic-tag">ul / li</span>
+                    <span class="topic-tag">a href</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 18 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel05.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="5">
+                <span class="level-number">05</span>
+                <span class="level-icon">🖼️</span>
+                <h3 class="level-title">Imágenes y Multimedia</h3>
+                <p class="level-desc">Añade imágenes y videos de YouTube a tu página.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">img</span>
+                    <span class="topic-tag">src / alt</span>
+                    <span class="topic-tag">iframe</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 15 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel06.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="6">
+                <span class="level-number">06</span>
+                <span class="level-icon">📊</span>
+                <h3 class="level-title">Tablas de Datos</h3>
+                <p class="level-desc">Organiza información en filas y columnas como horarios.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">table</span>
+                    <span class="topic-tag">tr / th / td</span>
+                    <span class="topic-tag">thead / tbody</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 20 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel07.html" class="level-card" style="--card-color: #ff6b6b; --card-glow: rgba(255,107,107,0.3);" data-level="7">
+                <span class="level-number">07</span>
+                <span class="level-icon">📋</span>
+                <h3 class="level-title">Formularios</h3>
+                <p class="level-desc">Crea formularios de contacto con campos y botones.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">form</span>
+                    <span class="topic-tag">input</span>
+                    <span class="topic-tag">select</span>
+                    <span class="topic-tag">button</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 25 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- CSS -->
+        <h2 class="section-title section-css">🎨 CSS - Estilos</h2>
+        <div class="levels-grid">
+            <a href="nivel08.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="8">
+                <span class="level-number">08</span>
+                <span class="level-icon">🎨</span>
+                <h3 class="level-title">Colores y Fuentes</h3>
+                <p class="level-desc">Dale color a tu página: fondos, textos y tipografías.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">color</span>
+                    <span class="topic-tag">background</span>
+                    <span class="topic-tag">font-family</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 15 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel09.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="9">
+                <span class="level-number">09</span>
+                <span class="level-icon">📦</span>
+                <h3 class="level-title">Box Model</h3>
+                <p class="level-desc">Entiende margin, padding, border y las cajas CSS.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">margin</span>
+                    <span class="topic-tag">padding</span>
+                    <span class="topic-tag">border</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 18 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel10.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="10">
+                <span class="level-number">10</span>
+                <span class="level-icon">📐</span>
+                <h3 class="level-title">Flexbox Layout</h3>
+                <p class="level-desc">Organiza elementos en filas y columnas fácilmente.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">display: flex</span>
+                    <span class="topic-tag">justify-content</span>
+                    <span class="topic-tag">align-items</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 22 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel11.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="11">
+                <span class="level-number">11</span>
+                <span class="level-icon">⚡</span>
+                <h3 class="level-title">JavaScript Básico</h3>
+                <p class="level-desc">Variables, operadores, condiciones y bucles.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">let / const</span>
+                    <span class="topic-tag">if / else</span>
+                    <span class="topic-tag">for</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 20 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel12.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="12">
+                <span class="level-number">12</span>
+                <span class="level-icon">🌳</span>
+                <h3 class="level-title">DOM y Manipulación</h3>
+                <p class="level-desc">Modifica elementos HTML con JavaScript.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">querySelector</span>
+                    <span class="topic-tag">innerHTML</span>
+                    <span class="topic-tag">classList</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 22 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel13.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="13">
+                <span class="level-number">13</span>
+                <span class="level-icon">📐</span>
+                <h3 class="level-title">CSS Grid</h3>
+                <p class="level-desc">Crea layouts en cuadrícula poderosos.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">grid</span>
+                    <span class="topic-tag">columns</span>
+                    <span class="topic-tag">rows</span>
+                    <span class="topic-tag">gap</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 18 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel14.html" class="level-card" style="--card-color: #3b82f6; --card-glow: rgba(59,130,246,0.3);" data-level="14">
+                <span class="level-number">14</span>
+                <span class="level-icon">📱</span>
+                <h3 class="level-title">Diseño Responsive</h3>
+                <p class="level-desc">Páginas que se ven bien en móvil y desktop.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">media queries</span>
+                    <span class="topic-tag">viewport</span>
+                    <span class="topic-tag">breakpoints</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 20 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- JavaScript Avanzado -->
+        <h2 class="section-title section-js">⚡ JavaScript Avanzado</h2>
+        <div class="levels-grid">
+            <a href="nivel15.html" class="level-card" style="--card-color: #fbbf24; --card-glow: rgba(251,191,36,0.3);" data-level="15">
+                <span class="level-number">15</span>
+                <span class="level-icon">🎯</span>
+                <h3 class="level-title">Eventos JavaScript</h3>
+                <p class="level-desc">Click, hover, teclado y más interactividad.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">addEventListener</span>
+                    <span class="topic-tag">click</span>
+                    <span class="topic-tag">input</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 22 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel16.html" class="level-card" style="--card-color: #fbbf24; --card-glow: rgba(251,191,36,0.3);" data-level="16">
+                <span class="level-number">16</span>
+                <span class="level-icon">💾</span>
+                <h3 class="level-title">LocalStorage</h3>
+                <p class="level-desc">Guarda datos en el navegador del usuario.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">setItem</span>
+                    <span class="topic-tag">getItem</span>
+                    <span class="topic-tag">JSON</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 18 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="nivel17.html" class="level-card" style="--card-color: #fbbf24; --card-glow: rgba(251,191,36,0.3);" data-level="17">
+                <span class="level-number">17</span>
+                <span class="level-icon">🌈</span>
+                <h3 class="level-title">Animaciones CSS</h3>
+                <p class="level-desc">Da vida a tu web con animaciones fluidas.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">@keyframes</span>
+                    <span class="topic-tag">animation</span>
+                    <span class="topic-tag">transition</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 20 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Proyecto Final -->
+        <h2 class="section-title section-final">🏆 Proyectos Finales</h2>
+        <div class="levels-grid">
+            <a href="nivel18.html" class="level-card" style="--card-color: #f43f5e; --card-glow: rgba(244,63,94,0.3);" data-level="18">
+                <span class="level-number">18</span>
+                <span class="level-icon">🎓</span>
+                <h3 class="level-title">Proyecto Final Avanzado</h3>
+                <p class="level-desc">Elige entre 4 proyectos: Portafolio, Juego, Galería o App de Tareas.</p>
+                <div class="level-topics">
+                    <span class="topic-tag">Portafolio</span>
+                    <span class="topic-tag">Mini Juego</span>
+                    <span class="topic-tag">Galería</span>
+                    <span class="topic-tag">Todo App</span>
+                </div>
+                <div class="level-footer">
+                    <span class="level-time">⏱️ 40 min</span>
+                    <div class="level-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="final.html" class="level-card final-card" style="--card-color: #a78bfa; --card-glow: rgba(167,139,250,0.4);" data-level="19">
+                <span class="level-icon">🏆</span>
+                <h3 class="level-title">Centro de Logros</h3>
+                <p class="level-desc">¡Revisa todos tus logros y obtén tu certificado de graduación!</p>
+                <div class="level-topics" style="justify-content: center;">
+                    <span class="topic-tag">Certificado</span>
+                    <span class="topic-tag">Logros</span>
+                    <span class="topic-tag">Proyectos</span>
+                </div>
+                <div class="level-footer" style="justify-content: center;">
+                    <span class="level-time">🎉 ¡Graduación!</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Botones flotantes -->
+    <button class="achievements-btn" onclick="openModal()" title="Ver logros">🏅</button>
+    <button class="reset-btn" onclick="resetProgress()">🔄 Reiniciar</button>
+    
+    <!-- Modal de logros -->
+    <div class="modal" id="achievementsModal">
+        <div class="modal-content">
+            <h2>🏅 Tus Logros</h2>
+            <div class="achievement-list" id="achievementList"></div>
+            <button class="close-modal" onclick="closeModal()">¡Entendido!</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Hecho con ❤️ para aprender programación web</p>
+    </footer>
+    
+    <script>
+        // Crear partículas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particle.style.width = particle.style.height = (5 + Math.random() * 10) + 'px';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Cargar progreso
+        function loadProgress() {
+            const progress = JSON.parse(localStorage.getItem('tutorialProgress') || '[]');
+            const cards = document.querySelectorAll('.level-card');
+            let completed = 0;
+            
+            cards.forEach(card => {
+                const level = parseInt(card.dataset.level);
+                if (progress.includes(level)) {
+                    card.classList.add('completed');
+                    completed++;
+                }
+            });
+            
+            document.getElementById('completedCount').textContent = completed;
+            
+            const percentage = Math.round((completed / 18) * 100);
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+            
+            // Logros
+            let achievements = 0;
+            if (completed >= 1) achievements++;
+            if (completed >= 5) achievements++;
+            if (completed >= 10) achievements++;
+            if (completed >= 15) achievements++;
+            document.getElementById('achievementCount').textContent = achievements;
+        }
+        
+        loadProgress();
+        
+        // Logros
+        const achievementsData = [
+            { icon: '🌟', name: 'Primer Paso', desc: 'Completa tu primer nivel', requirement: 1 },
+            { icon: '📚', name: 'Estudiante', desc: 'Completa 5 niveles', requirement: 5 },
+            { icon: '🎯', name: 'Avanzado', desc: 'Completa 10 niveles', requirement: 10 },
+            { icon: '🚀', name: 'Experto', desc: 'Completa 15 niveles', requirement: 15 },
+            { icon: '👑', name: 'Maestro Web', desc: 'Completa los 18 niveles', requirement: 18 }
+        ];
+        
+        function openModal() {
+            const progress = JSON.parse(localStorage.getItem('tutorialProgress') || '[]');
+            const completed = progress.length;
+            const list = document.getElementById('achievementList');
+            
+            list.innerHTML = achievementsData.map(a => {
+                const unlocked = completed >= a.requirement;
+                return `
+                    <div class="achievement-item ${unlocked ? 'unlocked' : 'locked'}">
+                        <span class="achievement-icon">${unlocked ? a.icon : '🔒'}</span>
+                        <div class="achievement-info">
+                            <h4>${a.name}</h4>
+                            <p>${a.desc}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('achievementsModal').classList.add('show');
+        }
+        
+        function closeModal() {
+            document.getElementById('achievementsModal').classList.remove('show');
+        }
+        
+        function resetProgress() {
+            if (confirm('¿Seguro que quieres reiniciar todo tu progreso?')) {
+                localStorage.removeItem('tutorialProgress');
+                location.reload();
+            }
+        }
+        
+        // Cerrar modal con click afuera
+        document.getElementById('achievementsModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
