@@ -151,6 +151,52 @@ Si quieres contribuir o personalizar el tutorial, consulta el archivo **`README-
 
 ---
 
+### ✅ Nivel 3 - BODY y Contenido Visible (Mejorado - 2 dic 2025)
+
+**Contenido ampliado:**
+- 📦 Explicación profunda de qué es el BODY y su función
+- 📍 Diagrama visual de ubicación del BODY en el documento HTML
+- 🎭 Múltiples analogías para comprensión (teatro, restaurante, libro)
+- ✅ Regla de oro: solo UN body por página HTML
+- 🏷️ Grid interactivo de etiquetas comunes del BODY
+
+**HTML5 Semántico:**
+- 🏗️ Introducción a las etiquetas semánticas modernas
+- 📐 Estructura típica: header, nav, main, article, section, aside, footer
+- 🎯 Explicación detallada de cada elemento semántico con analogías
+- ⚡ Comparación "Antes (DIV) vs Ahora (Semántico)"
+- 🎁 6 beneficios del HTML semántico (SEO, accesibilidad, mantenimiento)
+
+**Análisis del mundo real:**
+- 📺 **YouTube**: Estructura con videos como articles
+- 📰 **Wikipedia**: Organización de artículos con secciones
+- 🛒 **Amazon**: Productos y reseñas estructuradas
+- 🔍 Lecciones clave de cada sitio profesional
+
+**Reglas y mejores prácticas:**
+- ✅ 5 reglas de oro para estructurar el BODY
+- Solo UN &lt;main&gt; por página
+- Orden lógico de elementos
+- &lt;article&gt; para contenido independiente
+- &lt;section&gt; siempre con título
+- &lt;main&gt; como hijo directo del body
+
+**Desafíos prácticos:**
+- 🏆 Desafío 1: Crear página "Sobre Mí" completa
+- 🏆 Desafío 2: Estructura semántica de un blog
+- 🏆 Desafío 3: Analizar páginas reales con DevTools (F12)
+- 🏆 Desafío avanzado: Crear portafolio personal completo
+
+**Contenido educativo:**
+- 🤔 4 preguntas de reflexión con respuestas desplegables
+- ✅ Checklist de 8 puntos para verificar dominio del nivel
+- 💡 Explicación de por qué YouTube usa &lt;article&gt; para videos
+- 📊 Ventajas de HTML semántico sobre solo &lt;div&gt;
+
+**Total de contenido nuevo:** ~3200 palabras de explicaciones, ejemplos y ejercicios
+
+---
+
 ## 📂 Estructura del Proyecto
 
 ```
