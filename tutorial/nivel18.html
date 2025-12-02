@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🎓 Nivel 18 - Proyecto Final</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="18">
     <header class="nivel-header">
@@ -32,12 +34,12 @@
             <div class="habilidad-card">
                 <div class="icono">📄</div>
                 <div class="nombre">HTML5</div>
-                <div class="desc">Estructura</div>
+                <div class="desc">estructura</div>
             </div>
             <div class="habilidad-card">
                 <div class="icono">🎨</div>
                 <div class="nombre">CSS3</div>
-                <div class="desc">Estilos</div>
+                <div class="desc">estailos</div>
             </div>
             <div class="habilidad-card">
                 <div class="icono">⚡</div>
@@ -99,15 +101,15 @@
             Escribe tu nombre para generar tu certificado:
         </p>
         
-        <input type="text" class="input-nombre" id="nombreEstudiante" placeholder="Tu nombre completo">
+        <input type="text" class="input-nombre" id="nombreestaudiante" placeholder="Tu nombre completo">
         <br>
         <button class="btn-certificado" onclick="generarCertificado()">🎓 Generar Certificado</button>
         
         <div class="certificado-container" id="certificado">
             <h2>📜 Certificado de Logro</h2>
-            <p style="color: #6b7280;">Este certificado se otorga a:</p>
-            <div class="nombre-estudiante" id="nombreEnCertificado"></div>
-            <p class="mensaje-cert">
+            <p style="color: #6b7280;">estae certificado se otorga a:</p>
+            <div class="nombre-estaudiante" id="nombreEnCertificado"></div>
+            <p class="Menusaje-cert">
                 Por completar exitosamente el curso de 
                 <strong>Desarrollo Web</strong> de la 
                 <strong>Unidad Educativa Luz de Esmeraldas</strong>, 
@@ -119,7 +121,7 @@
     </section>
     
     <footer class="nivel-footer">
-        <div class="footer-mensaje">🎉 ¡Felicidades por llegar hasta aquí!</div>
+        <div class="footer-Menusaje">🎉 ¡Felicidades por llegar hasta aquí!</div>
         <p style="color: #94a3b8; margin-bottom: 20px;">
             ¡Continúa con los niveles avanzados para aprender más!
         </p>
@@ -132,7 +134,9 @@
         // Código inicial para el editor
         var codigoInicial = '<!DOCTYPE html>\n<html lang="es">\n<head>\n    <meta charset="UTF-8">\n    <title>Mi Página Web</title>
     <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>\n    \n</head>\n<body data-nivel="18">\n    <header>\n        <div class="avatar">👋</div>\n        <h1>¡Hola! Soy [Tu Nombre]</h1>\n        <p>Desarrollador Web en formación 🚀</p>\n        \n        <div class="habilidades">\n            <span class="habilidad">HTML5</span>\n            <span class="habilidad">CSS3</span>\n            <span class="habilidad">JavaScript</span>\n        </div>\n    </header>\n    \n    <section class="proyectos">\n        <div class="proyecto">\n            <div class="emoji">🌐</div>\n            <h3>Mi Primera Web</h3>\n            <p>Aprendí HTML y CSS</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">🎮</div>\n            <h3>Mini Juego</h3>\n            <p>Usé JavaScript</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">📋</div>\n            <h3>App de Tareas</h3>\n            <p>Con LocalStorage</p>\n        </div>\n    </section>\n    \n    <section class="contador">\n        <h2>¡Contador Interactivo!</h2>\n        <span id="numero">0</span>\n        <button onclick="contar()">+1 Click</button>\n    </section>\n    \n    <script>\n        var clicks = 0;\n        function contar() {\n            clicks++;\n            document.getElementById(\"numero\").textContent = clicks;\n        }\n    <\/script>\n</body>\n</html>';
+    <script src="js/codequest.js" defer></script>
+    
+    \n    \n</head>\n<body data-nivel="18">\n    <header>\n        <div class="avatar">👋</div>\n        <h1>¡Hola! Soy [Tu Nombre]</h1>\n        <p>Desarrollador Web en formación 🚀</p>\n        \n        <div class="habilidades">\n            <span class="habilidad">HTML5</span>\n            <span class="habilidad">CSS3</span>\n            <span class="habilidad">JavaScript</span>\n        </div>\n    </header>\n    \n    <section class="proyectos">\n        <div class="proyecto">\n            <div class="emoji">🌐</div>\n            <h3>Mi Primera Web</h3>\n            <p>Aprendí HTML y CSS</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">🎮</div>\n            <h3>Mini Juego</h3>\n            <p>Usé JavaScript</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">📋</div>\n            <h3>App de Tareas</h3>\n            <p>Con LocalStorage</p>\n        </div>\n    </section>\n    \n    <section class="contador">\n        <h2>¡Contador Interactivo!</h2>\n        <span id="numero">0</span>\n        <button onclick="contar()">+1 Click</button>\n    </section>\n    \n    <script>\n        var clicks = 0;\n        function contar() {\n            clicks++;\n            document.getElementById(\"numero\").textContent = clicks;\n        }\n    <\/script>\n</body>\n</html>';
         
         // Cargar código inicial
         document.getElementById('codigoEditor').value = codigoInicial;
@@ -167,7 +171,7 @@
         }
         
         function generarCertificado() {
-            var nombre = document.getElementById('nombreEstudiante').value.trim();
+            var nombre = document.getElementById('nombreestaudiante').value.trim();
             if (!nombre) {
                 alert('Por favor escribe tu nombre');
                 return;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>💾 Nivel 16 - LocalStorage</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="16">
     <header class="nivel-header">
@@ -120,6 +122,8 @@ localStorage.clear();</pre>
     <title>LocalStorage Demo</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="16">
     <h1>💾 LocalStorage en Acción</h1>
@@ -147,7 +151,7 @@ localStorage.clear();</pre>
             <h3>🔢 Contador que Recuerda</h3>
             <div class="contador-display" id="contador">0</div>
             <div class="contador-btns">
-                <button class="btn-restar" onclick="cambiarContador(-1)">➖</button>
+                <button class="btn-restaar" onclick="cambiarContador(-1)">➖</button>
                 <button class="btn-reset" onclick="resetContador()">🔄</button>
                 <button class="btn-sumar" onclick="cambiarContador(1)">➕</button>
             </div>
@@ -165,7 +169,7 @@ localStorage.clear();</pre>
                 <button class="color-btn" style="background: #8b5cf6" onclick="elegirColor('#8b5cf6', 'Morado')"></button>
                 <button class="color-btn" style="background: #ec4899" onclick="elegirColor('#ec4899', 'Rosa')"></button>
             </div>
-            <div class="mensaje-color" id="mensajeColor">
+            <div class="Menusaje-color" id="MenusajeColor">
                 Elige un color
             </div>
         </div>
@@ -240,10 +244,10 @@ localStorage.clear();</pre>
             const nombreGuardado = localStorage.getItem("color_nombre");
             
             if (colorGuardado) {
-                const mensaje = document.getElementById("mensajeColor");
-                mensaje.style.background = colorGuardado;
-                mensaje.style.color = "white";
-                mensaje.textContent = "Tu color guardado: " + nombreGuardado;
+                const Menusaje = document.getElementById("MenusajeColor");
+                Menusaje.style.background = colorGuardado;
+                Menusaje.style.color = "white";
+                Menusaje.textContent = "Tu color guardado: " + nombreGuardado;
                 
                 // Marcar botón activo
                 document.querySelectorAll(".color-btn").forEach(btn => {
@@ -382,7 +386,7 @@ localStorage.clear();</pre>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Se envían a un servidor
+                    Se envían a un seravidor
                 </label>
             </div>
             <div class="quiz-resultado" id="resultado2"></div>
@@ -410,12 +414,12 @@ localStorage.clear();</pre>
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel17.html" class="btn-continuar" id="btnContinuar">
             Siguiente Nivel ➡️
@@ -574,7 +578,7 @@ localStorage.clear();</pre>
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -614,16 +618,16 @@ localStorage.clear();</pre>
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 99) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel16_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else if (progreso >= 30) {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
     </script>

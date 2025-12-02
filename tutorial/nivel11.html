@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>⚡ Nivel 11 - JavaScript Básico</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="11">
     <header class="nivel-header">
@@ -52,8 +54,8 @@
             
             <div class="tip-box">
                 <h4>💡 HTML + CSS + JS</h4>
-                <p><strong>HTML</strong> = Estructura (esqueleto)</p>
-                <p><strong>CSS</strong> = Estilo (ropa y maquillaje)</p>
+                <p><strong>HTML</strong> = estructura (esqueleto)</p>
+                <p><strong>CSS</strong> = estailo (ropa y maquillaje)</p>
                 <p><strong>JavaScript</strong> = Comportamiento (movimiento y vida)</p>
             </div>
             
@@ -114,7 +116,7 @@ let titulo = document.getElementById("miTitulo");
 // Cambiar contenido
 titulo.textContent = "¡Nuevo título!";
 
-// Cambiar estilo
+// Cambiar estailo
 titulo.style.color = "red";</pre>
             </div>
         </div>
@@ -139,6 +141,8 @@ titulo.style.color = "red";</pre>
     <title>Mi primer JavaScript</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="11">
     <h1 id="titulo">⚡ Mi Primer JavaScript</h1>
@@ -147,14 +151,14 @@ titulo.style.color = "red";</pre>
     
     <div class="botones">
         <button class="btn-sumar" onclick="sumar()">➕ Sumar</button>
-        <button class="btn-restar" onclick="restar()">➖ Restar</button>
+        <button class="btn-restaar" onclick="restaar()">➖ Restaar</button>
         <button class="btn-reset" onclick="resetear()">🔄 Reset</button>
     </div>
     
     <input type="text" class="input-nombre" id="nombreInput" placeholder="Escribe tu nombre...">
     <button onclick="saludar()">👋 Saludar</button>
     
-    <div class="mensaje" id="mensaje">
+    <div class="Menusaje" id="Menusaje">
         ¡Haz clic en los botones!
     </div>
 
@@ -168,8 +172,8 @@ titulo.style.color = "red";</pre>
             actualizarContador();
         }
         
-        // ⚙️ Función para restar
-        function restar() {
+        // ⚙️ Función para restaar
+        function restaar() {
             numero = numero - 1;
             actualizarContador();
         }
@@ -200,12 +204,12 @@ titulo.style.color = "red";</pre>
         // ⚙️ Función para saludar
         function saludar() {
             let nombre = document.getElementById("nombreInput").value;
-            let mensaje = document.getElementById("mensaje");
+            let Menusaje = document.getElementById("Menusaje");
             
             if (nombre === "") {
-                mensaje.textContent = "⚠️ ¡Escribe tu nombre primero!";
+                Menusaje.textContent = "⚠️ ¡Escribe tu nombre primero!";
             } else {
-                mensaje.textContent = "👋 ¡Hola, " + nombre + "! Bienvenido/a";
+                Menusaje.textContent = "👋 ¡Hola, " + nombre + "! Bienvenido/a";
             }
         }
     </script>
@@ -240,22 +244,22 @@ console.log(saludo);
 console.log(2 + 2);
 console.log('Mi nombre es ' + 'Ana');"></textarea>
                 
-                <button class="btn-ejecutar-js" onclick="ejecutarMiniConsola()">
+                <button class="btn-ejecutar-js" onclick="ejecutarMiuniconsola()">
                     ▶️ Ejecutar Código
                 </button>
                 
                 <div class="snippets-js">
-                    <div class="snippet" onclick="insertarSnippet('variables')">
+                    <div class="snippet" onclick="inseratarSnippet('variables')">
                         <h5>📦 Variables</h5>
                         <code>let nombre = "Tu nombre";
 console.log(nombre);</code>
                     </div>
-                    <div class="snippet" onclick="insertarSnippet('matematicas')">
+                    <div class="snippet" onclick="inseratarSnippet('matematicas')">
                         <h5>🔢 Matemáticas</h5>
                         <code>let resultado = 10 + 5 * 2;
 console.log("Resultado: " + resultado);</code>
                     </div>
-                    <div class="snippet" onclick="insertarSnippet('condicion')">
+                    <div class="snippet" onclick="inseratarSnippet('condicion')">
                         <h5>❓ Condición</h5>
                         <code>let edad = 12;
 if (edad >= 18) {
@@ -264,7 +268,7 @@ if (edad >= 18) {
   console.log("Menor de edad");
 }</code>
                     </div>
-                    <div class="snippet" onclick="insertarSnippet('bucle')">
+                    <div class="snippet" onclick="inseratarSnippet('bucle')">
                         <h5>🔄 Bucle</h5>
                         <code>for (let i = 1; i <= 5; i++) {
   console.log("Número: " + i);
@@ -367,12 +371,12 @@ if (edad >= 18) {
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel12.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -386,7 +390,7 @@ if (edad >= 18) {
         <div style="font-size: 2.5rem; text-align: center;">🤖</div>
         <p><strong>¡Tip de JavaScript!</strong></p>
         <p style="margin-top: 10px; font-size: 0.9rem;">
-            💡 Usa <code>console.log()</code> para ver qué está pasando en tu código.
+            💡 Usa <code>console.log()</code> para ver qué estaá pasando en tu código.
             <br><br>
             ¡Es como poner "espías" en tu programa para saber qué valores tienen las variables!
         </p>
@@ -425,7 +429,7 @@ if (edad >= 18) {
         }
         
         // Mini consola
-        function ejecutarMiniConsola() {
+        function ejecutarMiuniconsola() {
             const codigo = document.getElementById('codigoMini').value;
             const salida = document.getElementById('consolaSalida');
             salida.innerHTML = '';
@@ -456,7 +460,7 @@ if (edad >= 18) {
             console.log = originalLog;
         }
         
-        function insertarSnippet(tipo) {
+        function inseratarSnippet(tipo) {
             const snippets = {
                 'variables': `let nombre = "Tu nombre";
 let edad = 12;
@@ -465,7 +469,7 @@ console.log("Tengo " + edad + " años");`,
                 'matematicas': `let a = 10;
 let b = 5;
 console.log("Suma: " + (a + b));
-console.log("Resta: " + (a - b));
+console.log("Restaa: " + (a - b));
 console.log("Multiplicación: " + (a * b));
 console.log("División: " + (a / b));`,
                 'condicion': `let edad = 12;
@@ -501,7 +505,7 @@ console.log("¡Terminé de contar!");`
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -546,16 +550,16 @@ console.log("¡Terminé de contar!");`
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel11_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>📦 Nivel 20 - JSON y Datos</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
@@ -31,7 +33,7 @@
             
             <p>JSON se usa para:</p>
             <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>📡 Enviar datos entre servidor y navegador</li>
+                <li>📡 Enviar datos entre seravidor y navegador</li>
                 <li>💾 Guardar configuraciones</li>
                 <li>📊 Almacenar datos estructurados</li>
                 <li>🔄 Compartir información entre aplicaciones</li>
@@ -49,7 +51,7 @@
 <pre>{
   <span class="json-key">"nombre"</span>: <span class="json-string">"María"</span>,
   <span class="json-key">"edad"</span>: <span class="json-number">12</span>,
-  <span class="json-key">"estudiante"</span>: <span class="json-boolean">true</span>
+  <span class="json-key">"estaudiante"</span>: <span class="json-boolean">true</span>
 }</pre>
                     </div>
                 </div>
@@ -167,7 +169,7 @@ const personaje = {
     nivel: 5,
     vida: 100,
     poderes: ["JavaScript", "HTML", "CSS"],
-    estadisticas: {
+    estaadisticas: {
         fuerza: 80,
         velocidad: 90,
         inteligencia: 100
@@ -226,7 +228,7 @@ localStorage.<span class="function">setItem</span>(<span class="string">'misTare
         
         <!-- Quiz -->
         <section class="seccion">
-            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            <h2>🎯 Quiz - ¡Demuestara lo que Aprendiste!</h2>
             
             <div class="progreso-bar">
                 <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
@@ -236,44 +238,44 @@ localStorage.<span class="function">setItem</span>(<span class="string">'misTare
                 <div class="quiz-pregunta">
                     <h4>1. ¿Qué significa JSON?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Java Simple Object Notation</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">JavaScript Object Notation</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JavaScript Online Network</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Java Simple Object Notation</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">JavaScript Object Notation</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">JavaScript Online Network</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>2. ¿Qué método convierte texto JSON a objeto JavaScript?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">JSON.parse()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JSON.stringify()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">JSON.convert()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">JSON.parse()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">JSON.stringify()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">JSON.convert()</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>3. En JSON, ¿qué tipo de comillas se usan para las claves?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Comillas simples ''</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Comillas dobles ""</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Sin comillas</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Comillas simples ''</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Comillas dobles ""</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Sin comillas</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>4. ¿Cuál es JSON válido?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">{nombre: "Ana"}</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">{'nombre': 'Ana'}</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">{"nombre": "Ana"}</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">{nombre: "Ana"}</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">{'nombre': 'Ana'}</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">{"nombre": "Ana"}</div>
                     </div>
                 </div>
             </div>
             
-            <div class="estrellas">
-                <span class="estrella" id="star1">⭐</span>
-                <span class="estrella" id="star2">⭐</span>
-                <span class="estrella" id="star3">⭐</span>
+            <div class="estarellas">
+                <span class="estarella" id="star1">⭐</span>
+                <span class="estarella" id="star2">⭐</span>
+                <span class="estarella" id="star3">⭐</span>
             </div>
         </section>
         
@@ -288,7 +290,7 @@ localStorage.<span class="function">setItem</span>(<span class="string">'misTare
         let correctas = 0;
         const totalPreguntas = 4;
         
-        function verificarRespuesta(elemento, esCorrecta) {
+        function verificarRespuestaa(elemento, esCorrecta) {
             if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
             
             const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
@@ -297,7 +299,7 @@ localStorage.<span class="function">setItem</span>(<span class="string">'misTare
             if (esCorrecta) {
                 elemento.classList.add('correcta');
                 correctas++;
-                actualizarEstrellas();
+                actualizarestarellas();
             } else {
                 elemento.classList.add('incorrecta');
             }
@@ -308,7 +310,7 @@ localStorage.<span class="function">setItem</span>(<span class="string">'misTare
             if (respondidas === totalPreguntas) guardarProgreso();
         }
         
-        function actualizarEstrellas() {
+        function actualizarestarellas() {
             const porcentaje = (correctas / totalPreguntas) * 100;
             if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
             if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');

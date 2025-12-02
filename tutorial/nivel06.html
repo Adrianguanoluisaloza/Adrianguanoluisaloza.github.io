@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>📝 Nivel 6 - Formularios Interactivos</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="6">
     <header class="nivel-header">
@@ -45,12 +47,12 @@
                 <h3>📝 ¿Qué es un Formulario?</h3>
                 <p>
                     Los formularios permiten a los usuarios <strong>ingresar datos</strong>. 
-                    Se usan para login, contacto, búsquedas, encuestas y mucho más.
+                    Se usan para login, contacto, búsquedas, encuestaas y mucho más.
                 </p>
             </div>
             
             <div class="tip-box">
-                <h4>💡 Estructura básica</h4>
+                <h4>💡 estructura básica</h4>
                 <p>Un formulario usa <code>&lt;form&gt;</code> como contenedor, 
                    <code>&lt;input&gt;</code> para campos, y 
                    <code>&lt;label&gt;</code> para etiquetas descriptivas.</p>
@@ -152,6 +154,8 @@
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="6">
     <form class="formulario" onsubmit="enviarFormulario(event)">
@@ -164,7 +168,7 @@
         </div>
         
         <div class="campo">
-            <label for="email">📧 Correo electrónico:</label>
+            <label for="email">📧 Correo electróunico:</label>
             <input type="email" id="email" name="email" 
                    placeholder="ejemplo@correo.com" required>
         </div>
@@ -185,15 +189,15 @@
             <select id="asunto" name="asunto">
                 <option value="">Selecciona una opción</option>
                 <option value="consulta">Consulta general</option>
-                <option value="soporte">Soporte técnico</option>
+                <option value="soporte">Soporte técunico</option>
                 <option value="sugerencia">Sugerencia</option>
             </select>
         </div>
         
         <div class="campo">
-            <label for="mensaje">💬 Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" rows="4" 
-                      placeholder="Escribe tu mensaje aquí..."></textarea>
+            <label for="Menusaje">💬 Menusaje:</label>
+            <textarea id="Menusaje" name="Menusaje" rows="4" 
+                      placeholder="Escribe tu Menusaje aquí..."></textarea>
         </div>
         
         <div class="campo checkbox-grupo">
@@ -203,7 +207,7 @@
             </label>
         </div>
         
-        <button type="submit">🚀 Enviar Mensaje</button>
+        <button type="submit">🚀 Enviar Menusaje</button>
         
         <div class="resultado" id="resultado">
             <strong>✅ ¡Formulario enviado!</strong>
@@ -368,7 +372,7 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <!-- Reconocimiento del nivel -->
@@ -383,8 +387,8 @@
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para continuar</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para continuar</p>
         <br>
         <a href="nivel07.html" class="btn-continuar" style="text-decoration: none; display: inline-block;">
             🚀 Continuar al Nivel 7 ➡️
@@ -484,7 +488,7 @@
                 'password': { label: 'Contraseña', placeholder: '••••••••' },
                 'number': { label: 'Edad', placeholder: '25' },
                 'date': { label: 'Fecha', placeholder: '' },
-                'textarea': { label: 'Mensaje', placeholder: 'Escribe aquí...' },
+                'textarea': { label: 'Menusaje', placeholder: 'Escribe aquí...' },
                 'select': { label: 'Opciones', options: ['Opción 1', 'Opción 2', 'Opción 3'] }
             };
             
@@ -578,7 +582,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -623,19 +627,19 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡Nivel 6 completado! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡Nivel 6 completado! 🎉';
                 localStorage.setItem('nivel6_completado', 'true');
                 setTimeout(() => {
                     document.getElementById('overlay').classList.add('visible');
                     document.getElementById('logroPopup').classList.add('visible');
                 }, 500);
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

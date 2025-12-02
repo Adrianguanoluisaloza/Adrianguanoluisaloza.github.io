@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🎯 Nivel 9 - Flexbox</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="9">
     <header class="nivel-header">
@@ -53,7 +55,7 @@
             <div class="tip-box">
                 <h4>💡 Para usar Flexbox</h4>
                 <p>Solo necesitas agregar <code>display: flex;</code> al contenedor padre.
-                   ¡Los elementos hijos se convierten en "flex items"!</p>
+                   ¡Los elementos hijos se convierten en "flex itemas"!</p>
             </div>
             
             <h3 style="margin: 20px 0; color: var(--nivel-color);">
@@ -69,9 +71,9 @@
                     <div class="icono">↔️</div>
                     <div class="nombre">justify-content</div>
                 </div>
-                <div class="flex-prop" onclick="mostrarInfo('align-items')">
+                <div class="flex-prop" onclick="mostrarInfo('align-itemas')">
                     <div class="icono">↕️</div>
-                    <div class="nombre">align-items</div>
+                    <div class="nombre">align-itemas</div>
                 </div>
                 <div class="flex-prop" onclick="mostrarInfo('flex-wrap')">
                     <div class="icono">🔄</div>
@@ -96,12 +98,12 @@
             </div>
             
             <div class="seccion-explicacion">
-                <h3>📌 align-items (eje vertical):</h3>
+                <h3>📌 align-itemas (eje vertical):</h3>
                 <ul style="margin: 10px 20px; line-height: 1.8;">
                     <li><code>flex-start</code> - Arriba</li>
                     <li><code>center</code> - Centro vertical</li>
                     <li><code>flex-end</code> - Abajo</li>
-                    <li><code>stretch</code> - Estirar (default)</li>
+                    <li><code>stretch</code> - estairar (default)</li>
                 </ul>
             </div>
         </div>
@@ -126,6 +128,8 @@
     <title>Flexbox Demo</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="9">
     <h1>🎯 Flexbox en Acción</h1>
@@ -198,8 +202,8 @@
                 </div>
                 
                 <div class="control-grupo">
-                    <label>align-items:</label>
-                    <select id="alignItems" onchange="actualizarFlex()">
+                    <label>align-itemas:</label>
+                    <select id="alignItemas" onchange="actualizarFlex()">
                         <option value="stretch">stretch</option>
                         <option value="flex-start">flex-start</option>
                         <option value="center">center</option>
@@ -226,9 +230,9 @@
                     </select>
                 </div>
                 
-                <div class="items-control">
-                    <button class="btn-items" onclick="agregarItem()">➕ Item</button>
-                    <button class="btn-items" onclick="quitarItem()">➖ Item</button>
+                <div class="itemas-control">
+                    <button class="btn-itemas" onclick="agregarItem()">➕ Item</button>
+                    <button class="btn-itemas" onclick="quitarItem()">➖ Item</button>
                 </div>
             </div>
             
@@ -250,7 +254,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: stretch;
+    align-itemas: stretch;
     flex-wrap: nowrap;
     gap: 10px;
 }</div>
@@ -258,7 +262,7 @@
         </div>
         
         <button class="btn-verificar" onclick="verificarFlex()" style="margin-top: 20px;">
-            ✅ Verificar (centra los items)
+            ✅ Verificar (centra los itemas)
         </button>
         <div class="quiz-resultado" id="resultadoFlex"></div>
     </section>
@@ -298,7 +302,7 @@
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    align-items: center;
+                    align-itemas: center;
                 </label>
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q2">
@@ -336,12 +340,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel10.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -359,7 +363,7 @@
             <br><br>
             <code>display: flex;</code><br>
             <code>justify-content: center;</code><br>
-            <code>align-items: center;</code>
+            <code>align-itemas: center;</code>
             <br><br>
             ¡Es el truco más usado!
         </p>
@@ -402,9 +406,9 @@
             const infos = {
                 'flex-direction': 'Controla la dirección: row (fila) o column (columna)',
                 'justify-content': 'Alinea en el eje principal (horizontal por defecto)',
-                'align-items': 'Alinea en el eje cruzado (vertical por defecto)',
-                'flex-wrap': 'Permite que los items salten a nueva línea',
-                'gap': 'Espacio entre los flex items'
+                'align-itemas': 'Alinea en el eje cruzado (vertical por defecto)',
+                'flex-wrap': 'Permite que los itemas salten a nueva línea',
+                'gap': 'Espacio entre los flex itemas'
             };
             alert(`${prop}:\n\n${infos[prop]}`);
         }
@@ -413,7 +417,7 @@
         function actualizarFlex() {
             const flexDirection = document.getElementById('flexDirection').value;
             const justifyContent = document.getElementById('justifyContent').value;
-            const alignItems = document.getElementById('alignItems').value;
+            const alignItemas = document.getElementById('alignItemas').value;
             const flexWrap = document.getElementById('flexWrap').value;
             const gap = document.getElementById('gap').value;
             
@@ -421,7 +425,7 @@
             demo.style.display = 'flex';
             demo.style.flexDirection = flexDirection;
             demo.style.justifyContent = justifyContent;
-            demo.style.alignItems = alignItems;
+            demo.style.alignItemas = alignItemas;
             demo.style.flexWrap = flexWrap;
             demo.style.gap = gap;
             
@@ -429,7 +433,7 @@
     display: flex;
     flex-direction: ${flexDirection};
     justify-content: ${justifyContent};
-    align-items: ${alignItems};
+    align-itemas: ${alignItemas};
     flex-wrap: ${flexWrap};
     gap: ${gap};
 }`;
@@ -456,25 +460,25 @@
         
         function verificarFlex() {
             const justifyContent = document.getElementById('justifyContent').value;
-            const alignItems = document.getElementById('alignItems').value;
+            const alignItemas = document.getElementById('alignItemas').value;
             
             const resultado = document.getElementById('resultadoFlex');
             
-            if (justifyContent === 'center' && alignItems === 'center') {
+            if (justifyContent === 'center' && alignItemas === 'center') {
                 resultado.className = 'quiz-resultado exito';
-                resultado.innerHTML = '✅ ¡Perfecto! Has centrado los items horizontal y verticalmente';
+                resultado.innerHTML = '✅ ¡Perfecto! Has centrado los itemas horizontal y verticalmente';
                 flexCompletado = true;
                 actualizarProgreso();
             } else {
                 resultado.className = 'quiz-resultado error';
-                resultado.innerHTML = '❌ Usa justify-content: center Y align-items: center';
+                resultado.innerHTML = '❌ Usa justify-content: center Y align-itemas: center';
             }
         }
         
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -519,16 +523,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel9_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

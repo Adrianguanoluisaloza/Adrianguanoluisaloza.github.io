@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Nivel 10 - Animaciones CSS</title>
+    <title> Nivel 10 - Animaciones CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="10">
     <header class="nivel-header">
         <div class="nivel-badge">
-            <span>✨</span>
+            <span></span>
             <span>NIVEL 10</span>
         </div>
         <h1>Animaciones y Transiciones CSS</h1>
@@ -42,7 +44,7 @@
             </div>
             
             <div class="seccion-explicacion">
-                <h3>✨ ¿Qué son las animaciones?</h3>
+                <h3> ¿Qué son las animaciones?</h3>
                 <p>
                     Las animaciones CSS permiten que los elementos se <strong>muevan, 
                     cambien de color, tamaño</strong> y mucho más. ¡Hacen que tu página 
@@ -52,7 +54,7 @@
             
             <div class="tip-box">
                 <h4>💡 Transition vs Animation</h4>
-                <p><strong>transition:</strong> Cambio suave entre dos estados (ej: hover)</p>
+                <p><strong>transition:</strong> Cambio suave entre dos estaados (ej: hover)</p>
                 <p><strong>animation:</strong> Movimiento continuo con @keyframes</p>
             </div>
             
@@ -91,9 +93,9 @@
                 <h3>📝 Sintaxis de @keyframes:</h3>
                 <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto;">
 @keyframes nombreAnimacion {
-    0%   { /* estado inicial */ }
-    50%  { /* estado intermedio */ }
-    100% { /* estado final */ }
+    0%   { /* estaado inicial */ }
+    50%  { /* estaado intermedio */ }
+    100% { /* estaado final */ }
 }
 
 .elemento {
@@ -133,11 +135,13 @@
     <title>Animaciones CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="10">
-    <h1>✨ Animaciones CSS</h1>
+    <h1> Animaciones CSS</h1>
     
-    <div class="estrella">⭐</div>
+    <div class="estarella">⭐</div>
     
     <div class="planeta"></div>
     
@@ -146,7 +150,7 @@
     <div class="caja-arcoiris">🌈 Arcoíris Animado</div>
     
     <button class="boton-magico">
-        ✨ ¡Pasa el mouse aquí!
+         ¡Pasa el mouse aquí!
     </button>
 </body>
 </html></textarea>
@@ -214,7 +218,7 @@
                 <div class="control-grupo">
                     <label>Emoji del elemento:</label>
                     <select id="emoji" onchange="actualizarAnimacion()">
-                        <option value="⭐">⭐ Estrella</option>
+                        <option value="⭐">⭐ estarella</option>
                         <option value="🚀">🚀 Cohete</option>
                         <option value="🎈">🎈 Globo</option>
                         <option value="💎">💎 Diamante</option>
@@ -317,12 +321,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel11.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -389,7 +393,7 @@
             const elemento = document.getElementById('previewElemento');
             elemento.textContent = emoji;
             
-            // Limpiar estilos previos
+            // Limpiar estailos previos
             elemento.style.animation = 'none';
             elemento.offsetHeight; // Trigger reflow
             
@@ -511,7 +515,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -556,16 +560,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel10_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

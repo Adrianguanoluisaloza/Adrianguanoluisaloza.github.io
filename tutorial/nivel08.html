@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>📦 Nivel 8 - Modelo de Caja CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="8">
     <header class="nivel-header">
@@ -45,7 +47,7 @@
                 <h3>📦 ¿Qué es el Box Model?</h3>
                 <p>
                     En CSS, cada elemento es una <strong>CAJA</strong> rectangular.
-                    El Box Model define cómo se calcula el espacio que ocupa cada elemento.
+                    El Box Model define cómo se calcuala el espacio que ocupa cada elemento.
                 </p>
             </div>
             
@@ -92,7 +94,7 @@
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🧮 Calculando el tamaño total:</h3>
+                <h3>🧮 Calcualando el tamaño total:</h3>
                 <p>
                     <strong>Ancho total =</strong> margin-left + border-left + padding-left + 
                     width + padding-right + border-right + margin-right
@@ -125,6 +127,8 @@
     <title>Box Model Demo</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="8">
     <h1>📦 Modelo de Caja CSS</h1>
@@ -135,11 +139,11 @@
         </div>
         
         <div class="caja-ejemplo">
-            <p>Esta caja tiene:</p>
+            <p>estaa caja tiene:</p>
             <p>width: 300px, padding: 20px, border: 5px</p>
         </div>
         
-        <div class="calculo">
+        <div class="calcualo">
 Ancho REAL = 300 + (20×2) + (5×2) = 350px</div>
         
         <div class="info">
@@ -147,11 +151,11 @@ Ancho REAL = 300 + (20×2) + (5×2) = 350px</div>
         </div>
         
         <div class="caja-border-box">
-            <p>Esta caja también dice width: 300px</p>
+            <p>estaa caja también dice width: 300px</p>
             <p>¡Pero su ancho TOTAL es exactamente 300px!</p>
         </div>
         
-        <div class="calculo">
+        <div class="calcualo">
 Ancho REAL = 300px (incluye padding y border)</div>
     </div>
 </body>
@@ -236,7 +240,7 @@ Ancho REAL = 300px (incluye padding y border)</div>
                         </div>
                     </div>
                     
-                    <div class="dimensions-display" id="dimensionsDisplay">
+                    <div class="diMenusions-display" id="diMenusionsDisplay">
                         Ancho total: 190px | Alto total: 170px
                     </div>
                 </div>
@@ -350,12 +354,12 @@ Ancho REAL = 300px (incluye padding y border)</div>
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel09.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -439,11 +443,11 @@ Ancho REAL = 300px (incluye padding y border)</div>
             boxBorder.style.background = borderColor;
             boxMargin.style.padding = margin + 'px';
             
-            // Calcular dimensiones totales
+            // Calcualar diMenusiones totales
             const anchoTotal = width + (padding * 2) + (border * 2) + (margin * 2);
             const altoTotal = height + (padding * 2) + (border * 2) + (margin * 2);
             
-            document.getElementById('dimensionsDisplay').textContent = 
+            document.getElementById('diMenusionsDisplay').textContent = 
                 `Ancho total: ${anchoTotal}px | Alto total: ${altoTotal}px`;
             
             // Actualizar código generado
@@ -480,7 +484,7 @@ Ancho REAL = 300px (incluye padding y border)</div>
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -525,16 +529,16 @@ Ancho REAL = 300px (incluye padding y border)</div>
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel8_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

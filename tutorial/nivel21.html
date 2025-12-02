@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>✅ Nivel 21 - Validación de Formularios</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
@@ -26,7 +28,7 @@
             
             <div class="concepto-box">
                 <h3>Validación = Verificar antes de enviar</h3>
-                <p>La <strong>validación</strong> asegura que los datos que el usuario ingresa sean <strong>correctos y seguros</strong> antes de enviarlos al servidor.</p>
+                <p>La <strong>validación</strong> asegura que los datos que el usuario ingresa sean <strong>correctos y seguros</strong> antes de enviarlos al seravidor.</p>
             </div>
             
             <p>Sin validación, podrían pasar cosas como:</p>
@@ -100,7 +102,7 @@
             </div>
             
             <div class="tip-box">
-                La validación HTML5 es rápida pero <strong>siempre</strong> valida también con JavaScript para mayor control y mejores mensajes de error.
+                La validación HTML5 es rápida pero <strong>siempre</strong> valida también con JavaScript para mayor control y mejores Menusajes de error.
             </div>
         </section>
         
@@ -112,7 +114,7 @@
 <pre><span class="keyword">function</span> <span class="function">validarEmail</span>(email) {
     <span class="comment">// Expresión regular para email</span>
     <span class="keyword">const</span> regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    <span class="keyword">return</span> regex.<span class="function">test</span>(email);
+    <span class="keyword">return</span> regex.<span class="function">testa</span>(email);
 }
 
 <span class="keyword">function</span> <span class="function">validarFormulario</span>() {
@@ -142,22 +144,22 @@
                     <div class="form-grupo">
                         <label for="nombre">👤 Nombre Completo</label>
                         <input type="text" id="nombre" placeholder="Ej: María García" oninput="validarNombre()">
-                        <div class="mensaje-error" id="errorNombre">El nombre debe tener al menos 3 caracteres</div>
-                        <div class="mensaje-exito" id="exitoNombre">✓ Nombre válido</div>
+                        <div class="Menusaje-error" id="errorNombre">El nombre debe tener al menos 3 caracteres</div>
+                        <div class="Menusaje-exito" id="exitoNombre">✓ Nombre válido</div>
                     </div>
                     
                     <div class="form-grupo">
                         <label for="email">📧 Email</label>
                         <input type="text" id="email" placeholder="Ej: maria@email.com" oninput="validarEmailCampo()">
-                        <div class="mensaje-error" id="errorEmail">Ingresa un email válido (ejemplo@dominio.com)</div>
-                        <div class="mensaje-exito" id="exitoEmail">✓ Email válido</div>
+                        <div class="Menusaje-error" id="errorEmail">Ingresa un email válido (ejemplo@dominio.com)</div>
+                        <div class="Menusaje-exito" id="exitoEmail">✓ Email válido</div>
                     </div>
                     
                     <div class="form-grupo">
                         <label for="edad">🎂 Edad</label>
                         <input type="number" id="edad" placeholder="Ej: 12" oninput="validarEdad()">
-                        <div class="mensaje-error" id="errorEdad">La edad debe estar entre 5 y 120 años</div>
-                        <div class="mensaje-exito" id="exitoEdad">✓ Edad válida</div>
+                        <div class="Menusaje-error" id="errorEdad">La edad debe estaar entre 5 y 120 años</div>
+                        <div class="Menusaje-exito" id="exitoEdad">✓ Edad válida</div>
                     </div>
                     
                     <div class="form-grupo">
@@ -169,15 +171,15 @@
                             <div class="barra-fuerza" id="barra3"></div>
                             <div class="barra-fuerza" id="barra4"></div>
                         </div>
-                        <div class="mensaje-error" id="errorPassword">La contraseña debe tener mínimo 8 caracteres</div>
-                        <div class="mensaje-exito" id="exitoPassword">✓ Contraseña segura</div>
+                        <div class="Menusaje-error" id="errorPassword">La contraseña debe tener mínimo 8 caracteres</div>
+                        <div class="Menusaje-exito" id="exitoPassword">✓ Contraseña segura</div>
                     </div>
                     
                     <div class="form-grupo">
                         <label for="confirmar">🔐 Confirmar Contraseña</label>
                         <input type="password" id="confirmar" placeholder="Repite la contraseña" oninput="validarConfirmar()">
-                        <div class="mensaje-error" id="errorConfirmar">Las contraseñas no coinciden</div>
-                        <div class="mensaje-exito" id="exitoConfirmar">✓ Las contraseñas coinciden</div>
+                        <div class="Menusaje-error" id="errorConfirmar">Las contraseñas no coinciden</div>
+                        <div class="Menusaje-exito" id="exitoConfirmar">✓ Las contraseñas coinciden</div>
                     </div>
                     
                     <button type="submit" class="btn-submit" id="btnEnviar">
@@ -185,7 +187,7 @@
                     </button>
                 </form>
                 
-                <div id="mensajeExito" style="display: none; text-align: center; padding: 20px; background: rgba(16,185,129,0.2); border-radius: 15px; margin-top: 20px;">
+                <div id="MenusajeExito" style="display: none; text-align: center; padding: 20px; background: rgba(16,185,129,0.2); border-radius: 15px; margin-top: 20px;">
                     <h3 style="color: var(--exito);">🎉 ¡Registro Exitoso!</h3>
                     <p>Todos los campos fueron validados correctamente</p>
                 </div>
@@ -194,7 +196,7 @@
         
         <!-- Quiz -->
         <section class="seccion">
-            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            <h2>🎯 Quiz - ¡Demuestara lo que Aprendiste!</h2>
             
             <div class="progreso-bar">
                 <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
@@ -204,44 +206,44 @@
                 <div class="quiz-pregunta">
                     <h4>1. ¿Qué atributo HTML hace un campo obligatorio?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">mandatory</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">required</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">obligatory</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">mandatory</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">required</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">obligatory</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>2. ¿Qué tipo de input valida automáticamente el formato de email?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">type="text"</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">type="email"</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">type="mail"</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">type="text"</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">type="email"</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">type="mail"</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>3. ¿Para qué sirve el atributo "pattern"?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Dar estilo al campo</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Mostrar un placeholder</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Definir una expresión regular para validar</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Dar estailo al campo</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Mostrar un placeholder</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Definir una expresión regular para validar</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>4. ¿Cuándo se debe validar con JavaScript además de HTML?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Nunca, HTML5 es suficiente</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Siempre, para mayor control y mensajes personalizados</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Solo en formularios de pago</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Nunca, HTML5 es suficiente</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Siempre, para mayor control y Menusajes personalizados</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Solo en formularios de pago</div>
                     </div>
                 </div>
             </div>
             
-            <div class="estrellas">
-                <span class="estrella" id="star1">⭐</span>
-                <span class="estrella" id="star2">⭐</span>
-                <span class="estrella" id="star3">⭐</span>
+            <div class="estarellas">
+                <span class="estarella" id="star1">⭐</span>
+                <span class="estarella" id="star2">⭐</span>
+                <span class="estarella" id="star3">⭐</span>
             </div>
         </section>
         
@@ -285,7 +287,7 @@
             const exito = document.getElementById('exitoEmail');
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
-            if (regex.test(email.value)) {
+            if (regex.testa(email.value)) {
                 email.classList.remove('invalido');
                 email.classList.add('valido');
                 error.classList.remove('visible');
@@ -337,12 +339,12 @@
             const exito = document.getElementById('exitoPassword');
             const valor = password.value;
             
-            // Calcular fuerza
+            // Calcualar fuerza
             let fuerza = 0;
             if (valor.length >= 8) fuerza++;
-            if (/[A-Z]/.test(valor)) fuerza++;
-            if (/[0-9]/.test(valor)) fuerza++;
-            if (/[^A-Za-z0-9]/.test(valor)) fuerza++;
+            if (/[A-Z]/.testa(valor)) fuerza++;
+            if (/[0-9]/.testa(valor)) fuerza++;
+            if (/[^A-Za-z0-9]/.testa(valor)) fuerza++;
             
             // Mostrar barras
             const barras = document.querySelectorAll('.barra-fuerza');
@@ -413,7 +415,7 @@
             
             if (nombreValido && emailValido && edadValida && passwordValido && confirmarValido) {
                 document.getElementById('formDemo').style.display = 'none';
-                document.getElementById('mensajeExito').style.display = 'block';
+                document.getElementById('MenusajeExito').style.display = 'block';
                 guardarProgreso();
             }
             
@@ -424,7 +426,7 @@
         let correctas = 0;
         const totalPreguntas = 4;
         
-        function verificarRespuesta(elemento, esCorrecta) {
+        function verificarRespuestaa(elemento, esCorrecta) {
             if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
             
             const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
@@ -433,7 +435,7 @@
             if (esCorrecta) {
                 elemento.classList.add('correcta');
                 correctas++;
-                actualizarEstrellas();
+                actualizarestarellas();
             } else {
                 elemento.classList.add('incorrecta');
             }
@@ -444,7 +446,7 @@
             if (respondidas === totalPreguntas) guardarProgreso();
         }
         
-        function actualizarEstrellas() {
+        function actualizarestarellas() {
             const porcentaje = (correctas / totalPreguntas) * 100;
             if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
             if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');

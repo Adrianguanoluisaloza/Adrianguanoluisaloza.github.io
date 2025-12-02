@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🌐 Nivel 19 - APIs y Fetch</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
@@ -26,11 +28,11 @@
             
             <div class="concepto-box">
                 <h3>API = Application Programming Interface</h3>
-                <p>Una <strong>API</strong> es como un <strong>mesero en un restaurante</strong>:</p>
+                <p>Una <strong>API</strong> es como un <strong>meserao en un restaaurante</strong>:</p>
                 <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>🍽️ Tú (la web) pides algo al mesero (API)</li>
-                    <li>👨‍🍳 El mesero va a la cocina (servidor) a buscar tu pedido</li>
-                    <li>📦 El mesero te trae la comida (datos)</li>
+                    <li>🍽️ Tú (la web) pides algo al meserao (API)</li>
+                    <li>👨‍🍳 El meserao va a la cocina (seravidor) a buscar tu pedido</li>
+                    <li>📦 El meserao te trae la comida (datos)</li>
                 </ul>
             </div>
             
@@ -52,7 +54,7 @@
             <div class="codigo-ejemplo">
 <pre><span class="comment">// Pedir datos a una API</span>
 <span class="keyword">fetch</span>(<span class="string">'https://api.ejemplo.com/datos'</span>)
-    .<span class="function">then</span>(respuesta => respuesta.<span class="function">json</span>())
+    .<span class="function">then</span>(respuestaa => respuestaa.<span class="function">json</span>())
     .<span class="function">then</span>(datos => {
         <span class="keyword">console</span>.<span class="function">log</span>(datos);
     });</pre>
@@ -61,16 +63,16 @@
             <div class="tip-box">
                 <strong>¿Qué significa cada parte?</strong><br>
                 • <code>fetch(url)</code> - Hace el pedido<br>
-                • <code>.then()</code> - "Cuando llegue la respuesta, haz esto..."<br>
-                • <code>.json()</code> - Convierte la respuesta a datos que podemos usar
+                • <code>.then()</code> - "Cuando llegue la respuestaa, haz estao..."<br>
+                • <code>.json()</code> - Convierte la respuestaa a datos que podemos usar
             </div>
             
             <h3 style="margin-top: 25px; color: var(--secundario);">🆕 Forma moderna con async/await</h3>
             
             <div class="codigo-ejemplo">
 <pre><span class="keyword">async function</span> <span class="function">obtenerDatos</span>() {
-    <span class="keyword">const</span> respuesta = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.ejemplo.com/datos'</span>);
-    <span class="keyword">const</span> datos = <span class="keyword">await</span> respuesta.<span class="function">json</span>();
+    <span class="keyword">const</span> respuestaa = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.ejemplo.com/datos'</span>);
+    <span class="keyword">const</span> datos = <span class="keyword">await</span> respuestaa.<span class="function">json</span>();
     <span class="keyword">console</span>.<span class="function">log</span>(datos);
 }
 
@@ -117,17 +119,17 @@
                     <textarea class="editor-textarea" id="jsEditor">// 🐕 Obtener una foto de perro random
 async function obtenerPerro() {
     // 1. Hacemos el pedido a la API
-    const respuesta = await fetch(
+    const respuestaa = await fetch(
         'https://dog.ceo/api/breeds/image/random'
     );
     
-    // 2. Convertimos la respuesta a JSON
-    const datos = await respuesta.json();
+    // 2. Convertimos la respuestaa a JSON
+    const datos = await respuestaa.json();
     
     // 3. Mostramos la imagen
     const preview = document.getElementById('preview');
     preview.innerHTML = `
-        <h3>🐕 ¡Aquí está tu perrito!</h3>
+        <h3>🐕 ¡Aquí estaá tu perrito!</h3>
         <img src="${datos.message}" 
              style="max-width: 100%; border-radius: 15px;">
     `;
@@ -159,14 +161,14 @@ obtenerPerro();</textarea>
             <div class="codigo-ejemplo">
 <pre><span class="keyword">async function</span> <span class="function">obtenerDatosSeguro</span>() {
     <span class="keyword">try</span> {
-        <span class="keyword">const</span> respuesta = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.ejemplo.com/datos'</span>);
+        <span class="keyword">const</span> respuestaa = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://api.ejemplo.com/datos'</span>);
         
-        <span class="comment">// Verificar si la respuesta fue exitosa</span>
-        <span class="keyword">if</span> (!respuesta.ok) {
+        <span class="comment">// Verificar si la respuestaa fue exitosa</span>
+        <span class="keyword">if</span> (!respuestaa.ok) {
             <span class="keyword">throw new</span> <span class="function">Error</span>(<span class="string">'Error en la petición'</span>);
         }
         
-        <span class="keyword">const</span> datos = <span class="keyword">await</span> respuesta.<span class="function">json</span>();
+        <span class="keyword">const</span> datos = <span class="keyword">await</span> respuestaa.<span class="function">json</span>();
         <span class="keyword">console</span>.<span class="function">log</span>(datos);
         
     } <span class="keyword">catch</span> (error) {
@@ -182,7 +184,7 @@ obtenerPerro();</textarea>
         
         <!-- Quiz -->
         <section class="seccion">
-            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            <h2>🎯 Quiz - ¡Demuestara lo que Aprendiste!</h2>
             
             <div class="progreso-bar">
                 <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
@@ -192,44 +194,44 @@ obtenerPerro();</textarea>
                 <div class="quiz-pregunta" data-correcta="1">
                     <h4>1. ¿Qué es una API?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Un tipo de base de datos</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Una forma de obtener datos de otros servidores</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Un lenguaje de programación</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Un tipo de base de datos</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Una forma de obtener datos de otros seravidores</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Un lenguaje de programación</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta" data-correcta="2">
                     <h4>2. ¿Qué función usamos para hacer peticiones HTTP?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">get()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">fetch()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">request()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">get()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">fetch()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">requesta()</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta" data-correcta="3">
-                    <h4>3. ¿Qué hace .json() en una respuesta fetch?</h4>
+                    <h4>3. ¿Qué hace .json() en una respuestaa fetch?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Envía datos al servidor</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Crea un archivo JSON</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Convierte la respuesta a un objeto JavaScript</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Envía datos al seravidor</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Crea un archivo JSON</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Convierte la respuestaa a un objeto JavaScript</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta" data-correcta="4">
                     <h4>4. ¿Qué palabras clave hacen el código asíncrono más legible?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">async / await</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">sync / wait</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">promise / resolve</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">async / await</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">sync / wait</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">promise / resolve</div>
                     </div>
                 </div>
             </div>
             
-            <div class="estrellas">
-                <span class="estrella" id="star1">⭐</span>
-                <span class="estrella" id="star2">⭐</span>
-                <span class="estrella" id="star3">⭐</span>
+            <div class="estarellas">
+                <span class="estarella" id="star1">⭐</span>
+                <span class="estarella" id="star2">⭐</span>
+                <span class="estarella" id="star3">⭐</span>
             </div>
         </section>
         
@@ -244,8 +246,8 @@ obtenerPerro();</textarea>
         let correctas = 0;
         const totalPreguntas = 4;
         
-        // Verificar respuesta del quiz
-        function verificarRespuesta(elemento, esCorrecta) {
+        // Verificar respuestaa del quiz
+        function verificarRespuestaa(elemento, esCorrecta) {
             if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) {
                 return; // Ya respondida
             }
@@ -258,7 +260,7 @@ obtenerPerro();</textarea>
             if (esCorrecta) {
                 elemento.classList.add('correcta');
                 correctas++;
-                actualizarEstrellas();
+                actualizarestarellas();
             } else {
                 elemento.classList.add('incorrecta');
                 // Mostrar la correcta
@@ -280,7 +282,7 @@ obtenerPerro();</textarea>
             }
         }
         
-        function actualizarEstrellas() {
+        function actualizarestarellas() {
             const porcentaje = (correctas / totalPreguntas) * 100;
             
             if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
@@ -321,7 +323,7 @@ obtenerPerro();</textarea>
                 const res = await fetch('https://dog.ceo/api/breeds/image/random');
                 const data = await res.json();
                 resultado.innerHTML = `
-                    <p style="color: var(--secundario); margin-bottom: 10px;">🐕 ¡Mira este perrito!</p>
+                    <p style="color: var(--secundario); margin-bottom: 10px;">🐕 ¡Mira estae perrito!</p>
                     <img src="${data.message}" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
                 `;
             } catch (e) {
@@ -337,7 +339,7 @@ obtenerPerro();</textarea>
                 const res = await fetch('https://api.thecatapi.com/v1/images/search');
                 const data = await res.json();
                 resultado.innerHTML = `
-                    <p style="color: var(--secundario); margin-bottom: 10px;">🐱 ¡Mira este gatito!</p>
+                    <p style="color: var(--secundario); margin-bottom: 10px;">🐱 ¡Mira estae gatito!</p>
                     <img src="${data[0].url}" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
                 `;
             } catch (e) {

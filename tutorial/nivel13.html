@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎨 Nivel 13 - CSS Grid: Cuadrículas Mágicas</title>
+    <title>🎨 Nivel 13 - CSS Grid: Cuadrícualas Mágicas</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="13">
     <header class="nivel-header">
@@ -13,7 +15,7 @@
             <span>🎨</span>
             <span>NIVEL 13</span>
         </div>
-        <h1>CSS Grid - ¡Cuadrículas Mágicas!</h1>
+        <h1>CSS Grid - ¡Cuadrícualas Mágicas!</h1>
     </header>
     
     <nav class="nav-niveles">
@@ -38,7 +40,7 @@
         <div class="panel-explicacion">
             <div class="panel-titulo">
                 <span>📖</span>
-                <span>CSS Grid - Diseño en cuadrícula</span>
+                <span>CSS Grid - Diseño en cuadrícuala</span>
             </div>
             
             <div class="seccion-explicacion">
@@ -52,8 +54,8 @@
             
             <div class="tip-box">
                 <h4>💡 Grid vs Flexbox</h4>
-                <p><strong>Flexbox</strong> = Una dimensión (fila O columna)</p>
-                <p><strong>Grid</strong> = Dos dimensiones (filas Y columnas a la vez)</p>
+                <p><strong>Flexbox</strong> = Una diMenusión (fila O columna)</p>
+                <p><strong>Grid</strong> = Dos diMenusiones (filas Y columnas a la vez)</p>
             </div>
             
             <h3 style="margin: 20px 0; color: var(--nivel-color);">🛠️ Propiedades principales:</h3>
@@ -117,6 +119,8 @@
     <title>CSS Grid - Galería de Fotos</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="13">
     <h1>🖼️ Mi Galería con CSS Grid</h1>
@@ -187,7 +191,7 @@
                     </select>
                 </div>
                 
-                <button class="btn-aplicar" onclick="aplicarGrid()">✨ Aplicar Cambios</button>
+                <button class="btn-aplicar" onclick="aplicarGrid()"> Aplicar Cambios</button>
             </div>
             
             <div class="grid-demo">
@@ -281,12 +285,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel14.html" class="btn-continuar" id="btnContinuar">
             Siguiente Nivel ➡️
@@ -349,7 +353,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -389,14 +393,14 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel13_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             }
         }
     </script>

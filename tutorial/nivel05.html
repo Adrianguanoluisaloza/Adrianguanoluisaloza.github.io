@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🖼️ Nivel 5 - Imágenes y Multimedia</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="5">
     <header class="nivel-header">
@@ -44,7 +46,7 @@
             <div class="seccion-explicacion">
                 <h3>🖼️ La etiqueta IMG</h3>
                 <p>
-                    La etiqueta <span class="codigo-inline">&lt;img&gt;</span> muestra 
+                    La etiqueta <span class="codigo-inline">&lt;img&gt;</span> muestara 
                     imágenes en tu página web. Es una etiqueta <strong>sin cierre</strong> 
                     (no tiene &lt;/img&gt;).
                 </p>
@@ -59,27 +61,27 @@
             <h3 style="margin: 20px 0; color: var(--nivel-color);">📋 Atributos de IMG:</h3>
             
             <div class="atributos-grid">
-                <div class="atributo-card" onclick="insertarAtributo('src')">
+                <div class="atributo-card" onclick="inseratarAtributo('src')">
                     <div class="nombre">src</div>
                     <div class="desc">URL o ruta de la imagen</div>
                 </div>
-                <div class="atributo-card" onclick="insertarAtributo('alt')">
+                <div class="atributo-card" onclick="inseratarAtributo('alt')">
                     <div class="nombre">alt</div>
                     <div class="desc">Texto alternativo</div>
                 </div>
-                <div class="atributo-card" onclick="insertarAtributo('width')">
+                <div class="atributo-card" onclick="inseratarAtributo('width')">
                     <div class="nombre">width</div>
                     <div class="desc">Ancho en píxeles</div>
                 </div>
-                <div class="atributo-card" onclick="insertarAtributo('height')">
+                <div class="atributo-card" onclick="inseratarAtributo('height')">
                     <div class="nombre">height</div>
                     <div class="desc">Alto en píxeles</div>
                 </div>
-                <div class="atributo-card" onclick="insertarAtributo('title')">
+                <div class="atributo-card" onclick="inseratarAtributo('title')">
                     <div class="nombre">title</div>
                     <div class="desc">Tooltip al pasar el mouse</div>
                 </div>
-                <div class="atributo-card" onclick="insertarAtributo('loading')">
+                <div class="atributo-card" onclick="inseratarAtributo('loading')">
                     <div class="nombre">loading</div>
                     <div class="desc">"lazy" = carga diferida</div>
                 </div>
@@ -124,6 +126,8 @@
     <title>Galería de Imágenes</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="5">
     <h1>🖼️ Mi Galería de Imágenes</h1>
@@ -132,7 +136,7 @@
     <img 
         src="https://picsum.photos/600/300"
         alt="Imagen panorámica aleatoria"
-        title="¡Pasa el mouse para ver este texto!"
+        title="¡Pasa el mouse para ver estae texto!"
         class="imagen-grande"
         loading="lazy"
     >
@@ -161,7 +165,7 @@
         height="150"
         style="border-radius: 50%; border: 4px solid #ec4899;"
     >
-    <p>Esta imagen tiene width="150" y height="150"</p>
+    <p>estaa imagen tiene width="150" y height="150"</p>
 </body>
 </html></textarea>
             
@@ -325,12 +329,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <button class="btn-continuar" onclick="window.location.href='nivel06.html'">
             🚀 Continuar al Nivel 6
@@ -398,7 +402,7 @@
             setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
         }
         
-        function insertarAtributo(attr) {
+        function inseratarAtributo(attr) {
             const editor = document.getElementById('codigoEditor');
             const ejemplos = {
                 'src': 'src="https://picsum.photos/300/200"',
@@ -465,7 +469,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -510,19 +514,19 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡Completaste todo!';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡Completaste todo!';
                 localStorage.setItem('nivel5_completado', 'true');
                 setTimeout(() => {
                     document.getElementById('overlay').classList.add('visible');
                     document.getElementById('logroPopup').classList.add('visible');
                 }, 500);
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

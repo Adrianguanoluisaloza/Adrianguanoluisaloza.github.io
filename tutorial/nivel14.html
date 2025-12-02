@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>📱 Nivel 14 - Responsive Design: ¡Para todos los tamaños!</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="14">
     <header class="nivel-header">
@@ -70,13 +72,13 @@
             
             <div class="tip-box">
                 <h4>💡 Media Queries</h4>
-                <p>Son como "preguntas" que le hacemos al navegador: "¿El ancho es menor a 768px?" Si sí, aplicamos estilos diferentes.</p>
+                <p>Son como "preguntas" que le hacemos al navegador: "¿El ancho es menor a 768px?" Si sí, aplicamos estailos diferentes.</p>
             </div>
             
             <div class="seccion-explicacion">
                 <h3>📝 Sintaxis básica:</h3>
                 <pre style="background: #16213e; padding: 15px; border-radius: 8px; overflow-x: auto;">
-/* Estilos para móvil */
+/* estailos para móvil */
 @media (max-width: 768px) {
     .contenedor {
         flex-direction: column;
@@ -92,7 +94,7 @@
                 <p>• <code>max-width: 100%</code> - Imágenes flexibles</p>
                 <p>• <code>%</code> y <code>vw/vh</code> - Unidades relativas</p>
                 <p>• <code>flex-wrap: wrap</code> - Elementos que se reorganizan</p>
-                <p>• <code>display: none</code> - Ocultar en ciertos tamaños</p>
+                <p>• <code>display: none</code> - Ocualtar en ciertos tamaños</p>
             </div>
         </div>
         
@@ -117,6 +119,8 @@
     <title>Página Responsive</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="14">
     <header>
@@ -127,7 +131,7 @@
     <div class="contenedor">
         <main class="contenido">
             <h2>📰 Contenido Principal</h2>
-            <p>Este es el área de contenido que se adapta al tamaño.</p>
+            <p>estae es el área de contenido que se adapta al tamaño.</p>
             
             <div class="tarjetas">
                 <div class="tarjeta">🎨</div>
@@ -138,7 +142,7 @@
         
         <aside class="sidebar">
             <h3>📌 Sidebar</h3>
-            <p>En móvil esto va arriba!</p>
+            <p>En móvil estao va arriba!</p>
             <ul>
                 <li>Enlace 1</li>
                 <li>Enlace 2</li>
@@ -151,7 +155,7 @@
             
             <div class="preview-container">
                 <div class="preview-header">
-                    <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="display: flex; align-itemas: center; gap: 10px;">
                         <span>👁️</span>
                         <span>Vista Previa</span>
                     </div>
@@ -176,7 +180,7 @@
         </div>
         
         <p style="margin-bottom: 20px; color: #94a3b8;">
-            Observa cómo se ve la misma página en diferentes dispositivos:
+            Obserava cómo se ve la misma página en diferentes dispositivos:
         </p>
         
         <div class="simulador">
@@ -201,7 +205,7 @@
         </div>
         
         <button class="btn-verificar" onclick="verificarSimulador()" style="margin-top: 20px;">
-            ✅ Verificar (observa los 3 dispositivos)
+            ✅ Verificar (obserava los 3 dispositivos)
         </button>
         <div class="quiz-resultado" id="resultadoSimulador"></div>
     </section>
@@ -219,7 +223,7 @@
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q1">
                     <span class="radio-custom"></span>
-                    Reglas CSS que aplican estilos según el tamaño de pantalla
+                    Reglas CSS que aplican estailos según el tamaño de pantalla
                 </label>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q1">
@@ -241,17 +245,17 @@
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Aplica estilos si el ancho es MAYOR a 768px
+                    Aplica estailos si el ancho es MAYOR a 768px
                 </label>
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Aplica estilos si el ancho es MENOR o igual a 768px
+                    Aplica estailos si el ancho es MENOR o igual a 768px
                 </label>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Establece el ancho máximo del contenedor
+                    estaablece el ancho máximo del contenedor
                 </label>
             </div>
             <div class="quiz-resultado" id="resultado2"></div>
@@ -279,12 +283,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel15.html" class="btn-continuar" id="btnContinuar">
             Siguiente Nivel ➡️
@@ -344,7 +348,7 @@
         function verificarSimulador() {
             const resultado = document.getElementById('resultadoSimulador');
             resultado.className = 'quiz-resultado exito';
-            resultado.innerHTML = '✅ ¡Excelente! Has observado cómo se adapta el diseño';
+            resultado.innerHTML = '✅ ¡Excelente! Has obseravado cómo se adapta el diseño';
             simuladorCompletado = true;
             actualizarProgreso();
         }
@@ -352,7 +356,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -392,14 +396,14 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel14_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             }
         }
     </script>

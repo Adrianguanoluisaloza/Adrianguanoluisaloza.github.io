@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🎨 Nivel 22 - CSS Variables</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
@@ -34,7 +36,7 @@
                 <li>🎨 Crear temas fácilmente (claro/oscuro)</li>
                 <li>🔄 Cambiar colores en un solo lugar</li>
                 <li>📱 Adaptar diseños dinámicamente</li>
-                <li>⚡ Modificar estilos con JavaScript</li>
+                <li>⚡ Modificar estailos con JavaScript</li>
             </ul>
         </section>
         
@@ -73,7 +75,7 @@
         <section class="seccion">
             <h2>🌈 Demo: Cambia el Tema</h2>
             
-            <p>Haz clic en un tema para ver cómo cambian los estilos:</p>
+            <p>Haz clic en un tema para ver cómo cambian los estailos:</p>
             
             <div class="tema-selector">
                 <button class="tema-btn activo" onclick="cambiarTema('oscuro')" style="background: #1a1a2e; color: #e2e8f0;">🌙 Oscuro</button>
@@ -83,8 +85,8 @@
             </div>
             
             <div class="tema-demo" id="temaDemo">
-                <h3>✨ Tarjeta de Ejemplo</h3>
-                <p>Este contenido cambia de estilo según el tema seleccionado. ¡Las CSS Variables hacen todo el trabajo!</p>
+                <h3> Tarjeta de Ejemplo</h3>
+                <p>estae contenido cambia de estailo según el tema seleccionado. ¡Las CSS Variables hacen todo el trabajo!</p>
                 <button class="boton-demo">Botón de Acción</button>
             </div>
             
@@ -106,7 +108,7 @@
         
         <!-- Personalizar tarjeta -->
         <section class="seccion">
-            <h2>🎨 Crea Tu Propio Estilo</h2>
+            <h2>🎨 Crea Tu Propio estailo</h2>
             
             <p>Usa los controles para personalizar la tarjeta en tiempo real:</p>
             
@@ -147,7 +149,7 @@
             
             <div class="tarjeta-personalizable" id="tarjetaPersonalizable">
                 <h4>🚀 Mi Tarjeta Personalizada</h4>
-                <p>¡Cambia los colores y valores arriba para ver cómo se actualiza esta tarjeta en tiempo real! Las CSS Variables hacen que todo sea súper fácil.</p>
+                <p>¡Cambia los colores y valores arriba para ver cómo se actualiza estaa tarjeta en tiempo real! Las CSS Variables hacen que todo sea súper fácil.</p>
             </div>
         </section>
         
@@ -174,7 +176,7 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
             </div>
             
             <div class="tip-box">
-                Esta técnica es perfecta para:<br>
+                estaa técnica es perfecta para:<br>
                 • 🌙 Modo oscuro/claro<br>
                 • 🎨 Personalización por usuario<br>
                 • 📊 Valores dinámicos (progreso, animaciones)
@@ -183,7 +185,7 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
         
         <!-- Quiz -->
         <section class="seccion">
-            <h2>🎯 Quiz - ¡Demuestra lo que Aprendiste!</h2>
+            <h2>🎯 Quiz - ¡Demuestara lo que Aprendiste!</h2>
             
             <div class="progreso-bar">
                 <div class="progreso-fill" id="progresoQuiz" style="width: 0%"></div>
@@ -193,44 +195,44 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
                 <div class="quiz-pregunta">
                     <h4>1. ¿Cómo se define una variable CSS?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">$color: blue;</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">--color: blue;</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">@color: blue;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">$color: blue;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">--color: blue;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">@color: blue;</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>2. ¿Cómo se usa una variable CSS?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">color: $primario;</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">color: --primario;</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">color: var(--primario);</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">color: $primario;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">color: --primario;</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">color: var(--primario);</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>3. ¿Dónde se definen variables globales?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">:root { }</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">body { }</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">* { }</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">:root { }</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">body { }</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">* { }</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>4. ¿Qué método JS cambia una variable CSS?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">element.css('--var', 'value')</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">element.style.setProperty('--var', 'value')</div>
-                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">element.setVariable('--var', 'value')</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">element.css('--var', 'value')</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">element.style.setProperty('--var', 'value')</div>
+                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">element.setVariable('--var', 'value')</div>
                     </div>
                 </div>
             </div>
             
-            <div class="estrellas">
-                <span class="estrella" id="star1">⭐</span>
-                <span class="estrella" id="star2">⭐</span>
-                <span class="estrella" id="star3">⭐</span>
+            <div class="estarellas">
+                <span class="estarella" id="star1">⭐</span>
+                <span class="estarella" id="star2">⭐</span>
+                <span class="estarella" id="star3">⭐</span>
             </div>
         </section>
         
@@ -281,8 +283,8 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
                 }
             };
             
-            const estilos = temas[tema];
-            for (const [variable, valor] of Object.entries(estilos)) {
+            const estailos = temas[tema];
+            for (const [variable, valor] of Object.entries(estailos)) {
                 demo.style.setProperty(variable, valor);
             }
         }
@@ -297,7 +299,7 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
         let correctas = 0;
         const totalPreguntas = 4;
         
-        function verificarRespuesta(elemento, esCorrecta) {
+        function verificarRespuestaa(elemento, esCorrecta) {
             if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
             
             const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
@@ -306,7 +308,7 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
             if (esCorrecta) {
                 elemento.classList.add('correcta');
                 correctas++;
-                actualizarEstrellas();
+                actualizarestarellas();
             } else {
                 elemento.classList.add('incorrecta');
             }
@@ -317,7 +319,7 @@ tarjeta.<span class="function">style</span>.<span class="function">setProperty</
             if (respondidas === totalPreguntas) guardarProgreso();
         }
         
-        function actualizarEstrellas() {
+        function actualizarestarellas() {
             const porcentaje = (correctas / totalPreguntas) * 100;
             if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
             if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');

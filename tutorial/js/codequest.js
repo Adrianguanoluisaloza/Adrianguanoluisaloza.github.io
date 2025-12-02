@@ -115,10 +115,19 @@
 
     window.ejecutarCodigo = function() {
         var editor = document.getElementById('codigoEditor');
-        var preview = document.getElementById('vistaPrevia');
+        // Buscar preview con varios IDs posibles
+        var preview = document.getElementById('vistaPrevia') || 
+                      document.getElementById('previewFrame') ||
+                      document.querySelector('.preview-frame') ||
+                      document.querySelector('iframe[class*="preview"]');
         
-        if (!editor || !preview) {
-            mostrarToast('Error: Editor o preview no encontrado', 'error');
+        if (!editor) {
+            console.log('Editor no encontrado');
+            return;
+        }
+        
+        if (!preview) {
+            console.log('Preview no encontrado');
             return;
         }
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🌐 Nivel 12 - DOM: Manipulando la Página</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="12">
     <header class="nivel-header">
@@ -45,8 +47,8 @@
                 <h3>🌐 ¿Qué es el DOM?</h3>
                 <p>
                     El <strong>DOM</strong> es como un mapa de todos los elementos de tu página web. 
-                    JavaScript usa este mapa para encontrar y modificar cualquier parte de la página:
-                    textos, colores, estilos, ¡todo!
+                    JavaScript usa estae mapa para encontrar y modificar cualquier parte de la página:
+                    textos, colores, estailos, ¡todo!
                 </p>
             </div>
             
@@ -62,7 +64,7 @@
             <div class="metodos-dom">
                 <div class="metodo-dom">
                     <div class="metodo">document.getElementById("id")</div>
-                    <div class="descripcion">Busca UN elemento por su ID único</div>
+                    <div class="descripcion">Busca UN elemento por su ID úunico</div>
                 </div>
                 <div class="metodo-dom">
                     <div class="metodo">document.querySelector(".clase")</div>
@@ -78,7 +80,7 @@
                 </div>
                 <div class="metodo-dom">
                     <div class="metodo">elemento.style.propiedad</div>
-                    <div class="descripcion">Cambia estilos CSS desde JavaScript</div>
+                    <div class="descripcion">Cambia estailos CSS desde JavaScript</div>
                 </div>
                 <div class="metodo-dom">
                     <div class="metodo">elemento.classList.add/remove</div>
@@ -95,12 +97,12 @@ let titulo = document.getElementById("miTitulo");
 // 2. Cambiar texto
 titulo.textContent = "¡Nuevo título!";
 
-// 3. Cambiar estilos
+// 3. Cambiar estailos
 titulo.style.color = "blue";
 titulo.style.fontSize = "2rem";
 
 // 4. Agregar clase CSS
-titulo.classList.add("destacado");
+titulo.classList.add("destaacado");
 
 // 5. Agregar evento
 titulo.addEventListener("click", function() {
@@ -129,6 +131,8 @@ titulo.addEventListener("click", function() {
     <title>Manipulando el DOM</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="12">
     <div class="contenedor">
@@ -142,12 +146,12 @@ titulo.addEventListener("click", function() {
         </div>
         
         <div class="tarjeta" id="tarjeta2">
-            <h3>Cambiar estilos</h3>
+            <h3>Cambiar estailos</h3>
             <button class="btn-color" onclick="cambiarColorTitulo()">
                 🎨 Cambiar color título
             </button>
-            <button class="btn-toggle" onclick="toggleDestacada()">
-                ⭐ Toggle destacada
+            <button class="btn-toggle" onclick="toggleDestaacada()">
+                ⭐ Toggle destaacada
             </button>
         </div>
         
@@ -190,10 +194,10 @@ titulo.addEventListener("click", function() {
             colorIndex = (colorIndex + 1) % colores.length;
         }
         
-        // Función: Toggle clase destacada
-        function toggleDestacada() {
+        // Función: Toggle clase destaacada
+        function toggleDestaacada() {
             let tarjeta = document.getElementById("tarjeta1");
-            tarjeta.classList.toggle("destacada");
+            tarjeta.classList.toggle("destaacada");
         }
         
         // Función: Agregar tarea
@@ -281,7 +285,7 @@ titulo.addEventListener("click", function() {
                 </div>
                 
                 <button class="btn-aplicar" onclick="aplicarCambios()">
-                    ✨ Aplicar cambios al DOM
+                     Aplicar cambios al DOM
                 </button>
             </div>
             
@@ -293,7 +297,7 @@ titulo.addEventListener("click", function() {
                 <div class="dom-preview">
                     <div id="elementoDemo">¡Hola Mundo!</div>
                     <p style="color: #6b7280; font-size: 0.9rem;">
-                        Este elemento está siendo modificado con JavaScript DOM
+                        estae elemento estaá siendo modificado con JavaScript DOM
                     </p>
                 </div>
             </div>
@@ -320,7 +324,7 @@ titulo.addEventListener("click", function() {
             <div class="reto" id="reto1">
                 <h5>🎯 Reto 1</h5>
                 <p>Obtén un elemento con ID "titulo". Completa:</p>
-                <input class="reto-input" id="respuesta1" placeholder="document.____('titulo')">
+                <input class="reto-input" id="respuestaa1" placeholder="document.____('titulo')">
                 <button class="btn-reto" onclick="verificarReto(1)">Verificar</button>
                 <div class="reto-resultado" id="resultado1"></div>
             </div>
@@ -328,7 +332,7 @@ titulo.addEventListener("click", function() {
             <div class="reto" id="reto2">
                 <h5>🎨 Reto 2</h5>
                 <p>Cambia el color del elemento a rojo. Completa:</p>
-                <input class="reto-input" id="respuesta2" placeholder="elemento.____.color = 'red'">
+                <input class="reto-input" id="respuestaa2" placeholder="elemento.____.color = 'red'">
                 <button class="btn-reto" onclick="verificarReto(2)">Verificar</button>
                 <div class="reto-resultado" id="resultado2"></div>
             </div>
@@ -336,7 +340,7 @@ titulo.addEventListener("click", function() {
             <div class="reto" id="reto3">
                 <h5>📝 Reto 3</h5>
                 <p>Cambia el texto de un elemento. Completa:</p>
-                <input class="reto-input" id="respuesta3" placeholder="elemento.____ = 'Nuevo texto'">
+                <input class="reto-input" id="respuestaa3" placeholder="elemento.____ = 'Nuevo texto'">
                 <button class="btn-reto" onclick="verificarReto(3)">Verificar</button>
                 <div class="reto-resultado" id="resultado3"></div>
             </div>
@@ -344,7 +348,7 @@ titulo.addEventListener("click", function() {
             <div class="reto" id="reto4">
                 <h5>➕ Reto 4</h5>
                 <p>Agrega una clase "activo" al elemento. Completa:</p>
-                <input class="reto-input" id="respuesta4" placeholder="elemento.classList.____('activo')">
+                <input class="reto-input" id="respuestaa4" placeholder="elemento.classList.____('activo')">
                 <button class="btn-reto" onclick="verificarReto(4)">Verificar</button>
                 <div class="reto-resultado" id="resultado4"></div>
             </div>
@@ -424,12 +428,12 @@ titulo.addEventListener("click", function() {
             <div class="quiz-resultado" id="resultadoQ3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="final.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             🏆 Ir al Proyecto Final ➡️
@@ -521,7 +525,7 @@ titulo.addEventListener("click", function() {
         }
         
         // Retos
-        const respuestasCorrectas = {
+        const respuestaasCorrectas = {
             1: ['getelementbyid', 'getElementById'],
             2: ['style'],
             3: ['textcontent', 'textContent', 'innerText', 'innerHTML'],
@@ -529,18 +533,18 @@ titulo.addEventListener("click", function() {
         };
         
         function verificarReto(num) {
-            const respuesta = document.getElementById(`respuesta${num}`).value.trim().toLowerCase();
+            const respuestaa = document.getElementById(`respuestaa${num}`).value.trim().toLowerCase();
             const resultado = document.getElementById(`resultado${num}`);
-            const correctas = respuestasCorrectas[num].map(r => r.toLowerCase());
+            const correctas = respuestaasCorrectas[num].map(r => r.toLowerCase());
             
-            if (correctas.includes(respuesta)) {
+            if (correctas.includes(respuestaa)) {
                 resultado.className = 'reto-resultado correcto';
                 resultado.innerHTML = '✅ ¡Correcto!';
                 retosCompletados++;
                 actualizarProgreso();
             } else {
                 resultado.className = 'reto-resultado incorrecto';
-                resultado.innerHTML = '❌ Incorrecto. Pista: ' + respuestasCorrectas[num][0];
+                resultado.innerHTML = '❌ Incorrecto. Pista: ' + respuestaasCorrectas[num][0];
             }
         }
         
@@ -548,7 +552,7 @@ titulo.addEventListener("click", function() {
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -599,16 +603,16 @@ titulo.addEventListener("click", function() {
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉 ¡Listo para el proyecto final!';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉 ¡Listo para el proyecto final!';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel12_completado', 'true');
             } else if (progreso >= 65) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else if (progreso >= 30) {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🎨 Nivel 7 - Introducción a CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="7">
     <header class="nivel-header">
@@ -45,7 +47,7 @@
                 <h3>🎨 ¿Qué es CSS?</h3>
                 <p>
                     <strong>CSS</strong> (Cascading Style Sheets) es el lenguaje para 
-                    dar <strong>estilo y belleza</strong> a tu página web. 
+                    dar <strong>estailo y belleza</strong> a tu página web. 
                     Con CSS puedes cambiar colores, tamaños, fuentes, posiciones y mucho más.
                 </p>
             </div>
@@ -62,35 +64,35 @@
             </h3>
             
             <div class="propiedades-css">
-                <div class="propiedad-css" onclick="insertarPropiedad('color')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('color')">
                     <div class="icono">🎨</div>
                     <div class="nombre">color</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('background')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('background')">
                     <div class="icono">🖼️</div>
                     <div class="nombre">background</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('font-size')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('font-size')">
                     <div class="icono">📏</div>
                     <div class="nombre">font-size</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('padding')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('padding')">
                     <div class="icono">📦</div>
                     <div class="nombre">padding</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('margin')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('margin')">
                     <div class="icono">↔️</div>
                     <div class="nombre">margin</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('border')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('border')">
                     <div class="icono">🔲</div>
                     <div class="nombre">border</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('border-radius')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('border-radius')">
                     <div class="icono">⭕</div>
                     <div class="nombre">border-radius</div>
                 </div>
-                <div class="propiedad-css" onclick="insertarPropiedad('font-family')">
+                <div class="propiedad-css" onclick="inseratarPropiedad('font-family')">
                     <div class="icono">✏️</div>
                     <div class="nombre">font-family</div>
                 </div>
@@ -142,18 +144,20 @@
     <title>Mi Página con CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="7">
     <div class="tarjeta">
         <h1>🎨 Aprendo CSS</h1>
         
         <p>
-            ¡Hola! Esta es mi primera página con estilos CSS.
+            ¡Hola! estaa es mi primera página con estailos CSS.
             Puedo cambiar colores, tamaños y mucho más.
         </p>
         
         <div id="especial">
-            💡 Este elemento tiene un ID único llamado "especial"
+            💡 estae elemento tiene un ID úunico llamado "especial"
         </div>
         
         <p>
@@ -185,7 +189,7 @@
         
         <div class="designer-container">
             <div class="controles-design">
-                <h4>🎛️ Controles de Estilo</h4>
+                <h4>🎛️ Controles de estailo</h4>
                 
                 <div class="control-grupo">
                     <label>Texto:</label>
@@ -228,7 +232,7 @@
                         <option value="Verdana">Verdana</option>
                         <option value="Courier New">Courier New</option>
                         <option value="Times New Roman">Times New Roman</option>
-                        <option value="Comic Sans MS">Comic Sans MS</option>
+                        <option value="Comic Sans mas">Comic Sans mas</option>
                     </select>
                 </div>
                 
@@ -344,12 +348,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel08.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -408,7 +412,7 @@
             alert('Color copiado: ' + color);
         }
         
-        function insertarPropiedad(prop) {
+        function inseratarPropiedad(prop) {
             const templates = {
                 'color': '\n            color: #ec4899;',
                 'background': '\n            background: linear-gradient(135deg, #667eea, #764ba2);',
@@ -417,7 +421,7 @@
                 'margin': '\n            margin: 20px;',
                 'border': '\n            border: 3px solid #ec4899;',
                 'border-radius': '\n            border-radius: 15px;',
-                'font-family': "\n            font-family: 'Georgia', serif;"
+                'font-family': "\n            font-family: 'Georgia', seraif;"
             };
             
             const editor = document.getElementById('codigoEditor');
@@ -464,7 +468,7 @@
     font-size: ${tamano}px;
     padding: ${padding}px;
     border-radius: ${borderRadius}px;
-    font-family: '${fuente}', sans-serif;
+    font-family: '${fuente}', sans-seraif;
     box-shadow: ${sombras[sombra]};
 }`;
             
@@ -491,7 +495,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -536,16 +540,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel7_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
         

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>🌈 Nivel 17 - Animaciones CSS</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="17">
     <header class="nivel-header">
@@ -92,7 +94,7 @@
                 </div>
                 <div class="propiedad-item">
                     <div class="nombre">animation-duration</div>
-                    <div class="desc">Duración (ej: 2s, 500ms)</div>
+                    <div class="desc">Duración (ej: 2s, 500mas)</div>
                 </div>
                 <div class="propiedad-item">
                     <div class="nombre">animation-timing-function</div>
@@ -125,6 +127,8 @@
     <title>Animaciones Mágicas</title>
     <link rel="stylesheet" href="css/codequest.css">
     <script src="js/codequest.js" defer></script>
+    
+    
     </head>
 <body data-nivel="17">
     <h1>🌈 Animaciones Mágicas</h1>
@@ -157,7 +161,7 @@
     </div>
     
     <button class="boton-magico">
-        ✨ Pasa el mouse
+         Pasa el mouse
     </button>
 </body>
 </html></textarea>
@@ -349,12 +353,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
-        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
+        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
+        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
         <br>
         <a href="nivel18.html" class="btn-continuar" id="btnContinuar">
             Siguiente Nivel ➡️
@@ -432,23 +436,23 @@
                     keyframes = `@keyframes custombounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }`;
                     break;
                 case 'spin':
-                    keyframes = `@keyframes customspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
+                    keyframes = `@keyframes customaspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
                     break;
                 case 'pulse':
                     keyframes = `@keyframes custompulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }`;
                     break;
                 case 'shake':
-                    keyframes = `@keyframes customshake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }`;
+                    keyframes = `@keyframes customashake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }`;
                     break;
                 case 'float':
                     keyframes = `@keyframes customfloat { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-15px) rotate(5deg); } }`;
                     break;
             }
             
-            let style = document.getElementById('animStyle');
+            let style = document.getElementById('animastyle');
             if (!style) {
                 style = document.createElement('style');
-                style.id = 'animStyle';
+                style.id = 'animastyle';
                 document.head.appendChild(style);
             }
             style.textContent = keyframes;
@@ -475,7 +479,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -515,16 +519,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estrellas = document.getElementById('estrellas');
+            const estarellas = document.getElementById('estarellas');
             if (progreso >= 99) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estarellas.textContent = '⭐⭐⭐';
+                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel17_completado', 'true');
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estarellas.textContent = '⭐⭐☆';
             } else if (progreso >= 30) {
-                estrellas.textContent = '⭐☆☆';
+                estarellas.textContent = '⭐☆☆';
             }
         }
     </script>
