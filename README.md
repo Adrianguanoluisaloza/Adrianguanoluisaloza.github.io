@@ -82,6 +82,17 @@ CodeQuest es un **tutorial interactivo gamificado** diseñado para que **niños 
 
 ---
 
+## 💻 Para Desarrolladores
+
+Si quieres contribuir o personalizar el tutorial, consulta el archivo **`README-LOCAL.md`** que contiene:
+- Instrucciones de desarrollo local
+- Guía de despliegue a GitHub Pages
+- Solución de problemas de caché
+- Estructura del proyecto
+- Flujo de trabajo completo
+
+---
+
 ## 📂 Estructura del Proyecto
 
 ```
