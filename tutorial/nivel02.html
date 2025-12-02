@@ -682,14 +682,53 @@
                     El <span class="codigo-inline">&lt;head&gt;</span> es como el 
                     <strong>"cerebro invisible"</strong> de tu página web. Contiene 
                     información importante que el navegador necesita, pero que los 
-                    visitantes NO ven directamente.
+                    visitantes NO ven directamente en la página.
                 </p>
+                <p style="margin-top: 15px;">
+                    <strong>📍 Ubicación:</strong> El HEAD siempre va entre <code>&lt;html&gt;</code> y <code>&lt;body&gt;</code>
+                </p>
+                <div style="background: rgba(6, 182, 212, 0.1); padding: 15px; border-radius: 8px; margin: 15px 0; font-family: monospace;">
+&lt;html&gt;<br>
+&nbsp;&nbsp;<strong style="color: #06b6d4;">&lt;head&gt;</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;← Aquí va toda la metadata<br>
+&nbsp;&nbsp;<strong style="color: #06b6d4;">&lt;/head&gt;</strong><br>
+&nbsp;&nbsp;&lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;← Aquí va el contenido visible<br>
+&nbsp;&nbsp;&lt;/body&gt;<br>
+&lt;/html&gt;
+                </div>
             </div>
             
             <div class="tip-box">
-                <h4>💡 Analogía</h4>
-                <p>Piensa en el HEAD como la etiqueta de un libro: tiene el título, 
-                   autor e información, pero no es parte de la historia que lees.</p>
+                <h4>💡 Analogías para entender el HEAD</h4>
+                <p style="margin-bottom: 10px;"><strong>1. Como la etiqueta de un producto:</strong></p>
+                <ul style="margin-left: 25px; line-height: 1.8;">
+                    <li>📦 HEAD = Etiqueta con ingredientes, precio, marca</li>
+                    <li>👀 BODY = El producto que ves y usas</li>
+                </ul>
+                <p style="margin: 15px 0 10px;"><strong>2. Como el carnet de identidad:</strong></p>
+                <ul style="margin-left: 25px; line-height: 1.8;">
+                    <li>🆔 HEAD = Datos del documento (nombre, fecha, tipo)</li>
+                    <li>🖼️ BODY = Tu foto y contenido visible</li>
+                </ul>
+                <p style="margin: 15px 0 10px;"><strong>3. Como una carta:</strong></p>
+                <ul style="margin-left: 25px; line-height: 1.8;">
+                    <li>✉️ HEAD = El sobre con dirección y remitente</li>
+                    <li>📄 BODY = El mensaje dentro de la carta</li>
+                </ul>
+            </div>
+            
+            <div style="background: rgba(251, 191, 36, 0.1); border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 8px;">
+                <h4 style="color: #f59e0b; margin-bottom: 10px;">⚡ Dato Importante</h4>
+                <p style="line-height: 1.8;">
+                    Aunque los usuarios NO ven el HEAD directamente, es <strong>SÚPER importante</strong> porque:
+                </p>
+                <ul style="margin-left: 25px; margin-top: 10px; line-height: 2;">
+                    <li>🔍 <strong>Google</strong> lee el HEAD para indexar tu sitio</li>
+                    <li>📱 <strong>Navegadores</strong> lo usan para mostrar tu página correctamente</li>
+                    <li>🌐 <strong>Redes sociales</strong> lo leen cuando compartes un link</li>
+                    <li>♿ <strong>Lectores de pantalla</strong> lo usan para personas con discapacidad visual</li>
+                </ul>
             </div>
             
             <h3 style="margin: 20px 0; color: #06b6d4;">📦 Etiquetas que van en el HEAD:</h3>
@@ -851,6 +890,107 @@
         
         <button class="btn-verificar" onclick="verificarDragDrop()">✅ Verificar Respuestas</button>
         <div class="quiz-resultado" id="resultadoDrag"></div>
+    </section>
+    
+    <!-- Ejemplos del mundo real NUEVO -->
+    <section class="actividad" style="margin-top: 30px;">
+        <div class="actividad-header">
+            <span>🌍</span>
+            <span>Ejemplos del Mundo Real</span>
+        </div>
+        
+        <div style="padding: 25px;">
+            <h3 style="color: #06b6d4; margin-bottom: 20px;">🔍 HEAD en sitios famosos:</h3>
+            
+            <div style="display: grid; gap: 20px;">
+                <div style="background: rgba(6, 182, 212, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #06b6d4;">
+                    <h4 style="color: #06b6d4; margin-bottom: 10px;">📺 YouTube</h4>
+                    <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6; overflow-x: auto;">
+&lt;meta charset="utf-8"&gt;<br>
+&lt;title&gt;YouTube&lt;/title&gt;<br>
+&lt;meta name="description" content="Disfruta videos..."&gt;<br>
+&lt;meta name="viewport" content="width=device-width"&gt;
+                    </code>
+                    <p style="margin-top: 10px;">✅ Charset, title, description y viewport</p>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <h4 style="color: #10b981; margin-bottom: 10px;">🛍️ Amazon</h4>
+                    <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6; overflow-x: auto;">
+&lt;meta charset="utf-8"&gt;<br>
+&lt;title&gt;Amazon.com: Compras en línea&lt;/title&gt;<br>
+&lt;meta name="keywords" content="Amazon, compras"&gt;<br>
+&lt;link rel="stylesheet" href="estilos.css"&gt;
+                    </code>
+                    <p style="margin-top: 10px;">✅ Incluye keywords y link a CSS externo</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; padding: 20px; background: rgba(6, 182, 212, 0.05); border-radius: 12px;">
+                <h4 style="color: #06b6d4; margin-bottom: 12px;">🎯 Lecciones clave:</h4>
+                <ul style="line-height: 2; margin-left: 25px;">
+                    <li><strong>TODOS</strong> usan charset UTF-8</li>
+                    <li>El <strong>title</strong> es crucial para SEO</li>
+                    <li>La <strong>description</strong> aparece en Google</li>
+                    <li>El <strong>viewport</strong> es obligatorio para móviles</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Meta tags avanzadas NUEVO -->
+    <section class="actividad" style="margin-top: 30px;">
+        <div class="actividad-header">
+            <span>🚀</span>
+            <span>Meta Tags Avanzadas (Bonus)</span>
+        </div>
+        
+        <div style="padding: 25px; line-height: 1.8;">
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #f59e0b; margin-bottom: 10px;">🎨 Open Graph (Redes sociales)</h4>
+                <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6;">
+&lt;meta property="og:title" content="Mi Artículo Increíble"&gt;<br>
+&lt;meta property="og:description" content="Descripción al compartir"&gt;<br>
+&lt;meta property="og:image" content="preview.jpg"&gt;
+                </code>
+                <p style="margin-top: 10px; font-size: 0.95rem;">
+                    📱 Controla cómo se ve tu link cuando lo compartes en Facebook, WhatsApp o Twitter
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #10b981; margin-bottom: 10px;">🤖 Meta Robots (Para Google)</h4>
+                <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6;">
+&lt;meta name="robots" content="index, follow"&gt;
+                </code>
+                <p style="margin-top: 10px; font-size: 0.95rem;">
+                    🔍 Le dice a Google si puede indexar (guardar) tu página y seguir los links<br>
+                    • <strong>index</strong> = Permitir en búsquedas<br>
+                    • <strong>noindex</strong> = NO mostrar en Google<br>
+                    • <strong>follow</strong> = Seguir los links
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #8b5cf6; margin-bottom: 10px;">🎭 Theme Color (Móviles)</h4>
+                <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6;">
+&lt;meta name="theme-color" content="#3498db"&gt;
+                </code>
+                <p style="margin-top: 10px; font-size: 0.95rem;">
+                    📱 Cambia el color de la barra superior del navegador en móviles para que combine con tu sitio
+                </p>
+            </div>
+            
+            <div>
+                <h4 style="color: #ef4444; margin-bottom: 10px;">📱 Apple Touch Icon</h4>
+                <code style="display: block; background: #1a1a2e; padding: 15px; border-radius: 8px; font-size: 0.85rem; line-height: 1.6;">
+&lt;link rel="apple-touch-icon" href="icon-180x180.png"&gt;
+                </code>
+                <p style="margin-top: 10px; font-size: 0.95rem;">
+                    🍎 Icono cuando alguien agrega tu sitio a la pantalla de inicio de iPhone/iPad
+                </p>
+            </div>
+        </div>
     </section>
     
     <!-- Quiz -->

@@ -121,6 +121,36 @@ Si quieres contribuir o personalizar el tutorial, consulta el archivo **`README-
 
 ---
 
+### ✅ Nivel 2 - HEAD y Metadatos (Mejorado - 2 dic 2025)
+
+**Contenido ampliado:**
+- 🧠 Múltiples analogías para entender el HEAD (etiqueta, carnet, carta)
+- 📍 Explicación visual de la ubicación del HEAD en el documento
+- 💡 Sección "Dato Importante" sobre el impacto del HEAD (Google, navegadores, redes sociales)
+- 🎯 Explicación detallada de cada etiqueta meta con grid visual
+- 📊 Importancia del HEAD para SEO y accesibilidad
+
+**Ejemplos del mundo real:**
+- 📺 HEAD de YouTube completo analizado
+- 🛍️ HEAD de Amazon con keywords y CSS externo
+- 🎯 Lecciones clave extraídas de sitios profesionales
+
+**Meta tags avanzadas (Bonus):**
+- 🎨 Open Graph para redes sociales (Facebook, WhatsApp, Twitter)
+- 🤖 Meta Robots para control de indexación en Google
+- 🎭 Theme Color para personalizar el navegador móvil
+- 🍎 Apple Touch Icon para iOS
+
+**Contenido educativo:**
+- Explicación de cada atributo de Open Graph
+- Diferencia entre index/noindex y follow/nofollow
+- Caso de uso práctico de theme-color
+- Guía de favicons para diferentes dispositivos
+
+**Total de contenido nuevo:** ~2500 palabras adicionales
+
+---
+
 ## 📂 Estructura del Proyecto
 
 ```
