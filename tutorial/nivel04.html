@@ -1,4 +1,4 @@
-﻿
+
 
 
 
@@ -10,7 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>🧭 Nivel 4 - Navegación y Menús Web</title>
+    <title>?? Nivel 4 - Navegaci�n y Men�s Web</title>
     <!-- Actualizado: 2 de diciembre 2025 - 15:30 -->
     <!-- v2.0 - Actualizado y Optimizado -->
     <style>
@@ -20,10 +20,10 @@
             --exito: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
-            --fondo: #0f0f23;
-            --texto: #e2e8f0;
-            --tarjeta: #1a1a2e;
-            --borde: #374151;
+            --fondo: #f8f9fa;
+            --texto: #1f2937;
+            --tarjeta: #ffffff;
+            --borde: #e5e7eb;
             --nivel-color: #8b5cf6;
         }
         
@@ -119,7 +119,8 @@
             background: var(--tarjeta);
             border-radius: 15px;
             padding: 25px;
-            border: 2px solid var(--borde);
+            border: 1px solid var(--borde);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .panel-titulo {
@@ -163,7 +164,8 @@
             background: var(--tarjeta);
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid var(--borde);
+            border: 1px solid var(--borde);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .editor-header {
@@ -204,12 +206,13 @@
         
         .codigo-textarea {
             width: 100%;
-            min-height: 450px;
+            min-height: 500px;
+            height: 600px;
             padding: 20px;
             font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            background: #1a1a2e;
+            font-size: 15px;
+            line-height: 1.8;
+            background: #1e293b;
             color: #e2e8f0;
             border: none;
             resize: vertical;
@@ -230,9 +233,11 @@
         
         .preview-frame {
             width: 100%;
-            min-height: 300px;
+            min-height: 500px;
+            height: 600px;
             background: white;
             border: none;
+            border-radius: 0 0 10px 10px;
         }
         
         .tip-box {
@@ -251,7 +256,7 @@
             margin-bottom: 8px;
         }
         
-        /* Ejemplos de navegación */
+        /* Ejemplos de navegaci�n */
         .ejemplos-nav {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -260,17 +265,24 @@
         }
         
         .ejemplo-nav {
-            background: rgba(139, 92, 246, 0.1);
-            border: 2px solid var(--nivel-color);
+            background: rgba(139, 92, 246, 0.08);
+            border: 2px solid rgba(139, 92, 246, 0.3);
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .ejemplo-nav:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+            border-color: var(--nivel-color);
+            background: rgba(139, 92, 246, 0.12);
+        }
+        
+        .ejemplo-nav:active {
+            transform: translateY(-2px) scale(1);
         }
         
         .ejemplo-nav h4 {
@@ -303,7 +315,7 @@
             margin-bottom: 20px;
         }
         
-        /* Constructor de Menú */
+        /* Constructor de Men� */
         .menu-builder {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -385,7 +397,7 @@
         }
         
         .codigo-generado {
-            background: #1a1a2e;
+            background: #f1f5f9;
             padding: 15px;
             font-family: 'Consolas', monospace;
             font-size: 13px;
@@ -570,23 +582,23 @@
 <body>
     <header class="nivel-header">
         <div class="nivel-badge">
-            <span>🧭</span>
+            <span>??</span>
             <span>NIVEL 4</span>
         </div>
-        <h1>Navegación y Menús con NAV</h1>
+        <h1>Navegaci�n y Men�s con NAV</h1>
     </header>
     
     <nav class="nav-niveles">
-        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <a href="inicio.html" class="nav-btn">?? Men� Principal</a>
         <div style="display: flex; gap: 10px;">
-            <a href="nivel03.html" class="nav-btn">⬅️ Anterior</a>
-            <a href="nivel05.html" class="nav-btn">Siguiente ➡️</a>
+            <a href="nivel03.html" class="nav-btn">?? Anterior</a>
+            <a href="nivel05.html" class="nav-btn">Siguiente ??</a>
         </div>
     </nav>
     
     <div class="progreso-nivel">
         <div class="progreso-info">
-            <span>📊 Progreso del Nivel 4</span>
+            <span>?? Progreso del Nivel 4</span>
             <span id="progresoTexto">0%</span>
         </div>
         <div class="progreso-barra">
@@ -597,85 +609,85 @@
     <main class="contenido-principal">
         <div class="panel-explicacion">
             <div class="panel-titulo">
-                <span>📖</span>
-                <span>Aprende sobre Navegación</span>
+                <span>??</span>
+                <span>Aprende sobre Navegaci�n</span>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🧭 ¿Qué es la etiqueta NAV?</h3>
+                <h3>?? �Qu� es la etiqueta NAV?</h3>
                 <p style="line-height: 1.8; margin-bottom: 15px;">
                     La etiqueta <span class="codigo-inline">&lt;nav&gt;</span> es 
-                    un <strong>contenedor semántico especial para menús de navegación</strong>. 
-                    Introducida en HTML5, identifica las secciones de navegación principales 
+                    un <strong>contenedor sem�ntico especial para men�s de navegaci�n</strong>. 
+                    Introducida en HTML5, identifica las secciones de navegaci�n principales 
                     de tu sitio web, ayudando a los buscadores y lectores de pantalla a 
-                    entender la estructura de tu página.
+                    entender la estructura de tu p�gina.
                 </p>
                 <p style="line-height: 1.8; margin-top: 15px;">
-                    <strong>📍 Ubicación típica:</strong> Se coloca dentro del &lt;header&gt; 
-                    o directamente en el &lt;body&gt;, dependiendo del diseño.
+                    <strong>?? Ubicaci�n t�pica:</strong> Se coloca dentro del &lt;header&gt; 
+                    o directamente en el &lt;body&gt;, dependiendo del dise�o.
                 </p>
             </div>
             
             <div class="tip-box">
-                <h4>💡 Analogías para entender NAV</h4>
+                <h4>?? Analog�as para entender NAV</h4>
                 <p style="margin-bottom: 10px; line-height: 1.8;"><strong>1. Como un mapa de centro comercial:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>🏬 El &lt;nav&gt; = Los directorios con "Planta 1: Ropa, Planta 2: Comida"</li>
-                    <li>🧭 Te ayuda a encontrar rápidamente lo que buscas</li>
-                    <li>📍 Siempre está en lugares estratégicos (entrada, ascensores)</li>
+                    <li>?? El &lt;nav&gt; = Los directorios con "Planta 1: Ropa, Planta 2: Comida"</li>
+                    <li>?? Te ayuda a encontrar r�pidamente lo que buscas</li>
+                    <li>?? Siempre est� en lugares estrat�gicos (entrada, ascensores)</li>
                 </ul>
-                <p style="margin: 15px 0 10px; line-height: 1.8;"><strong>2. Como el índice de un libro:</strong></p>
+                <p style="margin: 15px 0 10px; line-height: 1.8;"><strong>2. Como el �ndice de un libro:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>📖 Capítulo 1 → página 10</li>
-                    <li>📖 Capítulo 2 → página 45</li>
-                    <li>📖 Te permite saltar directamente a la sección que necesitas</li>
+                    <li>?? Cap�tulo 1 ? p�gina 10</li>
+                    <li>?? Cap�tulo 2 ? p�gina 45</li>
+                    <li>?? Te permite saltar directamente a la secci�n que necesitas</li>
                 </ul>
-                <p style="margin: 15px 0 10px; line-height: 1.8;"><strong>3. Como las señales de tráfico:</strong></p>
+                <p style="margin: 15px 0 10px; line-height: 1.8;"><strong>3. Como las se�ales de tr�fico:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>🚦 "Madrid ← 50km", "Barcelona → 100km"</li>
-                    <li>🛣️ Guían tu viaje indicando rutas y destinos</li>
-                    <li>⚡ Sin ellas, estarías perdido</li>
+                    <li>?? "Madrid ? 50km", "Barcelona ? 100km"</li>
+                    <li>??? Gu�an tu viaje indicando rutas y destinos</li>
+                    <li>? Sin ellas, estar�as perdido</li>
                 </ul>
             </div>
             
             <div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 20px; margin: 20px 0; border-radius: 8px;">
-                <h4 style="color: #8b5cf6; margin-bottom: 12px;">🎯 ¿Por qué usar NAV en lugar de DIV?</h4>
+                <h4 style="color: #8b5cf6; margin-bottom: 12px;">?? �Por qu� usar NAV en lugar de DIV?</h4>
                 <p style="line-height: 1.8; margin-bottom: 12px;">
-                    Podrías usar un &lt;div class="menu"&gt; para tu menú, pero &lt;nav&gt; 
+                    Podr�as usar un &lt;div class="menu"&gt; para tu men�, pero &lt;nav&gt; 
                     tiene ventajas importantes:
                 </p>
                 <ul style="line-height: 2; margin-left: 25px;">
-                    <li><strong>🔍 SEO:</strong> Google identifica tu navegación principal y la indexa mejor</li>
-                    <li><strong>♿ Accesibilidad:</strong> Lectores de pantalla anuncian "navegación" y permiten saltarla</li>
-                    <li><strong>🧹 Código limpio:</strong> Otros desarrolladores entienden inmediatamente qué es</li>
-                    <li><strong>📱 Navegadores:</strong> Pueden aplicar estilos especiales para móviles</li>
+                    <li><strong>?? SEO:</strong> Google identifica tu navegaci�n principal y la indexa mejor</li>
+                    <li><strong>? Accesibilidad:</strong> Lectores de pantalla anuncian "navegaci�n" y permiten saltarla</li>
+                    <li><strong>?? C�digo limpio:</strong> Otros desarrolladores entienden inmediatamente qu� es</li>
+                    <li><strong>?? Navegadores:</strong> Pueden aplicar estilos especiales para m�viles</li>
                 </ul>
                 <div style="background: rgba(255, 255, 255, 0.5); padding: 15px; margin-top: 15px; border-radius: 8px;">
-                    <p style="line-height: 1.8;"><strong>✅ Correcto:</strong> <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;...&lt;/nav&gt;</code></p>
-                    <p style="line-height: 1.8; margin-top: 8px;"><strong>❌ Incorrecto (anticuado):</strong> <code>&lt;div class="menu"&gt;...&lt;/div&gt;</code></p>
+                    <p style="line-height: 1.8;"><strong>? Correcto:</strong> <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;...&lt;/nav&gt;</code></p>
+                    <p style="line-height: 1.8; margin-top: 8px;"><strong>? Incorrecto (anticuado):</strong> <code>&lt;div class="menu"&gt;...&lt;/div&gt;</code></p>
                 </div>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>📋 Estructura típica de un menú:</h3>
-                <p style="line-height: 1.8; margin-bottom: 15px;">Un menú normalmente tiene esta jerarquía:</p>
+                <h3>?? Estructura t�pica de un men�:</h3>
+                <p style="line-height: 1.8; margin-bottom: 15px;">Un men� normalmente tiene esta jerarqu�a:</p>
                 <ul style="margin: 15px 20px; line-height: 2.2;">
-                    <li><strong><span class="codigo-inline">&lt;nav&gt;</span></strong> - Contenedor semántico principal</li>
+                    <li><strong><span class="codigo-inline">&lt;nav&gt;</span></strong> - Contenedor sem�ntico principal</li>
                     <li><strong><span class="codigo-inline">&lt;ul&gt;</span></strong> - Lista no ordenada (Unordered List)</li>
                     <li><strong><span class="codigo-inline">&lt;li&gt;</span></strong> - Elementos individuales de la lista (List Item)</li>
                     <li><strong><span class="codigo-inline">&lt;a&gt;</span></strong> - Enlaces (Anchors) dentro de cada li</li>
                 </ul>
                 
-                <div style="background: #1a1a2e; padding: 20px; border-radius: 10px; margin: 20px 0; font-family: monospace; line-height: 2; color: #e0e0e0;">
-<span style="color: #8b5cf6;">&lt;nav&gt;</span>                     <span style="color: #6b7280;">← Contenedor semántico</span><br>
-&nbsp;&nbsp;<span style="color: #f59e0b;">&lt;ul&gt;</span>                   <span style="color: #6b7280;">← Lista de opciones</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">← Primer elemento</span><br>
+                <div style="background: #f1f5f9; padding: 20px; border-radius: 10px; margin: 20px 0; font-family: monospace; line-height: 2; color: #334155;">
+<span style="color: #8b5cf6;">&lt;nav&gt;</span>                     <span style="color: #6b7280;">? Contenedor sem�ntico</span><br>
+&nbsp;&nbsp;<span style="color: #f59e0b;">&lt;ul&gt;</span>                   <span style="color: #6b7280;">? Lista de opciones</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">? Primer elemento</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3b82f6;">&lt;a href="/"&gt;</span>Inicio<span style="color: #3b82f6;">&lt;/a&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;/li&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">← Segundo elemento</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">? Segundo elemento</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3b82f6;">&lt;a href="/about"&gt;</span>Acerca<span style="color: #3b82f6;">&lt;/a&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;/li&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">← Tercer elemento</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;li&gt;</span>                 <span style="color: #6b7280;">? Tercer elemento</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3b82f6;">&lt;a href="/contact"&gt;</span>Contacto<span style="color: #3b82f6;">&lt;/a&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #10b981;">&lt;/li&gt;</span><br>
 &nbsp;&nbsp;<span style="color: #f59e0b;">&lt;/ul&gt;</span><br>
@@ -683,10 +695,10 @@
                 </div>
                 
                 <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; margin-top: 15px;">
-                    <h4 style="color: #10b981; margin-bottom: 10px;">🤔 ¿Por qué usamos listas (&lt;ul&gt; y &lt;li&gt;)?</h4>
+                    <h4 style="color: #10b981; margin-bottom: 10px;">?? �Por qu� usamos listas (&lt;ul&gt; y &lt;li&gt;)?</h4>
                     <p style="line-height: 1.8;">
-                        Porque un menú ES una lista de opciones. Usar &lt;ul&gt; + &lt;li&gt; 
-                        es <strong>semánticamente correcto</strong>. Los lectores de pantalla 
+                        Porque un men� ES una lista de opciones. Usar &lt;ul&gt; + &lt;li&gt; 
+                        es <strong>sem�nticamente correcto</strong>. Los lectores de pantalla 
                         pueden anunciar "lista de 5 elementos" y los usuarios pueden navegar entre ellos.
                     </p>
                 </div>
@@ -694,7 +706,7 @@
             
             <!-- NUEVA SECCI\u00d3N: TIPOS DE NAVEGACI\u00d3N -->\n            <div style=\"background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;\">\n                <h3 style=\"color: #3b82f6; margin-bottom: 20px;\">\ud83d\udcca Tipos de Navegaci\u00f3n Web</h3>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #3b82f6;\">\ud83d\udce1 1. Navegaci\u00f3n Principal (Primary Navigation)</h4>\n                    <p style=\"line-height: 1.8; margin: 10px 0;\">\n                        El men\u00fa m\u00e1s importante de tu sitio. Aparece en TODAS las p\u00e1ginas y \n                        lleva a las secciones principales.\n                    </p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace;\">\n                        <strong>Ejemplo:</strong> Inicio | Productos | Blog | Sobre Nosotros | Contacto\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 10px;\">\n                        <strong>\ud83d\udc49 D\u00f3nde se usa:</strong> Amazon, YouTube, Wikipedia, Netflix\n                    </p>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #10b981;\">\ud83d\udccc 2. Navegaci\u00f3n Secundaria</h4>\n                    <p style=\"line-height: 1.8; margin: 10px 0;\">\n                        Men\u00fas adicionales para subsecciones o acciones espec\u00edficas. \n                        Complementan la navegaci\u00f3n principal.\n                    </p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace;\">\n                        <strong>Ejemplo en YouTube:</strong> Suscripciones | Historial | Biblioteca | Me gusta\n                    </div>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #f59e0b;\">\ud83c\udf5e 3. Breadcrumbs (Migas de Pan)</h4>\n                    <p style=\"line-height: 1.8; margin: 10px 0;\">\n                        Muestra la ruta que has seguido desde el inicio. \n                        Ayuda a ubicarte en sitios grandes.\n                    </p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace;\">\n                        <strong>Ejemplo:</strong> Inicio \u203a Electr\u00f3nica \u203a Tel\u00e9fonos \u203a iPhone 15\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 10px;\">\n                        <strong>\ud83d\udc49 D\u00f3nde se usa:</strong> Amazon, eBay, tiendas online\n                    </p>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #ec4899;\">\ud83d\udcdd 4. Navegaci\u00f3n en el Contenido (In-Page Navigation)</h4>\n                    <p style=\"line-height: 1.8; margin: 10px 0;\">\n                        Enlaces que saltan a diferentes secciones de la MISMA p\u00e1gina. \n                        Usa el atributo <code>href=\"#id-seccion\"</code>.\n                    </p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace;\">\n                        <strong>Ejemplo Wikipedia:</strong><br>\n                        \u2022 Contenido<br>\n                        \u2022 Historia<br>\n                        \u2022 Caracter\u00edsticas<br>\n                        \u2022 Referencias\n                    </div>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #8b5cf6;\">\ud83c\udf54 5. Men\u00fa Hamburguesa (M\u00f3viles)</h4>\n                    <p style=\"line-height: 1.8; margin: 10px 0;\">\n                        El icono de tres l\u00edneas horizontales (\u2630) que oculta el men\u00fa en m\u00f3viles \n                        para ahorrar espacio. Se expande al hacer clic.\n                    </p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; text-align: center; font-size: 2rem;\">\n                        \u2630\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 10px;\">\n                        <strong>\ud83d\udc49 D\u00f3nde se usa:</strong> Casi todas las p\u00e1ginas responsivas modernas\n                    </p>\n                </div>\n            </div>\n            \n            <!-- NUEVA SECCI\u00d3N: EJEMPLOS DEL MUNDO REAL -->\n            <div style=\"background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;\">\n                <h3 style=\"color: #10b981; margin-bottom: 20px;\">\ud83c\udf0d An\u00e1lisis: Navegaci\u00f3n en Sitios Famosos</h3>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #ef4444; margin-bottom: 15px;\">\ud83d\udcfa YouTube (youtube.com)</h4>\n                    <p style=\"line-height: 1.8; margin-bottom: 12px;\"><strong>Navegaci\u00f3n principal:</strong></p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; line-height: 2;\">\n&lt;header&gt;<br>\n&nbsp;&nbsp;&lt;nav&gt;<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83d\udcfa Logo | \ud83d\udd0d B\u00fasqueda | \ud83d\udd14 Notificaciones | \ud83d\udc64 Perfil<br>\n&nbsp;&nbsp;&lt;/nav&gt;<br>\n&lt;/header&gt;<br>\n<br>\n&lt;aside&gt;  <span style=\"color: #6b7280;\">\u2190 Navegaci\u00f3n lateral (sidebar)</span><br>\n&nbsp;&nbsp;&lt;nav&gt;<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83c\udfe0 Inicio<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83c\udfac Shorts<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83d\udce6 Suscripciones<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83d\udcda Biblioteca<br>\n&nbsp;&nbsp;&nbsp;&nbsp;\ud83d\udd52 Historial<br>\n&nbsp;&nbsp;&lt;/nav&gt;<br>\n&lt;/aside&gt;\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 15px;\">\n                        <strong>\ud83c\udfaf Lecci\u00f3n clave:</strong> YouTube usa <strong>DOS navegaciones</strong>: \n                        una horizontal arriba (acciones globales) y otra vertical a la izquierda (secciones del sitio).\n                    </p>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #3b82f6; margin-bottom: 15px;\">\ud83d\udd35 Facebook (facebook.com)</h4>\n                    <p style=\"line-height: 1.8; margin-bottom: 12px;\"><strong>Navegaci\u00f3n con iconos:</strong></p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; line-height: 2;\">\n&lt;nav aria-label=\"Navegaci\u00f3n principal\"&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/home\"&gt;\ud83c\udfe0 Inicio&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/watch\"&gt;\ud83d\udcfa Watch&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/marketplace\"&gt;\ud83d\uded2 Marketplace&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/groups\"&gt;\ud83d\udc65 Grupos&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/gaming\"&gt;\ud83c\udfae Gaming&lt;/a&gt;<br>\n&lt;/nav&gt;\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 15px;\">\n                        <strong>\ud83c\udfaf Lecci\u00f3n clave:</strong> Facebook combina iconos + texto para \n                        navegaci\u00f3n m\u00e1s intuitiva. El atributo <code>aria-label</code> mejora la accesibilidad.\n                    </p>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #f59e0b; margin-bottom: 15px;\">\ud83d\udd16 Wikipedia (wikipedia.org)</h4>\n                    <p style=\"line-height: 1.8; margin-bottom: 12px;\"><strong>Navegaci\u00f3n con tabs:</strong></p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; line-height: 2;\">\n&lt;nav class=\"tabs\"&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/wiki/Articulo\" class=\"active\"&gt;Art\u00edculo&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/wiki/Discusion\"&gt;Discusi\u00f3n&lt;/a&gt;<br>\n&lt;/nav&gt;<br>\n<br>\n&lt;nav class=\"acciones\"&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/wiki/Leer\"&gt;Leer&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/wiki/Editar\"&gt;\u270f\ufe0f Editar&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/wiki/Historial\"&gt;\ud83d\udd52 Historial&lt;/a&gt;<br>\n&lt;/nav&gt;\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 15px;\">\n                        <strong>\ud83c\udfaf Lecci\u00f3n clave:</strong> Wikipedia separa la navegaci\u00f3n en dos niveles: \n                        acciones sobre el art\u00edculo vs. acciones sobre la p\u00e1gina.\n                    </p>\n                </div>\n                \n                <div style=\"background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);\">\n                    <h4 style=\"color: #10b981; margin-bottom: 15px;\">\ud83d\uded2 Amazon (amazon.com)</h4>\n                    <p style=\"line-height: 1.8; margin-bottom: 12px;\"><strong>Mega men\u00fa con categor\u00edas:</strong></p>\n                    <div style=\"background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; line-height: 2;\">\n&lt;nav&gt;<br>\n&nbsp;&nbsp;&lt;button&gt;\u2630 Todas las categor\u00edas&lt;/button&gt;  <span style=\"color: #6b7280;\">\u2190 Mega men\u00fa desplegable</span><br>\n&nbsp;&nbsp;&lt;a href=\"/ofertas\"&gt;\ud83d\udd25 Ofertas del d\u00eda&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/servicio-cliente\"&gt;Servicio al cliente&lt;/a&gt;<br>\n&nbsp;&nbsp;&lt;a href=\"/registro\"&gt;Registro&lt;/a&gt;<br>\n&lt;/nav&gt;<br>\n<br>\n&lt;!-- Breadcrumbs --&gt;<br>\n&lt;nav aria-label=\"Migas de pan\"&gt;<br>\n&nbsp;&nbsp;Inicio \u203a Electr\u00f3nica \u203a Computadoras \u203a Laptops<br>\n&lt;/nav&gt;\n                    </div>\n                    <p style=\"line-height: 1.8; margin-top: 15px;\">\n                        <strong>\ud83c\udfaf Lecci\u00f3n clave:</strong> Amazon combina navegaci\u00f3n principal + breadcrumbs. \n                        El mega men\u00fa muestra subcategor\u00edas en un panel grande.\n                    </p>\n                </div>\n            </div>\n            \n            <h3 style=\"margin: 20px 0; color: var(--nivel-color);\">\n                \ud83c\udfa8 Tipos de men\u00fas (haz clic para cargar):\n            </h3>\n            \n            <div class=\"ejemplos-nav\">
                 <div class="ejemplo-nav" onclick="cargarEjemplo('horizontal')">
-                    <h4>📏 Menú Horizontal</h4>
+                    <h4>?? Men� Horizontal</h4>
                     <div class="preview-mini" style="display: flex; gap: 15px; color: #333;">
                         <span style="color: blue; text-decoration: underline;">Inicio</span>
                         <span style="color: blue; text-decoration: underline;">Acerca</span>
@@ -703,7 +715,7 @@
                 </div>
                 
                 <div class="ejemplo-nav" onclick="cargarEjemplo('vertical')">
-                    <h4>📐 Menú Vertical</h4>
+                    <h4>?? Men� Vertical</h4>
                     <div class="preview-mini" style="color: #333;">
                         <div style="padding: 5px; border-left: 3px solid blue;">Inicio</div>
                         <div style="padding: 5px; border-left: 3px solid blue;">Servicios</div>
@@ -712,7 +724,7 @@
                 </div>
                 
                 <div class="ejemplo-nav" onclick="cargarEjemplo('botones')">
-                    <h4>🔘 Menú con Botones</h4>
+                    <h4>?? Men� con Botones</h4>
                     <div class="preview-mini" style="display: flex; gap: 10px;">
                         <span style="background: #3498db; color: white; padding: 5px 10px; border-radius: 5px;">Inicio</span>
                         <span style="background: #2ecc71; color: white; padding: 5px 10px; border-radius: 5px;">Info</span>
@@ -721,11 +733,11 @@
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🔗 El atributo href</h3>
+                <h3>?? El atributo href</h3>
                 <p>El atributo <span class="codigo-inline">href</span> puede apuntar a:</p>
                 <ul style="margin: 15px 20px; line-height: 2;">
-                    <li><code>href="pagina.html"</code> - Otra página del sitio</li>
-                    <li><code>href="#seccion"</code> - Una sección de la misma página</li>
+                    <li><code>href="pagina.html"</code> - Otra p�gina del sitio</li>
+                    <li><code>href="#seccion"</code> - Una secci�n de la misma p�gina</li>
                     <li><code>href="https://..."</code> - Un sitio externo</li>
                 </ul>
             </div>
@@ -734,13 +746,13 @@
         <div class="panel-editor">
             <div class="editor-header">
                 <div class="editor-titulo">
-                    <span>💻</span>
-                    <span>Editor de Navegación</span>
+                    <span>??</span>
+                    <span>Editor de Navegaci�n</span>
                 </div>
                 <div class="editor-botones">
-                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
-                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
-                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">?? Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">?? Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">?? Ejecutar</button>
                 </div>
             </div>
             
@@ -748,12 +760,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Página con Navegación</title>
+    <title>Mi P�gina con Navegaci�n</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; }
         
-        /* Estilos del menú de navegación */
+        /* Estilos del men� de navegaci�n */
         nav {
             background: linear-gradient(135deg, #667eea, #764ba2);
             padding: 15px 30px;
@@ -800,39 +812,39 @@
     </style>
 </head>
 <body>
-    <!-- 🧭 Menú de Navegación -->
+    <!-- ?? Men� de Navegaci�n -->
     <nav>
         <ul>
-            <li><a href="#inicio">🏠 Inicio</a></li>
-            <li><a href="#sobre-mi">👤 Sobre Mí</a></li>
-            <li><a href="#proyectos">💼 Proyectos</a></li>
-            <li><a href="#contacto">📧 Contacto</a></li>
+            <li><a href="#inicio">?? Inicio</a></li>
+            <li><a href="#sobre-mi">?? Sobre M�</a></li>
+            <li><a href="#proyectos">?? Proyectos</a></li>
+            <li><a href="#contacto">?? Contacto</a></li>
         </ul>
     </nav>
     
     <main>
         <section id="inicio">
-            <h1>¡Bienvenido a mi Sitio Web!</h1>
-            <p>Esta página tiene un menú de navegación funcional. 
-               Haz clic en los enlaces del menú para saltar a cada sección.</p>
+            <h1>�Bienvenido a mi Sitio Web!</h1>
+            <p>Esta p�gina tiene un men� de navegaci�n funcional. 
+               Haz clic en los enlaces del men� para saltar a cada secci�n.</p>
         </section>
         
         <section id="sobre-mi">
-            <h2>👤 Sobre Mí</h2>
+            <h2>?? Sobre M�</h2>
             <p>Soy un estudiante aprendiendo HTML. Me gusta crear 
-               páginas web y aprender nuevas tecnologías.</p>
+               p�ginas web y aprender nuevas tecnolog�as.</p>
         </section>
         
         <section id="proyectos">
-            <h2>💼 Mis Proyectos</h2>
-            <p>Aquí mostraré todos los proyectos que vaya creando 
-               mientras aprendo programación web.</p>
+            <h2>?? Mis Proyectos</h2>
+            <p>Aqu� mostrar� todos los proyectos que vaya creando 
+               mientras aprendo programaci�n web.</p>
         </section>
         
         <section id="contacto">
-            <h2>📧 Contacto</h2>
+            <h2>?? Contacto</h2>
             <p>Puedes contactarme por email o redes sociales. 
-               ¡Me encantaría saber de ti!</p>
+               �Me encantar�a saber de ti!</p>
         </section>
     </main>
 </body>
@@ -840,7 +852,7 @@
             
             <div class="preview-container">
                 <div class="preview-header">
-                    <span>👁️</span>
+                    <span>???</span>
                     <span>Vista Previa</span>
                 </div>
                 <iframe class="preview-frame" id="previewFrame"></iframe>
@@ -848,16 +860,16 @@
         </div>
     </main>
     
-    <!-- Constructor de Menú -->
+    <!-- Constructor de Men� -->
     <section class="actividad">
         <div class="actividad-header">
-            <span>🔧</span>
-            <span>Actividad 1: Construye tu propio menú</span>
+            <span>??</span>
+            <span>Actividad 1: Construye tu propio men�</span>
         </div>
         
         <div class="menu-builder">
             <div class="items-menu">
-                <h4>Agregar elementos al menú:</h4>
+                <h4>Agregar elementos al men�:</h4>
                 <div class="menu-item-input">
                     <input type="text" id="nuevoItem" placeholder="Ej: Inicio">
                     <button onclick="agregarItem()">+</button>
@@ -867,8 +879,8 @@
             
             <div class="resultado-menu">
                 <div class="preview-header">
-                    <span>📋</span>
-                    <span>Código generado:</span>
+                    <span>??</span>
+                    <span>C�digo generado:</span>
                 </div>
                 <div class="codigo-generado" id="codigoGenerado">
 &lt;nav&gt;
@@ -877,15 +889,15 @@
     &lt;/ul&gt;
 &lt;/nav&gt;</div>
                 <div class="preview-header">
-                    <span>👁️</span>
-                    <span>Vista previa del menú:</span>
+                    <span>???</span>
+                    <span>Vista previa del men�:</span>
                 </div>
                 <iframe class="menu-preview-area" id="menuPreview" style="width: 100%; height: 80px; border: none;"></iframe>
             </div>
         </div>
         
         <button class="btn-verificar" onclick="verificarMenu()" style="margin-top: 20px;">
-            ✅ Verificar (mínimo 3 elementos)
+            ? Verificar (m�nimo 3 elementos)
         </button>
         <div class="quiz-resultado" id="resultadoMenu"></div>
     </section>
@@ -893,44 +905,44 @@
     <!-- Quiz -->
     <section class="actividad">
         <div class="actividad-header">
-            <span>❓</span>
-            <span>Actividad 2: Quiz de Navegación</span>
+            <span>?</span>
+            <span>Actividad 2: Quiz de Navegaci�n</span>
         </div>
         
         <div class="quiz-pregunta" id="quiz1">
-            <h4>1. ¿Para qué sirve la etiqueta &lt;nav&gt;?</h4>
+            <h4>1. �Para qu� sirve la etiqueta &lt;nav&gt;?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q1">
                     <span class="radio-custom"></span>
-                    Para agregar imágenes
+                    Para agregar im�genes
                 </label>
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q1">
                     <span class="radio-custom"></span>
-                    Para contener el menú de navegación
+                    Para contener el men� de navegaci�n
                 </label>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q1">
                     <span class="radio-custom"></span>
-                    Para escribir párrafos
+                    Para escribir p�rrafos
                 </label>
             </div>
             <div class="quiz-resultado" id="resultado1"></div>
         </div>
         
         <div class="quiz-pregunta" id="quiz2">
-            <h4>2. ¿Qué significa href="#seccion"?</h4>
+            <h4>2. �Qu� significa href="#seccion"?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Ir a otra página web
+                    Ir a otra p�gina web
                 </label>
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    Saltar a una sección de la misma página
+                    Saltar a una secci�n de la misma p�gina
                 </label>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
@@ -942,7 +954,7 @@
         </div>
         
         <div class="quiz-pregunta" id="quiz3">
-            <h4>3. ¿Qué etiquetas se usan para crear una lista de menú?</h4>
+            <h4>3. �Qu� etiquetas se usan para crear una lista de men�?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q3">
@@ -963,265 +975,265 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">? Verificar Respuestas</button>
     </section>
     
-    <!-- SECCIÓN: ATRIBUTO HREF EXPANDIDO -->
+    <!-- SECCI�N: ATRIBUTO HREF EXPANDIDO -->
     <section style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(139, 92, 246, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">🔗</span>
+            <span style="font-size: 2.5rem;">??</span>
             <h2 style="color: #8b5cf6; margin: 0;">Todo sobre el atributo HREF</h2>
         </div>
         
         <p style="line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
-            El atributo <code>href</code> (Hypertext REFerence) es el CORAZÓN de la navegación web. 
+            El atributo <code>href</code> (Hypertext REFerence) es el CORAZ�N de la navegaci�n web. 
             Define el destino del enlace. Tiene varios tipos:
         </p>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #8b5cf6; margin-bottom: 20px;">🎯 Tipos de HREF</h3>
+            <h3 style="color: #8b5cf6; margin-bottom: 20px;">?? Tipos de HREF</h3>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #3b82f6;">
-                <h4 style="color: #3b82f6; margin-bottom: 12px;">1. 📄 Enlaces relativos (mismo sitio)</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
-&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;              <span style="color: #6b7280;">← Archivo en la misma carpeta</span><br>
-&lt;a href="paginas/about.html"&gt;Acerca&lt;/a&gt;          <span style="color: #6b7280;">← Archivo en subcarpeta</span><br>
-&lt;a href="../index.html"&gt;Volver&lt;/a&gt;               <span style="color: #6b7280;">← Subir un nivel (..) y abrir index</span><br>
-&lt;a href="/inicio.html"&gt;Home&lt;/a&gt;                   <span style="color: #6b7280;">← Desde la raíz del sitio</span>
+                <h4 style="color: #3b82f6; margin-bottom: 12px;">1. ?? Enlaces relativos (mismo sitio)</h4>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
+&lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;              <span style="color: #6b7280;">? Archivo en la misma carpeta</span><br>
+&lt;a href="paginas/about.html"&gt;Acerca&lt;/a&gt;          <span style="color: #6b7280;">? Archivo en subcarpeta</span><br>
+&lt;a href="../index.html"&gt;Volver&lt;/a&gt;               <span style="color: #6b7280;">? Subir un nivel (..) y abrir index</span><br>
+&lt;a href="/inicio.html"&gt;Home&lt;/a&gt;                   <span style="color: #6b7280;">? Desde la ra�z del sitio</span>
                 </div>
                 <p style="line-height: 1.8; margin-top: 12px;">
-                    <strong>✅ Ventaja:</strong> No necesitas escribir la URL completa. Perfecto para tu propio sitio.
+                    <strong>? Ventaja:</strong> No necesitas escribir la URL completa. Perfecto para tu propio sitio.
                 </p>
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #10b981;">
-                <h4 style="color: #10b981; margin-bottom: 12px;">2. 🌐 Enlaces absolutos (sitios externos)</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
+                <h4 style="color: #10b981; margin-bottom: 12px;">2. ?? Enlaces absolutos (sitios externos)</h4>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
 &lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;<br>
 &lt;a href="https://github.com"&gt;GitHub&lt;/a&gt;<br>
 &lt;a href="https://youtube.com"&gt;YouTube&lt;/a&gt;
                 </div>
                 <p style="line-height: 1.8; margin-top: 12px;">
-                    <strong>⚠️ Importante:</strong> Siempre incluye <code>https://</code> al inicio. 
-                    Usa <code>target="_blank"</code> para abrir en nueva pestaña.
+                    <strong>?? Importante:</strong> Siempre incluye <code>https://</code> al inicio. 
+                    Usa <code>target="_blank"</code> para abrir en nueva pesta�a.
                 </p>
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">
-                <h4 style="color: #f59e0b; margin-bottom: 12px;">3. ⚓ Anclas (misma página)</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
-&lt;a href="#inicio"&gt;Ir al inicio&lt;/a&gt;              <span style="color: #6b7280;">← Salta a id="inicio"</span><br>
-&lt;a href="#contacto"&gt;Ir a contacto&lt;/a&gt;          <span style="color: #6b7280;">← Salta a id="contacto"</span><br>
+                <h4 style="color: #f59e0b; margin-bottom: 12px;">3. ? Anclas (misma p�gina)</h4>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
+&lt;a href="#inicio"&gt;Ir al inicio&lt;/a&gt;              <span style="color: #6b7280;">? Salta a id="inicio"</span><br>
+&lt;a href="#contacto"&gt;Ir a contacto&lt;/a&gt;          <span style="color: #6b7280;">? Salta a id="contacto"</span><br>
 <br>
-&lt;section id="contacto"&gt;                         <span style="color: #6b7280;">← Destino del enlace</span><br>
-&nbsp;&nbsp;&lt;h2&gt;Contáctanos&lt;/h2&gt;<br>
+&lt;section id="contacto"&gt;                         <span style="color: #6b7280;">? Destino del enlace</span><br>
+&nbsp;&nbsp;&lt;h2&gt;Cont�ctanos&lt;/h2&gt;<br>
 &lt;/section&gt;
                 </div>
                 <p style="line-height: 1.8; margin-top: 12px;">
-                    <strong>💡 Uso típico:</strong> Tablas de contenido, "volver arriba", menús de una página (landing pages).
+                    <strong>?? Uso t�pico:</strong> Tablas de contenido, "volver arriba", men�s de una p�gina (landing pages).
                 </p>
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ec4899;">
-                <h4 style="color: #ec4899; margin-bottom: 12px;">4. 📧 Enlaces especiales</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
-&lt;a href="mailto:info@ejemplo.com"&gt;Email&lt;/a&gt;      <span style="color: #6b7280;">← Abre cliente de correo</span><br>
-&lt;a href="tel:+34123456789"&gt;Llamar&lt;/a&gt;           <span style="color: #6b7280;">← Abre marcador en móvil</span><br>
-&lt;a href="sms:+34123456789"&gt;SMS&lt;/a&gt;               <span style="color: #6b7280;">← Abre app de mensajes</span><br>
-&lt;a href="whatsapp://send?text=Hola"&gt;WhatsApp&lt;/a&gt; <span style="color: #6b7280;">← Abre WhatsApp</span>
+                <h4 style="color: #ec4899; margin-bottom: 12px;">4. ?? Enlaces especiales</h4>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
+&lt;a href="mailto:info@ejemplo.com"&gt;Email&lt;/a&gt;      <span style="color: #6b7280;">? Abre cliente de correo</span><br>
+&lt;a href="tel:+34123456789"&gt;Llamar&lt;/a&gt;           <span style="color: #6b7280;">? Abre marcador en m�vil</span><br>
+&lt;a href="sms:+34123456789"&gt;SMS&lt;/a&gt;               <span style="color: #6b7280;">? Abre app de mensajes</span><br>
+&lt;a href="whatsapp://send?text=Hola"&gt;WhatsApp&lt;/a&gt; <span style="color: #6b7280;">? Abre WhatsApp</span>
                 </div>
                 <p style="line-height: 1.8; margin-top: 12px;">
-                    <strong>📱 Muy útil para:</strong> Páginas de contacto, landing pages, sitios de negocios.
+                    <strong>?? Muy �til para:</strong> P�ginas de contacto, landing pages, sitios de negocios.
                 </p>
             </div>
         </div>
     </section>
     
-    <!-- SECCIÓN: UX Y MEJORES PRÁCTICAS -->
+    <!-- SECCI�N: UX Y MEJORES PR�CTICAS -->
     <section style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(252, 165, 165, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(239, 68, 68, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">🎨</span>
-            <h2 style="color: #ef4444; margin: 0;">UX: Reglas de Oro para Navegación</h2>
+            <span style="font-size: 2.5rem;">??</span>
+            <h2 style="color: #ef4444; margin: 0;">UX: Reglas de Oro para Navegaci�n</h2>
         </div>
         
         <p style="line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
-            Una buena navegación puede hacer o romper tu sitio web. Sigue estas reglas:
+            Una buena navegaci�n puede hacer o romper tu sitio web. Sigue estas reglas:
         </p>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 1. Máximo 7 elementos en el menú principal</h4>
+            <h4 style="color: #ef4444;">? 1. M�ximo 7 elementos en el men� principal</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                El cerebro humano procesa mejor hasta 7 opciones. Más de eso = confusión.
+                El cerebro humano procesa mejor hasta 7 opciones. M�s de eso = confusi�n.
             </p>
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                <strong>✅ BIEN:</strong> Inicio | Productos | Blog | Acerca | Contacto (5 opciones)<br>
-                <strong>❌ MAL:</strong> 15 opciones en el menú = usuario perdido
+                <strong>? BIEN:</strong> Inicio | Productos | Blog | Acerca | Contacto (5 opciones)<br>
+                <strong>? MAL:</strong> 15 opciones en el men� = usuario perdido
             </div>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 2. La opción activa debe destacarse</h4>
+            <h4 style="color: #ef4444;">? 2. La opci�n activa debe destacarse</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                El usuario debe saber dónde está. Usa colores, subrayados o fondos diferentes.
+                El usuario debe saber d�nde est�. Usa colores, subrayados o fondos diferentes.
             </p>
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; display: flex; gap: 15px; justify-content: center;">
-                <span style="padding: 10px 20px; background: #3b82f6; color: white; border-radius: 8px; font-weight: bold;">← Inicio (activa)</span>
+                <span style="padding: 10px 20px; background: #3b82f6; color: white; border-radius: 8px; font-weight: bold;">? Inicio (activa)</span>
                 <span style="padding: 10px 20px; background: #e5e7eb; color: #6b7280; border-radius: 8px;">Blog</span>
                 <span style="padding: 10px 20px; background: #e5e7eb; color: #6b7280; border-radius: 8px;">Contacto</span>
             </div>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 3. Nombres claros, NO creativos</h4>
+            <h4 style="color: #ef4444;">? 3. Nombres claros, NO creativos</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                Los usuarios escanean rápidamente. Usa palabras comunes y predecibles.
+                Los usuarios escanean r�pidamente. Usa palabras comunes y predecibles.
             </p>
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                <strong>✅ BIEN:</strong> "Contacto", "Productos", "Acerca de nosotros"<br>
-                <strong>❌ MAL:</strong> "¡Escríbenos!", "Nuestras joyas", "Conócenos mejor"
+                <strong>? BIEN:</strong> "Contacto", "Productos", "Acerca de nosotros"<br>
+                <strong>? MAL:</strong> "�Escr�benos!", "Nuestras joyas", "Con�cenos mejor"
             </div>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 4. El logo debe llevar al inicio</h4>
+            <h4 style="color: #ef4444;">? 4. El logo debe llevar al inicio</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                Es una convención universal. Los usuarios esperan que al hacer clic en el logo vuelvan a la página principal.
+                Es una convenci�n universal. Los usuarios esperan que al hacer clic en el logo vuelvan a la p�gina principal.
             </p>
-            <div style="background: #1a1a2e; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; color: #e0e0e0;">
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; color: #334155;">
 &lt;a href="/"&gt;&lt;img src="logo.png" alt="Logo"&gt;&lt;/a&gt;
             </div>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 5. Navegación consistente en todas las páginas</h4>
+            <h4 style="color: #ef4444;">? 5. Navegaci�n consistente en todas las p�ginas</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                El menú debe verse IGUAL en todas las páginas. No muevas elementos ni cambies el orden.
+                El men� debe verse IGUAL en todas las p�ginas. No muevas elementos ni cambies el orden.
             </p>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ef4444;">✅ 6. Responsive: Menú hamburguesa en móviles</h4>
+            <h4 style="color: #ef4444;">? 6. Responsive: Men� hamburguesa en m�viles</h4>
             <p style="line-height: 1.8; margin: 10px 0;">
-                En pantallas pequeñas, oculta el menú detrás del icono ☰ para ahorrar espacio.
+                En pantallas peque�as, oculta el men� detr�s del icono ? para ahorrar espacio.
             </p>
         </div>
     </section>
     
-    <!-- SECCIÓN: ACCESIBILIDAD -->
+    <!-- SECCI�N: ACCESIBILIDAD -->
     <section style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(99, 102, 241, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">♿</span>
-            <h2 style="color: #6366f1; margin: 0;">Accesibilidad en Navegación</h2>
+            <span style="font-size: 2.5rem;">?</span>
+            <h2 style="color: #6366f1; margin: 0;">Accesibilidad en Navegaci�n</h2>
         </div>
         
         <p style="line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
-            Haz que tu navegación sea usable para TODOS, incluyendo personas con discapacidades:
+            Haz que tu navegaci�n sea usable para TODOS, incluyendo personas con discapacidades:
         </p>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #6366f1; margin-bottom: 20px;">🎯 Atributos de Accesibilidad</h3>
+            <h3 style="color: #6366f1; margin-bottom: 20px;">?? Atributos de Accesibilidad</h3>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0;">
                 <h4 style="color: #3b82f6; margin-bottom: 12px;">1. aria-label para contexto</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
-&lt;nav aria-label="Navegación principal"&gt;<br>
-&nbsp;&nbsp;&lt;!-- Los lectores de pantalla anuncian "Navegación principal" --&gt;<br>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
+&lt;nav aria-label="Navegaci�n principal"&gt;<br>
+&nbsp;&nbsp;&lt;!-- Los lectores de pantalla anuncian "Navegaci�n principal" --&gt;<br>
 &lt;/nav&gt;<br>
 <br>
 &lt;nav aria-label="Migas de pan"&gt;<br>
-&nbsp;&nbsp;Inicio › Productos › Laptops<br>
+&nbsp;&nbsp;Inicio � Productos � Laptops<br>
 &lt;/nav&gt;
                 </div>
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0;">
-                <h4 style="color: #10b981; margin-bottom: 12px;">2. aria-current para página activa</h4>
-                <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; color: #e0e0e0; line-height: 2; margin: 10px 0;">
-&lt;a href="/" aria-current="page"&gt;Inicio&lt;/a&gt;  <span style="color: #6b7280;">← Indica página actual</span>
+                <h4 style="color: #10b981; margin-bottom: 12px;">2. aria-current para p�gina activa</h4>
+                <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; color: #334155; line-height: 2; margin: 10px 0;">
+&lt;a href="/" aria-current="page"&gt;Inicio&lt;/a&gt;  <span style="color: #6b7280;">? Indica p�gina actual</span>
                 </div>
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0;">
-                <h4 style="color: #f59e0b; margin-bottom: 12px;">3. Navegación por teclado</h4>
+                <h4 style="color: #f59e0b; margin-bottom: 12px;">3. Navegaci�n por teclado</h4>
                 <p style="line-height: 1.8; margin: 10px 0;">
                     Los enlaces deben ser navegables con TAB. El usuario debe ver un outline (borde) 
                     al enfocar cada enlace.
                 </p>
                 <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b; margin-top: 10px;">
-                    <strong>⚠️ NUNCA hagas:</strong> <code>a:focus { outline: none; }</code><br>
+                    <strong>?? NUNCA hagas:</strong> <code>a:focus { outline: none; }</code><br>
                     Esto elimina la accesibilidad por teclado.
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- SECCIÓN: DESAFÍOS PRÁCTICOS -->
+    <!-- SECCI�N: DESAF�OS PR�CTICOS -->
     <section style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(16, 185, 129, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">🎯</span>
-            <h2 style="color: #10b981; margin: 0;">Desafíos Prácticos - Nivel 4</h2>
+            <span style="font-size: 2.5rem;">??</span>
+            <h2 style="color: #10b981; margin: 0;">Desaf�os Pr�cticos - Nivel 4</h2>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #8b5cf6; margin-bottom: 15px;">🏆 Desafío 1: Menú de una Landing Page</h3>
+            <h3 style="color: #8b5cf6; margin-bottom: 15px;">?? Desaf�o 1: Men� de una Landing Page</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
-                Crea un menú horizontal con 5 enlaces que salten a diferentes secciones de la misma página:
+                Crea un men� horizontal con 5 enlaces que salten a diferentes secciones de la misma p�gina:
             </p>
             <ul style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
-                <li>✅ Inicio (#inicio)</li>
-                <li>✅ Características (#features)</li>
-                <li>✅ Testimonios (#testimonios)</li>
-                <li>✅ Precios (#precios)</li>
-                <li>✅ Contacto (#contacto)</li>
+                <li>? Inicio (#inicio)</li>
+                <li>? Caracter�sticas (#features)</li>
+                <li>? Testimonios (#testimonios)</li>
+                <li>? Precios (#precios)</li>
+                <li>? Contacto (#contacto)</li>
             </ul>
             <p style="line-height: 1.8; margin-top: 15px;">
-                <strong>💡 Tip:</strong> Usa el atributo <code>id</code> en cada sección para que funcionen los enlaces.
+                <strong>?? Tip:</strong> Usa el atributo <code>id</code> en cada secci�n para que funcionen los enlaces.
             </p>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #3b82f6; margin-bottom: 15px;">🏆 Desafío 2: Menú con Breadcrumbs</h3>
+            <h3 style="color: #3b82f6; margin-bottom: 15px;">?? Desaf�o 2: Men� con Breadcrumbs</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
-                Crea una página de producto con dos navegaciones:
+                Crea una p�gina de producto con dos navegaciones:
             </p>
             <ol style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
-                <li><strong>Navegación principal:</strong> Logo | Productos | Blog | Contacto</li>
-                <li><strong>Breadcrumbs:</strong> Inicio › Electrónica › Laptops › MacBook Pro</li>
+                <li><strong>Navegaci�n principal:</strong> Logo | Productos | Blog | Contacto</li>
+                <li><strong>Breadcrumbs:</strong> Inicio � Electr�nica � Laptops � MacBook Pro</li>
             </ol>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #f59e0b; margin-bottom: 15px;">🏆 Desafío 3: Analiza tu sitio favorito</h3>
+            <h3 style="color: #f59e0b; margin-bottom: 15px;">?? Desaf�o 3: Analiza tu sitio favorito</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
                 Abre tu sitio web favorito y responde:
             </p>
             <ul style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
-                <li>🔍 ¿Cuántos elementos tiene el menú principal?</li>
-                <li>🔍 ¿Tiene navegación secundaria?</li>
-                <li>🔍 ¿Usa breadcrumbs?</li>
-                <li>🔍 ¿Cómo indica la página activa?</li>
-                <li>🔍 ¿Qué pasa en móvil? ¿Hay menú hamburguesa?</li>
+                <li>?? �Cu�ntos elementos tiene el men� principal?</li>
+                <li>?? �Tiene navegaci�n secundaria?</li>
+                <li>?? �Usa breadcrumbs?</li>
+                <li>?? �C�mo indica la p�gina activa?</li>
+                <li>?? �Qu� pasa en m�vil? �Hay men� hamburguesa?</li>
             </ul>
         </div>
     </section>
     
-    <!-- SECCIÓN: CHECKLIST -->
+    <!-- SECCI�N: CHECKLIST -->
     <section style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(245, 158, 11, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">✅</span>
-            <h2 style="color: #f59e0b; margin: 0;">Checklist: ¿Listo para el Nivel 5?</h2>
+            <span style="font-size: 2.5rem;">?</span>
+            <h2 style="color: #f59e0b; margin: 0;">Checklist: �Listo para el Nivel 5?</h2>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <div style="display: grid; gap: 15px;">
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Entiendo que &lt;nav&gt; es un contenedor semántico para navegación</span>
+                    <span style="line-height: 1.6;">Entiendo que &lt;nav&gt; es un contenedor sem�ntico para navegaci�n</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Sé crear menús con &lt;nav&gt; &lt;ul&gt; &lt;li&gt; &lt;a&gt;</span>
+                    <span style="line-height: 1.6;">S� crear men�s con &lt;nav&gt; &lt;ul&gt; &lt;li&gt; &lt;a&gt;</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
@@ -1231,12 +1243,12 @@
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Sé usar anclas (#id) para navegar dentro de la misma página</span>
+                    <span style="line-height: 1.6;">S� usar anclas (#id) para navegar dentro de la misma p�gina</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Entiendo las 6 reglas de oro de UX para navegación</span>
+                    <span style="line-height: 1.6;">Entiendo las 6 reglas de oro de UX para navegaci�n</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
@@ -1246,42 +1258,42 @@
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Puedo identificar navegación principal, secundaria y breadcrumbs en sitios reales</span>
+                    <span style="line-height: 1.6;">Puedo identificar navegaci�n principal, secundaria y breadcrumbs en sitios reales</span>
                 </label>
             </div>
         </div>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <div class="estrellas-ganadas" id="estrellas">???</div>
         <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
         <br>
         <button class="btn-continuar" onclick="window.location.href='nivel05.html'">
-            🚀 Continuar al Nivel 5
+            ?? Continuar al Nivel 5
         </button>
     </footer>
     
-    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">??</button>
     
     <div class="mascota-ayuda" id="mascotaAyuda">
-        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
-        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
-        <p><strong>¡Hola!</strong> Soy CodeBot.</p>
+        <button class="mascota-cerrar" onclick="toggleAyuda()">�</button>
+        <div style="font-size: 2.5rem; text-align: center;">??</div>
+        <p><strong>�Hola!</strong> Soy CodeBot.</p>
         <p style="margin-top: 10px; font-size: 0.9rem;">
-            💡 La etiqueta &lt;nav&gt; es semántica - le dice al navegador 
-            "aquí está el menú". Dentro usa &lt;ul&gt; con &lt;li&gt; para 
+            ?? La etiqueta &lt;nav&gt; es sem�ntica - le dice al navegador 
+            "aqu� est� el men�". Dentro usa &lt;ul&gt; con &lt;li&gt; para 
             cada elemento, y &lt;a&gt; para los enlaces.
         </p>
     </div>
     
     <div class="overlay" id="overlay"></div>
     <div class="logro-popup" id="logroPopup">
-        <div class="icono">🧭</div>
-        <h2>¡Nivel 4 Completado!</h2>
-        <p style="margin: 15px 0;">¡Ya sabes crear menús de navegación!</p>
-        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <div class="icono">??</div>
+        <h2>�Nivel 4 Completado!</h2>
+        <p style="margin: 15px 0;">�Ya sabes crear men�s de navegaci�n!</p>
+        <div style="font-size: 2rem;">???</div>
         <button class="btn-continuar" onclick="window.location.href='nivel05.html'" style="margin-top: 20px;">
-            Ir al Nivel 5 ➡️
+            Ir al Nivel 5 ??
         </button>
     </div>
 
@@ -1316,8 +1328,8 @@
         
         function copiarCodigo() {
             navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
-            event.target.innerHTML = '✅ Copiado!';
-            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+            event.target.innerHTML = '? Copiado!';
+            setTimeout(() => event.target.innerHTML = '?? Copiar', 2000);
         }
         
         const ejemplos = {
@@ -1333,7 +1345,7 @@ nav a:hover { background: rgba(255,255,255,0.2); }
 <li><a href="#">Servicios</a></li>
 <li><a href="#">Contacto</a></li>
 </ul></nav>
-<p style="padding: 20px;">¡Menú horizontal con flexbox!</p>
+<p style="padding: 20px;">�Men� horizontal con flexbox!</p>
 </body></html>`,
             vertical: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
@@ -1344,15 +1356,15 @@ nav a { color: white; text-decoration: none; display: block; padding: 10px; bord
 nav a:hover { border-left-color: #3498db; background: rgba(255,255,255,0.1); }
 </style></head><body style="display: flex;">
 <nav><ul>
-<li><a href="#">🏠 Inicio</a></li>
-<li><a href="#">📦 Productos</a></li>
-<li><a href="#">📞 Contacto</a></li>
+<li><a href="#">?? Inicio</a></li>
+<li><a href="#">?? Productos</a></li>
+<li><a href="#">?? Contacto</a></li>
 </ul></nav>
-<p style="padding: 20px;">¡Menú vertical tipo sidebar!</p>
+<p style="padding: 20px;">�Men� vertical tipo sidebar!</p>
 </body></html>`,
             botones: `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
-nav { background: #1a1a2e; padding: 20px; text-align: center; }
+nav { background: #f1f5f9; padding: 20px; text-align: center; }
 nav ul { list-style: none; display: flex; gap: 15px; justify-content: center; margin: 0; padding: 0; }
 nav a { 
     color: white; text-decoration: none; 
@@ -1363,11 +1375,11 @@ nav a {
 nav a:hover { transform: scale(1.1); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
 </style></head><body>
 <nav><ul>
-<li><a href="#">🏠 Inicio</a></li>
-<li><a href="#">⭐ Destacados</a></li>
-<li><a href="#">📧 Email</a></li>
+<li><a href="#">?? Inicio</a></li>
+<li><a href="#">? Destacados</a></li>
+<li><a href="#">?? Email</a></li>
 </ul></nav>
-<p style="padding: 20px; text-align: center;">¡Menú con botones elegantes!</p>
+<p style="padding: 20px; text-align: center;">�Men� con botones elegantes!</p>
 </body></html>`
         };
         
@@ -1376,7 +1388,7 @@ nav a:hover { transform: scale(1.1); box-shadow: 0 5px 20px rgba(102,126,234,0.4
             ejecutarCodigo();
         }
         
-        // Constructor de menú
+        // Constructor de men�
         function agregarItem() {
             const input = document.getElementById('nuevoItem');
             const texto = input.value.trim();
@@ -1398,11 +1410,11 @@ nav a:hover { transform: scale(1.1); box-shadow: 0 5px 20px rgba(102,126,234,0.4
             container.innerHTML = itemsMenu.map((item, i) => `
                 <div class="item-agregado">
                     <span>${item}</span>
-                    <button onclick="eliminarItem(${i})">×</button>
+                    <button onclick="eliminarItem(${i})">�</button>
                 </div>
             `).join('');
             
-            // Código generado
+            // C�digo generado
             const liItems = itemsMenu.map(item => 
                 `        <li><a href="#">${item}</a></li>`
             ).join('\n');
@@ -1438,12 +1450,12 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
             const resultado = document.getElementById('resultadoMenu');
             if (itemsMenu.length >= 3) {
                 resultado.className = 'quiz-resultado exito';
-                resultado.innerHTML = '✅ ¡Excelente! ¡Has creado un menú con ' + itemsMenu.length + ' elementos!';
+                resultado.innerHTML = '? �Excelente! �Has creado un men� con ' + itemsMenu.length + ' elementos!';
                 menuCompletado = true;
                 actualizarProgreso();
             } else {
                 resultado.className = 'quiz-resultado error';
-                resultado.innerHTML = '❌ Necesitas al menos 3 elementos. Tienes: ' + itemsMenu.length;
+                resultado.innerHTML = '? Necesitas al menos 3 elementos. Tienes: ' + itemsMenu.length;
             }
         }
         
@@ -1473,12 +1485,12 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
                     if (seleccionada.dataset.correcta === 'true') {
                         seleccionada.classList.add('correcta');
                         resultado.className = 'quiz-resultado exito';
-                        resultado.innerHTML = '✅ ¡Correcto!';
+                        resultado.innerHTML = '? �Correcto!';
                         correctas++;
                     } else {
                         seleccionada.classList.add('incorrecta');
                         resultado.className = 'quiz-resultado error';
-                        resultado.innerHTML = '❌ Incorrecto';
+                        resultado.innerHTML = '? Incorrecto';
                         quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
                     }
                 }
@@ -1497,17 +1509,17 @@ ${liItems || '        &lt;!-- Agrega elementos --&gt;'}
             
             const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡Completaste todo!';
+                estrellas.textContent = '???';
+                document.getElementById('mensajeFinal').textContent = '�Completaste todo!';
                 localStorage.setItem('nivel4_completado', 'true');
                 setTimeout(() => {
                     document.getElementById('overlay').classList.add('visible');
                     document.getElementById('logroPopup').classList.add('visible');
                 }, 500);
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estrellas.textContent = '???';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estrellas.textContent = '???';
             }
         }
         

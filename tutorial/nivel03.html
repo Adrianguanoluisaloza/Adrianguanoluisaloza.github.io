@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📦 Nivel 3 - El Cuerpo del Documento (BODY)</title>
+    <title>?? Nivel 3 - El Cuerpo del Documento (BODY)</title>
     <style>
         :root {
             --primario: #667eea;
@@ -11,10 +11,10 @@
             --exito: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
-            --fondo: #0f0f23;
-            --texto: #e2e8f0;
-            --tarjeta: #1a1a2e;
-            --borde: #374151;
+            --fondo: #f8f9fa;
+            --texto: #1f2937;
+            --tarjeta: #ffffff;
+            --borde: #e5e7eb;
             --nivel-color: #f97316;
         }
         
@@ -122,7 +122,8 @@
             background: var(--tarjeta);
             border-radius: 15px;
             padding: 25px;
-            border: 2px solid var(--borde);
+            border: 1px solid var(--borde);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .panel-titulo {
@@ -166,7 +167,8 @@
             background: var(--tarjeta);
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid var(--borde);
+            border: 1px solid var(--borde);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .editor-header {
@@ -207,12 +209,13 @@
         
         .codigo-textarea {
             width: 100%;
-            min-height: 400px;
+            min-height: 500px;
+            height: 600px;
             padding: 20px;
             font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            background: #1a1a2e;
+            font-size: 15px;
+            line-height: 1.8;
+            background: #1e293b;
             color: #e2e8f0;
             border: none;
             resize: vertical;
@@ -233,9 +236,11 @@
         
         .preview-frame {
             width: 100%;
-            min-height: 250px;
+            min-height: 500px;
+            height: 600px;
             background: white;
             border: none;
+            border-radius: 0 0 10px 10px;
         }
         
         /* Etiquetas del body */
@@ -247,28 +252,40 @@
         }
         
         .etiqueta-body {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1));
-            border: 2px solid var(--nivel-color);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.05));
+            border: 2px solid rgba(249, 115, 22, 0.3);
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .etiqueta-body:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+            border-color: var(--nivel-color);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1));
+        }
+        
+        .etiqueta-body:active {
+            transform: translateY(-2px) scale(1.02);
         }
         
         .etiqueta-body .tag {
             font-family: 'Consolas', monospace;
-            font-size: 1.3rem;
-            color: #fbbf24;
-            margin-bottom: 8px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+            font-weight: bold;
         }
         
-        .etiqueta-body .desc { font-size: 0.9rem; color: #94a3b8; }
+        .etiqueta-body .desc { 
+            font-size: 0.95rem; 
+            color: #64748b; 
+            line-height: 1.5;
+        }
         
         .tip-box {
             background: rgba(16, 185, 129, 0.1);
@@ -286,7 +303,7 @@
             margin-bottom: 8px;
         }
         
-        /* Actividad: Constructor de página */
+        /* Actividad: Constructor de p�gina */
         .constructor-container {
             background: var(--tarjeta);
             border-radius: 15px;
@@ -505,7 +522,7 @@
         
         .btn-verificar:hover { transform: scale(1.05); }
         
-        /* Ejercicio de completar código */
+        /* Ejercicio de completar c�digo */
         .completar-codigo {
             background: var(--tarjeta);
             border-radius: 15px;
@@ -524,7 +541,7 @@
         }
         
         .codigo-con-huecos {
-            background: #1a1a2e;
+            background: #f1f5f9;
             padding: 20px;
             border-radius: 10px;
             font-family: 'Consolas', monospace;
@@ -660,23 +677,23 @@
 <body>
     <header class="nivel-header">
         <div class="nivel-badge">
-            <span>📦</span>
+            <span>??</span>
             <span>NIVEL 3</span>
         </div>
         <h1>El Cuerpo del Documento - BODY</h1>
     </header>
     
     <nav class="nav-niveles">
-        <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
+        <a href="inicio.html" class="nav-btn">?? Men� Principal</a>
         <div style="display: flex; gap: 10px;">
-            <a href="nivel02.html" class="nav-btn">⬅️ Anterior</a>
-            <a href="nivel04.html" class="nav-btn">Siguiente ➡️</a>
+            <a href="nivel02.html" class="nav-btn">?? Anterior</a>
+            <a href="nivel04.html" class="nav-btn">Siguiente ??</a>
         </div>
     </nav>
     
     <div class="progreso-nivel">
         <div class="progreso-info">
-            <span>📊 Progreso del Nivel 3</span>
+            <span>?? Progreso del Nivel 3</span>
             <span id="progresoTexto">0%</span>
         </div>
         <div class="progreso-barra">
@@ -687,77 +704,77 @@
     <main class="contenido-principal">
         <div class="panel-explicacion">
             <div class="panel-titulo">
-                <span>📖</span>
+                <span>??</span>
                 <span>Todo sobre la etiqueta BODY</span>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>📦 ¿Qué es el BODY?</h3>
+                <h3>?? �Qu� es el BODY?</h3>
                 <p>
                     El <span class="codigo-inline">&lt;body&gt;</span> es el 
-                    <strong>cuerpo de tu página web</strong>. Aquí va TODO lo que 
-                    los visitantes pueden VER: textos, imágenes, botones, videos, 
-                    ¡absolutamente todo!
+                    <strong>cuerpo de tu p�gina web</strong>. Aqu� va TODO lo que 
+                    los visitantes pueden VER: textos, im�genes, botones, videos, 
+                    �absolutamente todo!
                 </p>
                 <p style="margin-top: 15px;">
-                    <strong>📍 Ubicación:</strong> El BODY siempre va después del &lt;head&gt; y antes de cerrar &lt;/html&gt;
+                    <strong>?? Ubicaci�n:</strong> El BODY siempre va despu�s del &lt;head&gt; y antes de cerrar &lt;/html&gt;
                 </p>
                 <div style="background: rgba(249, 115, 22, 0.1); padding: 15px; border-radius: 8px; margin: 15px 0; font-family: monospace;">
 &lt;html&gt;<br>
 &nbsp;&nbsp;&lt;head&gt;...&lt;/head&gt;<br>
 &nbsp;&nbsp;<strong style="color: #f97316;">&lt;body&gt;</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;← TODO el contenido visible va aquí<br>
+&nbsp;&nbsp;&nbsp;&nbsp;? TODO el contenido visible va aqu�<br>
 &nbsp;&nbsp;<strong style="color: #f97316;">&lt;/body&gt;</strong><br>
 &lt;/html&gt;
                 </div>
             </div>
             
             <div class="tip-box">
-                <h4>💡 Analogías para entender el BODY</h4>
+                <h4>?? Analog�as para entender el BODY</h4>
                 <p style="margin-bottom: 10px;"><strong>1. Como un teatro:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>🎭 HEAD = Detrás del telón (luces, sonido, producción)</li>
-                    <li>🎬 BODY = El escenario donde actúan (lo que ve la audiencia)</li>
+                    <li>?? HEAD = Detr�s del tel�n (luces, sonido, producci�n)</li>
+                    <li>?? BODY = El escenario donde act�an (lo que ve la audiencia)</li>
                 </ul>
                 <p style="margin: 15px 0 10px;"><strong>2. Como un restaurante:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>👨‍🍳 HEAD = La cocina (preparación invisible)</li>
-                    <li>🍽️ BODY = La mesa con la comida (lo que disfrutas)</li>
+                    <li>????? HEAD = La cocina (preparaci�n invisible)</li>
+                    <li>??? BODY = La mesa con la comida (lo que disfrutas)</li>
                 </ul>
                 <p style="margin: 15px 0 10px;"><strong>3. Como un libro:</strong></p>
                 <ul style="margin-left: 25px; line-height: 1.8;">
-                    <li>🏷️ HEAD = La portada y datos del libro</li>
-                    <li>📖 BODY = Todas las páginas con el contenido</li>
+                    <li>??? HEAD = La portada y datos del libro</li>
+                    <li>?? BODY = Todas las p�ginas con el contenido</li>
                 </ul>
             </div>
             
             <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 20px; margin: 20px 0; border-radius: 8px;">
-                <h4 style="color: #10b981; margin-bottom: 12px;">✅ Regla de oro del BODY</h4>
+                <h4 style="color: #10b981; margin-bottom: 12px;">? Regla de oro del BODY</h4>
                 <p style="line-height: 1.8;">
-                    <strong>Solo puede haber UN body por página HTML.</strong> Todo el contenido visible debe ir dentro de él.
+                    <strong>Solo puede haber UN body por p�gina HTML.</strong> Todo el contenido visible debe ir dentro de �l.
                 </p>
                 <p style="margin-top: 12px; line-height: 1.8;">
-                    ❌ <strong>Incorrecto:</strong> Poner contenido fuera del body<br>
-                    ✅ <strong>Correcto:</strong> Todo dentro de &lt;body&gt;...&lt;/body&gt;
+                    ? <strong>Incorrecto:</strong> Poner contenido fuera del body<br>
+                    ? <strong>Correcto:</strong> Todo dentro de &lt;body&gt;...&lt;/body&gt;
                 </p>
             </div>
             
             <h3 style="margin: 20px 0; color: var(--nivel-color);">
-                🏷️ Etiquetas comunes del BODY:
+                ??? Etiquetas comunes del BODY:
             </h3>
             
             <div class="etiquetas-body">
                 <div class="etiqueta-body" onclick="insertarEtiqueta('h1')">
                     <div class="tag">&lt;h1&gt; a &lt;h6&gt;</div>
-                    <div class="desc">Títulos y subtítulos</div>
+                    <div class="desc">T�tulos y subt�tulos</div>
                 </div>
                 <div class="etiqueta-body" onclick="insertarEtiqueta('p')">
                     <div class="tag">&lt;p&gt;</div>
-                    <div class="desc">Párrafos de texto</div>
+                    <div class="desc">P�rrafos de texto</div>
                 </div>
                 <div class="etiqueta-body" onclick="insertarEtiqueta('img')">
                     <div class="tag">&lt;img&gt;</div>
-                    <div class="desc">Imágenes</div>
+                    <div class="desc">Im�genes</div>
                 </div>
                 <div class="etiqueta-body" onclick="insertarEtiqueta('a')">
                     <div class="tag">&lt;a&gt;</div>
@@ -777,71 +794,71 @@
                 </div>
                 <div class="etiqueta-body" onclick="insertarEtiqueta('span')">
                     <div class="tag">&lt;span&gt;</div>
-                    <div class="desc">Texto en línea</div>
+                    <div class="desc">Texto en l�nea</div>
                 </div>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>📝 Etiquetas de título (h1-h6)</h3>
-                <p>Los títulos van del más grande (h1) al más pequeño (h6):</p>
+                <h3>?? Etiquetas de t�tulo (h1-h6)</h3>
+                <p>Los t�tulos van del m�s grande (h1) al m�s peque�o (h6):</p>
                 <ul style="margin: 15px 20px; line-height: 2;">
-                    <li><span class="codigo-inline">&lt;h1&gt;</span> - Título principal (¡solo uno por página!)</li>
-                    <li><span class="codigo-inline">&lt;h2&gt;</span> - Subtítulos importantes</li>
-                    <li><span class="codigo-inline">&lt;h3&gt;</span> - Sub-subtítulos</li>
-                    <li><span class="codigo-inline">&lt;h4&gt;</span> a <span class="codigo-inline">&lt;h6&gt;</span> - Títulos menores</li>
+                    <li><span class="codigo-inline">&lt;h1&gt;</span> - T�tulo principal (�solo uno por p�gina!)</li>
+                    <li><span class="codigo-inline">&lt;h2&gt;</span> - Subt�tulos importantes</li>
+                    <li><span class="codigo-inline">&lt;h3&gt;</span> - Sub-subt�tulos</li>
+                    <li><span class="codigo-inline">&lt;h4&gt;</span> a <span class="codigo-inline">&lt;h6&gt;</span> - T�tulos menores</li>
                 </ul>
             </div>
             
             <div class="seccion-explicacion">
-                <h3>🔗 La etiqueta de enlace</h3>
+                <h3>?? La etiqueta de enlace</h3>
                 <p>
                     La etiqueta <span class="codigo-inline">&lt;a href="url"&gt;</span> 
-                    crea links. El atributo <strong>href</strong> dice a dónde lleva el enlace.
+                    crea links. El atributo <strong>href</strong> dice a d�nde lleva el enlace.
                 </p>
             </div>
             
-            <!-- NUEVA SECCIÓN: HTML SEMÁNTICO -->
+            <!-- NUEVA SECCI�N: HTML SEM�NTICO -->
             <div class="tip-box" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1)); border-left: 4px solid #8b5cf6;">
-                <h3 style="color: #8b5cf6; margin-bottom: 20px;">🏗️ HTML5 Semántico: Estructuras Modernas del BODY</h3>
+                <h3 style="color: #8b5cf6; margin-bottom: 20px;">??? HTML5 Sem�ntico: Estructuras Modernas del BODY</h3>
                 
                 <p style="line-height: 1.8; margin-bottom: 20px;">
-                    En el pasado, todos usábamos solo <span class="codigo-inline">&lt;div&gt;</span> para TODO.
-                    Pero HTML5 introdujo <strong>etiquetas semánticas</strong> que tienen SIGNIFICADO especial.
+                    En el pasado, todos us�bamos solo <span class="codigo-inline">&lt;div&gt;</span> para TODO.
+                    Pero HTML5 introdujo <strong>etiquetas sem�nticas</strong> que tienen SIGNIFICADO especial.
                     Es como usar palabras correctas en lugar de decir "cosa" para todo.
                 </p>
                 
                 <div style="background: rgba(255, 255, 255, 0.5); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4 style="color: #8b5cf6; margin-bottom: 15px;">📐 Estructura Semántica Típica:</h4>
-                    <div style="font-family: monospace; line-height: 2.2; background: #1a1a2e; padding: 20px; border-radius: 8px; color: #e0e0e0;">
+                    <h4 style="color: #8b5cf6; margin-bottom: 15px;">?? Estructura Sem�ntica T�pica:</h4>
+                    <div style="font-family: monospace; line-height: 2.2; background: #f1f5f9; padding: 20px; border-radius: 8px; color: #334155;">
 <span style="color: #f97316;">&lt;body&gt;</span><br>
-&nbsp;&nbsp;<span style="color: #8b5cf6;">&lt;header&gt;</span>        <span style="color: #6b7280;">← 🎯 Cabecera (logo, menú principal)</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;          <span style="color: #6b7280;">← 🧭 Navegación del sitio</span><br>
+&nbsp;&nbsp;<span style="color: #8b5cf6;">&lt;header&gt;</span>        <span style="color: #6b7280;">? ?? Cabecera (logo, men� principal)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;          <span style="color: #6b7280;">? ?? Navegaci�n del sitio</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
 &nbsp;&nbsp;<span style="color: #8b5cf6;">&lt;/header&gt;</span><br>
 <br>
-&nbsp;&nbsp;<span style="color: #10b981;">&lt;main&gt;</span>          <span style="color: #6b7280;">← 📄 Contenido principal (¡solo uno!)</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;    <span style="color: #6b7280;">← 📰 Artículo independiente</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section&gt; <span style="color: #6b7280;">← 📦 Sección del artículo</span><br>
+&nbsp;&nbsp;<span style="color: #10b981;">&lt;main&gt;</span>          <span style="color: #6b7280;">? ?? Contenido principal (�solo uno!)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;    <span style="color: #6b7280;">? ?? Art�culo independiente</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section&gt; <span style="color: #6b7280;">? ?? Secci�n del art�culo</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/article&gt;<br>
 &nbsp;&nbsp;<span style="color: #10b981;">&lt;/main&gt;</span><br>
 <br>
-&nbsp;&nbsp;<span style="color: #f59e0b;">&lt;aside&gt;</span>         <span style="color: #6b7280;">← 📌 Contenido relacionado (sidebar)</span><br>
+&nbsp;&nbsp;<span style="color: #f59e0b;">&lt;aside&gt;</span>         <span style="color: #6b7280;">? ?? Contenido relacionado (sidebar)</span><br>
 &nbsp;&nbsp;<span style="color: #f59e0b;">&lt;/aside&gt;</span><br>
 <br>
-&nbsp;&nbsp;<span style="color: #ec4899;">&lt;footer&gt;</span>        <span style="color: #6b7280;">← 👣 Pie de página (copyright, contacto)</span><br>
+&nbsp;&nbsp;<span style="color: #ec4899;">&lt;footer&gt;</span>        <span style="color: #6b7280;">? ?? Pie de p�gina (copyright, contacto)</span><br>
 &nbsp;&nbsp;<span style="color: #ec4899;">&lt;/footer&gt;</span><br>
 <span style="color: #f97316;">&lt;/body&gt;</span>
                     </div>
                 </div>
                 
-                <h4 style="color: #8b5cf6; margin: 25px 0 15px;">🎯 Explicación de cada elemento:</h4>
+                <h4 style="color: #8b5cf6; margin: 25px 0 15px;">?? Explicaci�n de cada elemento:</h4>
                 
                 <div style="background: rgba(139, 92, 246, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #8b5cf6;">
-                    <strong style="color: #8b5cf6; font-size: 1.1rem;">🎯 &lt;header&gt;</strong>
+                    <strong style="color: #8b5cf6; font-size: 1.1rem;">?? &lt;header&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        La cabecera de tu sitio. Normalmente contiene el logo, título principal y menú de navegación.
-                        Puede estar en toda la página o dentro de &lt;article&gt; o &lt;section&gt;.
+                        La cabecera de tu sitio. Normalmente contiene el logo, t�tulo principal y men� de navegaci�n.
+                        Puede estar en toda la p�gina o dentro de &lt;article&gt; o &lt;section&gt;.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
                         <strong>Ejemplo:</strong> La barra superior de YouTube con el logo y el buscador.
@@ -849,30 +866,30 @@
                 </div>
                 
                 <div style="background: rgba(16, 185, 129, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #10b981;">
-                    <strong style="color: #10b981; font-size: 1.1rem;">🧭 &lt;nav&gt;</strong>
+                    <strong style="color: #10b981; font-size: 1.1rem;">?? &lt;nav&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        Contiene los enlaces de navegación principales. Son los menús que llevan a otras secciones del sitio.
+                        Contiene los enlaces de navegaci�n principales. Son los men�s que llevan a otras secciones del sitio.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
-                        <strong>Ejemplo:</strong> El menú de Wikipedia: "Artículo • Discusión • Leer • Editar"
+                        <strong>Ejemplo:</strong> El men� de Wikipedia: "Art�culo � Discusi�n � Leer � Editar"
                     </p>
                 </div>
                 
                 <div style="background: rgba(16, 185, 129, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #10b981;">
-                    <strong style="color: #10b981; font-size: 1.1rem;">📄 &lt;main&gt;</strong>
+                    <strong style="color: #10b981; font-size: 1.1rem;">?? &lt;main&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        <strong>¡SUPER IMPORTANTE!</strong> El contenido principal de la página. Solo puede haber UNO por página.
+                        <strong>�SUPER IMPORTANTE!</strong> El contenido principal de la p�gina. Solo puede haber UNO por p�gina.
                         No incluye elementos que se repiten (como el header, footer o sidebars).
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
-                        <strong>Ejemplo:</strong> En una noticia de El País, el &lt;main&gt; contiene el título, la fecha y el texto del artículo.
+                        <strong>Ejemplo:</strong> En una noticia de El Pa�s, el &lt;main&gt; contiene el t�tulo, la fecha y el texto del art�culo.
                     </p>
                 </div>
                 
                 <div style="background: rgba(245, 158, 11, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #f59e0b;">
-                    <strong style="color: #f59e0b; font-size: 1.1rem;">📰 &lt;article&gt;</strong>
+                    <strong style="color: #f59e0b; font-size: 1.1rem;">?? &lt;article&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        Un contenido independiente que tiene sentido por sí solo. Podrías extraerlo y publicarlo en otro lugar.
+                        Un contenido independiente que tiene sentido por s� solo. Podr�as extraerlo y publicarlo en otro lugar.
                         Ideal para posts de blog, noticias, comentarios.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
@@ -881,92 +898,92 @@
                 </div>
                 
                 <div style="background: rgba(245, 158, 11, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #f59e0b;">
-                    <strong style="color: #f59e0b; font-size: 1.1rem;">📦 &lt;section&gt;</strong>
+                    <strong style="color: #f59e0b; font-size: 1.1rem;">?? &lt;section&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        Una sección temática del documento. Agrupa contenido relacionado con un título.
-                        Más genérico que &lt;article&gt;.
+                        Una secci�n tem�tica del documento. Agrupa contenido relacionado con un t�tulo.
+                        M�s gen�rico que &lt;article&gt;.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
-                        <strong>Ejemplo:</strong> En Amazon, cada sección ("Productos relacionados", "Reseñas", "Preguntas") es un &lt;section&gt;.
+                        <strong>Ejemplo:</strong> En Amazon, cada secci�n ("Productos relacionados", "Rese�as", "Preguntas") es un &lt;section&gt;.
                     </p>
                 </div>
                 
                 <div style="background: rgba(236, 72, 153, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #ec4899;">
-                    <strong style="color: #ec4899; font-size: 1.1rem;">📌 &lt;aside&gt;</strong>
+                    <strong style="color: #ec4899; font-size: 1.1rem;">?? &lt;aside&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        Contenido relacionado pero secundario. Típicamente barras laterales (sidebars) con información adicional.
+                        Contenido relacionado pero secundario. T�picamente barras laterales (sidebars) con informaci�n adicional.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
-                        <strong>Ejemplo:</strong> En un blog, la barra lateral con "Artículos populares" o "Acerca del autor".
+                        <strong>Ejemplo:</strong> En un blog, la barra lateral con "Art�culos populares" o "Acerca del autor".
                     </p>
                 </div>
                 
                 <div style="background: rgba(236, 72, 153, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #ec4899;">
-                    <strong style="color: #ec4899; font-size: 1.1rem;">👣 &lt;footer&gt;</strong>
+                    <strong style="color: #ec4899; font-size: 1.1rem;">?? &lt;footer&gt;</strong>
                     <p style="margin: 10px 0; line-height: 1.8;">
-                        Pie de página con información de cierre: copyright, enlaces legales, redes sociales, contacto.
+                        Pie de p�gina con informaci�n de cierre: copyright, enlaces legales, redes sociales, contacto.
                     </p>
                     <p style="margin: 10px 0; font-family: monospace; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px;">
-                        <strong>Ejemplo:</strong> El pie de GitHub con "© 2024 GitHub, Inc. • Terms • Privacy • Security".
+                        <strong>Ejemplo:</strong> El pie de GitHub con "� 2024 GitHub, Inc. � Terms � Privacy � Security".
                     </p>
                 </div>
             </div>
             
-            <!-- SECCIÓN: EJEMPLOS DEL MUNDO REAL -->
+            <!-- SECCI�N: EJEMPLOS DEL MUNDO REAL -->
             <div class="seccion-explicacion" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;">
-                <h3 style="color: #3b82f6; margin-bottom: 20px;">🌍 Análisis: Cómo estructuran sus BODY los sitios famosos</h3>
+                <h3 style="color: #3b82f6; margin-bottom: 20px;">?? An�lisis: C�mo estructuran sus BODY los sitios famosos</h3>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <h4 style="color: #ef4444; margin-bottom: 15px;">📺 YouTube (youtube.com)</h4>
-                    <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; line-height: 2; color: #e0e0e0; margin: 10px 0;">
+                    <h4 style="color: #ef4444; margin-bottom: 15px;">?? YouTube (youtube.com)</h4>
+                    <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; line-height: 2; color: #334155; margin: 10px 0;">
 &lt;body&gt;<br>
-&nbsp;&nbsp;&lt;header&gt; <span style="color: #6b7280;">← Logo + Búsqueda + Notificaciones</span><br>
+&nbsp;&nbsp;&lt;header&gt; <span style="color: #6b7280;">? Logo + B�squeda + Notificaciones</span><br>
 &nbsp;&nbsp;&lt;main&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="videos-recomendados"&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;article class="video-card"&gt;...&lt;/article&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;article class="video-card"&gt;...&lt;/article&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
 &nbsp;&nbsp;&lt;/main&gt;<br>
-&nbsp;&nbsp;&lt;aside&gt; <span style="color: #6b7280;">← Barra lateral con suscripciones</span><br>
+&nbsp;&nbsp;&lt;aside&gt; <span style="color: #6b7280;">? Barra lateral con suscripciones</span><br>
 &lt;/body&gt;
                     </div>
                     <p style="line-height: 1.8; margin-top: 15px;">
-                        <strong>Observación:</strong> Cada tarjeta de video es un &lt;article&gt; porque es independiente.
+                        <strong>Observaci�n:</strong> Cada tarjeta de video es un &lt;article&gt; porque es independiente.
                         Puedes compartir ese video por separado.
                     </p>
                 </div>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <h4 style="color: #f59e0b; margin-bottom: 15px;">📰 Wikipedia (wikipedia.org)</h4>
-                    <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; line-height: 2; color: #e0e0e0; margin: 10px 0;">
+                    <h4 style="color: #f59e0b; margin-bottom: 15px;">?? Wikipedia (wikipedia.org)</h4>
+                    <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; line-height: 2; color: #334155; margin: 10px 0;">
 &lt;body&gt;<br>
 &nbsp;&nbsp;&lt;header&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt; <span style="color: #6b7280;">← Menú: Artículo, Discusión, Leer...</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt; <span style="color: #6b7280;">? Men�: Art�culo, Discusi�n, Leer...</span><br>
 &nbsp;&nbsp;&lt;/header&gt;<br>
 &nbsp;&nbsp;&lt;main&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Título del artículo&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;T�tulo del art�culo&lt;/h1&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="introduccion"&gt;...&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="historia"&gt;...&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="referencias"&gt;...&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/article&gt;<br>
 &nbsp;&nbsp;&lt;/main&gt;<br>
-&nbsp;&nbsp;&lt;aside&gt; <span style="color: #6b7280;">← Tabla de contenidos</span><br>
-&nbsp;&nbsp;&lt;footer&gt; <span style="color: #6b7280;">← Licencia, última edición...</span><br>
+&nbsp;&nbsp;&lt;aside&gt; <span style="color: #6b7280;">? Tabla de contenidos</span><br>
+&nbsp;&nbsp;&lt;footer&gt; <span style="color: #6b7280;">? Licencia, �ltima edici�n...</span><br>
 &lt;/body&gt;
                     </div>
                     <p style="line-height: 1.8; margin-top: 15px;">
-                        <strong>Observación:</strong> Todo el artículo está en un &lt;article&gt;, dividido en &lt;section&gt; 
-                        para cada tema (historia, características, etc.).
+                        <strong>Observaci�n:</strong> Todo el art�culo est� en un &lt;article&gt;, dividido en &lt;section&gt; 
+                        para cada tema (historia, caracter�sticas, etc.).
                     </p>
                 </div>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                    <h4 style="color: #10b981; margin-bottom: 15px;">🛒 Amazon (amazon.com)</h4>
-                    <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; line-height: 2; color: #e0e0e0; margin: 10px 0;">
+                    <h4 style="color: #10b981; margin-bottom: 15px;">?? Amazon (amazon.com)</h4>
+                    <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; line-height: 2; color: #334155; margin: 10px 0;">
 &lt;body&gt;<br>
 &nbsp;&nbsp;&lt;header&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt; <span style="color: #6b7280;">← Categorías, Ofertas, Carrito...</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt; <span style="color: #6b7280;">? Categor�as, Ofertas, Carrito...</span><br>
 &nbsp;&nbsp;&lt;/header&gt;<br>
 &nbsp;&nbsp;&lt;main&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="detalles-producto"&gt;<br>
@@ -974,29 +991,29 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img&gt; &lt;p&gt; &lt;button&gt;Comprar&lt;/button&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="resenas"&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;article class="review"&gt;...&lt;/article&gt; <span style="color: #6b7280;">← Cada reseña</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;article class="review"&gt;...&lt;/article&gt; <span style="color: #6b7280;">? Cada rese�a</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;article class="review"&gt;...&lt;/article&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="productos-relacionados"&gt;...&lt;/section&gt;<br>
 &nbsp;&nbsp;&lt;/main&gt;<br>
-&nbsp;&nbsp;&lt;footer&gt; <span style="color: #6b7280;">← Ayuda, Términos, Privacidad...</span><br>
+&nbsp;&nbsp;&lt;footer&gt; <span style="color: #6b7280;">? Ayuda, T�rminos, Privacidad...</span><br>
 &lt;/body&gt;
                     </div>
                     <p style="line-height: 1.8; margin-top: 15px;">
-                        <strong>Observación:</strong> Cada reseña de usuario es un &lt;article&gt; independiente.
-                        Las secciones agrupan diferentes tipos de información.
+                        <strong>Observaci�n:</strong> Cada rese�a de usuario es un &lt;article&gt; independiente.
+                        Las secciones agrupan diferentes tipos de informaci�n.
                     </p>
                 </div>
             </div>
             
-            <!-- SECCIÓN: COMPARACIÓN ANTES/AHORA -->
+            <!-- SECCI�N: COMPARACI�N ANTES/AHORA -->
             <div class="tip-box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(252, 165, 165, 0.1)); border-left: 4px solid #ef4444;">
-                <h3 style="color: #ef4444; margin-bottom: 20px;">⚡ Antes vs Ahora: La Revolución Semántica</h3>
+                <h3 style="color: #ef4444; margin-bottom: 20px;">? Antes vs Ahora: La Revoluci�n Sem�ntica</h3>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
                     <div style="background: rgba(0,0,0,0.1); padding: 15px; border-radius: 8px;">
-                        <h4 style="color: #ef4444; margin-bottom: 10px;">❌ Forma Antigua (Solo DIV)</h4>
-                        <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; line-height: 1.8; color: #e0e0e0; font-size: 0.9rem;">
+                        <h4 style="color: #ef4444; margin-bottom: 10px;">? Forma Antigua (Solo DIV)</h4>
+                        <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; line-height: 1.8; color: #334155; font-size: 0.9rem;">
 &lt;div class="header"&gt;<br>
 &nbsp;&nbsp;&lt;div class="nav"&gt;...&lt;/div&gt;<br>
 &lt;/div&gt;<br>
@@ -1007,13 +1024,13 @@
                         </div>
                         <p style="margin-top: 10px; line-height: 1.6;">
                             <strong>Problema:</strong> Todo es "div". No tiene significado. 
-                            Los motores de búsqueda y lectores de pantalla no entienden qué es cada cosa.
+                            Los motores de b�squeda y lectores de pantalla no entienden qu� es cada cosa.
                         </p>
                     </div>
                     
                     <div style="background: rgba(0,0,0,0.1); padding: 15px; border-radius: 8px;">
-                        <h4 style="color: #10b981; margin-bottom: 10px;">✅ Forma Moderna (Semántica)</h4>
-                        <div style="font-family: monospace; background: #1a1a2e; padding: 15px; border-radius: 8px; line-height: 1.8; color: #e0e0e0; font-size: 0.9rem;">
+                        <h4 style="color: #10b981; margin-bottom: 10px;">? Forma Moderna (Sem�ntica)</h4>
+                        <div style="font-family: monospace; background: #f1f5f9; padding: 15px; border-radius: 8px; line-height: 1.8; color: #334155; font-size: 0.9rem;">
 &lt;header&gt;<br>
 &nbsp;&nbsp;&lt;nav&gt;...&lt;/nav&gt;<br>
 &lt;/header&gt;<br>
@@ -1023,40 +1040,40 @@
 &lt;footer&gt;...&lt;/footer&gt;
                         </div>
                         <p style="margin-top: 10px; line-height: 1.6;">
-                            <strong>Ventaja:</strong> Cada etiqueta DICE qué es. Google entiende mejor tu contenido.
+                            <strong>Ventaja:</strong> Cada etiqueta DICE qu� es. Google entiende mejor tu contenido.
                             Mejora el SEO y la accesibilidad.
                         </p>
                     </div>
                 </div>
                 
                 <div style="background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4 style="color: #10b981; margin-bottom: 15px;">🎁 Beneficios del HTML Semántico:</h4>
+                    <h4 style="color: #10b981; margin-bottom: 15px;">?? Beneficios del HTML Sem�ntico:</h4>
                     <ul style="line-height: 2.2; margin-left: 20px;">
-                        <li><strong>🔍 Mejor SEO:</strong> Google entiende tu contenido y lo posiciona mejor en búsquedas</li>
-                        <li><strong>♿ Accesibilidad:</strong> Los lectores de pantalla pueden navegar correctamente</li>
-                        <li><strong>📱 Responsive:</strong> Más fácil adaptar a móviles con CSS</li>
-                        <li><strong>🧹 Código más limpio:</strong> Otros desarrolladores entienden tu código rápidamente</li>
-                        <li><strong>🔧 Mantenimiento:</strong> Es más fácil encontrar y modificar secciones específicas</li>
+                        <li><strong>?? Mejor SEO:</strong> Google entiende tu contenido y lo posiciona mejor en b�squedas</li>
+                        <li><strong>? Accesibilidad:</strong> Los lectores de pantalla pueden navegar correctamente</li>
+                        <li><strong>?? Responsive:</strong> M�s f�cil adaptar a m�viles con CSS</li>
+                        <li><strong>?? C�digo m�s limpio:</strong> Otros desarrolladores entienden tu c�digo r�pidamente</li>
+                        <li><strong>?? Mantenimiento:</strong> Es m�s f�cil encontrar y modificar secciones espec�ficas</li>
                     </ul>
                 </div>
             </div>
             
-            <!-- SECCIÓN: REGLAS Y MEJORES PRÁCTICAS -->
+            <!-- SECCI�N: REGLAS Y MEJORES PR�CTICAS -->
             <div class="seccion-explicacion" style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 25px; margin: 25px 0;">
-                <h3 style="color: #f59e0b; margin-bottom: 20px;">📋 Reglas de Oro para Estructurar el BODY</h3>
+                <h3 style="color: #f59e0b; margin-bottom: 20px;">?? Reglas de Oro para Estructurar el BODY</h3>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                    <h4 style="color: #f59e0b;">1. Solo UN &lt;main&gt; por página</h4>
+                    <h4 style="color: #f59e0b;">1. Solo UN &lt;main&gt; por p�gina</h4>
                     <p style="line-height: 1.8; margin-top: 10px;">
-                        ❌ <strong>INCORRECTO:</strong> Poner varios &lt;main&gt;<br>
-                        ✅ <strong>CORRECTO:</strong> Un solo &lt;main&gt; con el contenido principal
+                        ? <strong>INCORRECTO:</strong> Poner varios &lt;main&gt;<br>
+                        ? <strong>CORRECTO:</strong> Un solo &lt;main&gt; con el contenido principal
                     </p>
                 </div>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                    <h4 style="color: #f59e0b;">2. Orden lógico de elementos</h4>
+                    <h4 style="color: #f59e0b;">2. Orden l�gico de elementos</h4>
                     <p style="line-height: 1.8; margin-top: 10px;">
-                        La estructura típica es: &lt;header&gt; → &lt;nav&gt; → &lt;main&gt; → &lt;aside&gt; → &lt;footer&gt;
+                        La estructura t�pica es: &lt;header&gt; ? &lt;nav&gt; ? &lt;main&gt; ? &lt;aside&gt; ? &lt;footer&gt;
                     </p>
                 </div>
                 
@@ -1069,9 +1086,9 @@
                 </div>
                 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                    <h4 style="color: #f59e0b;">4. &lt;section&gt; siempre debe tener un título</h4>
+                    <h4 style="color: #f59e0b;">4. &lt;section&gt; siempre debe tener un t�tulo</h4>
                     <p style="line-height: 1.8; margin-top: 10px;">
-                        Cada &lt;section&gt; debería tener un &lt;h2&gt;, &lt;h3&gt; u otro encabezado que describa su contenido.
+                        Cada &lt;section&gt; deber�a tener un &lt;h2&gt;, &lt;h3&gt; u otro encabezado que describa su contenido.
                     </p>
                 </div>
                 
@@ -1087,13 +1104,13 @@
         <div class="panel-editor">
             <div class="editor-header">
                 <div class="editor-titulo">
-                    <span>💻</span>
-                    <span>Editor En Vivo - ¡Experimenta!</span>
+                    <span>??</span>
+                    <span>Editor En Vivo - �Experimenta!</span>
                 </div>
                 <div class="editor-botones">
-                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">📋 Copiar</button>
-                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">🔄 Reset</button>
-                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">▶️ Ejecutar</button>
+                    <button class="btn-editor btn-copiar" onclick="copiarCodigo()">?? Copiar</button>
+                    <button class="btn-editor btn-reset" onclick="resetearCodigo()">?? Reset</button>
+                    <button class="btn-editor btn-ejecutar" onclick="ejecutarCodigo()">?? Ejecutar</button>
                 </div>
             </div>
             
@@ -1101,7 +1118,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Página con BODY</title>
+    <title>Mi P�gina con BODY</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -1135,36 +1152,36 @@
     </style>
 </head>
 <body>
-    <h1>🎉 Mi Primera Página Completa</h1>
+    <h1>?? Mi Primera P�gina Completa</h1>
     
-    <h2>Sobre Mí</h2>
-    <p>¡Hola! Estoy aprendiendo a crear páginas web con HTML. 
-       Es muy divertido ver cómo todo aparece en el navegador.</p>
+    <h2>Sobre M�</h2>
+    <p>�Hola! Estoy aprendiendo a crear p�ginas web con HTML. 
+       Es muy divertido ver c�mo todo aparece en el navegador.</p>
     
     <div class="destacado">
-        <strong>💡 Dato interesante:</strong> Esta caja tiene estilos especiales
+        <strong>?? Dato interesante:</strong> Esta caja tiene estilos especiales
         usando una clase CSS llamada "destacado".
     </div>
     
     <h2>Mis Pasatiempos</h2>
     <ul>
-        <li>🎮 Jugar videojuegos</li>
-        <li>📚 Leer libros</li>
-        <li>💻 Programar</li>
-        <li>🎨 Dibujar</li>
+        <li>?? Jugar videojuegos</li>
+        <li>?? Leer libros</li>
+        <li>?? Programar</li>
+        <li>?? Dibujar</li>
     </ul>
     
-    <h2>Enlaces Útiles</h2>
+    <h2>Enlaces �tiles</h2>
     <p>Visita <a href="https://www.google.com" target="_blank">Google</a> 
-       para buscar información.</p>
+       para buscar informaci�n.</p>
     
-    <button onclick="alert('¡Hiciste clic! 🎉')">¡Haz clic aquí!</button>
+    <button onclick="alert('�Hiciste clic! ??')">�Haz clic aqu�!</button>
 </body>
 </html></textarea>
             
             <div class="preview-container">
                 <div class="preview-header">
-                    <span>👁️</span>
+                    <span>???</span>
                     <span>Vista Previa - Resultado</span>
                 </div>
                 <iframe class="preview-frame" id="previewFrame"></iframe>
@@ -1172,21 +1189,21 @@
         </div>
     </main>
     
-    <!-- Ejercicio de completar código -->
+    <!-- Ejercicio de completar c�digo -->
     <section class="completar-codigo">
         <div class="completar-header">
-            <span>✏️</span>
-            <span>Actividad 1: Completa el código</span>
+            <span>??</span>
+            <span>Actividad 1: Completa el c�digo</span>
         </div>
         <p style="margin-bottom: 20px;">Escribe las etiquetas que faltan:</p>
         
         <div class="codigo-con-huecos">
             <div>&lt;body&gt;</div>
             <div style="margin-left: 20px;">
-                &lt;<span class="hueco"><input type="text" id="hueco1" placeholder="?" maxlength="2"></span>&gt;Título Principal&lt;/h1&gt;
+                &lt;<span class="hueco"><input type="text" id="hueco1" placeholder="?" maxlength="2"></span>&gt;T�tulo Principal&lt;/h1&gt;
             </div>
             <div style="margin-left: 20px;">
-                &lt;<span class="hueco"><input type="text" id="hueco2" placeholder="?" maxlength="1"></span>&gt;Este es un párrafo de texto&lt;/p&gt;
+                &lt;<span class="hueco"><input type="text" id="hueco2" placeholder="?" maxlength="1"></span>&gt;Este es un p�rrafo de texto&lt;/p&gt;
             </div>
             <div style="margin-left: 20px;">
                 &lt;<span class="hueco"><input type="text" id="hueco3" placeholder="?" maxlength="1"></span> href="pagina.html"&gt;Enlace&lt;/a&gt;
@@ -1194,24 +1211,24 @@
             <div>&lt;/body&gt;</div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarHuecos()">✅ Verificar</button>
+        <button class="btn-verificar" onclick="verificarHuecos()">? Verificar</button>
         <div class="quiz-resultado" id="resultadoHuecos"></div>
     </section>
     
     <!-- Quiz -->
     <section class="quiz-container">
         <div class="quiz-header">
-            <span>❓</span>
+            <span>?</span>
             <span>Actividad 2: Quiz del BODY</span>
         </div>
         
         <div class="quiz-pregunta" id="quiz1">
-            <h4>1. ¿Cuántas etiquetas &lt;h1&gt; debe tener una página?</h4>
+            <h4>1. �Cu�ntas etiquetas &lt;h1&gt; debe tener una p�gina?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q1">
                     <span class="radio-custom"></span>
-                    Solo una (es el título principal)
+                    Solo una (es el t�tulo principal)
                 </label>
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q1">
@@ -1228,7 +1245,7 @@
         </div>
         
         <div class="quiz-pregunta" id="quiz2">
-            <h4>2. ¿Qué etiqueta se usa para crear un párrafo?</h4>
+            <h4>2. �Qu� etiqueta se usa para crear un p�rrafo?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
@@ -1250,7 +1267,7 @@
         </div>
         
         <div class="quiz-pregunta" id="quiz3">
-            <h4>3. ¿Qué atributo usa &lt;a&gt; para indicar a dónde lleva el enlace?</h4>
+            <h4>3. �Qu� atributo usa &lt;a&gt; para indicar a d�nde lleva el enlace?</h4>
             <div class="quiz-opciones">
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q3">
@@ -1271,51 +1288,51 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">? Verificar Respuestas</button>
     </section>
     
-    <!-- SECCIÓN: EJERCICIOS PRÁCTICOS -->
+    <!-- SECCI�N: EJERCICIOS PR�CTICOS -->
     <section style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(99, 102, 241, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">🎯</span>
-            <h2 style="color: #6366f1; margin: 0;">Desafíos Prácticos - Nivel 3</h2>
+            <span style="font-size: 2.5rem;">??</span>
+            <h2 style="color: #6366f1; margin: 0;">Desaf�os Pr�cticos - Nivel 3</h2>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #8b5cf6; margin-bottom: 15px;">🏆 Desafío 1: Crea tu Página "Sobre Mí"</h3>
+            <h3 style="color: #8b5cf6; margin-bottom: 15px;">?? Desaf�o 1: Crea tu P�gina "Sobre M�"</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
-                Crea una página HTML completa que incluya:
+                Crea una p�gina HTML completa que incluya:
             </p>
             <ul style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
-                <li>✅ DOCTYPE y estructura básica (&lt;html&gt;, &lt;head&gt;, &lt;body&gt;)</li>
-                <li>✅ Un &lt;h1&gt; con tu nombre</li>
-                <li>✅ Tres párrafos (&lt;p&gt;) sobre ti: edad, pasatiempos, comida favorita</li>
-                <li>✅ Una lista (&lt;ul&gt; con &lt;li&gt;) de 5 cosas que te gustan</li>
-                <li>✅ Un enlace (&lt;a&gt;) a tu red social favorita</li>
-                <li>✅ Al menos 3 niveles de títulos diferentes (h1, h2, h3)</li>
+                <li>? DOCTYPE y estructura b�sica (&lt;html&gt;, &lt;head&gt;, &lt;body&gt;)</li>
+                <li>? Un &lt;h1&gt; con tu nombre</li>
+                <li>? Tres p�rrafos (&lt;p&gt;) sobre ti: edad, pasatiempos, comida favorita</li>
+                <li>? Una lista (&lt;ul&gt; con &lt;li&gt;) de 5 cosas que te gustan</li>
+                <li>? Un enlace (&lt;a&gt;) a tu red social favorita</li>
+                <li>? Al menos 3 niveles de t�tulos diferentes (h1, h2, h3)</li>
             </ul>
             <div style="background: rgba(99, 102, 241, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #6366f1;">
-                <strong>💡 Tip:</strong> Usa el editor de arriba para practicar. Puedes copiar el código y guardarlo como "sobr emi.html".
+                <strong>?? Tip:</strong> Usa el editor de arriba para practicar. Puedes copiar el c�digo y guardarlo como "sobr emi.html".
             </div>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #10b981; margin-bottom: 15px;">🏆 Desafío 2: Estructura Semántica de un Blog</h3>
+            <h3 style="color: #10b981; margin-bottom: 15px;">?? Desaf�o 2: Estructura Sem�ntica de un Blog</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
-                Crea la estructura HTML de un artículo de blog usando etiquetas semánticas:
+                Crea la estructura HTML de un art�culo de blog usando etiquetas sem�nticas:
             </p>
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; font-family: monospace; line-height: 2; margin: 15px 0;">
                 &lt;body&gt;<br>
                 &nbsp;&nbsp;&lt;header&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Mi Blog de Tecnología&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Mi Blog de Tecnolog�a&lt;/h1&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menú con enlaces: Inicio, Artículos, Contacto --&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Men� con enlaces: Inicio, Art�culos, Contacto --&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
                 &nbsp;&nbsp;&lt;/header&gt;<br>
                 <br>
                 &nbsp;&nbsp;&lt;main&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Título del artículo&lt;/h2&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;T�tulo del art�culo&lt;/h2&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="introduccion"&gt;...&lt;/section&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="desarrollo"&gt;...&lt;/section&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="conclusion"&gt;...&lt;/section&gt;<br>
@@ -1323,120 +1340,120 @@
                 &nbsp;&nbsp;&lt;/main&gt;<br>
                 <br>
                 &nbsp;&nbsp;&lt;aside&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Artículos relacionados&lt;/h3&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Art�culos relacionados&lt;/h3&gt;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Lista de enlaces --&gt;<br>
                 &nbsp;&nbsp;&lt;/aside&gt;<br>
                 <br>
                 &nbsp;&nbsp;&lt;footer&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;© 2024 Mi Blog&lt;/p&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;� 2024 Mi Blog&lt;/p&gt;<br>
                 &nbsp;&nbsp;&lt;/footer&gt;<br>
                 &lt;/body&gt;
             </div>
             <p style="line-height: 1.8; margin-top: 15px;">
-                <strong>🎯 Objetivo:</strong> Completa cada sección con contenido real. ¿Te atreves?
+                <strong>?? Objetivo:</strong> Completa cada secci�n con contenido real. �Te atreves?
             </p>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #f59e0b; margin-bottom: 15px;">🏆 Desafío 3: Analiza una Página Real</h3>
+            <h3 style="color: #f59e0b; margin-bottom: 15px;">?? Desaf�o 3: Analiza una P�gina Real</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
                 Visita tu sitio web favorito (YouTube, Twitter, Wikipedia, etc.) y:
             </p>
             <ol style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
                 <li>Abre las herramientas de desarrollador (F12 en Chrome/Edge/Firefox)</li>
-                <li>Inspecciona el código HTML</li>
-                <li>Identifica las etiquetas semánticas: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;footer&gt;</li>
+                <li>Inspecciona el c�digo HTML</li>
+                <li>Identifica las etiquetas sem�nticas: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;footer&gt;</li>
                 <li>Dibuja un esquema de la estructura en papel</li>
             </ol>
             <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                <strong>🔍 Observa:</strong> ¿Cómo organizan el contenido los profesionales? ¿Qué patrones se repiten?
+                <strong>?? Observa:</strong> �C�mo organizan el contenido los profesionales? �Qu� patrones se repiten?
             </div>
         </div>
         
         <div style="background: white; padding: 25px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h3 style="color: #ef4444; margin-bottom: 15px;">🏆 Desafío Avanzado: Página de Portafolio</h3>
+            <h3 style="color: #ef4444; margin-bottom: 15px;">?? Desaf�o Avanzado: P�gina de Portafolio</h3>
             <p style="line-height: 1.8; margin-bottom: 15px;">
                 Crea un portafolio personal completo con:
             </p>
             <ul style="line-height: 2; margin-left: 25px; margin-bottom: 15px;">
                 <li><strong>&lt;header&gt;:</strong> Tu nombre y foto</li>
-                <li><strong>&lt;nav&gt;:</strong> Menú (Inicio, Proyectos, Habilidades, Contacto)</li>
-                <li><strong>&lt;main&gt;</strong> con múltiples &lt;section&gt;:</li>
+                <li><strong>&lt;nav&gt;:</strong> Men� (Inicio, Proyectos, Habilidades, Contacto)</li>
+                <li><strong>&lt;main&gt;</strong> con m�ltiples &lt;section&gt;:</li>
                 <ul style="margin-left: 25px;">
-                    <li>Sección "Sobre mí"</li>
-                    <li>Sección "Proyectos" (con 3 &lt;article&gt; de proyectos)</li>
-                    <li>Sección "Habilidades" (lista de tecnologías)</li>
+                    <li>Secci�n "Sobre m�"</li>
+                    <li>Secci�n "Proyectos" (con 3 &lt;article&gt; de proyectos)</li>
+                    <li>Secci�n "Habilidades" (lista de tecnolog�as)</li>
                 </ul>
-                <li><strong>&lt;aside&gt;:</strong> Redes sociales y enlaces de interés</li>
+                <li><strong>&lt;aside&gt;:</strong> Redes sociales y enlaces de inter�s</li>
                 <li><strong>&lt;footer&gt;:</strong> Copyright y contacto</li>
             </ul>
             <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #ef4444;">
-                <strong>🚀 Desafío extra:</strong> Agrega imágenes, estilos CSS inline, y botones interactivos.
+                <strong>?? Desaf�o extra:</strong> Agrega im�genes, estilos CSS inline, y botones interactivos.
             </div>
         </div>
     </section>
     
-    <!-- SECCIÓN: PREGUNTAS DE REFLEXIÓN -->
+    <!-- SECCI�N: PREGUNTAS DE REFLEXI�N -->
     <section style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(249, 168, 212, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(236, 72, 153, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">🤔</span>
-            <h2 style="color: #ec4899; margin: 0;">Preguntas de Reflexión</h2>
+            <span style="font-size: 2.5rem;">??</span>
+            <h2 style="color: #ec4899; margin: 0;">Preguntas de Reflexi�n</h2>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ec4899;">1. ¿Por qué es importante usar HTML semántico en lugar de solo &lt;div&gt;?</h4>
+            <h4 style="color: #ec4899;">1. �Por qu� es importante usar HTML sem�ntico en lugar de solo &lt;div&gt;?</h4>
             <details style="margin-top: 10px; padding: 10px; background: rgba(236, 72, 153, 0.05); border-radius: 5px;">
                 <summary style="cursor: pointer; font-weight: bold; color: #ec4899;">Ver respuesta</summary>
                 <p style="margin-top: 10px; line-height: 1.8;">
-                    El HTML semántico mejora el <strong>SEO</strong> (Google entiende mejor el contenido), 
+                    El HTML sem�ntico mejora el <strong>SEO</strong> (Google entiende mejor el contenido), 
                     la <strong>accesibilidad</strong> (lectores de pantalla navegan correctamente), 
-                    y hace el código más <strong>mantenible</strong> (otros desarrolladores entienden la estructura rápidamente).
+                    y hace el c�digo m�s <strong>mantenible</strong> (otros desarrolladores entienden la estructura r�pidamente).
                 </p>
             </details>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ec4899;">2. ¿Cuándo usarías &lt;article&gt; y cuándo &lt;section&gt;?</h4>
+            <h4 style="color: #ec4899;">2. �Cu�ndo usar�as &lt;article&gt; y cu�ndo &lt;section&gt;?</h4>
             <details style="margin-top: 10px; padding: 10px; background: rgba(236, 72, 153, 0.05); border-radius: 5px;">
                 <summary style="cursor: pointer; font-weight: bold; color: #ec4899;">Ver respuesta</summary>
                 <p style="margin-top: 10px; line-height: 1.8;">
-                    Usa <strong>&lt;article&gt;</strong> para contenido independiente que tiene sentido por sí solo 
+                    Usa <strong>&lt;article&gt;</strong> para contenido independiente que tiene sentido por s� solo 
                     (posts de blog, noticias, comentarios). Usa <strong>&lt;section&gt;</strong> para agrupar contenido 
-                    temático dentro de un documento (capítulos de un artículo, diferentes partes de una página).
+                    tem�tico dentro de un documento (cap�tulos de un art�culo, diferentes partes de una p�gina).
                 </p>
             </details>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ec4899;">3. ¿Qué pasa si pones dos &lt;main&gt; en una página?</h4>
+            <h4 style="color: #ec4899;">3. �Qu� pasa si pones dos &lt;main&gt; en una p�gina?</h4>
             <details style="margin-top: 10px; padding: 10px; background: rgba(236, 72, 153, 0.05); border-radius: 5px;">
                 <summary style="cursor: pointer; font-weight: bold; color: #ec4899;">Ver respuesta</summary>
                 <p style="margin-top: 10px; line-height: 1.8;">
-                    Es <strong>incorrecto</strong> según el estándar HTML5. Solo debe haber UN &lt;main&gt; por página 
-                    porque representa EL contenido principal. Tener varios confunde a los motores de búsqueda y 
-                    tecnologías de asistencia. Si necesitas múltiples áreas de contenido, usa &lt;section&gt; o &lt;article&gt; dentro del &lt;main&gt;.
+                    Es <strong>incorrecto</strong> seg�n el est�ndar HTML5. Solo debe haber UN &lt;main&gt; por p�gina 
+                    porque representa EL contenido principal. Tener varios confunde a los motores de b�squeda y 
+                    tecnolog�as de asistencia. Si necesitas m�ltiples �reas de contenido, usa &lt;section&gt; o &lt;article&gt; dentro del &lt;main&gt;.
                 </p>
             </details>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <h4 style="color: #ec4899;">4. ¿Por qué YouTube usa &lt;article&gt; para cada video?</h4>
+            <h4 style="color: #ec4899;">4. �Por qu� YouTube usa &lt;article&gt; para cada video?</h4>
             <details style="margin-top: 10px; padding: 10px; background: rgba(236, 72, 153, 0.05); border-radius: 5px;">
                 <summary style="cursor: pointer; font-weight: bold; color: #ec4899;">Ver respuesta</summary>
                 <p style="margin-top: 10px; line-height: 1.8;">
                     Porque cada video es un <strong>contenido independiente y autocontenido</strong>. 
                     Puedes extraer una tarjeta de video y compartirla en otro contexto (Twitter, WhatsApp) 
-                    y sigue teniendo sentido completo. Esa es la definición de &lt;article&gt;.
+                    y sigue teniendo sentido completo. Esa es la definici�n de &lt;article&gt;.
                 </p>
             </details>
         </div>
     </section>
     
-    <!-- SECCIÓN: CHECKLIST ANTES DE CONTINUAR -->
+    <!-- SECCI�N: CHECKLIST ANTES DE CONTINUAR -->
     <section style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1)); border-radius: 15px; padding: 30px; margin: 20px; border: 2px solid rgba(16, 185, 129, 0.3);">
         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <span style="font-size: 2.5rem;">✅</span>
-            <h2 style="color: #10b981; margin: 0;">Checklist: ¿Listo para el Nivel 4?</h2>
+            <span style="font-size: 2.5rem;">?</span>
+            <h2 style="color: #10b981; margin: 0;">Checklist: �Listo para el Nivel 4?</h2>
         </div>
         
         <p style="line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem;">
@@ -1447,7 +1464,7 @@
             <div style="display: grid; gap: 15px;">
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer; transition: all 0.3s;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Sé que el &lt;body&gt; contiene TODO el contenido visible</span>
+                    <span style="line-height: 1.6;">S� que el &lt;body&gt; contiene TODO el contenido visible</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
@@ -1457,39 +1474,39 @@
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Conozco las etiquetas básicas: h1-h6, p, a, div, img, ul/ol, button</span>
+                    <span style="line-height: 1.6;">Conozco las etiquetas b�sicas: h1-h6, p, a, div, img, ul/ol, button</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Entiendo las etiquetas semánticas: header, nav, main, article, section, aside, footer</span>
+                    <span style="line-height: 1.6;">Entiendo las etiquetas sem�nticas: header, nav, main, article, section, aside, footer</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Sé que solo debe haber UN &lt;main&gt; por página</span>
+                    <span style="line-height: 1.6;">S� que solo debe haber UN &lt;main&gt; por p�gina</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Puedo identificar la estructura de una página real (YouTube, Wikipedia, etc.)</span>
+                    <span style="line-height: 1.6;">Puedo identificar la estructura de una p�gina real (YouTube, Wikipedia, etc.)</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">He creado al menos una página HTML completa con estructura semántica</span>
+                    <span style="line-height: 1.6;">He creado al menos una p�gina HTML completa con estructura sem�ntica</span>
                 </label>
                 
                 <label style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
                     <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
-                    <span style="line-height: 1.6;">Entiendo por qué el HTML semántico es mejor que solo usar &lt;div&gt;</span>
+                    <span style="line-height: 1.6;">Entiendo por qu� el HTML sem�ntico es mejor que solo usar &lt;div&gt;</span>
                 </label>
             </div>
             
             <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1)); border-radius: 10px; border-left: 4px solid #10b981;">
                 <p style="line-height: 1.8; margin: 0;">
-                    <strong style="color: #10b981;">💡 Consejo:</strong> Si marcaste menos de 6 casillas, 
-                    vuelve a repasar el contenido y practica más con los ejercicios. ¡No hay prisa! 
+                    <strong style="color: #10b981;">?? Consejo:</strong> Si marcaste menos de 6 casillas, 
+                    vuelve a repasar el contenido y practica m�s con los ejercicios. �No hay prisa! 
                     Es mejor dominar cada nivel antes de avanzar.
                 </p>
             </div>
@@ -1497,35 +1514,35 @@
     </section>
     
     <footer class="nivel-footer">
-        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <div class="estrellas-ganadas" id="estrellas">???</div>
         <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
         <br>
         <button class="btn-continuar" onclick="window.location.href='nivel04.html'">
-            🚀 Continuar al Nivel 4
+            ?? Continuar al Nivel 4
         </button>
     </footer>
     
-    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">🤖</button>
+    <button class="btn-ayuda-flotante" onclick="toggleAyuda()">??</button>
     
     <div class="mascota-ayuda" id="mascotaAyuda">
-        <button class="mascota-cerrar" onclick="toggleAyuda()">×</button>
-        <div style="font-size: 2.5rem; text-align: center;">🤖</div>
-        <p><strong>¡Hola!</strong> Soy CodeBot.</p>
+        <button class="mascota-cerrar" onclick="toggleAyuda()">�</button>
+        <div style="font-size: 2.5rem; text-align: center;">??</div>
+        <p><strong>�Hola!</strong> Soy CodeBot.</p>
         <p style="margin-top: 10px; font-size: 0.9rem;">
-            💡 Recuerda: el BODY contiene TODO lo visible. 
-            Usa h1 para el título principal y p para párrafos. 
-            ¡Haz clic en las etiquetas de arriba para ver ejemplos!
+            ?? Recuerda: el BODY contiene TODO lo visible. 
+            Usa h1 para el t�tulo principal y p para p�rrafos. 
+            �Haz clic en las etiquetas de arriba para ver ejemplos!
         </p>
     </div>
     
     <div class="overlay" id="overlay"></div>
     <div class="logro-popup" id="logroPopup">
-        <div class="icono">📦</div>
-        <h2>¡Nivel 3 Completado!</h2>
+        <div class="icono">??</div>
+        <h2>�Nivel 3 Completado!</h2>
         <p style="margin: 15px 0;">Ahora dominas el BODY del documento</p>
-        <div style="font-size: 2rem;">⭐⭐⭐</div>
+        <div style="font-size: 2rem;">???</div>
         <button class="btn-continuar" onclick="window.location.href='nivel04.html'" style="margin-top: 20px;">
-            Ir al Nivel 4 ➡️
+            Ir al Nivel 4 ??
         </button>
     </div>
 
@@ -1556,21 +1573,21 @@
         
         function copiarCodigo() {
             navigator.clipboard.writeText(document.getElementById('codigoEditor').value);
-            event.target.innerHTML = '✅ Copiado!';
-            setTimeout(() => event.target.innerHTML = '📋 Copiar', 2000);
+            event.target.innerHTML = '? Copiado!';
+            setTimeout(() => event.target.innerHTML = '?? Copiar', 2000);
         }
         
         function insertarEtiqueta(tag) {
             const editor = document.getElementById('codigoEditor');
             const ejemplos = {
-                'h1': '\n    <h1>Nuevo Título</h1>',
-                'p': '\n    <p>Nuevo párrafo de texto aquí.</p>',
-                'img': '\n    <img src="imagen.jpg" alt="Descripción">',
+                'h1': '\n    <h1>Nuevo T�tulo</h1>',
+                'p': '\n    <p>Nuevo p�rrafo de texto aqu�.</p>',
+                'img': '\n    <img src="imagen.jpg" alt="Descripci�n">',
                 'a': '\n    <a href="https://ejemplo.com">Link de ejemplo</a>',
                 'div': '\n    <div>\n        Contenido del div\n    </div>',
                 'ul': '\n    <ul>\n        <li>Elemento 1</li>\n        <li>Elemento 2</li>\n    </ul>',
-                'button': '\n    <button>Nuevo Botón</button>',
-                'span': '\n    <span>Texto en línea</span>'
+                'button': '\n    <button>Nuevo Bot�n</button>',
+                'span': '\n    <span>Texto en l�nea</span>'
             };
             
             const posicion = editor.value.lastIndexOf('</body>');
@@ -1606,12 +1623,12 @@
             const resultado = document.getElementById('resultadoHuecos');
             if (correctos === 3) {
                 resultado.className = 'quiz-resultado exito';
-                resultado.innerHTML = '✅ ¡Excelente! ¡Todas correctas!';
+                resultado.innerHTML = '? �Excelente! �Todas correctas!';
                 huecosCompletados = true;
                 actualizarProgreso();
             } else {
                 resultado.className = 'quiz-resultado error';
-                resultado.innerHTML = `❌ ${correctos}/3 correctas. Pista: h1, p, a`;
+                resultado.innerHTML = `? ${correctos}/3 correctas. Pista: h1, p, a`;
             }
         }
         
@@ -1641,12 +1658,12 @@
                     if (seleccionada.dataset.correcta === 'true') {
                         seleccionada.classList.add('correcta');
                         resultado.className = 'quiz-resultado exito';
-                        resultado.innerHTML = '✅ ¡Correcto!';
+                        resultado.innerHTML = '? �Correcto!';
                         correctas++;
                     } else {
                         seleccionada.classList.add('incorrecta');
                         resultado.className = 'quiz-resultado error';
-                        resultado.innerHTML = '❌ Incorrecto';
+                        resultado.innerHTML = '? Incorrecto';
                         quiz.querySelector('[data-correcta="true"]').classList.add('correcta');
                     }
                 }
@@ -1665,17 +1682,17 @@
             
             const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
-                estrellas.textContent = '⭐⭐⭐';
-                document.getElementById('mensajeFinal').textContent = '¡Completaste todo!';
+                estrellas.textContent = '???';
+                document.getElementById('mensajeFinal').textContent = '�Completaste todo!';
                 localStorage.setItem('nivel3_completado', 'true');
                 setTimeout(() => {
                     document.getElementById('overlay').classList.add('visible');
                     document.getElementById('logroPopup').classList.add('visible');
                 }, 500);
             } else if (progreso >= 50) {
-                estrellas.textContent = '⭐⭐☆';
+                estrellas.textContent = '???';
             } else {
-                estrellas.textContent = '⭐☆☆';
+                estrellas.textContent = '???';
             }
         }
         
