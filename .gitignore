@@ -16,4 +16,7 @@ tutorial_niveles_interactivo.html
 # Archivos del sistema  
 .DS_Store  
 Thumbs.db  
-*.log 
+*.log
+
+# Documentación local (no subir a GitHub)
+README-LOCAL.md 
