@@ -213,7 +213,7 @@
         .preview-frame {
             width: 100%;
             min-height: 300px;
-            background: white;
+            background: #1e1e2e;
             border: none;
         }
         
@@ -643,6 +643,140 @@
                     mostrar videos. Atributos útiles: <code>controls</code>, 
                     <code>autoplay</code>, <code>loop</code>, <code>muted</code>.
                 </p>
+            </div>
+            
+            <!-- NUEVA SECCIÓN: Formatos de imagen -->
+            <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                <h3 style="color: #ec4899; margin-bottom: 20px;">📊 Formatos de Imagen: ¿Cuál usar?</h3>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #10b981;">
+                    <h4 style="color: #10b981;">📷 JPG / JPEG</h4>
+                    <p style="line-height: 1.8; margin: 10px 0;">
+                        <strong>Ideal para:</strong> Fotografías y imágenes con muchos colores.<br>
+                        <strong>Ventaja:</strong> Archivos pequeños con buena calidad.<br>
+                        <strong>Desventaja:</strong> No soporta transparencia.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0;">
+                        &lt;img src="foto-vacaciones.jpg" alt="Playa"&gt;
+                    </div>
+                </div>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #3b82f6;">
+                    <h4 style="color: #3b82f6;">🎨 PNG</h4>
+                    <p style="line-height: 1.8; margin: 10px 0;">
+                        <strong>Ideal para:</strong> Logos, iconos, imágenes con transparencia.<br>
+                        <strong>Ventaja:</strong> Soporta transparencia (fondo invisible).<br>
+                        <strong>Desventaja:</strong> Archivos más pesados que JPG.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0;">
+                        &lt;img src="logo-empresa.png" alt="Logo"&gt;
+                    </div>
+                </div>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #f59e0b;">✨ GIF</h4>
+                    <p style="line-height: 1.8; margin: 10px 0;">
+                        <strong>Ideal para:</strong> Animaciones simples, memes, iconos animados.<br>
+                        <strong>Ventaja:</strong> Soporta animación y transparencia.<br>
+                        <strong>Desventaja:</strong> Limitado a 256 colores.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0;">
+                        &lt;img src="loading.gif" alt="Cargando..."&gt;
+                    </div>
+                </div>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #8b5cf6;">
+                    <h4 style="color: #8b5cf6;">🚀 WebP (Moderno)</h4>
+                    <p style="line-height: 1.8; margin: 10px 0;">
+                        <strong>Ideal para:</strong> Web moderna - combina lo mejor de JPG y PNG.<br>
+                        <strong>Ventaja:</strong> Archivos 25-35% más pequeños, soporta transparencia y animación.<br>
+                        <strong>Desventaja:</strong> No funciona en navegadores muy antiguos.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0;">
+                        &lt;img src="imagen-optimizada.webp" alt="Imagen WebP"&gt;
+                    </div>
+                </div>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444;">📐 SVG (Vectorial)</h4>
+                    <p style="line-height: 1.8; margin: 10px 0;">
+                        <strong>Ideal para:</strong> Iconos, logos, gráficos que necesitan escalar.<br>
+                        <strong>Ventaja:</strong> Se ve perfecto en cualquier tamaño, archivo muy pequeño.<br>
+                        <strong>Desventaja:</strong> No sirve para fotografías.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0;">
+                        &lt;img src="icono.svg" alt="Icono SVG"&gt;
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NUEVA SECCIÓN: Accesibilidad -->
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                <h3 style="color: #10b981; margin-bottom: 20px;">♿ Accesibilidad en Imágenes</h3>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #10b981; margin-bottom: 15px;">📝 El atributo ALT es OBLIGATORIO</h4>
+                    <p style="line-height: 1.8; margin-bottom: 15px;">
+                        El texto alternativo (<code>alt</code>) describe la imagen para:
+                    </p>
+                    <ul style="margin: 15px 20px; line-height: 2;">
+                        <li>🔊 <strong>Lectores de pantalla:</strong> Personas ciegas escuchan la descripción</li>
+                        <li>🌐 <strong>SEO:</strong> Google indexa tus imágenes mejor</li>
+                        <li>📡 <strong>Conexiones lentas:</strong> Se muestra el texto si la imagen no carga</li>
+                    </ul>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px; border: 2px solid #ef4444;">
+                            <p style="color: #ef4444; font-weight: bold;">❌ MAL:</p>
+                            <code style="color: #fbbf24;">&lt;img src="perro.jpg"&gt;</code>
+                            <p style="margin-top: 10px; color: #94a3b8; font-size: 0.9rem;">Sin alt = inaccesible</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; border: 2px solid #10b981;">
+                            <p style="color: #10b981; font-weight: bold;">✅ BIEN:</p>
+                            <code style="color: #fbbf24;">&lt;img src="perro.jpg" alt="Perro golden jugando en el parque"&gt;</code>
+                            <p style="margin-top: 10px; color: #94a3b8; font-size: 0.9rem;">Descriptivo y útil</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b; margin-top: 15px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 10px;">💡 Consejo Pro: Imágenes Decorativas</h4>
+                    <p style="line-height: 1.8;">
+                        Si la imagen es solo decorativa (no aporta información), usa <code>alt=""</code> vacío.
+                        Esto le dice al lector de pantalla que la ignore.
+                    </p>
+                    <div style="background: #1a1a2e; padding: 10px; border-radius: 8px; font-family: monospace; color: #e0e0e0; margin-top: 10px;">
+                        &lt;img src="decoracion.png" alt=""&gt; &lt;!-- Decorativa --&gt;
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NUEVA SECCIÓN: Optimización -->
+            <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(167, 139, 250, 0.1)); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                <h3 style="color: #8b5cf6; margin-bottom: 20px;">⚡ Optimización de Imágenes</h3>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #8b5cf6; margin-bottom: 15px;">🐌 ¿Por qué optimizar?</h4>
+                    <p style="line-height: 1.8;">
+                        Las imágenes son el contenido más pesado de una web. Una imagen de 5MB puede hacer
+                        que tu página tarde 10+ segundos en cargar. ¡Los usuarios se van después de 3 segundos!
+                    </p>
+                </div>
+                
+                <div style="background: var(--tarjeta); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #8b5cf6; margin-bottom: 15px;">🔧 Técnicas de Optimización:</h4>
+                    <ul style="margin: 15px 20px; line-height: 2.2;">
+                        <li><strong>📐 Redimensionar:</strong> No uses una imagen de 4000px si solo la muestras a 400px</li>
+                        <li><strong>📦 Comprimir:</strong> Usa herramientas como TinyPNG, Squoosh</li>
+                        <li><strong>🖼️ Formato correcto:</strong> JPG para fotos, PNG para logos, WebP para todo</li>
+                        <li><strong>⏳ Lazy Loading:</strong> Carga imágenes solo cuando son visibles</li>
+                    </ul>
+                    
+                    <div style="background: #1a1a2e; padding: 15px; border-radius: 8px; font-family: monospace; color: #e0e0e0; line-height: 2; margin-top: 15px;">
+                        &lt;!-- Lazy Loading: La imagen solo carga cuando el usuario hace scroll --&gt;<br>
+                        &lt;img src="foto.jpg" alt="Descripción" <span style="color: #10b981;">loading="lazy"</span>&gt;
+                    </div>
+                </div>
             </div>
         </div>
         
