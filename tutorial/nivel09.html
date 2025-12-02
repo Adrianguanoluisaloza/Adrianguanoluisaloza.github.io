@@ -4,12 +4,507 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎯 Nivel 9 - Flexbox</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
-    </head>
-<body data-nivel="9">
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #8b5cf6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        /* Propiedades Flexbox */
+        .flex-propiedades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .flex-prop {
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flex-prop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .flex-prop .icono { font-size: 1.3rem; margin-bottom: 5px; }
+        .flex-prop .nombre { font-family: 'Consolas', monospace; color: #fbbf24; font-size: 0.8rem; }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border: none;
+        }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Playground Flexbox */
+        .flex-playground {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) { .flex-playground { grid-template-columns: 1fr; } }
+        
+        .controles-flex {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px dashed var(--nivel-color);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .controles-flex h4 {
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .control-grupo {
+            margin-bottom: 15px;
+        }
+        
+        .control-grupo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #a5b4fc;
+        }
+        
+        .control-grupo select {
+            width: 100%;
+            padding: 10px;
+            background: var(--tarjeta);
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            color: var(--texto);
+            font-size: 14px;
+        }
+        
+        .control-grupo select:focus {
+            outline: none;
+            border-color: var(--nivel-color);
+        }
+        
+        .items-control {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-items {
+            flex: 1;
+            padding: 10px;
+            background: var(--nivel-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-items:hover { opacity: 0.8; }
+        
+        .flex-demo-container {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .flex-demo {
+            background: #334155;
+            border: 3px dashed var(--nivel-color);
+            border-radius: 10px;
+            min-height: 250px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .flex-item {
+            background: linear-gradient(135deg, var(--nivel-color), #a78bfa);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 5px;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .flex-item:hover { transform: scale(1.1); }
+        
+        .codigo-flex {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #7c3aed);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
     <header class="nivel-header">
         <div class="nivel-badge">
             <span>🎯</span>
@@ -55,7 +550,7 @@
             <div class="tip-box">
                 <h4>💡 Para usar Flexbox</h4>
                 <p>Solo necesitas agregar <code>display: flex;</code> al contenedor padre.
-                   ¡Los elementos hijos se convierten en "flex itemas"!</p>
+                   ¡Los elementos hijos se convierten en "flex items"!</p>
             </div>
             
             <h3 style="margin: 20px 0; color: var(--nivel-color);">
@@ -71,9 +566,9 @@
                     <div class="icono">↔️</div>
                     <div class="nombre">justify-content</div>
                 </div>
-                <div class="flex-prop" onclick="mostrarInfo('align-itemas')">
+                <div class="flex-prop" onclick="mostrarInfo('align-items')">
                     <div class="icono">↕️</div>
-                    <div class="nombre">align-itemas</div>
+                    <div class="nombre">align-items</div>
                 </div>
                 <div class="flex-prop" onclick="mostrarInfo('flex-wrap')">
                     <div class="icono">🔄</div>
@@ -98,12 +593,12 @@
             </div>
             
             <div class="seccion-explicacion">
-                <h3>📌 align-itemas (eje vertical):</h3>
+                <h3>📌 align-items (eje vertical):</h3>
                 <ul style="margin: 10px 20px; line-height: 1.8;">
                     <li><code>flex-start</code> - Arriba</li>
                     <li><code>center</code> - Centro vertical</li>
                     <li><code>flex-end</code> - Abajo</li>
-                    <li><code>stretch</code> - estairar (default)</li>
+                    <li><code>stretch</code> - Estirar (default)</li>
                 </ul>
             </div>
         </div>
@@ -126,12 +621,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Flexbox Demo</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
-    </head>
-<body data-nivel="9">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+        }
+        
+        /* 🎯 Contenedor Flex */
+        .contenedor-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            
+            background: rgba(255,255,255,0.1);
+            border: 3px dashed #8b5cf6;
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 200px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        
+        /* 📦 Items Flex */
+        .item {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            transition: transform 0.3s;
+        }
+        
+        .item:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* 🔄 Ejemplo de dirección columna */
+        .flex-columna {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            
+            background: rgba(255,255,255,0.1);
+            border: 3px dashed #10b981;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        
+        .item-verde {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 80%;
+            text-align: center;
+        }
+        
+        /* 🎨 Ejemplo space-between */
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            background: rgba(255,255,255,0.1);
+            border: 3px dashed #f59e0b;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .item-naranja {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
     <h1>🎯 Flexbox en Acción</h1>
     
     <div class="contenedor-flex">
@@ -202,8 +786,8 @@
                 </div>
                 
                 <div class="control-grupo">
-                    <label>align-itemas:</label>
-                    <select id="alignItemas" onchange="actualizarFlex()">
+                    <label>align-items:</label>
+                    <select id="alignItems" onchange="actualizarFlex()">
                         <option value="stretch">stretch</option>
                         <option value="flex-start">flex-start</option>
                         <option value="center">center</option>
@@ -230,9 +814,9 @@
                     </select>
                 </div>
                 
-                <div class="itemas-control">
-                    <button class="btn-itemas" onclick="agregarItem()">➕ Item</button>
-                    <button class="btn-itemas" onclick="quitarItem()">➖ Item</button>
+                <div class="items-control">
+                    <button class="btn-items" onclick="agregarItem()">➕ Item</button>
+                    <button class="btn-items" onclick="quitarItem()">➖ Item</button>
                 </div>
             </div>
             
@@ -254,7 +838,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-itemas: stretch;
+    align-items: stretch;
     flex-wrap: nowrap;
     gap: 10px;
 }</div>
@@ -262,7 +846,7 @@
         </div>
         
         <button class="btn-verificar" onclick="verificarFlex()" style="margin-top: 20px;">
-            ✅ Verificar (centra los itemas)
+            ✅ Verificar (centra los items)
         </button>
         <div class="quiz-resultado" id="resultadoFlex"></div>
     </section>
@@ -302,7 +886,7 @@
                 <label class="quiz-opcion" data-correcta="false">
                     <input type="radio" name="q2">
                     <span class="radio-custom"></span>
-                    align-itemas: center;
+                    align-items: center;
                 </label>
                 <label class="quiz-opcion" data-correcta="true">
                     <input type="radio" name="q2">
@@ -340,12 +924,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
-        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
         <br>
         <a href="nivel10.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -363,7 +947,7 @@
             <br><br>
             <code>display: flex;</code><br>
             <code>justify-content: center;</code><br>
-            <code>align-itemas: center;</code>
+            <code>align-items: center;</code>
             <br><br>
             ¡Es el truco más usado!
         </p>
@@ -406,9 +990,9 @@
             const infos = {
                 'flex-direction': 'Controla la dirección: row (fila) o column (columna)',
                 'justify-content': 'Alinea en el eje principal (horizontal por defecto)',
-                'align-itemas': 'Alinea en el eje cruzado (vertical por defecto)',
-                'flex-wrap': 'Permite que los itemas salten a nueva línea',
-                'gap': 'Espacio entre los flex itemas'
+                'align-items': 'Alinea en el eje cruzado (vertical por defecto)',
+                'flex-wrap': 'Permite que los items salten a nueva línea',
+                'gap': 'Espacio entre los flex items'
             };
             alert(`${prop}:\n\n${infos[prop]}`);
         }
@@ -417,7 +1001,7 @@
         function actualizarFlex() {
             const flexDirection = document.getElementById('flexDirection').value;
             const justifyContent = document.getElementById('justifyContent').value;
-            const alignItemas = document.getElementById('alignItemas').value;
+            const alignItems = document.getElementById('alignItems').value;
             const flexWrap = document.getElementById('flexWrap').value;
             const gap = document.getElementById('gap').value;
             
@@ -425,7 +1009,7 @@
             demo.style.display = 'flex';
             demo.style.flexDirection = flexDirection;
             demo.style.justifyContent = justifyContent;
-            demo.style.alignItemas = alignItemas;
+            demo.style.alignItems = alignItems;
             demo.style.flexWrap = flexWrap;
             demo.style.gap = gap;
             
@@ -433,7 +1017,7 @@
     display: flex;
     flex-direction: ${flexDirection};
     justify-content: ${justifyContent};
-    align-itemas: ${alignItemas};
+    align-items: ${alignItems};
     flex-wrap: ${flexWrap};
     gap: ${gap};
 }`;
@@ -460,25 +1044,25 @@
         
         function verificarFlex() {
             const justifyContent = document.getElementById('justifyContent').value;
-            const alignItemas = document.getElementById('alignItemas').value;
+            const alignItems = document.getElementById('alignItems').value;
             
             const resultado = document.getElementById('resultadoFlex');
             
-            if (justifyContent === 'center' && alignItemas === 'center') {
+            if (justifyContent === 'center' && alignItems === 'center') {
                 resultado.className = 'quiz-resultado exito';
-                resultado.innerHTML = '✅ ¡Perfecto! Has centrado los itemas horizontal y verticalmente';
+                resultado.innerHTML = '✅ ¡Perfecto! Has centrado los items horizontal y verticalmente';
                 flexCompletado = true;
                 actualizarProgreso();
             } else {
                 resultado.className = 'quiz-resultado error';
-                resultado.innerHTML = '❌ Usa justify-content: center Y align-itemas: center';
+                resultado.innerHTML = '❌ Usa justify-content: center Y align-items: center';
             }
         }
         
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -523,16 +1107,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estarellas = document.getElementById('estarellas');
+            const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
-                estarellas.textContent = '⭐⭐⭐';
-                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel9_completado', 'true');
             } else if (progreso >= 50) {
-                estarellas.textContent = '⭐⭐☆';
+                estrellas.textContent = '⭐⭐☆';
             } else {
-                estarellas.textContent = '⭐☆☆';
+                estrellas.textContent = '⭐☆☆';
             }
         }
         

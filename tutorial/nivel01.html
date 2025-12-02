@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,20 +7,667 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>🏠 Nivel 1 - DOCTYPE y estructura básica</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
     <!-- Actualizado: 2 diciembre 2025 - 16:45 - MEJORADO CON +3000 PALABRAS -->
-    </head>
-<body data-nivel="1">
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        /* Header del nivel */
+        .nivel-header {
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Navegación entre niveles */
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        /* Barra de progreso del nivel */
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Contenido principal */
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .contenido-principal {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Panel de explicación */
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--primario);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        /* Secciones de explicación */
+        .seccion-explicacion {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid var(--primario);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--primario);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .seccion-explicacion p {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        
+        /* Código explicado inline */
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+            font-size: 0.95rem;
+        }
+        
+        /* Panel del editor */
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #1e3a5f, #2d4a6f);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-ejecutar {
+            background: var(--exito);
+            color: white;
+        }
+        
+        .btn-ejecutar:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+        
+        .btn-reset {
+            background: var(--warning);
+            color: black;
+        }
+        
+        .btn-reset:hover {
+            background: #d97706;
+        }
+        
+        .btn-copiar {
+            background: var(--primario);
+            color: white;
+        }
+        
+        .btn-copiar:hover {
+            background: #5a67d8;
+        }
+        
+        /* Editor de código */
+        .editor-codigo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+            tab-size: 2;
+        }
+        
+        .codigo-textarea:focus {
+            outline: 2px solid var(--primario);
+        }
+        
+        /* Vista previa */
+        .preview-container {
+            border-top: 2px solid var(--borde);
+        }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 200px;
+            background: white;
+            border: none;
+        }
+        
+        /* Actividades interactivas */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 {
+            color: var(--warning);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover {
+            border-color: var(--primario);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .quiz-opcion.correcta {
+            border-color: var(--exito);
+            background: rgba(16, 185, 129, 0.2);
+        }
+        
+        .quiz-opcion.incorrecta {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .quiz-opcion input[type="radio"] {
+            display: none;
+        }
+        
+        .quiz-opcion .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion.selected .radio-custom {
+            border-color: var(--primario);
+            background: var(--primario);
+        }
+        
+        .quiz-opcion.correcta .radio-custom {
+            border-color: var(--exito);
+            background: var(--exito);
+        }
+        
+        .quiz-opcion.incorrecta .radio-custom {
+            border-color: var(--error);
+            background: var(--error);
+        }
+        
+        /* Botón verificar */
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-verificar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Resultado del quiz */
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        /* Desafío de código */
+        .desafio {
+            background: rgba(118, 75, 162, 0.1);
+            border: 2px solid var(--secundario);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .desafio-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secundario);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .desafio-instrucciones {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .desafio-instrucciones ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        /* Tips */
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--exito);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .animar-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Mascota */
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--primario);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible {
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mascota-icono {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+        
+        .btn-ayuda-flotante:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer del nivel */
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-continuar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-continuar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Tabla de referencia */
+        .tabla-referencia {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .tabla-referencia th,
+        .tabla-referencia td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--borde);
+        }
+        
+        .tabla-referencia th {
+            background: var(--primario);
+            color: white;
+        }
+        
+        .tabla-referencia tr:nth-child(even) {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        /* Logros */
+        .logro-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--tarjeta);
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s ease;
+        }
+        
+        .logro-popup.visible {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .logro-popup .icono {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .overlay.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
     <!-- Header del nivel -->
     <header class="nivel-header">
         <div class="nivel-badge">
             <span>🏠</span>
             <span>NIVEL 1</span>
         </div>
-        <h1>DOCTYPE y estructura Básica del HTML</h1>
+        <h1>DOCTYPE y Estructura Básica del HTML</h1>
     </header>
     
     <!-- Navegación -->
@@ -91,8 +738,8 @@
             <div class="warning-box" style="background: rgba(251, 191, 36, 0.1); border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 8px;">
                 <h4 style="color: #f59e0b; margin-bottom: 10px;">⚠️ ¿Qué pasa sin DOCTYPE?</h4>
                 <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Los márgenes y tamaños pueden sera diferentes</li>
-                    <li>Algunos estailos CSS no funcionarán bien</li>
+                    <li>Los márgenes y tamaños pueden ser diferentes</li>
+                    <li>Algunos estilos CSS no funcionarán bien</li>
                     <li>Tu sitio puede verse diferente en cada navegador</li>
                     <li>Es más difícil hacer que funcione en móviles</li>
                 </ul>
@@ -114,7 +761,7 @@
                         🧱 Dentro van todas las piezas (head y body)<br>
                         🔻 <code>&lt;/html&gt;</code> = Fondo de la caja (cierre)<br>
                         <br>
-                        <strong>¡Nada puede estaar fuera de estaa caja!</strong> (excepto el DOCTYPE)
+                        <strong>¡Nada puede estar fuera de esta caja!</strong> (excepto el DOCTYPE)
                     </p>
                 </div>
                 
@@ -135,17 +782,17 @@
                 <h3>🌍 El atributo lang - Hablando el idioma correcto</h3>
                 <p>
                     <span class="codigo-inline">lang="es"</span> le dice al navegador 
-                    que la página estaá en <strong>español</strong>. 
+                    que la página está en <strong>español</strong>. 
                 </p>
                 
                 <div style="margin-top: 20px;">
                     <h4>🎯 ¿Por qué es importante?</h4>
                     <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
                         <li>🔊 <strong>Accesibilidad:</strong> Lectores de pantalla pronuncian correctamente</li>
-                        <li>🔍 <strong>SEO:</strong> Google entiende el idioma y muestara tu sitio a la audiencia correcta</li>
+                        <li>🔍 <strong>SEO:</strong> Google entiende el idioma y muestra tu sitio a la audiencia correcta</li>
                         <li>📝 <strong>Corrector:</strong> El navegador usa el diccionario correcto</li>
                         <li>🌐 <strong>Traducción:</strong> Chrome puede ofrecer traducir la página</li>
-                        <li>📱 <strong>Teclado móvil:</strong> Muestara caracteres especiales del idioma (ñ, á, é)</li>
+                        <li>📱 <strong>Teclado móvil:</strong> Muestra caracteres especiales del idioma (ñ, á, é)</li>
                     </ul>
                 </div>
                 
@@ -155,7 +802,7 @@
                         <div><code>&lt;html lang="es"&gt;</code> → Español de España</div>
                         <div><code>&lt;html lang="es-MX"&gt;</code> → Español de México</div>
                         <div><code>&lt;html lang="es-AR"&gt;</code> → Español de Argentina</div>
-                        <div><code>&lt;html lang="en-US"&gt;</code> → Inglés de estaados Unidos</div>
+                        <div><code>&lt;html lang="en-US"&gt;</code> → Inglés de Estados Unidos</div>
                     </div>
                 </div>
                 
@@ -195,9 +842,9 @@
             </table>
             
             <div class="seccion-explicacion">
-                <h3>📝 estructura básica completa</h3>
+                <h3>📝 Estructura básica completa</h3>
                 <p>
-                    Todo documento HTML tiene estaa estructura mínima:
+                    Todo documento HTML tiene esta estructura mínima:
                 </p>
                 <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
                     <li><strong>DOCTYPE</strong> - Identifica el tipo de documento</li>
@@ -233,15 +880,11 @@
 <html lang="es">
 <head>
     <title>Mi Primera Página</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
 </head>
-<body data-nivel="1">
+<body>
     <h1>¡Hola Mundo!</h1>
-    <p>estaa es mi primera página web.</p>
-    <p>¡estaoy aprendiendo HTML!</p>
+    <p>Esta es mi primera página web.</p>
+    <p>¡Estoy aprendiendo HTML!</p>
 </body>
 </html></textarea>
             </div>
@@ -297,7 +940,7 @@
                     <label class="quiz-opcion" data-correcta="false">
                         <input type="radio" name="q2" value="b">
                         <span class="radio-custom"></span>
-                        <span>La página es de estaados Unidos</span>
+                        <span>La página es de Estados Unidos</span>
                     </label>
                     <label class="quiz-opcion" data-correcta="true">
                         <input type="radio" name="q2" value="c">
@@ -331,7 +974,7 @@
             </div>
             
             <button class="btn-verificar" onclick="verificarQuiz()">
-                ✅ Verificar Respuestaas
+                ✅ Verificar Respuestas
             </button>
         </div>
         
@@ -342,7 +985,7 @@
                 <span>Desafío Básico: ¡Modifica el código!</span>
             </div>
             <div class="desafio-instrucciones">
-                <p>Usa el editor de arriba para hacer estaos cambios:</p>
+                <p>Usa el editor de arriba para hacer estos cambios:</p>
                 <ul>
                     <li>✏️ Cambia el idioma de "es" a "en" (inglés)</li>
                     <li>✏️ Modifica el título dentro de &lt;title&gt;</li>
@@ -455,7 +1098,7 @@
                         <li><strong>¿Olvidaste cerrar la etiqueta &lt;html&gt;?</strong><br>
                             <span style="color: #94a3b8; font-size: 0.95rem;">→ El navegador tratará de adivinar dónde termina, pero puede causar errores</span>
                         </li>
-                        <li><strong>¿Escribiste el DOCTYPE en mayúscualas o minúscualas?</strong><br>
+                        <li><strong>¿Escribiste el DOCTYPE en mayúsculas o minúsculas?</strong><br>
                             <span style="color: #94a3b8; font-size: 0.95rem;">→ ¡No importa! Ambas formas funcionan: &lt;!DOCTYPE html&gt; o &lt;!doctype html&gt;</span>
                         </li>
                         <li><strong>¿Pusiste texto directamente en &lt;html&gt; sin head o body?</strong><br>
@@ -481,8 +1124,8 @@
     
     <!-- Footer con navegación -->
     <footer class="nivel-footer">
-        <div class="estarellas-ganadas" id="estarellas">⭐⭐⭐</div>
-        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
+        <div class="estrellas-ganadas" id="estrellas">⭐⭐⭐</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
         <br>
         <button class="btn-continuar" id="btnContinuar" onclick="continuarNivel()">
             🚀 Continuar al Nivel 2
@@ -521,19 +1164,15 @@
 <html lang="es">
 <head>
     <title>Mi Primera Página</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
 </head>
-<body data-nivel="1">
+<body>
     <h1>¡Hola Mundo!</h1>
-    <p>estaa es mi primera página web.</p>
-    <p>¡estaoy aprendiendo HTML!</p>
+    <p>Esta es mi primera página web.</p>
+    <p>¡Estoy aprendiendo HTML!</p>
 </body>
 </html>`;
 
-        // Variables de estaado
+        // Variables de estado
         let quizCompletado = false;
         let codigoModificado = false;
         let progreso = 0;
@@ -552,7 +1191,7 @@
             // Configurar opciones del quiz
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    const grupo = opcion.closesta('.quiz-pregunta');
+                    const grupo = opcion.closest('.quiz-pregunta');
                     grupo.querySelectorAll('.quiz-opcion').forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -634,16 +1273,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            // Actualizar estarellas
-            const estarellas = document.getElementById('estarellas');
+            // Actualizar estrellas
+            const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
-                estarellas.textContent = '⭐⭐⭐';
-                document.getElementById('MenusajeFinal').textContent = '¡Excelente! ¡Completaste todo!';
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡Excelente! ¡Completaste todo!';
             } else if (progreso >= 50) {
-                estarellas.textContent = '⭐⭐☆';
-                document.getElementById('MenusajeFinal').textContent = '¡Muy bien! Casi terminas';
+                estrellas.textContent = '⭐⭐☆';
+                document.getElementById('mensajeFinal').textContent = '¡Muy bien! Casi terminas';
             } else {
-                estarellas.textContent = '⭐☆☆';
+                estrellas.textContent = '⭐☆☆';
             }
             
             guardarProgreso();

@@ -1,17 +1,376 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔊 Nivel 23 - Audio y Efectos</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    </head>
-<body data-nivel="23">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #0f0f23;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+        }
+        
+        .nivel-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .seccion {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #374151;
+        }
+        
+        .seccion h2 {
+            font-family: 'Fredoka One', cursive;
+            color: #c084fc;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .concepto-box {
+            background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.2));
+            border-left: 4px solid #a855f7;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .codigo-ejemplo {
+            background: #1e1e3f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 2px solid #a855f7;
+        }
+        
+        .codigo-ejemplo pre {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .function { color: #82aaff; }
+        .comment { color: #676e95; }
+        .property { color: #ffcb6b; }
+        .value { color: #f78c6c; }
+        
+        .tip-box {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.2));
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .tip-box::before { content: "💡 "; }
+        
+        /* Piano */
+        .piano-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .tecla {
+            width: 60px;
+            height: 180px;
+            background: linear-gradient(180deg, #fff, #e0e0e0);
+            border: 2px solid #333;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            transition: all 0.1s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .tecla:hover { background: linear-gradient(180deg, #f0f0f0, #d0d0d0); }
+        .tecla:active, .tecla.activa {
+            background: linear-gradient(180deg, #a855f7, #7c3aed);
+            color: white;
+            transform: scale(0.98);
+        }
+        
+        /* Botones de sonido */
+        .sonidos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .sonido-btn {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sonido-btn span {
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .sonido-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(168,85,247,0.4);
+        }
+        
+        .sonido-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Visualizador */
+        .visualizador-container {
+            background: #0f0f23;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .visualizador {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100px;
+            gap: 5px;
+        }
+        
+        .barra-vis {
+            width: 15px;
+            background: linear-gradient(180deg, #a855f7, #7c3aed);
+            border-radius: 5px 5px 0 0;
+            transition: height 0.1s;
+        }
+        
+        /* Animaciones de partículas */
+        .particulas-demo {
+            position: relative;
+            height: 300px;
+            background: #0f0f23;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .particula {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: flotar 3s ease-out forwards;
+        }
+        
+        @keyframes flotar {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Cronómetro */
+        .cronometro {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: #c084fc;
+            margin: 20px 0;
+        }
+        
+        .controles-crono {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-crono {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-crono:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(168,85,247,0.4);
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(168,85,247,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #374151;
+        }
+        
+        .quiz-pregunta h4 {
+            color: #c084fc;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-opcion {
+            background: rgba(168,85,247,0.1);
+            border: 2px solid #374151;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: #a855f7; }
+        .quiz-opcion.correcta { background: rgba(16,185,129,0.3); border-color: #10b981; }
+        .quiz-opcion.incorrecta { background: rgba(239,68,68,0.3); border-color: #ef4444; }
+        
+        .progreso-bar {
+            background: #374151;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progreso-fill {
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .estrellas {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .estrella { color: #4b5563; transition: all 0.3s; }
+        .estrella.activa { color: #fbbf24; text-shadow: 0 0 10px rgba(251,191,36,0.5); }
+        
+        .felicitacion {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .felicitacion h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-final a {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .nav-final a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 25px rgba(168,85,247,0.4);
+        }
+    </style>
+</head>
+<body>
     <header class="header">
         <div class="nav-header">
             <a href="inicio.html" class="nav-btn">🏠 Menú</a>
@@ -28,7 +387,7 @@
             
             <div class="concepto-box">
                 <h3>Web Audio API</h3>
-                <p>JavaScript puede crear y controlar sonidos directamente en el navegador. estao se usa para juegos, aplicaciones musicales, notificaciones y mucho más. ¡Vamos a crear música!</p>
+                <p>JavaScript puede crear y controlar sonidos directamente en el navegador. Esto se usa para juegos, aplicaciones musicales, notificaciones y mucho más. ¡Vamos a crear música!</p>
             </div>
         </section>
         
@@ -61,7 +420,7 @@
     oscillator.<span class="property">frequency</span>.<span class="property">value</span> = frecuencia;
     
     oscillator.<span class="function">connect</span>(gainNode);
-    gainNode.<span class="function">connect</span>(audioCtx.<span class="property">destaination</span>);
+    gainNode.<span class="function">connect</span>(audioCtx.<span class="property">destination</span>);
     
     oscillator.<span class="function">start</span>();
     gainNode.<span class="property">gain</span>.<span class="function">exponentialRampToValueAtTime</span>(<span class="value">0.01</span>, audioCtx.<span class="property">currentTime</span> + <span class="value">0.5</span>);
@@ -126,30 +485,30 @@
             </div>
         </section>
         
-        <!-- Partícualas -->
+        <!-- Partículas -->
         <section class="seccion">
-            <h2> Efectos de Partícualas</h2>
+            <h2>✨ Efectos de Partículas</h2>
             
-            <p>¡Haz clic dentro del área para crear partícualas flotantes!</p>
+            <p>¡Haz clic dentro del área para crear partículas flotantes!</p>
             
-            <div class="particualas-demo" id="particualasDemo" onclick="crearParticualas(event)">
+            <div class="particulas-demo" id="particulasDemo" onclick="crearParticulas(event)">
                 <p style="text-align: center; padding-top: 130px; opacity: 0.5;">👆 Haz clic aquí</p>
             </div>
             
             <div class="codigo-ejemplo">
-<pre><span class="comment">// Crear partícualas con JavaScript</span>
-<span class="keyword">function</span> <span class="function">crearParticualas</span>(event) {
-    <span class="keyword">const</span> emojis = [<span class="string">'⭐'</span>, <span class="string">''</span>, <span class="string">'🌟'</span>, <span class="string">'💫'</span>];
+<pre><span class="comment">// Crear partículas con JavaScript</span>
+<span class="keyword">function</span> <span class="function">crearParticulas</span>(event) {
+    <span class="keyword">const</span> emojis = [<span class="string">'⭐'</span>, <span class="string">'✨'</span>, <span class="string">'🌟'</span>, <span class="string">'💫'</span>];
     
     <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="value">0</span>; i < <span class="value">5</span>; i++) {
-        <span class="keyword">const</span> particuala = document.<span class="function">createElement</span>(<span class="string">'span'</span>);
-        particuala.<span class="property">className</span> = <span class="string">'particuala'</span>;
-        particuala.<span class="property">textContent</span> = emojis[Math.<span class="function">floor</span>(Math.<span class="function">random</span>() * emojis.<span class="property">length</span>)];
-        particuala.<span class="property">style</span>.<span class="property">left</span> = event.<span class="property">offsetX</span> + <span class="string">'px'</span>;
-        particuala.<span class="property">style</span>.<span class="property">top</span> = event.<span class="property">offsetY</span> + <span class="string">'px'</span>;
+        <span class="keyword">const</span> particula = document.<span class="function">createElement</span>(<span class="string">'span'</span>);
+        particula.<span class="property">className</span> = <span class="string">'particula'</span>;
+        particula.<span class="property">textContent</span> = emojis[Math.<span class="function">floor</span>(Math.<span class="function">random</span>() * emojis.<span class="property">length</span>)];
+        particula.<span class="property">style</span>.<span class="property">left</span> = event.<span class="property">offsetX</span> + <span class="string">'px'</span>;
+        particula.<span class="property">style</span>.<span class="property">top</span> = event.<span class="property">offsetY</span> + <span class="string">'px'</span>;
         
-        container.<span class="function">appendChild</span>(particuala);
-        <span class="function">setTimeout</span>(() => particuala.<span class="function">remove</span>(), <span class="value">3000</span>);
+        container.<span class="function">appendChild</span>(particula);
+        <span class="function">setTimeout</span>(() => particula.<span class="function">remove</span>(), <span class="value">3000</span>);
     }
 }</pre>
             </div>
@@ -197,44 +556,44 @@
                 <div class="quiz-pregunta">
                     <h4>1. ¿Qué API crea sonidos en el navegador?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Sound API</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Web Audio API</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Music API</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Sound API</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Web Audio API</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Music API</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>2. ¿Qué método ejecuta código repetidamente?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">setTimeout()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">setInterval()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">setRepeat()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">setTimeout()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">setInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">setRepeat()</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>3. ¿Cómo detienes un setInterval?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">stopInterval()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">pauseInterval()</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">clearInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">stopInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">pauseInterval()</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">clearInterval()</div>
                     </div>
                 </div>
                 
                 <div class="quiz-pregunta">
                     <h4>4. ¿Para qué sirve createElement()?</h4>
                     <div class="quiz-opciones">
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, true)">Crear nuevos elementos HTML</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Crear variables</div>
-                        <div class="quiz-opcion" onclick="verificarRespuestaa(this, false)">Crear funciones</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, true)">Crear nuevos elementos HTML</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Crear variables</div>
+                        <div class="quiz-opcion" onclick="verificarRespuesta(this, false)">Crear funciones</div>
                     </div>
                 </div>
             </div>
             
-            <div class="estarellas">
-                <span class="estarella" id="star1">⭐</span>
-                <span class="estarella" id="star2">⭐</span>
-                <span class="estarella" id="star3">⭐</span>
+            <div class="estrellas">
+                <span class="estrella" id="star1">⭐</span>
+                <span class="estrella" id="star2">⭐</span>
+                <span class="estrella" id="star3">⭐</span>
             </div>
             
             <div class="felicitacion" id="felicitacion">
@@ -271,7 +630,7 @@
             oscillator.frequency.value = frecuencia;
             
             oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destaination);
+            gainNode.connect(audioCtx.destination);
             
             oscillator.start();
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
@@ -292,7 +651,7 @@
             const gainNode = audioCtx.createGain();
             
             oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destaination);
+            gainNode.connect(audioCtx.destination);
             
             const efectos = {
                 exito: { freq: 800, type: 'sine', duration: 0.3 },
@@ -351,21 +710,21 @@
             efectoSonido('powerup');
         }
         
-        // Partícualas
-        function crearParticualas(event) {
-            const container = document.getElementById('particualasDemo');
-            const emojis = ['⭐', '', '🌟', '💫', '🎵', '🎶', '💜'];
+        // Partículas
+        function crearParticulas(event) {
+            const container = document.getElementById('particulasDemo');
+            const emojis = ['⭐', '✨', '🌟', '💫', '🎵', '🎶', '💜'];
             
             for (let i = 0; i < 5; i++) {
-                const particuala = document.createElement('span');
-                particuala.className = 'particuala';
-                particuala.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                particuala.style.left = (event.offsetX + (Math.random() - 0.5) * 40) + 'px';
-                particuala.style.top = event.offsetY + 'px';
+                const particula = document.createElement('span');
+                particula.className = 'particula';
+                particula.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particula.style.left = (event.offsetX + (Math.random() - 0.5) * 40) + 'px';
+                particula.style.top = event.offsetY + 'px';
                 
-                container.appendChild(particuala);
+                container.appendChild(particula);
                 
-                setTimeout(() => particuala.remove(), 3000);
+                setTimeout(() => particula.remove(), 3000);
             }
             
             efectoSonido('coin');
@@ -411,7 +770,7 @@
         let correctas = 0;
         const totalPreguntas = 4;
         
-        function verificarRespuestaa(elemento, esCorrecta) {
+        function verificarRespuesta(elemento, esCorrecta) {
             if (elemento.classList.contains('correcta') || elemento.classList.contains('incorrecta')) return;
             
             const opciones = elemento.parentElement.querySelectorAll('.quiz-opcion');
@@ -420,7 +779,7 @@
             if (esCorrecta) {
                 elemento.classList.add('correcta');
                 correctas++;
-                actualizarestarellas();
+                actualizarEstrellas();
                 efectoSonido('exito');
             } else {
                 elemento.classList.add('incorrecta');
@@ -439,7 +798,7 @@
             }
         }
         
-        function actualizarestarellas() {
+        function actualizarEstrellas() {
             const porcentaje = (correctas / totalPreguntas) * 100;
             if (porcentaje >= 25) document.getElementById('star1').classList.add('activa');
             if (porcentaje >= 50) document.getElementById('star2').classList.add('activa');

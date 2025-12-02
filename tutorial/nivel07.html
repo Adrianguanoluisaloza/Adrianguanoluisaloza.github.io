@@ -4,12 +4,509 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎨 Nivel 7 - Introducción a CSS</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
-    </head>
-<body data-nivel="7">
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #ec4899;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-header h1 { font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        .progreso-nivel {
+            background: var(--tarjeta);
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--borde);
+        }
+        
+        .progreso-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        
+        .progreso-barra {
+            height: 10px;
+            background: var(--borde);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--exito), #34d399);
+            transition: width 0.5s ease;
+        }
+        
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) { .contenido-principal { grid-template-columns: 1fr; } }
+        
+        .panel-explicacion {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--borde);
+        }
+        
+        .panel-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: var(--nivel-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .seccion-explicacion {
+            background: rgba(236, 72, 153, 0.1);
+            border-left: 4px solid var(--nivel-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .seccion-explicacion h3 {
+            color: var(--nivel-color);
+            margin-bottom: 10px;
+        }
+        
+        .seccion-explicacion p { line-height: 1.8; color: #cbd5e1; }
+        
+        .codigo-inline {
+            background: #2d2d44;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+        }
+        
+        .panel-editor {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #db2777, #be185d);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .editor-titulo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .editor-botones { display: flex; gap: 10px; }
+        
+        .btn-editor {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-ejecutar:hover { background: #059669; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-container { border-top: 2px solid var(--borde); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 10px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            min-height: 300px;
+            background: white;
+            border: none;
+        }
+        
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--exito);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tip-box h4 { color: var(--exito); margin-bottom: 8px; }
+        
+        /* CSS Properties Grid */
+        .propiedades-css {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .propiedad-css {
+            background: rgba(236, 72, 153, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .propiedad-css:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.3);
+        }
+        
+        .propiedad-css .nombre {
+            font-family: 'Consolas', monospace;
+            color: #fbbf24;
+            font-size: 0.85rem;
+        }
+        
+        .propiedad-css .icono { font-size: 1.5rem; margin-bottom: 5px; }
+        
+        /* Paleta de colores */
+        .paleta-colores {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .color-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .color-item:hover { transform: scale(1.2); }
+        
+        /* Actividades */
+        .actividad {
+            background: var(--tarjeta);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .actividad-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+        
+        /* Designer interactivo */
+        .designer-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) { .designer-container { grid-template-columns: 1fr; } }
+        
+        .controles-design {
+            background: rgba(236, 72, 153, 0.1);
+            border: 2px dashed var(--nivel-color);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .controles-design h4 {
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .control-grupo {
+            margin-bottom: 15px;
+        }
+        
+        .control-grupo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #a5b4fc;
+        }
+        
+        .control-grupo input,
+        .control-grupo select {
+            width: 100%;
+            padding: 10px;
+            background: var(--tarjeta);
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            color: var(--texto);
+            font-size: 14px;
+        }
+        
+        .control-grupo input:focus,
+        .control-grupo select:focus {
+            outline: none;
+            border-color: var(--nivel-color);
+        }
+        
+        .preview-design {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        
+        .elemento-preview {
+            padding: 20px 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .codigo-generado {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            color: #a5d6ff;
+            white-space: pre-wrap;
+        }
+        
+        /* Quiz */
+        .quiz-pregunta {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-pregunta h4 { color: var(--warning); margin-bottom: 15px; }
+        
+        .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-opcion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-opcion:hover { border-color: var(--primario); }
+        .quiz-opcion.selected { border-color: var(--primario); background: rgba(102, 126, 234, 0.2); }
+        .quiz-opcion.correcta { border-color: var(--exito); background: rgba(16, 185, 129, 0.2); }
+        .quiz-opcion.incorrecta { border-color: var(--error); background: rgba(239, 68, 68, 0.2); }
+        .quiz-opcion input { display: none; }
+        
+        .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--borde);
+            border-radius: 50%;
+        }
+        
+        .quiz-opcion.selected .radio-custom { background: var(--primario); border-color: var(--primario); }
+        
+        .quiz-resultado {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-resultado.exito {
+            display: flex;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--exito);
+            color: var(--exito);
+        }
+        
+        .quiz-resultado.error {
+            display: flex;
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--error);
+            color: var(--error);
+        }
+        
+        .btn-verificar {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primario), var(--secundario));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-verificar:hover { transform: scale(1.05); }
+        
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+            margin-top: 30px;
+        }
+        
+        .estrellas-ganadas { font-size: 2rem; margin-bottom: 10px; }
+        
+        .btn-continuar {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--exito), #34d399);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-ayuda-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--nivel-color), #db2777);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+        
+        .mascota-ayuda {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--tarjeta);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 15px;
+            max-width: 280px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mascota-ayuda.visible { display: block; }
+        
+        .mascota-cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
     <header class="nivel-header">
         <div class="nivel-badge">
             <span>🎨</span>
@@ -47,7 +544,7 @@
                 <h3>🎨 ¿Qué es CSS?</h3>
                 <p>
                     <strong>CSS</strong> (Cascading Style Sheets) es el lenguaje para 
-                    dar <strong>estailo y belleza</strong> a tu página web. 
+                    dar <strong>estilo y belleza</strong> a tu página web. 
                     Con CSS puedes cambiar colores, tamaños, fuentes, posiciones y mucho más.
                 </p>
             </div>
@@ -64,35 +561,35 @@
             </h3>
             
             <div class="propiedades-css">
-                <div class="propiedad-css" onclick="inseratarPropiedad('color')">
+                <div class="propiedad-css" onclick="insertarPropiedad('color')">
                     <div class="icono">🎨</div>
                     <div class="nombre">color</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('background')">
+                <div class="propiedad-css" onclick="insertarPropiedad('background')">
                     <div class="icono">🖼️</div>
                     <div class="nombre">background</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('font-size')">
+                <div class="propiedad-css" onclick="insertarPropiedad('font-size')">
                     <div class="icono">📏</div>
                     <div class="nombre">font-size</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('padding')">
+                <div class="propiedad-css" onclick="insertarPropiedad('padding')">
                     <div class="icono">📦</div>
                     <div class="nombre">padding</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('margin')">
+                <div class="propiedad-css" onclick="insertarPropiedad('margin')">
                     <div class="icono">↔️</div>
                     <div class="nombre">margin</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('border')">
+                <div class="propiedad-css" onclick="insertarPropiedad('border')">
                     <div class="icono">🔲</div>
                     <div class="nombre">border</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('border-radius')">
+                <div class="propiedad-css" onclick="insertarPropiedad('border-radius')">
                     <div class="icono">⭕</div>
                     <div class="nombre">border-radius</div>
                 </div>
-                <div class="propiedad-css" onclick="inseratarPropiedad('font-family')">
+                <div class="propiedad-css" onclick="insertarPropiedad('font-family')">
                     <div class="icono">✏️</div>
                     <div class="nombre">font-family</div>
                 </div>
@@ -142,22 +639,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Página con CSS</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
-    </head>
-<body data-nivel="7">
+    <style>
+        /* 🌟 Estilo para todo el body */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        /* 🎯 Estilo para la tarjeta */
+        .tarjeta {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        /* 📝 Estilo para el título */
+        h1 {
+            color: #ec4899;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        /* ✏️ Estilo para párrafos */
+        p {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* 🔘 Estilo para el botón */
+        .boton {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .boton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5);
+        }
+        
+        /* 🏷️ Estilo por ID */
+        #especial {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
     <div class="tarjeta">
         <h1>🎨 Aprendo CSS</h1>
         
         <p>
-            ¡Hola! estaa es mi primera página con estailos CSS.
+            ¡Hola! Esta es mi primera página con estilos CSS.
             Puedo cambiar colores, tamaños y mucho más.
         </p>
         
         <div id="especial">
-            💡 estae elemento tiene un ID úunico llamado "especial"
+            💡 Este elemento tiene un ID único llamado "especial"
         </div>
         
         <p>
@@ -189,7 +746,7 @@
         
         <div class="designer-container">
             <div class="controles-design">
-                <h4>🎛️ Controles de estailo</h4>
+                <h4>🎛️ Controles de Estilo</h4>
                 
                 <div class="control-grupo">
                     <label>Texto:</label>
@@ -232,7 +789,7 @@
                         <option value="Verdana">Verdana</option>
                         <option value="Courier New">Courier New</option>
                         <option value="Times New Roman">Times New Roman</option>
-                        <option value="Comic Sans mas">Comic Sans mas</option>
+                        <option value="Comic Sans MS">Comic Sans MS</option>
                     </select>
                 </div>
                 
@@ -348,12 +905,12 @@
             <div class="quiz-resultado" id="resultado3"></div>
         </div>
         
-        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestaas</button>
+        <button class="btn-verificar" onclick="verificarQuiz()">✅ Verificar Respuestas</button>
     </section>
     
     <footer class="nivel-footer">
-        <div class="estarellas-ganadas" id="estarellas">⭐☆☆</div>
-        <p id="MenusajeFinal">Completa las actividades para ganar estarellas</p>
+        <div class="estrellas-ganadas" id="estrellas">⭐☆☆</div>
+        <p id="mensajeFinal">Completa las actividades para ganar estrellas</p>
         <br>
         <a href="nivel08.html" class="btn-continuar" id="btnContinuar" style="display: none; text-decoration: none;">
             Siguiente Nivel ➡️
@@ -412,7 +969,7 @@
             alert('Color copiado: ' + color);
         }
         
-        function inseratarPropiedad(prop) {
+        function insertarPropiedad(prop) {
             const templates = {
                 'color': '\n            color: #ec4899;',
                 'background': '\n            background: linear-gradient(135deg, #667eea, #764ba2);',
@@ -421,7 +978,7 @@
                 'margin': '\n            margin: 20px;',
                 'border': '\n            border: 3px solid #ec4899;',
                 'border-radius': '\n            border-radius: 15px;',
-                'font-family': "\n            font-family: 'Georgia', seraif;"
+                'font-family': "\n            font-family: 'Georgia', serif;"
             };
             
             const editor = document.getElementById('codigoEditor');
@@ -468,7 +1025,7 @@
     font-size: ${tamano}px;
     padding: ${padding}px;
     border-radius: ${borderRadius}px;
-    font-family: '${fuente}', sans-seraif;
+    font-family: '${fuente}', sans-serif;
     box-shadow: ${sombras[sombra]};
 }`;
             
@@ -495,7 +1052,7 @@
         function configurarQuiz() {
             document.querySelectorAll('.quiz-opcion').forEach(opcion => {
                 opcion.addEventListener('click', () => {
-                    opcion.closesta('.quiz-pregunta').querySelectorAll('.quiz-opcion')
+                    opcion.closest('.quiz-pregunta').querySelectorAll('.quiz-opcion')
                         .forEach(o => o.classList.remove('selected'));
                     opcion.classList.add('selected');
                     opcion.querySelector('input').checked = true;
@@ -540,16 +1097,16 @@
             document.getElementById('progresoFill').style.width = progreso + '%';
             document.getElementById('progresoTexto').textContent = progreso + '%';
             
-            const estarellas = document.getElementById('estarellas');
+            const estrellas = document.getElementById('estrellas');
             if (progreso >= 100) {
-                estarellas.textContent = '⭐⭐⭐';
-                document.getElementById('MenusajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
+                estrellas.textContent = '⭐⭐⭐';
+                document.getElementById('mensajeFinal').textContent = '¡NIVEL COMPLETADO! 🎉';
                 document.getElementById('btnContinuar').style.display = 'inline-block';
                 localStorage.setItem('nivel7_completado', 'true');
             } else if (progreso >= 50) {
-                estarellas.textContent = '⭐⭐☆';
+                estrellas.textContent = '⭐⭐☆';
             } else {
-                estarellas.textContent = '⭐☆☆';
+                estrellas.textContent = '⭐☆☆';
             }
         }
         

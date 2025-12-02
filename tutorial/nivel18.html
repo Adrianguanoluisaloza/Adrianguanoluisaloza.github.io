@@ -4,12 +4,353 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎓 Nivel 18 - Proyecto Final</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    
-    </head>
-<body data-nivel="18">
+    <style>
+        :root {
+            --primario: #667eea;
+            --secundario: #764ba2;
+            --exito: #10b981;
+            --warning: #f59e0b;
+            --fondo: #0f0f23;
+            --texto: #e2e8f0;
+            --tarjeta: #1a1a2e;
+            --borde: #374151;
+            --nivel-color: #f43f5e;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+        
+        .nivel-header {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nivel-header::before {
+            content: '🎓';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: -30px;
+            right: -30px;
+        }
+        
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .nivel-header h1 { 
+            font-size: 2.2rem; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+            color: white; 
+        }
+        
+        .nivel-header p { 
+            color: rgba(255,255,255,0.9); 
+            font-size: 1.1rem; 
+            margin-top: 10px; 
+        }
+        
+        .nav-niveles {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: var(--tarjeta);
+            border-bottom: 2px solid var(--borde);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primario);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover { transform: scale(1.05); }
+        
+        /* Habilidades */
+        .habilidades-section {
+            padding: 30px;
+            margin: 20px;
+            background: var(--tarjeta);
+            border-radius: 20px;
+            border: 2px solid var(--borde);
+        }
+        
+        .section-titulo {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--nivel-color);
+            margin-bottom: 25px;
+        }
+        
+        .habilidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        
+        .habilidad-card {
+            background: rgba(244, 63, 94, 0.1);
+            border: 2px solid var(--nivel-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .habilidad-card:hover { 
+            transform: translateY(-5px); 
+            background: rgba(244, 63, 94, 0.2);
+        }
+        
+        .habilidad-card .icono { font-size: 2.5rem; margin-bottom: 10px; }
+        .habilidad-card .nombre { color: var(--nivel-color); font-weight: bold; }
+        .habilidad-card .desc { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; }
+        
+        /* Editor */
+        .editor-section {
+            margin: 20px;
+            background: var(--tarjeta);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--borde);
+        }
+        
+        .editor-header {
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .editor-titulo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+        }
+        
+        .editor-botones { display: flex; gap: 10px; flex-wrap: wrap; }
+        
+        .btn-editor {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-editor:hover { transform: scale(1.05); }
+        .btn-ejecutar { background: var(--exito); color: white; }
+        .btn-reset { background: var(--warning); color: black; }
+        .btn-copiar { background: var(--primario); color: white; }
+        
+        .editor-body { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+        }
+        
+        @media (max-width: 900px) { 
+            .editor-body { grid-template-columns: 1fr; } 
+        }
+        
+        .codigo-container { border-right: 2px solid var(--borde); }
+        
+        .codigo-textarea {
+            width: 100%;
+            min-height: 450px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border: none;
+            resize: vertical;
+        }
+        
+        .codigo-textarea:focus { outline: 2px solid var(--nivel-color); }
+        
+        .preview-header {
+            background: #16213e;
+            padding: 12px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--borde);
+        }
+        
+        .preview-frame { 
+            width: 100%; 
+            min-height: 450px; 
+            background: white; 
+            border: none; 
+        }
+        
+        /* Certificado */
+        .certificado-section {
+            padding: 40px;
+            margin: 20px;
+            background: linear-gradient(135deg, var(--tarjeta), #16213e);
+            border-radius: 20px;
+            border: 2px solid var(--borde);
+            text-align: center;
+        }
+        
+        .input-nombre {
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border: 3px solid var(--primario);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        
+        .input-nombre::placeholder { color: #94a3b8; }
+        
+        .btn-certificado {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d97706, #b45309);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-certificado:hover { transform: scale(1.05); }
+        
+        .certificado-container {
+            max-width: 650px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 8px solid #d97706;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            color: #1e293b;
+            display: none;
+        }
+        
+        .certificado-container.visible { display: block; }
+        
+        .certificado-container h2 {
+            font-size: 1.8rem;
+            color: #b45309;
+            margin-bottom: 15px;
+        }
+        
+        .nombre-estudiante {
+            font-size: 2.2rem;
+            color: #1e40af;
+            font-family: 'Georgia', serif;
+            margin: 20px 0;
+            padding: 10px;
+            border-bottom: 3px solid #1e40af;
+            display: inline-block;
+        }
+        
+        .mensaje-cert {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        
+        .fecha-cert {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 25px;
+        }
+        
+        .sello {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 4rem;
+        }
+        
+        /* Footer */
+        .nivel-footer {
+            background: var(--tarjeta);
+            padding: 30px;
+            text-align: center;
+            border-top: 2px solid var(--borde);
+        }
+        
+        .footer-mensaje {
+            font-size: 1.5rem;
+            color: var(--nivel-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: caer 3s linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            border-radius: 2px;
+        }
+        
+        @keyframes caer {
+            to {
+                top: 100vh;
+                transform: rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
     <header class="nivel-header">
         <div class="nivel-badge">
             <span>🎓</span>
@@ -23,7 +364,7 @@
         <a href="inicio.html" class="nav-btn">🏠 Menú Principal</a>
         <div style="display: flex; gap: 10px;">
             <a href="nivel17.html" class="nav-btn">⬅️ Anterior</a>
-            <a href="nivel19.html" class="nav-btn">Nivel 19 ➡️</a>
+            <a href="final.html" class="nav-btn">🏆 Centro de Logros ➡️</a>
         </div>
     </nav>
     
@@ -34,12 +375,12 @@
             <div class="habilidad-card">
                 <div class="icono">📄</div>
                 <div class="nombre">HTML5</div>
-                <div class="desc">estructura</div>
+                <div class="desc">Estructura</div>
             </div>
             <div class="habilidad-card">
                 <div class="icono">🎨</div>
                 <div class="nombre">CSS3</div>
-                <div class="desc">estailos</div>
+                <div class="desc">Estilos</div>
             </div>
             <div class="habilidad-card">
                 <div class="icono">⚡</div>
@@ -101,15 +442,15 @@
             Escribe tu nombre para generar tu certificado:
         </p>
         
-        <input type="text" class="input-nombre" id="nombreestaudiante" placeholder="Tu nombre completo">
+        <input type="text" class="input-nombre" id="nombreEstudiante" placeholder="Tu nombre completo">
         <br>
         <button class="btn-certificado" onclick="generarCertificado()">🎓 Generar Certificado</button>
         
         <div class="certificado-container" id="certificado">
             <h2>📜 Certificado de Logro</h2>
-            <p style="color: #6b7280;">estae certificado se otorga a:</p>
-            <div class="nombre-estaudiante" id="nombreEnCertificado"></div>
-            <p class="Menusaje-cert">
+            <p style="color: #6b7280;">Este certificado se otorga a:</p>
+            <div class="nombre-estudiante" id="nombreEnCertificado"></div>
+            <p class="mensaje-cert">
                 Por completar exitosamente el curso de 
                 <strong>Desarrollo Web</strong> de la 
                 <strong>Unidad Educativa Luz de Esmeraldas</strong>, 
@@ -121,22 +462,18 @@
     </section>
     
     <footer class="nivel-footer">
-        <div class="footer-Menusaje">🎉 ¡Felicidades por llegar hasta aquí!</div>
+        <div class="footer-mensaje">🎉 ¡Felicidades por llegar hasta aquí!</div>
         <p style="color: #94a3b8; margin-bottom: 20px;">
-            ¡Continúa con los niveles avanzados para aprender más!
+            Has aprendido las bases del desarrollo web. ¡Sigue practicando!
         </p>
-        <a href="nivel19.html" class="nav-btn" style="display: inline-flex;">
-            🚀 Continuar al Nivel 19 ➡️
+        <a href="final.html" class="nav-btn" style="display: inline-flex;">
+            🏆 Ver todos mis logros ➡️
         </a>
     </footer>
 
     <script>
         // Código inicial para el editor
-        var codigoInicial = '<!DOCTYPE html>\n<html lang="es">\n<head>\n    <meta charset="UTF-8">\n    <title>Mi Página Web</title>
-    <link rel="stylesheet" href="css/codequest.css">
-    <script src="js/codequest.js" defer></script>
-    
-    \n    \n</head>\n<body data-nivel="18">\n    <header>\n        <div class="avatar">👋</div>\n        <h1>¡Hola! Soy [Tu Nombre]</h1>\n        <p>Desarrollador Web en formación 🚀</p>\n        \n        <div class="habilidades">\n            <span class="habilidad">HTML5</span>\n            <span class="habilidad">CSS3</span>\n            <span class="habilidad">JavaScript</span>\n        </div>\n    </header>\n    \n    <section class="proyectos">\n        <div class="proyecto">\n            <div class="emoji">🌐</div>\n            <h3>Mi Primera Web</h3>\n            <p>Aprendí HTML y CSS</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">🎮</div>\n            <h3>Mini Juego</h3>\n            <p>Usé JavaScript</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">📋</div>\n            <h3>App de Tareas</h3>\n            <p>Con LocalStorage</p>\n        </div>\n    </section>\n    \n    <section class="contador">\n        <h2>¡Contador Interactivo!</h2>\n        <span id="numero">0</span>\n        <button onclick="contar()">+1 Click</button>\n    </section>\n    \n    <script>\n        var clicks = 0;\n        function contar() {\n            clicks++;\n            document.getElementById(\"numero\").textContent = clicks;\n        }\n    <\/script>\n</body>\n</html>';
+        var codigoInicial = '<!DOCTYPE html>\n<html lang="es">\n<head>\n    <meta charset="UTF-8">\n    <title>Mi Página Web</title>\n    <style>\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        \n        body {\n            font-family: Arial, sans-serif;\n            background: linear-gradient(135deg, #667eea, #764ba2);\n            min-height: 100vh;\n            color: white;\n            padding: 20px;\n        }\n        \n        header {\n            text-align: center;\n            padding: 40px;\n        }\n        \n        .avatar {\n            font-size: 80px;\n            animation: bounce 1s ease infinite;\n        }\n        \n        @keyframes bounce {\n            0%, 100% { transform: translateY(0); }\n            50% { transform: translateY(-20px); }\n        }\n        \n        h1 { \n            font-size: 2.5rem; \n            margin: 20px 0;\n        }\n        \n        .habilidades {\n            display: flex;\n            justify-content: center;\n            gap: 15px;\n            flex-wrap: wrap;\n            margin-top: 20px;\n        }\n        \n        .habilidad {\n            background: rgba(255,255,255,0.2);\n            padding: 10px 20px;\n            border-radius: 25px;\n            cursor: pointer;\n            transition: all 0.3s;\n        }\n        \n        .habilidad:hover {\n            background: white;\n            color: #667eea;\n            transform: scale(1.1);\n        }\n        \n        .proyectos {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n            gap: 20px;\n            padding: 40px 20px;\n            max-width: 800px;\n            margin: 0 auto;\n        }\n        \n        .proyecto {\n            background: white;\n            color: #333;\n            padding: 25px;\n            border-radius: 15px;\n            text-align: center;\n            transition: all 0.3s;\n        }\n        \n        .proyecto:hover {\n            transform: translateY(-10px);\n            box-shadow: 0 20px 40px rgba(0,0,0,0.3);\n        }\n        \n        .proyecto .emoji { font-size: 3rem; }\n        .proyecto h3 { color: #667eea; margin: 10px 0; }\n        \n        .contador {\n            text-align: center;\n            padding: 30px;\n        }\n        \n        .contador button {\n            padding: 15px 40px;\n            font-size: 1.5rem;\n            background: white;\n            color: #667eea;\n            border: none;\n            border-radius: 30px;\n            cursor: pointer;\n            transition: all 0.3s;\n        }\n        \n        .contador button:hover {\n            transform: scale(1.1);\n        }\n        \n        #numero {\n            font-size: 4rem;\n            display: block;\n            margin: 20px;\n        }\n    </style>\n</head>\n<body>\n    <header>\n        <div class="avatar">👋</div>\n        <h1>¡Hola! Soy [Tu Nombre]</h1>\n        <p>Desarrollador Web en formación 🚀</p>\n        \n        <div class="habilidades">\n            <span class="habilidad">HTML5</span>\n            <span class="habilidad">CSS3</span>\n            <span class="habilidad">JavaScript</span>\n        </div>\n    </header>\n    \n    <section class="proyectos">\n        <div class="proyecto">\n            <div class="emoji">🌐</div>\n            <h3>Mi Primera Web</h3>\n            <p>Aprendí HTML y CSS</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">🎮</div>\n            <h3>Mini Juego</h3>\n            <p>Usé JavaScript</p>\n        </div>\n        <div class="proyecto">\n            <div class="emoji">📋</div>\n            <h3>App de Tareas</h3>\n            <p>Con LocalStorage</p>\n        </div>\n    </section>\n    \n    <section class="contador">\n        <h2>¡Contador Interactivo!</h2>\n        <span id="numero">0</span>\n        <button onclick="contar()">+1 Click</button>\n    </section>\n    \n    <script>\n        var clicks = 0;\n        function contar() {\n            clicks++;\n            document.getElementById(\"numero\").textContent = clicks;\n        }\n    <\/script>\n</body>\n</html>';
         
         // Cargar código inicial
         document.getElementById('codigoEditor').value = codigoInicial;
@@ -171,7 +508,7 @@
         }
         
         function generarCertificado() {
-            var nombre = document.getElementById('nombreestaudiante').value.trim();
+            var nombre = document.getElementById('nombreEstudiante').value.trim();
             if (!nombre) {
                 alert('Por favor escribe tu nombre');
                 return;
