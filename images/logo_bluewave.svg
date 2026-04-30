@@ -1,0 +1,37 @@
+<svg width="450" height="200" viewBox="0 0 450 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo gradiente azul -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eaf6ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#123f75;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1f88ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0d6fde;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#45a6ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rectángulo de fondo -->
+  <rect width="450" height="200" fill="url(#bgGradient)" rx="20" ry="20"/>
+
+  <!-- Ola inferior -->
+  <path d="M0,150 Q112.5,100 225,150 T450,150 L450,200 L0,200 Z" fill="url(#waveGradient)">
+    <animate attributeName="d" values="M0,150 Q112.5,100 225,150 T450,150 L450,200 L0,200 Z;M0,160 Q112.5,110 225,160 T450,160 L450,200 L0,200 Z;M0,150 Q112.5,100 225,150 T450,150 L450,200 L0,200 Z" dur="4s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Ola superior -->
+  <path d="M0,120 Q112.5,70 225,120 T450,120 L450,150 L0,150 Z" fill="url(#waveGradient)" opacity="0.7">
+    <animate attributeName="d" values="M0,120 Q112.5,70 225,120 T450,120 L450,150 L0,150 Z;M0,130 Q112.5,80 225,130 T450,130 L450,150 L0,150 Z;M0,120 Q112.5,70 225,120 T450,120 L450,150 L0,150 Z" dur="3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Texto BlueWave -->
+  <text x="225" y="100" font-family="Sora, sans-serif" font-size="48" font-weight="800" fill="#ffffff" text-anchor="middle" stroke="#0d5bb3" stroke-width="2">
+    BlueWave
+  </text>
+
+  <!-- Subtítulo -->
+  <text x="225" y="130" font-family="Manrope, sans-serif" font-size="16" fill="#f8fafc" text-anchor="middle">
+    Soluciones Marítimas
+  </text>
+</svg>
